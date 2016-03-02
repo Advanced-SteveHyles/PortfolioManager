@@ -7,8 +7,8 @@
     <ProjectGuid>{A97D6231-48CB-43A6-BED3-58A3044384E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PortfolioManager.Constants</RootNamespace>
-    <AssemblyName>PortfolioManager.Constants</AssemblyName>
+    <RootNamespace>Portfolio.Common.Constants</RootNamespace>
+    <AssemblyName>Portfolio.Common.Constants</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Binaries\</OutputPath>
+    <OutputPath>..\..\Binaries\Shared\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
