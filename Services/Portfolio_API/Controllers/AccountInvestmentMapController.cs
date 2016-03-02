@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Interfaces;
+using Portfolio.API.WebApi;
 using PortfolioManager.DTO;
 using PortfolioManager.DTO.DTOs;
 using PortfolioManager.DTO.Requests;

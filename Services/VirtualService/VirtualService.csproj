@@ -30,25 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\BusinessLogic.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Binaries\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\Interfaces.dll</HintPath>
+    <Reference Include="Portfolio.BackEnd.BusinessLogic">
+      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.BusinessLogic.dll</HintPath>
     </Reference>
-    <Reference Include="PortfolioManager.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\PortfolioManager.DTO.dll</HintPath>
+    <Reference Include="Portfolio.BackEnd.Interfaces">
+      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="PortfolioManager.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\PortfolioManager.Repository.dll</HintPath>
+    <Reference Include="Portfolio.BackEnd.Repository">
+      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="Portfolio.Common.Constants">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.Constants.dll</HintPath>
+    </Reference>
+    <Reference Include="Portfolio.Common.DTO">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.DTO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

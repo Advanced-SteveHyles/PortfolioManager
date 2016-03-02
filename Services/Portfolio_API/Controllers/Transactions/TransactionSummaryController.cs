@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Interfaces;
+using Portfolio.API.WebApi;
 using PortfolioManager.DTO.DTOs.Transactions;
 using PortfolioManager.Repository;
 using PortfolioManager.Repository.Interfaces;

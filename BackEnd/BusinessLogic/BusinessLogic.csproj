@@ -7,8 +7,8 @@
     <ProjectGuid>{D54F38E9-8FBB-473A-AE31-98C85A05E857}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>Portfolio.BackEnd.BusinessLogic</RootNamespace>
+    <AssemblyName>Portfolio.BackEnd.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -32,13 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PortfolioManager.Constants, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\PortfolioManager.Constants.dll</HintPath>
+    <Reference Include="Portfolio.Common.Constants">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.Constants.dll</HintPath>
     </Reference>
-    <Reference Include="PortfolioManager.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\PortfolioManager.DTO.dll</HintPath>
+    <Reference Include="Portfolio.Common.DTO">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.DTO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -1,4 +1,4 @@
-namespace VirtualService.VirtualControllers
+namespace Portfolio.API.WebApi
 {
     public class ApiConstants
     {

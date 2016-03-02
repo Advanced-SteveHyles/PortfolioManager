@@ -9,6 +9,7 @@ using BusinessLogic;
 using BusinessLogic.Processors.Handlers;
 using BusinessLogic.Transactions;
 using Interfaces;
+using Portfolio.API.WebApi;
 using PortfolioManager.DTO;
 using PortfolioManager.DTO.DTOs.Transactions;
 using PortfolioManager.DTO.Requests.Transactions;

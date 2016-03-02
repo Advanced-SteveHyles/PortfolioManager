@@ -12,7 +12,7 @@ namespace Portfolio_API.Controllers
     internal class ShapedData
     {
 
-        public static object CreateDataShapedObject(Portfolio portfolioEnt, List<string> lstOfFields)
+        public static object CreateDataShapedObject(PortfolioManager.Repository.Entities.Portfolio portfolioEnt, List<string> lstOfFields)
         {
             // work with a new instance, as we'll manipulate this list in this method
             List<string> lstOfFieldsToWorkWith = new List<string>(lstOfFields);

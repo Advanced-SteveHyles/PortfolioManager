@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Routing;
 using Interfaces;
 using Newtonsoft.Json;
+using Portfolio.API.WebApi;
 using PortfolioManager.DTO;
 using PortfolioManager.Repository;
 using PortfolioManager.Repository.Entities;

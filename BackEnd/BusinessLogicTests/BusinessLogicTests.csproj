@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\binaries\BackEnd\</OutputPath>
+    <OutputPath>..\..\binaries\Tests\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,11 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PortfolioManager.Constants">
-      <HintPath>..\..\Binaries\PortfolioManager.Constants.dll</HintPath>
+    <Reference Include="Portfolio.Common.Constants">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.Constants.dll</HintPath>
     </Reference>
-    <Reference Include="PortfolioManager.DTO">
-      <HintPath>..\..\Binaries\PortfolioManager.DTO.dll</HintPath>
+    <Reference Include="Portfolio.Common.DTO">
+      <HintPath>..\..\Binaries\Shared\Portfolio.Common.DTO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
