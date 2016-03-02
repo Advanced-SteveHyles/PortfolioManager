@@ -1,0 +1,98 @@
+﻿@using System.Web.Mvc.Html
+@using PagedList.Mvc
+@using PortfolioManagerWeb.Controllers
+@model PortfolioManager.DTO.AccountDto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Account Details</h4>
+<hr />
+<dl class="dl-horizontal">
+
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+
+    <dd>
+        @Html.DisplayFor(model => model.Cash)
+    </dd>
+
+    <dd>
+        @Html.DisplayFor(model => model.AccountBalance)
+    </dd>
+
+    <dd>
+        @Html.DisplayFor(model => model.AccountId)
+    </dd>
+
+</dl>
+
+@Html.ActionLink("Deposit Funds", "DepositFunds", "AccountTransaction", new { accountId = Model.AccountId }, null)
+@Html.ActionLink("Withdraw Funds", "WithdrawFunds", "AccountTransaction", new { accountId = Model.AccountId }, null)
+@Html.ActionLink("Link Investment", "LinkInvestment", "AccountInvestmentMap", new { accountId = Model.AccountId }, null)
+@Html.ActionLink("Transactions", "AccountTransactionSummary", "Transactions", new { accountId = Model.AccountId }, null)
+
+<h2>Investment Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Valuation
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Investments)
+    {
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvestmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valuation)
+            </td>
+            <td>
+
+                @{
+                    string fred = "Option 1";
+                }
+                @Html.DropDownList(fred, new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Option 1", Value = "1" },
+                    new SelectListItem{ Text="Option 2", Value = "2" },
+                    new SelectListItem{ Text="Option 3", Value = "3" },
+                })
+
+                @Html.ActionLink("Create New", "Resolve", "InvestmentsMap",   new { id = item.AccountId , action= fred}, null)
+                @Html.ActionLink("Buy", "Buy", "BuyInvestment", new { investmentMapId = item.AccountInvestmentMapId }, null)
+                @Html.ActionLink("Sell", "Sell", "InvestmentsMap", new { investmentMapId = item.AccountInvestmentMapId }, null)
+
+                @Html.ActionLink("Corporate Action", "CorporateAction", "CorporateAction", new { investmentMapId = item.AccountInvestmentMapId }, null))
+                @Html.ActionLink("Dividend", "Dividend", "InvestmentsMap", new { id = item.AccountInvestmentMapId }, null))
+                @Html.ActionLink("Interest", "Interest", "InvestmentsMap", new { investmentMapId = item.AccountInvestmentMapId }, null))
+                @Html.ActionLink("Return Of Capital", "ReturnOfCapital", "InvestmentsMap", new { id = item.AccountInvestmentMapId }, null))
+
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Details", "Portfolios", new { portfolioId = Model.PortfolioId }, null)
+</p>

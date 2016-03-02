@@ -1,0 +1,60 @@
+﻿@model PortfolioManagerWeb.Models.PortfoliosViewModel
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Portfolios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Portfolios)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortfolioId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @*<td>
+                @((Model.ExpenseGroupStatusses as List<ExpenseTracker.DTO.ExpenseGroupStatus>)
+                        .First(egs => egs.PortfolioAcountId == item.ExpenseGroupStatusPortfolioAcountId).Description)
+            </td>*@
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.PortfolioAcountId }) |*@
+                @Html.ActionLink("Details", "Details", new { portfolioID = item.PortfolioId }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.PortfolioAcountId })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    Page @(Model.PagingInfo.CurrentPage) of @Model.PagingInfo.TotalPages
+
+    @Html.PagedListPager(Model.Portfolios, page => Url.Action("Index",
+    new { page }))
+
+

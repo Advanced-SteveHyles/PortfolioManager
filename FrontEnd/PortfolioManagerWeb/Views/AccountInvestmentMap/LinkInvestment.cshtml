@@ -1,0 +1,121 @@
+﻿@model  PortfolioManager.DTO.DTOs.AccountInfoWithAllInvestmentDto
+
+@{
+    ViewBag.Title = "LinkInvestments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<dl class="dl-horizontal">
+
+    <dd>
+        @Html.DisplayFor(model => model.AccountInfo.AccountId)
+    </dd>
+
+    <dd>
+        @Html.DisplayFor(model => model.AccountInfo.Name)
+    </dd>
+
+</dl>
+
+<H2>Unlinked Investments</H2>
+
+    <table class="table">
+        <tr>
+            <th>
+                Symbol
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Investments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvestmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Symbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Link", "LinkAccountToInvestment", "AccountInvestmentMap", new {accountId = Model.AccountInfo.AccountId, investmentId = item.InvestmentId}, null) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.PortfolioAcountId }) |*@
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.PortfolioAcountId })*@
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+
+
+<h2>Linked Investments</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Symbol
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Investments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvestmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.PortfolioAcountId }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.PortfolioAcountId }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.PortfolioAcountId })*@
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Details", "Accounts", new { accountId = Model.AccountInfo.AccountId }, null)
+</p>
+
+

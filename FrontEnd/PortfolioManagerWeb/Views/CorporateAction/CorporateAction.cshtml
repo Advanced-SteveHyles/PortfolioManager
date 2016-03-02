@@ -1,0 +1,44 @@
+﻿@model PortfolioManager.DTO.Requests.Transactions.InvestmentCorporateActionRequest
+
+@{
+    ViewBag.Title = "Corporate Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<H2>Corporate Action</H2>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+
+            @Html.HiddenFor(model => model.InvestmentMapId)
+
+            @Html.LabelFor(model => model.TransactionDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.TransactionDate, new {htmlAttributes = new {@class = "form-control datepicker"}})
+                @Html.ValidationMessageFor(model => model.TransactionDate, "", new {@class = "text-danger"})
+            </div>
+
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new {htmlAttributes = new {@class = "form-control datepicker"}})
+                @Html.ValidationMessageFor(model => model.Amount, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </div>
+
+        }
+
+    </div>
+
+
+}

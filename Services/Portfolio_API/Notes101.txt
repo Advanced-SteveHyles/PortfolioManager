@@ -1,0 +1,32 @@
+﻿1) Do not make controllers Internal
+
+2) Ensure Actionlinks use 5 parameters not 4 if passing IDs
+
+3) When hitting controller but not method, ensure id parameter is called id 
+to match route info.!
+
+4) Spaces in URLs cause
+	1) Unresolvable API paths
+	2) fields to throw exceptions
+
+5) If the API controller is found but the web cannot find it - check missing api\ on path
+
+6) To add 2 parameters to actionlink
+	a) creater two parameter object
+	b) add route to global ascx.
+
+7) Debugging Webroutes - try /glimpse.axd 
+
+8) If you dont want the DTO, dont Post the data.
+
+9a) Random Nulls on Actions -> DTO key is not same as the call from the page
+9b) Random zero -> {get;set;} missing on DTO
+
+10) If the controller forgets the key
+10a) Ensure key is mapped in the call
+@Html.ActionLink("Buy", "Buy", "BuyInvestment", new { investmentMapId = item.AccountInvestmentMapId }, null)
+10b) and name investmentMapId actually exists in the dto
+
+
+http://www.mikesdotnetting.com/Article/202/Inline-Editing-With-The-WebGrid
+http://haacked.com/archive/2011/01/06/razor-syntax-quick-reference.aspx/

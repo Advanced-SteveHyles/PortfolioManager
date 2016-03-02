@@ -1,0 +1,5 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\BusinessLogic.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\BusinessLogic.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.pdb

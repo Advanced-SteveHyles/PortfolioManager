@@ -1,0 +1,62 @@
+﻿@model PortfolioManager.DTO.DTOs.Transactions.AccountTransactionSummaryDto
+@{
+    ViewBag.Title = "TransactionSummary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Transactionummary</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Valuation
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Transactions)
+    {
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+
+                @{
+                    string fred = "Option 1";
+                }
+                @Html.DropDownList(fred, new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Option 1", Value = "1" },
+                    new SelectListItem{ Text="Option 2", Value = "2" },
+                    new SelectListItem{ Text="Option 3", Value = "3" },
+                })
+
+            </td>
+        </tr>
+                    }
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Details", "Accounts", new { accountId = Model.AccountId }, null)
+</p>

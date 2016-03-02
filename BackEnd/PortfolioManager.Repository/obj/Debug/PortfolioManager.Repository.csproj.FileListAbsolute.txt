@@ -1,0 +1,6 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\PortfolioManager.Repository\obj\Debug\PortfolioManager.Repository.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\PortfolioManager.Repository.dll.config
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\PortfolioManager.Repository.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\PortfolioManager.Repository.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\PortfolioManager.Repository\obj\Debug\PortfolioManager.Repository.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\PortfolioManager.Repository\obj\Debug\PortfolioManager.Repository.pdb

@@ -1,0 +1,5 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Binaries\PortfolioManager.DTO.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Binaries\PortfolioManager.DTO.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\PortfolioManager.DTO\obj\Debug\PortfolioManager.DTO.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\PortfolioManager.DTO\obj\Debug\PortfolioManager.DTO.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\PortfolioManager.DTO\obj\Debug\PortfolioManager.DTO.pdb

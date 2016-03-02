@@ -1,0 +1,5 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Binaries\PortfolioManager.Constants.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Binaries\PortfolioManager.Constants.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\Constants\obj\Debug\PortfolioManager.Constants.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\Constants\obj\Debug\PortfolioManager.Constants.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Common\Constants\obj\Debug\PortfolioManager.Constants.csprojResolveAssemblyReference.cache

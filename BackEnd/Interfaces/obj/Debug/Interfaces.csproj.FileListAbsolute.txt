@@ -1,0 +1,6 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\Interfaces.dll.config
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\Interfaces.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\Interfaces.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\Interfaces\obj\Debug\Interfaces.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\Interfaces\obj\Debug\Interfaces.pdb

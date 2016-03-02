@@ -1,0 +1,5 @@
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\Tests\BusinessLogicTests.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\Tests\BusinessLogicTests.pdb
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogicTests\obj\Debug\BusinessLogicTests.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogicTests\obj\Debug\BusinessLogicTests.dll
+C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogicTests\obj\Debug\BusinessLogicTests.pdb

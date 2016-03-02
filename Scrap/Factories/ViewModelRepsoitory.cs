@@ -1,0 +1,6 @@
+﻿namespace Factories
+{
+    class ViewModelRepsoitory
+    {
+    }
+}

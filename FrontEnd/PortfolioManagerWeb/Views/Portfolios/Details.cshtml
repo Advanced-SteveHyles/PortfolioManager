@@ -1,0 +1,78 @@
+﻿@using PortfolioManager.DTO
+@model PortfolioManager.DTO.PortfolioDto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Portfolio Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.HiddenFor(model=>model.PortfolioId)
+            
+            @Html.DisplayFor(model => model.Name)
+
+        </ dd >
+
+
+    </ dl >
+
+
+    <h4> Accounts </h4>
+
+    <p>
+    @Html.ActionLink("Create New", "Create", "Accounts", new { portfolioId = Model.PortfolioId }, null)
+    </p>
+    
+    <table class="table">
+        <tr>
+            <th>
+                Description
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Cash
+            </th>
+            <th>
+                Valuation
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Accounts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valuation)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Accounts", new { accountID = item.AccountId }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Accounts", new { accountID = item.AccountId}, null) |
+                    @*@Html.ActionLink("Delete", "Delete", "Accounts", new { expenseGroupPortfolioAccountId = item.ExpenseGroupPortfolioAccountId, id = item.PortfolioAccountId }, null)*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

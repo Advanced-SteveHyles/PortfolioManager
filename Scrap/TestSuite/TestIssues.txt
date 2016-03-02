@@ -1,0 +1,35 @@
+﻿Issues
+======
+Decide on whether Lookups are enums or classes or tables or interfaces
+
+Account is public (even in Factory?)
+Need to remove "new"
+TransactionTypes are newable
+
+Duplicate Accounts can be created  (same name, same details?)
+how do we delete a transaction?
+Reconciled Transactions need a Date
+Adding a Transaction and Account Balance should be atomic?
+
+Keeping ENUM and Enum Tables in sync
+
+WTF is EF for?
+
+Features
+========
+Open\Create Portfolio
+Open Account
+Add Transactions To Account
+Recurring Transactions
+Database Tie In
+
+Refactor?
+=========
+Should we store the transactions against the account, or the account against the transactions?
+
+Concept
+=======
+Does bank really need a collection of Accounts?  If we can only have 1 open, why do we need to link the accounts to it?
+Is a transfer transaction, a special case or two transactions.
+Statement
+Does a transaction belong to a statement, or is a statement made up of transactions?
