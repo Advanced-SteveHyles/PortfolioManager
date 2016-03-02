@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BackEnd.sln.iml" filepath="$PROJECT_DIR$/BackEnd.sln.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Services.sln.iml" filepath="$PROJECT_DIR$/Services.sln.iml" />
     </modules>
   </component>
 </project>
