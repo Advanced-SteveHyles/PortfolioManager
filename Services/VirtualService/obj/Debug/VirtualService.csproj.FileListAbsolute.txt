@@ -4,3 +4,12 @@ C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Binaries\VirtualService.pdb
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Services\VirtualService\obj\Debug\VirtualService.dll
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Services\VirtualService\obj\Debug\VirtualService.pdb
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\Services\VirtualService\obj\Debug\VirtualService.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\VirtualService.dll.config
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\VirtualService.dll
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\VirtualService.pdb
+C:\LEARNINGANDRAND\PortfolioManager\Services\VirtualService\obj\Debug\VirtualService.dll
+C:\LEARNINGANDRAND\PortfolioManager\Services\VirtualService\obj\Debug\VirtualService.pdb
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\Services\VirtualAPI\VirtualService.dll.config
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\Services\VirtualAPI\VirtualService.dll
+C:\LEARNINGANDRAND\PortfolioManager\Binaries\Services\VirtualAPI\VirtualService.pdb
+C:\LEARNINGANDRAND\PortfolioManager\Services\VirtualService\obj\Debug\VirtualService.csprojResolveAssemblyReference.cache

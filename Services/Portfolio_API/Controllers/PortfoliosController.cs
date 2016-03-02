@@ -21,7 +21,7 @@ namespace Portfolio_API.Controllers
 
         public PortfoliosController()
         {
-            _repository = new PortfolioRepository(new PortfolioManagerContext());
+            _repository = new PortfolioRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
             Tracer.Trace(this.ToString());
         }
 

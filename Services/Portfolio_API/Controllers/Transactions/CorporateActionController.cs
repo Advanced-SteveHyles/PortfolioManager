@@ -23,7 +23,7 @@ namespace Portfolio_API.Controllers.Transactions
 
         public CorporateActionController()
         {
-            var context = new PortfolioManagerContext();
+            var context = new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext);
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(context);
             _fundTransactionRepository = new FundTransactionRepository(context);
             _priceHistoryRepository = new PriceHistoryRepository(context);

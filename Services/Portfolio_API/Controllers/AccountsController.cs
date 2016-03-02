@@ -11,6 +11,7 @@ using PortfolioManager.Repository.Entities;
 using PortfolioManager.Repository.Factories;
 using PortfolioManager.Repository.Interfaces;
 using PortfolioManager.Repository.Repositories;
+using Portfolio_API.Controllers.Transactions;
 
 namespace Portfolio_API.Controllers
 {
@@ -20,7 +21,7 @@ namespace Portfolio_API.Controllers
 
         public AccountsController()
         {
-            _repository = new AccountRepository(new PortfolioManagerContext());
+            _repository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
         }
 
         public IHttpActionResult Get(int id, string fields = null)

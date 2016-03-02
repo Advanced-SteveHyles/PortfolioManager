@@ -3,3 +3,10 @@ C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\binaries\BusinessLogic.pdb
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\LEARNINGANDRAND\Tyrion_Steve\PortfolioManager2\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\LEARNINGANDRAND\PortfolioManager\binaries\BusinessLogic.dll
+C:\LEARNINGANDRAND\PortfolioManager\binaries\BusinessLogic.pdb
+C:\LEARNINGANDRAND\PortfolioManager\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\LEARNINGANDRAND\PortfolioManager\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\LEARNINGANDRAND\PortfolioManager\BackEnd\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\LEARNINGANDRAND\PortfolioManager\binaries\BackEnd\BusinessLogic.dll
+C:\LEARNINGANDRAND\PortfolioManager\binaries\BackEnd\BusinessLogic.pdb

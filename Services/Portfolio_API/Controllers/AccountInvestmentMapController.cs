@@ -1,5 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using Interfaces;
+using PortfolioManager.DTO;
+using PortfolioManager.DTO.DTOs;
+using PortfolioManager.DTO.Requests;
+using PortfolioManager.Repository;
+using PortfolioManager.Repository.Factories;
+using PortfolioManager.Repository.Interfaces;
+using PortfolioManager.Repository.Repositories;
+using Portfolio_API.Controllers.Transactions;
 using AccountInvestmentMapDto = PortfolioManager.DTO.DTOs.AccountInvestmentMapDto;
 
 namespace Portfolio_API.Controllers
@@ -12,9 +23,10 @@ namespace Portfolio_API.Controllers
 
         public AccountInvestmentMapController()
         {
-            _investmentRepository = new InvestmentRepository(new PortfolioManagerContext());
-            _accountRepository = new AccountRepository(new PortfolioManagerContext());
-            _accountInvestmentRepository = new AccountInvestmentMapRepository(new PortfolioManagerContext());
+            
+            _investmentRepository = new InvestmentRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _accountRepository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _accountInvestmentRepository = new AccountInvestmentMapRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
         }
 
         public IHttpActionResult Get(int id)

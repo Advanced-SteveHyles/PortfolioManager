@@ -24,8 +24,8 @@ public class CashWithdrawalController : ApiController
         readonly IAccountRepository _accountRepository;
         public CashWithdrawalController()
         {
-            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext());
-            _accountRepository = new AccountRepository(new PortfolioManagerContext());
+            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _accountRepository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
         }
 
 

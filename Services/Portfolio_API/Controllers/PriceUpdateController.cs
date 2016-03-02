@@ -14,6 +14,7 @@ using PortfolioManager.Repository;
 using PortfolioManager.Repository.Factories;
 using PortfolioManager.Repository.Interfaces;
 using PortfolioManager.Repository.Repositories;
+using Portfolio_API.Controllers.Transactions;
 
 namespace Portfolio_API.Controllers
 {
@@ -25,7 +26,7 @@ namespace Portfolio_API.Controllers
 
         public PriceUpdateController()
         {
-            var context = new PortfolioManagerContext();
+            var context = new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext);
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(context);
             _priceHistoryRepository = new PriceHistoryRepository(context);
             _accountRepository = new AccountRepository(context);

@@ -24,7 +24,7 @@ namespace Portfolio_API.Controllers
 
         public CashdepositController()
         {
-            var context = new PortfolioManagerContext();
+            var context = new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext);
             _cashTransactionRepository = new CashTransactionRepository(context);
             _accountRepository = new AccountRepository(context);
         }
