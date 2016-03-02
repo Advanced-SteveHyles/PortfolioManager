@@ -34,26 +34,28 @@ namespace PortfolioManager.Repository
             };
         }
 
-        public static TransactionDto MapToDto(object entity)
+
+
+      public static TransactionDto MapToDto(object entity)
         {
             throw new System.NotImplementedException();
         }
-        
-        public static InvestmentDto MapToDto(this Investment entity)
-        {
-            return new InvestmentDto
-            {
-                InvestmentId = entity.InvestmentId,
-                Name = entity.Name,
-                Symbol = entity.Symbol,
-                Type = entity.Type,
-                Class = entity.Class,
-                IncomeType = entity.IncomeType,
-                MarketIndex = entity.MarketIndex
-            };
-        }
 
-        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap)
+      public static InvestmentDto MapToDto(this Investment entity)
+      {
+        return new InvestmentDto
+        {
+          InvestmentId = entity.InvestmentId,
+          Name = entity.Name,
+          Symbol = entity.Symbol,
+          Type = entity.Type,
+          Class = entity.Class,
+          IncomeType = entity.IncomeType,
+          MarketIndex = entity.MarketIndex
+        };
+      }
+
+      public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap)
         {
             return new AccountInvestmentMapDto
             {
