@@ -6,15 +6,13 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Routing;
 using Interfaces;
-using Portfolio.API.WebApi;
 using PortfolioManager.DTO.Requests;
 using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
 using PortfolioManager.Repository.Factories;
 using PortfolioManager.Repository.Interfaces;
-using Portfolio_API.Controllers.Transactions;
+using Portfolio_API.Controllers;
 
-namespace Portfolio_API.Controllers
+namespace Portfolio.API.WebApi.Controllers
 {
     public class PortfoliosController : ApiController
     {

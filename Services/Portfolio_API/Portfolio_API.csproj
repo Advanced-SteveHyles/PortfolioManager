@@ -166,13 +166,6 @@
     <Reference Include="Portfolio.Common.DTO">
       <HintPath>..\..\Binaries\Shared\Portfolio.Common.DTO.dll</HintPath>
     </Reference>
-    <Reference Include="PortfolioManager.Constants, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\PortfolioManager.Constants.dll</HintPath>
-    </Reference>
-    <Reference Include="PortfolioManager.DTO">
-      <HintPath>..\..\Binaries\PortfolioManager.DTO.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
