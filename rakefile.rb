@@ -78,8 +78,8 @@ end
 #desc "Restoring nuget packages"
 task :restore do 
 	puts 'Restoring packages'
-        sh '.nuget\NuGet.exe restore .\Backend.sln -source "https://nuget.org/api/v2/"'
-	sh '.nuget\NuGet.exe restore .\Services.sln -source "https://nuget.org/api/v2/"'
+#        sh '.nuget\NuGet.exe restore .\Backend.sln -source "https://nuget.org/api/v2/"'
+#	sh '.nuget\NuGet.exe restore .\Services.sln -source "https://nuget.org/api/v2/"'
 end
 
 desc "Update nuget packages"
