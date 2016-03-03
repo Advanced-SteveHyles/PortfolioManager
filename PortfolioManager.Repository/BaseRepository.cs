@@ -1,4 +1,4 @@
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository
 {
     public abstract class BaseRepository
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Portfolio_API.Controllers
+namespace Portfolio.API.WebApi.Controllers
 {
     public class ErrorLog
     {

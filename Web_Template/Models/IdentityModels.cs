@@ -4,13 +4,9 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Web_Template.Models;
 
 namespace Web_Template.Models
-{
-    // You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+{ // You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
@@ -39,11 +35,9 @@ namespace Web_Template.Models
             return new ApplicationDbContext();
         }
     }
-}
 
-#region Helpers
-namespace Web_Template
-{
+    #region Helpers
+
     public static class IdentityHelper
     {
         // Used for XSRF when linking external logins
@@ -96,5 +90,6 @@ namespace Web_Template
             }
         }
     }
+
+    #endregion
 }
-#endregion

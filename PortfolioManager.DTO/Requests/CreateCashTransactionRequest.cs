@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PortfolioManager.DTO.Requests
+namespace Portfolio.Common.DTO.Requests
 {
     public class CreateCashTransactionRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace PortfolioManager.Constants.TransactionTypes
+﻿namespace Portfolio.Common.Constants.TransactionTypes
 {
     public class CashTransactionTypes
     {

@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace PortfolioManagerWeb.Controllers
+namespace PortfolioManagerWeb.Helpers
 {
     public class PortfolioManagerHttpClient
     {

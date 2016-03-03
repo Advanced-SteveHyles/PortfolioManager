@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using PortfolioManager.DTO.DTOs.Transactions;
-using PortfolioManager.Repository.Entities;
-using Portfolio_API.Helpers;
+using Portfolio.API.WebApi.Helpers;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.DTOs.Transactions;
 
-namespace Portfolio_API.Controllers
+namespace Portfolio.API.WebApi.Temporary
 {
     internal class ShapedData
     {
 
-        public static object CreateDataShapedObject(PortfolioManager.Repository.Entities.Portfolio portfolioEnt, List<string> lstOfFields)
+        public static object CreateDataShapedObject(BackEnd.Repository.Entities.Portfolio portfolioEnt, List<string> lstOfFields)
         {
             // work with a new instance, as we'll manipulate this list in this method
             List<string> lstOfFieldsToWorkWith = new List<string>(lstOfFields);

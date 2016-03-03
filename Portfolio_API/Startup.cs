@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
-using Owin;
+﻿using Portfolio.API.WebApi;
 
-[assembly: OwinStartup(typeof(Portfolio_API.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace Portfolio_API
+namespace Portfolio.API.WebApi
 {
     public partial class Startup
     {

@@ -1,9 +1,8 @@
-using System.Linq;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.DTO.Requests;
 
-namespace PortfolioManager.Repository.Repositories
+namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class FundTransactionRepository : BaseRepository, IFundTransactionRepository
     {

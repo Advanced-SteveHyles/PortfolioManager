@@ -1,12 +1,7 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
-using Newtonsoft.Json;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManagerWeb.Controllers.Investments;
 
-namespace PortfolioManagerWeb.Controllers
+namespace PortfolioManagerWeb.Controllers.Investments
 {
     public class InvestmentsMapController : Controller
     {

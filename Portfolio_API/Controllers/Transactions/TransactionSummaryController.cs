@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using Interfaces;
-using Portfolio.API.WebApi;
-using PortfolioManager.DTO.DTOs.Transactions;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Interfaces;
-using PortfolioManager.Repository.Repositories;
+using Portfolio.API.WebApi.Temporary;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Repositories;
 
-namespace Portfolio_API.Controllers.Transactions
+namespace Portfolio.API.WebApi.Controllers.Transactions
 {
     public class TransactionSummaryController : ApiController
     {        

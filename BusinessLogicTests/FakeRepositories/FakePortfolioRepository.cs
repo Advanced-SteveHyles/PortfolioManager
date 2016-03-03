@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Interfaces;
 
 namespace BusinessLogicTests.FakeRepositories
 {

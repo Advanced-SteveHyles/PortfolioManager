@@ -9,9 +9,8 @@ using System.Runtime.Serialization;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
 
-namespace Portfolio_API.Areas.HelpPage.ModelDescriptions
+namespace Portfolio.API.WebApi.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

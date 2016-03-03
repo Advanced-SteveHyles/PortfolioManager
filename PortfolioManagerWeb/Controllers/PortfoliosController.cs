@@ -2,11 +2,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
 using Newtonsoft.Json;
 using PagedList;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.Requests;
+using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests;
 using PortfolioManagerWeb.Helpers;
 using PortfolioManagerWeb.Models;
 

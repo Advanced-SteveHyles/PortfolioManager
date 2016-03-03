@@ -1,12 +1,10 @@
 ﻿using System;
-using Interfaces;
-using PortfolioManager.Constants.TransactionTypes;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.DTO.Transactions;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.Constants.TransactionTypes;
+using Portfolio.Common.DTO.Requests;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Processors.Handlers
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
     public class FundTransactionHandler : IFundTransactionHandler
     {

@@ -1,10 +1,9 @@
 using System;
-using System.Data.Entity;
 using System.Linq;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Interfaces;
 
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class InvestmentRepository : BaseRepository, IInvestmentRepository
     {

@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Portfolio_API.Areas.HelpPage.ModelDescriptions;
-using Portfolio_API.Areas.HelpPage.Models;
+using Portfolio.API.WebApi.Areas.HelpPage.ModelDescriptions;
+using Portfolio.API.WebApi.Areas.HelpPage.Models;
 
-namespace Portfolio_API.Areas.HelpPage.Controllers
+namespace Portfolio.API.WebApi.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

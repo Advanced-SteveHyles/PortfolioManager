@@ -65,10 +65,6 @@
     <Compile Include="Validators\InvestmentBuyRequestValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{170be89d-025f-4352-9388-72ce26ee12e9}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
       <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
       <Name>PortfolioManager.Repository</Name>

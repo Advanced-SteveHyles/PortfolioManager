@@ -1,4 +1,4 @@
-﻿namespace PortfolioManagerWeb.Models
+﻿namespace PortfolioManagerWeb.Models.Transactions
 {
     public class InvestmentBuyViewModel
     {

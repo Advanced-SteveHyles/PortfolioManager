@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
 
 namespace BusinessLogicTests.FakeRepositories
 {

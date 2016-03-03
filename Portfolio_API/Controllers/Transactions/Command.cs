@@ -1,8 +1,7 @@
 using System;
 using System.IO;
-using Interfaces;
 
-namespace Portfolio_API.Controllers.Transactions
+namespace Portfolio.API.WebApi.Controllers.Transactions
 {
     internal class Command
     {

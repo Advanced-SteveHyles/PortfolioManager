@@ -1,7 +1,7 @@
-﻿using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.Repository.Entities;
+﻿using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace PortfolioManager.Repository.Factories
+namespace Portfolio.BackEnd.Repository.Factories
 {
     public class PriceHistoryFactory
     {

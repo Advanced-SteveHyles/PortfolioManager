@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using BusinessLogic;
-using BusinessLogic.Processors.Handlers;
-using BusinessLogic.Transactions;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
-using PortfolioManager.Constants.TransactionTypes;
-using PortfolioManager.DTO.Transactions;
-using Xunit;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
+using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.Common.Constants.Funds;
+using Portfolio.Common.Constants.TransactionTypes;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace BusinessLogicTests.Transactions.Fund
 {
@@ -160,7 +158,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsAnOEICBothTheSellingAndBuyPriceAreRecorded()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, PortfolioManager.Constants.Funds.FundClasses.Oeic);
+            _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
             var investmentId = 1;
@@ -174,7 +172,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsAOEICThenTheAccountIsValuedCorrect()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, PortfolioManager.Constants.Funds.FundClasses.Oeic);
+            _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
             var maps = _fakeRepository.GetAccountInvestmentMapsByInvestmentId(fakeInvestmentId)

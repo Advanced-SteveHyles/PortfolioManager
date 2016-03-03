@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Interfaces;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Factories;
-using PortfolioManager.Repository.Interfaces;
-using VirtualService.VirtualActionResults;
-using VirtualService.VirtualControllers.API;
+using Portfolio.API.Virtual.VirtualActionResults;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests;
 
-namespace VirtualService.VirtualControllers
+namespace Portfolio.API.Virtual.VirtualControllers
 {
     public class PortfoliosController
     {

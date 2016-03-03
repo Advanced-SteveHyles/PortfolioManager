@@ -2,10 +2,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
 using Newtonsoft.Json;
-using PortfolioManager.DTO.DTOs.PriceUpdates;
-using PortfolioManager.DTO.Requests.Transactions;
+using Portfolio.Common.DTO.DTOs.PriceUpdates;
+using Portfolio.Common.DTO.Requests.Transactions;
+using PortfolioManagerWeb.Helpers;
 using PortfolioManagerWeb.Models;
 
 namespace PortfolioManagerWeb.Controllers.PriceUpdate

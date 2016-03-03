@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PortfolioManager.DTO.Transactions
+namespace Portfolio.Common.DTO.Requests.Transactions
 {
     public class InvestmentBuyRequest
     {

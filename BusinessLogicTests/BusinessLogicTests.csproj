@@ -81,10 +81,6 @@
       <Project>{d54f38e9-8fbb-473a-ae31-98c85a05e857}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{170BE89D-025F-4352-9388-72CE26EE12E9}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
       <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
       <Name>PortfolioManager.Repository</Name>

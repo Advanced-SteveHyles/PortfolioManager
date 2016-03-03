@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PortfolioManager.DTO.DTOs
+namespace Portfolio.Common.DTO.DTOs
 {
     public class AccountInfoWithAllInvestmentDto
     {

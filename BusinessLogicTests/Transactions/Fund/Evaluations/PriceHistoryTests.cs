@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Linq;
-using BusinessLogic;
-using BusinessLogic.Processors.Handlers;
-using BusinessLogic.Processors.Processes;
-using BusinessLogic.Transactions;
 using BusinessLogicTests.FakeRepositories;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.Repository.Entities;
-using Xunit;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
+using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace BusinessLogicTests.Transactions.Fund.Evaluations
 {

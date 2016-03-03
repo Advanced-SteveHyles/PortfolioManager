@@ -1,6 +1,6 @@
 using System;
 
-namespace VirtualService
+namespace Portfolio.API.Virtual
 {
     public class ErrorLog
     {

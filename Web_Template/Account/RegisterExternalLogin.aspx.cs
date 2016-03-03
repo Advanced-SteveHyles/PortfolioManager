@@ -3,7 +3,6 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using Web_Template.Models;
 
 namespace Web_Template.Account

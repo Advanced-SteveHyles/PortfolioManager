@@ -1,8 +1,6 @@
 using System.Linq;
-using PortfolioManager.Repository.Entities;
-using VirtualService.VirtualControllers.API;
 
-namespace VirtualService.VirtualActionResults
+namespace Portfolio.API.Virtual.VirtualActionResults
 {
     public class NotFound : IVirtualActionResult
     {

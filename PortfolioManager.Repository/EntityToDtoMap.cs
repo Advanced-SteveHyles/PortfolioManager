@@ -1,13 +1,12 @@
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs;
-using PortfolioManager.DTO.DTOs.Transactions;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.DTOs.Transactions;
 
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository
 {
     public static class EntityToDtoMap
     {
-        public static PortfolioDto MapToDto(this Portfolio entity)
+        public static PortfolioDto MapToDto(this Entities.Portfolio entity)
         {
             return new PortfolioDto
             {

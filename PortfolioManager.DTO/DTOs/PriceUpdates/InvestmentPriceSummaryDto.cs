@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PortfolioManager.DTO.DTOs.PriceUpdates
+namespace Portfolio.Common.DTO.DTOs.PriceUpdates
 {
     public class InvestmentPriceSummaryDto
     {

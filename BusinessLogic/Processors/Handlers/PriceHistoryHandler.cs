@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using Interfaces;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Processors.Handlers
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
     public class PriceHistoryHandler : IPriceHistoryHandler
     {

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace PortfolioManager.DTO.DTOs.Transactions
+namespace Portfolio.Common.DTO.DTOs.Transactions
 {
     public class AccountTransactionSummaryDto
     {

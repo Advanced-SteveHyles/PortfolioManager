@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Portfolio_API.Helpers
+namespace Portfolio.API.WebApi.Helpers
 {
 
     public static class ListExtensions

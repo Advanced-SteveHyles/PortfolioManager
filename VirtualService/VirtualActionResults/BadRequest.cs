@@ -1,4 +1,4 @@
-namespace VirtualService.VirtualControllers.API
+namespace Portfolio.API.Virtual.VirtualActionResults
 {
     public class BadRequest : IVirtualActionResult
     {

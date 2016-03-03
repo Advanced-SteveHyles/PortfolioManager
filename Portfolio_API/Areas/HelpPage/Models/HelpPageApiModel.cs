@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using Portfolio_API.Areas.HelpPage.ModelDescriptions;
+using Portfolio.API.WebApi.Areas.HelpPage.ModelDescriptions;
 
-namespace Portfolio_API.Areas.HelpPage.Models
+namespace Portfolio.API.WebApi.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

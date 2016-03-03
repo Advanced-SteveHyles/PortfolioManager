@@ -1,6 +1,6 @@
 using System;
 
-namespace PortfolioManager.DTO.DTOs.Transactions
+namespace Portfolio.Common.DTO.DTOs.Transactions
 {
     public class TransactionDto
     {

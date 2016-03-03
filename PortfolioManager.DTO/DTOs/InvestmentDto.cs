@@ -1,4 +1,4 @@
-﻿namespace PortfolioManager.DTO
+﻿namespace Portfolio.Common.DTO.DTOs
 {
     public class InvestmentDto
     {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using PortfolioManager.DTO.DTOs;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PortfolioManager.Repository.Entities
+namespace Portfolio.BackEnd.Repository.Entities
 {
     [Table ("AccountInvestmentMap")]
     public class AccountInvestmentMap

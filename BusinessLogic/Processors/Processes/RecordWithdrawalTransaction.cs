@@ -1,8 +1,6 @@
-using System.Runtime.Remoting.Contexts;
-using Interfaces;
-using PortfolioManager.DTO.Requests.Transactions;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Transactions
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RecordWithdrawalTransaction : ICommandRunner
     {

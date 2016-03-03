@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Xml.Schema;
-using BusinessLogic.Processors.Processes;
-using BusinessLogic.Validators;
-using Interfaces;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.DTO.Transactions;
+using Portfolio.BackEnd.BusinessLogic.Validators;
+using Portfolio.Common.Constants.Funds;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Transactions
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RecordFundBuyTransaction : ICommandRunner
     {
@@ -52,7 +49,7 @@ namespace BusinessLogic.Transactions
             {
                 InvestmentId = investmentId,
                 BuyPrice = _fundBuyRequest.Price,
-                SellPrice = (investment.Class == PortfolioManager.Constants.Funds.FundClasses.Oeic) ? _fundBuyRequest.Price : new decimal?(),
+                SellPrice = (investment.Class == FundClasses.Oeic) ? _fundBuyRequest.Price : new decimal?(),
                 ValuationDate = _fundBuyRequest.PurchaseDate
             };
 

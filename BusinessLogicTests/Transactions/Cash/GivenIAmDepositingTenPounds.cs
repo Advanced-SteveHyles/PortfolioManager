@@ -1,12 +1,10 @@
 ﻿using System;
-using BusinessLogic;
-using BusinessLogic.Processors.Handlers;
-using BusinessLogic.Transactions;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
-using PortfolioManager.Constants.TransactionTypes;
-using PortfolioManager.DTO.Requests.Transactions;
-using Xunit;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
+using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.Common.Constants.TransactionTypes;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace BusinessLogicTests.Transactions.Cash
 {

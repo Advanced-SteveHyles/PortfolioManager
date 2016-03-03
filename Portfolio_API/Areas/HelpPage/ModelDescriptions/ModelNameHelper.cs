@@ -1,9 +1,8 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 
-namespace Portfolio_API.Areas.HelpPage.ModelDescriptions
+namespace Portfolio.API.WebApi.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

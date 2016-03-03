@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.Migrations;
 using System.Linq;
 
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository
 {
     public class PortfolioMangerMigrationsConfiguration : DbMigrationsConfiguration<PortfolioManagerContext>
     {

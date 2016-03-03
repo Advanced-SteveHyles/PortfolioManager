@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Routing;
-using Interfaces;
-using Newtonsoft.Json;
-using Portfolio.API.WebApi;
-using PortfolioManager.DTO;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Factories;
-using PortfolioManager.Repository.Interfaces;
-using Portfolio_API.Controllers.Transactions;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests;
 
-namespace Portfolio_API.Controllers
+namespace Portfolio.API.WebApi.Controllers
 {
     public class InvestmentsController : ApiController
     {

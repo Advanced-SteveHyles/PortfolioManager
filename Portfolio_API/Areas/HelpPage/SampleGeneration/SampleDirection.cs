@@ -1,4 +1,4 @@
-namespace Portfolio_API.Areas.HelpPage
+namespace Portfolio.API.WebApi.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

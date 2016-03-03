@@ -1,23 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Antlr.Runtime.Tree;
-using BusinessLogic;
-using BusinessLogic.Processors.Handlers;
-using BusinessLogic.Transactions;
-using Interfaces;
-using Portfolio.API.WebApi;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs.Transactions;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Interfaces;
-using PortfolioManager.Repository.Repositories;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.DTOs.Transactions;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace Portfolio_API.Controllers.Transactions
+namespace Portfolio.API.WebApi.Controllers.Transactions
 {
 public class CashWithdrawalController : ApiController
     {

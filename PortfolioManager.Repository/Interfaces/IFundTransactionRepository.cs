@@ -1,7 +1,7 @@
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests;
 
-namespace PortfolioManager.Repository.Interfaces
+namespace Portfolio.BackEnd.Repository.Interfaces
 {
     public interface IFundTransactionRepository
     {

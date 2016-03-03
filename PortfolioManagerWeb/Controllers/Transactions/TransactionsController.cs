@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
 using Newtonsoft.Json;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs.Transactions;
+using Portfolio.Common.DTO.DTOs.Transactions;
+using PortfolioManagerWeb.Helpers;
 
 namespace PortfolioManagerWeb.Controllers.Transactions
 {

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
-using Microsoft.Owin.Security.Provider;
 using Newtonsoft.Json;
 using PagedList;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs.PriceUpdates;
+using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests;
 using PortfolioManagerWeb.Helpers;
 using PortfolioManagerWeb.Models;
 

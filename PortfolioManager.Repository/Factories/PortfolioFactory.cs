@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.Migrations.Model;
-using System.Linq;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests;
 
-namespace PortfolioManager.Repository.Factories
+namespace Portfolio.BackEnd.Repository.Factories
 {
     public class PortfolioFactory
     {

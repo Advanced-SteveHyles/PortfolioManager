@@ -73,10 +73,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{170be89d-025f-4352-9388-72ce26ee12e9}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
       <Project>{77b12de0-53ea-43cd-8e33-06af1de7a8b6}</Project>
       <Name>PortfolioManager.Repository</Name>

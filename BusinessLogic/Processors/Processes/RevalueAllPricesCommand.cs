@@ -1,8 +1,6 @@
 using System;
-using System.Linq;
-using Interfaces;
 
-namespace BusinessLogic.Processors.Processes
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RevalueAllPricesCommand : ICommandRunner
     {

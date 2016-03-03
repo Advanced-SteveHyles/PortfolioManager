@@ -1,6 +1,4 @@
-﻿using PortfolioManager.Repository.Entities;
-
-namespace PortfolioManager.Repository.Interfaces
+﻿namespace Portfolio.BackEnd.Repository.Interfaces
 {
     public interface IPortfolioRepository
     {     

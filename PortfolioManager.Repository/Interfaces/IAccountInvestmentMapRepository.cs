@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
-using PortfolioManager.DTO.DTOs;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
 
-namespace PortfolioManager.Repository.Interfaces
+namespace Portfolio.BackEnd.Repository.Interfaces
 {
     public interface IAccountInvestmentMapRepository
     {

@@ -6,11 +6,12 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Routing;
 using Interfaces;
-using PortfolioManager.DTO.Requests;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Factories;
-using PortfolioManager.Repository.Interfaces;
-using Portfolio_API.Controllers;
+using Portfolio.API.WebApi.Temporary;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.API.WebApi.Controllers
 {
@@ -36,7 +37,7 @@ namespace Portfolio.API.WebApi.Controllers
                     pageSize = ApiConstants.MaxPageSize;
                 }
 
-                IQueryable<PortfolioManager.Repository.Entities.Portfolio> portfolios = _repository.GetPortfolios();
+                IQueryable<BackEnd.Repository.Entities.Portfolio> portfolios = _repository.GetPortfolios();
 
                 // calculate data for metadata
                 var totalCount = portfolios.Count();
@@ -102,7 +103,7 @@ namespace Portfolio.API.WebApi.Controllers
                 }
 
 
-                PortfolioManager.Repository.Entities.Portfolio portfolio = null;
+                BackEnd.Repository.Entities.Portfolio portfolio = null;
 
                 if (includeAccounts)
                 {

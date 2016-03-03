@@ -1,7 +1,6 @@
-using PortfolioManager.DTO;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
 
-namespace PortfolioManager.Repository.Interfaces
+namespace Portfolio.BackEnd.Repository.Interfaces
 {
     public interface IInvestmentRepository
     {

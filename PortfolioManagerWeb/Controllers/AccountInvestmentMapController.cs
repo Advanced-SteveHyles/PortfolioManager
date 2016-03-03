@@ -1,13 +1,10 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Interfaces;
 using Newtonsoft.Json;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs;
-using PortfolioManager.DTO.Requests;
-using PortfolioManagerWeb.Models;
-using AccountInvestmentMapDto = PortfolioManager.DTO.DTOs.AccountInvestmentMapDto;
+using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests;
+using PortfolioManagerWeb.Helpers;
 
 namespace PortfolioManagerWeb.Controllers
 {

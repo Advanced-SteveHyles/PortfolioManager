@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Interfaces;
-using PortfolioManager.DTO;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.DTO.DTOs;
 
-namespace BusinessLogic.Processors.Handlers
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
     public class InvestmentHandler : IInvestmentHandler
     {

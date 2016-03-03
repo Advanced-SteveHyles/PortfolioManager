@@ -1,7 +1,6 @@
 using System;
-using PortfolioManager.Repository.Entities;
 
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository
 {
     public class RepositoryActionResult<T> : Portfolio
     {

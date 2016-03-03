@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Interfaces;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Interfaces;
 
-namespace BusinessLogic.Processors.Handlers
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
     public class AccountHandler : IAccountHandlers
     {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using PagedList;
-using PortfolioManager.DTO;
+﻿using PagedList;
+using Portfolio.Common.DTO.DTOs;
 using PortfolioManagerWeb.Helpers;
 
 namespace PortfolioManagerWeb.Models

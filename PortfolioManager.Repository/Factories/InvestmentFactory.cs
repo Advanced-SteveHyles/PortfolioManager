@@ -1,7 +1,7 @@
-﻿using PortfolioManager.DTO;
-using PortfolioManager.Repository.Entities;
+﻿using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests;
 
-namespace PortfolioManager.Repository.Factories
+namespace Portfolio.BackEnd.Repository.Factories
 {
     public class InvestmentFactory
     {

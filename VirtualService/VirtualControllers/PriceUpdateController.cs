@@ -1,15 +1,12 @@
 ﻿using System;
-using BusinessLogic.Processors.Handlers;
-using BusinessLogic.Processors.Processes;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Factories;
-using PortfolioManager.Repository.Repositories;
-using VirtualService.VirtualActionResults;
-using VirtualService.VirtualControllers.API;
+using Portfolio.API.Virtual.VirtualActionResults;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 //api/singlepriceupdate
-namespace VirtualService.VirtualControllers
+namespace Portfolio.API.Virtual.VirtualControllers
 {
     public class PriceUpdateController
     {

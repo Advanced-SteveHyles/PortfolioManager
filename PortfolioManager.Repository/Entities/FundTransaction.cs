@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PortfolioManager.Repository.Entities
+namespace Portfolio.BackEnd.Repository.Entities
 {
     [Table("FundTransaction")]
     public class FundTransaction

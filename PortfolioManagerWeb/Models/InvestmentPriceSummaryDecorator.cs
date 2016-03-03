@@ -1,5 +1,5 @@
 ﻿using System;
-using PortfolioManager.DTO.DTOs.PriceUpdates;
+using Portfolio.Common.DTO.DTOs.PriceUpdates;
 
 namespace PortfolioManagerWeb.Models
 {

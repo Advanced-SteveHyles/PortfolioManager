@@ -1,7 +1,7 @@
 ﻿using System;
-using PortfolioManager.DTO.Transactions;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Validators
+namespace Portfolio.BackEnd.BusinessLogic.Validators
 {
     public static class InvestmentBuyRequestValidator
     {

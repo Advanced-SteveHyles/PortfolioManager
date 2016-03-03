@@ -1,11 +1,9 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
 
-namespace PortfolioManager.Repository
+namespace Portfolio.BackEnd.Repository
 {
     public class PortfolioManagerContext : DbContext
     {
@@ -19,7 +17,7 @@ namespace PortfolioManager.Repository
 
         public DbSet<DBGenerator> DBGenerator { get; set; }
 
-        public virtual DbSet<Portfolio> Portfolios { get; set; }
+        public virtual DbSet<Entities.Portfolio> Portfolios { get; set; }
 
         public virtual DbSet<Account> Accounts { get; set; }
 

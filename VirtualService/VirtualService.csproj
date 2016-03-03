@@ -30,19 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Binaries\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Portfolio.BackEnd.BusinessLogic">
-      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.BusinessLogic.dll</HintPath>
-    </Reference>
-    <Reference Include="Portfolio.BackEnd.Interfaces">
-      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Portfolio.BackEnd.Repository">
-      <HintPath>..\..\Binaries\BackEnd\Portfolio.BackEnd.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="Portfolio.Common.Constants">
       <HintPath>..\..\Binaries\Shared\Portfolio.Common.Constants.dll</HintPath>
     </Reference>
@@ -70,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
+      <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
+      <Name>PortfolioManager.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 ﻿using PagedList;
-using PortfolioManager.DTO;
+using Portfolio.Common.DTO.DTOs;
 using PortfolioManagerWeb.Helpers;
 
 namespace PortfolioManagerWeb.Models

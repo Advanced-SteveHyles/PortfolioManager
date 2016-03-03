@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PortfolioManager.DTO.DTOs;
+﻿using System.Collections.Generic;
 
-namespace PortfolioManager.DTO
+namespace Portfolio.Common.DTO.DTOs
 {
     public class AccountDto
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Portfolio_API.Areas.HelpPage
+namespace Portfolio.API.WebApi.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

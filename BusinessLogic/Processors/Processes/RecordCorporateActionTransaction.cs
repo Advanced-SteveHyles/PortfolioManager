@@ -1,10 +1,8 @@
-﻿using System;
-using BusinessLogic.Validators;
-using Interfaces;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.DTO.Transactions;
+﻿using Portfolio.BackEnd.BusinessLogic.Validators;
+using Portfolio.Common.Constants.Funds;
+using Portfolio.Common.DTO.Requests.Transactions;
 
-namespace BusinessLogic.Transactions
+namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RecordCorporateActionTransaction: ICommandRunner
     {
@@ -33,7 +31,7 @@ namespace BusinessLogic.Transactions
 
             _fundTransactionHandler.StoreFundTransaction(_request);
 
-            if (investment.Class == PortfolioManager.Constants.Funds.FundClasses.Oeic)
+            if (investment.Class == FundClasses.Oeic)
             { 
                 _cashTransactionHandler.StoreCashTransaction(accountId, _request);
             }

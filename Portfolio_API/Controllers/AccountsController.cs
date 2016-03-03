@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using Interfaces;
-using Portfolio.API.WebApi;
-using PortfolioManager.DTO;
-using PortfolioManager.Repository;
-using PortfolioManager.Repository.Entities;
-using PortfolioManager.Repository.Factories;
-using PortfolioManager.Repository.Interfaces;
-using PortfolioManager.Repository.Repositories;
-using Portfolio_API.Controllers.Transactions;
+using Portfolio.API.WebApi.Temporary;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests;
 
-namespace Portfolio_API.Controllers
+namespace Portfolio.API.WebApi.Controllers
 {
     public class AccountsController : ApiController
     {
