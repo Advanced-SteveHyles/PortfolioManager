@@ -7,7 +7,7 @@ namespace DBCreator
     {
         static void Main(string[] args)
         {          
-            using (var ctx = new PortfolioManagerContext())
+            using (var ctx = new PortfolioManagerContext(string.Empty))
             {
                 //var x = from x1 in ctx.DBGenerator select x1;
 
