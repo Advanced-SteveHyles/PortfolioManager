@@ -2,10 +2,10 @@
 {
     public interface IPortfolioRepository
     {     
-        Portfolio GetPortfolio(int id);
-        Portfolio GetPortfolioWithAccounts(int id);
-        System.Linq.IQueryable<Portfolio> GetPortfolios();
+        Entities.Portfolio GetPortfolio(int id);
+        Entities.Portfolio GetPortfolioWithAccounts(int id);
+        System.Linq.IQueryable<Entities.Portfolio> GetPortfolios();
 
-        RepositoryActionResult<Portfolio> InsertPortfolio(Portfolio entityPortfolio);
+        RepositoryActionResult<Entities.Portfolio> InsertPortfolio(Entities.Portfolio entityPortfolio);
     }
 }

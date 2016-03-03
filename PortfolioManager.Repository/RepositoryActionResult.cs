@@ -2,7 +2,7 @@ using System;
 
 namespace Portfolio.BackEnd.Repository
 {
-    public class RepositoryActionResult<T> : Portfolio
+    public class RepositoryActionResult<T> : Entities.Portfolio
     {
         public T Entity { get; private set; }
         public RepositoryActionStatus Status { get; private set; }

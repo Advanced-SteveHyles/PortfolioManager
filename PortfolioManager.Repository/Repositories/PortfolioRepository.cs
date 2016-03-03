@@ -10,25 +10,25 @@ namespace Portfolio.BackEnd.Repository.Repositories
         {
         }
 
-        public IQueryable<Portfolio> GetPortfolios()
+        public IQueryable<Entities.Portfolio> GetPortfolios()
         {
             return _context.Portfolios;
         }
 
-        public Portfolio GetPortfolio(int id)
+        public Entities.Portfolio GetPortfolio(int id)
         {
             var portfolio = _context.Portfolios.SingleOrDefault(p => p.PortfolioId == id);
             return portfolio;
         }
 
-        public Portfolio GetPortfolioWithAccounts(int id)
+        public Entities.Portfolio GetPortfolioWithAccounts(int id)
         {
             var portfolio = _context.Portfolios.Include("Accounts").SingleOrDefault(p => p.PortfolioId == id);
 
             return portfolio;
         }
 
-        public RepositoryActionResult<Portfolio> InsertPortfolio(Portfolio entityPortfolio)
+        public RepositoryActionResult<Entities.Portfolio> InsertPortfolio(Entities.Portfolio entityPortfolio)
         {
             try
             {

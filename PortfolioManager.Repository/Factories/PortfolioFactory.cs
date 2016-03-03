@@ -6,9 +6,9 @@ namespace Portfolio.BackEnd.Repository.Factories
 {
     public class PortfolioFactory
     {
-        public Portfolio CreatePortfolio(PortfolioRequest portfolio)
+        public Entities.Portfolio CreatePortfolio(PortfolioRequest portfolio)
         {
-            return new Portfolio()
+            return new Entities.Portfolio()
             {
                 Name = portfolio.Name,
                 Accounts = new List<Account>()

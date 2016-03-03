@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiPaths.cs" />
     <Compile Include="Funds\FundClasses.cs" />
     <Compile Include="TransactionTypes\CashTransactionTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
