@@ -8,11 +8,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -23,17 +23,22 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+            <Button>A</Button>
+            <Button>B</Button>
+            <Button>C</Button>
+            <Button>D</Button>
+            <Button>E</Button>
         </StackPanel>
-        <TabControl Grid.Row="1" Grid.Column="2">
+        <TabControl Grid.Row="1" Grid.Column="1" TabStripPlacement="Left">
             <TabItem Header="Portfolio">
                 <TabControl>
-                    <TabItem Header="Account 1"></TabItem>
+                    <TabItem Header="Account 1">
+                        <StackPanel>
+                            <GroupBox>Account Details</GroupBox>
+                            <GroupBox>InvestmentDetails</GroupBox>
+                        </StackPanel>
+                    </TabItem>
                     <TabItem Header="Account 2"></TabItem>
                 </TabControl>
             </TabItem>
