@@ -6,7 +6,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class PortfolioRepository : BaseRepository, IPortfolioRepository
     {
-        public PortfolioRepository(PortfolioManagerContext context) : base(context)
+        public PortfolioRepository(string connection) : base(new PortfolioManagerContext (connection))
         {
         }
 

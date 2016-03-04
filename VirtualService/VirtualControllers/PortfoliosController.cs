@@ -1,33 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.Routing;
-using Interfaces;
-using Portfolio.API.WebApi.Temporary;
+using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Factories;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
 using Portfolio.Common.DTO.Requests;
 
-namespace Portfolio.API.WebApi.Controllers
+namespace Portfolio.API.Virtual.VirtualControllers
 {
-    public class PortfoliosController : ApiController
+    public class PortfoliosController
     {
         readonly IPortfolioRepository _repository;
 
-        public PortfoliosController()
-        {
-            _repository = new PortfolioRepository(ApiConstants.Portfoliomanagercontext);
+        public PortfoliosController(string connection)
+        {            
+            _repository = new PortfolioRepository(connection);
             Tracer.Trace(this.ToString());
         }
-
-
-        [Route(ApiPaths.Portfolios, Name = "PortfoliosList")]
-        public IHttpActionResult Get(int page = 1, int pageSize =ApiConstants.MaxPageSize)
+        
+        public IVirtualActionResult Get(int page = 1, int pageSize = ApiConstants.MaxPageSize)
         {
             try
             {
@@ -42,42 +35,8 @@ namespace Portfolio.API.WebApi.Controllers
                 // calculate data for metadata
                 var totalCount = portfolios.Count();
                 var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-
-                var urlHelper = new UrlHelper(Request);
-                var prevLink = page > 1 ? urlHelper.Link("PortfoliosList",
-                    new
-                    {
-                        page = page - 1,
-                        pageSize = pageSize,
-                    }) : "";
-                var nextLink = page < totalPages ? urlHelper.Link("PortfoliosList",
-                    new
-                    {
-                        page = page + 1,
-                        pageSize = pageSize,
-                    }) : "";
-
-                var paginationHeader = new
-                {
-                    currentPage = page,
-                    pageSize = pageSize,
-                    totalCount = totalCount,
-                    totalPages = totalPages,
-                    previousPageLink = prevLink,
-                    nextPageLink = nextLink
-                };
-
-
-                HttpContext.Current.Response.Headers.Add("X-Pagination",
-                   Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
-
-                //return Ok(
-                //    portfolios
-                //    .Skip(pageSize * (page - 1))
-                //    .Take(pageSize)
-                //    );
-
-                return Ok(
+                
+                return new  Ok(
                     portfolios
                     );
 
@@ -85,11 +44,11 @@ namespace Portfolio.API.WebApi.Controllers
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return InternalServerError();
+                return new InternalServerError();
             }
         }
 
-        public IHttpActionResult Get(int id, string fields = null)
+        public IVirtualActionResult Get(int id, string fields = null)
         {
             try
             {
@@ -118,35 +77,33 @@ namespace Portfolio.API.WebApi.Controllers
 
                 if (result != null)
                 {
-                    return Ok(ShapedData.CreateDataShapedObject(portfolio, lstOfFields));
+                    return new Ok(ShapedData.CreateDataShapedObject(portfolio, lstOfFields));
                 }
                 else
                 {
-                    return NotFound();
+                    return new NotFound();
                 }
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return InternalServerError();
+                return new InternalServerError();
             }
         }
 
-        [System.Web.Http.HttpPost]
-        [Route(ApiPaths.Portfolios)]
-        public IHttpActionResult Post([FromBody] PortfolioRequest portfolio)
+        public IVirtualActionResult Post(PortfolioRequest portfolio)
         {
             try
             {
                 if (portfolio == null)
                 {
-                    return BadRequest();
+                    return new  BadRequest();
                 }
 
                 var entityPortfolio = new PortfolioFactory().CreatePortfolio(portfolio);
                 if (entityPortfolio == null)
                 {
-                    return BadRequest();
+                    return new  BadRequest();
                 }
 
                 /*
@@ -162,30 +119,22 @@ namespace Portfolio.API.WebApi.Controllers
                 if (result.Status == RepositoryActionStatus.Created)
                 {
                     var dtoPortfolio = result.Entity.MapToDto();
-                    return Created(Request.RequestUri + "/" + dtoPortfolio.PortfolioId, dtoPortfolio);
+                    return new Created(dtoPortfolio);
                 }
                 else
                 {
-                    return BadRequest();
+                    return new  BadRequest();
                 }
 
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return InternalServerError();
+                return new InternalServerError();
             }
         }
 
 
 
-    }
-
-    public class Tracer
-    {
-        public static void Trace(string value)
-        {
-            Debug.WriteLine(value);
-        }
     }
 }

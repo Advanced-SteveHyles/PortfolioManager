@@ -5,6 +5,7 @@ using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.DTO.Requests.Transactions;
+using Xunit;
 
 namespace BusinessLogicTests.Transactions.Fund.Evaluations
 {

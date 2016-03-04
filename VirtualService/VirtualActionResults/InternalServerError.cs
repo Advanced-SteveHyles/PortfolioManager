@@ -9,9 +9,9 @@ namespace Portfolio.API.Virtual.VirtualActionResults
     public class Ok : IVirtualActionResult
     {
 
-        private IQueryable<Portfolio> portfolios;
+        private IQueryable<BackEnd.Repository.Entities.Portfolio> portfolios;
 
-        public Ok(IQueryable<Portfolio> portfolios)
+        public Ok(IQueryable<BackEnd.Repository.Entities.Portfolio> portfolios)
         {
             this.portfolios = portfolios;
         }

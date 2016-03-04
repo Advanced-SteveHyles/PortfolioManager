@@ -9,22 +9,22 @@ namespace BusinessLogicTests.FakeRepositories
         : IPortfolioRepository         
     {
         
-        public IQueryable<Portfolio> GetPortfolios()
+        public IQueryable<Portfolio.BackEnd.Repository.Entities.Portfolio> GetPortfolios()
         {
             throw new NotImplementedException();
         }
 
-        public Portfolio GetPortfolio(int id)
+        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolio(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Portfolio GetPortfolioWithAccounts(int id)
+        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolioWithAccounts(int id)
         {
             throw new NotImplementedException();
         }
 
-        public RepositoryActionResult<Portfolio> InsertPortfolio(Portfolio entityPortfolio)
+        public RepositoryActionResult<Portfolio.BackEnd.Repository.Entities.Portfolio> InsertPortfolio(Portfolio.BackEnd.Repository.Entities.Portfolio entityPortfolio)
         {
             throw new NotImplementedException();
         }
