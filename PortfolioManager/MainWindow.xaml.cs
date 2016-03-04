@@ -10,6 +10,8 @@ namespace PortfolioManager
         public MainWindow()
         {
             InitializeComponent();
+
+            this.TabsView.DataContext = new TabViewModel();
         }
     }
 }

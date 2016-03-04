@@ -58,7 +58,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
                 investmentMapProcessor: new AccountInvestmentMapProcessor(_fakeRepository),
                 investmentHandler: new InvestmentHandler(_fakeRepository),
                 priceHistoryHandler: new PriceHistoryHandler(_fakeRepository),
-                accountHandlers: new AccountHandler(_fakeRepository)
+                accountHandler: new AccountHandler(_fakeRepository)
                 );
 
             revalueAllPricesCommand.Execute();

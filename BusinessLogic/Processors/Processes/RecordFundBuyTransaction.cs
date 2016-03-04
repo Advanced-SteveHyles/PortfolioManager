@@ -9,7 +9,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordFundBuyTransaction : ICommandRunner
     {
         private readonly InvestmentBuyRequest _fundBuyRequest;
-        private readonly IAccountHandlers _accountHandlers;
+        private readonly IAccountHandler _accountHandler;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         private readonly IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
         private readonly IFundTransactionHandler _fundTransactionHandler;
@@ -18,14 +18,14 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         public RecordFundBuyTransaction(
             InvestmentBuyRequest fundBuyRequest,
-            IAccountHandlers accountHandlers,
+            IAccountHandler accountHandler,
             ICashTransactionHandler cashTransactionHandler,
             IAccountInvestmentMapProcessor accountInvestmentMapProcessor,
             IFundTransactionHandler fundTransactionHandler,
             IPriceHistoryHandler priceHistoryHandler, IInvestmentHandler investmentHandler)
         {
             _fundBuyRequest = fundBuyRequest;
-            _accountHandlers = accountHandlers;
+            _accountHandler = accountHandler;
             _cashTransactionHandler = cashTransactionHandler;
             _accountInvestmentMapProcessor = accountInvestmentMapProcessor;
             _fundTransactionHandler = fundTransactionHandler;
@@ -58,7 +58,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
             var revaluePriceTransaction = new RevalueSinglePriceCommand(
                 investmentId,
-                _fundBuyRequest.PurchaseDate, _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandlers );
+                _fundBuyRequest.PurchaseDate, _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandler );
             revaluePriceTransaction.Execute();
 
             ExecuteResult = true;

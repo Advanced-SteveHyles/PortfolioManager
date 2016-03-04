@@ -30,3 +30,6 @@ to match route info.!
 
 http://www.mikesdotnetting.com/Article/202/Inline-Editing-With-The-WebGrid
 http://haacked.com/archive/2011/01/06/razor-syntax-quick-reference.aspx/
+
+11) Missing OWIN reference
+ Install-Package Microsoft.AspNet.WebApi.OwinSelfHost

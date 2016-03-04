@@ -5,7 +5,7 @@ using Portfolio.BackEnd.Repository.Interfaces;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class AccountHandler : IAccountHandlers
+    public class AccountHandler : IAccountHandler
     {
         private readonly IAccountRepository _repository;
 

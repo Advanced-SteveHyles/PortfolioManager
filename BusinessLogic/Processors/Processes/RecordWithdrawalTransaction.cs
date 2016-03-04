@@ -6,14 +6,14 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordWithdrawalTransaction : ICommandRunner
     {
         private readonly WithdrawalTransactionRequest _withdrawalTransactionRequest;
-        private readonly IAccountHandlers _accountHandlers;
+        private readonly IAccountHandler _accountHandler;
         private readonly ICashTransactionHandler _transactionHandler;
 
         public RecordWithdrawalTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest,
-            IAccountHandlers accountHandlers, ICashTransactionHandler transactionHandler)
+            IAccountHandler accountHandler, ICashTransactionHandler transactionHandler)
         {
             this._withdrawalTransactionRequest = withdrawalTransactionRequest;
-            _accountHandlers = accountHandlers;
+            _accountHandler = accountHandler;
             _transactionHandler = transactionHandler;
         }
 

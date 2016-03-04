@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 using Portfolio.API.WebApi;
 
@@ -7,7 +6,7 @@ using Portfolio.API.WebApi;
 
 namespace Portfolio.API.WebApi
 {
-    public partial class Startup
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {

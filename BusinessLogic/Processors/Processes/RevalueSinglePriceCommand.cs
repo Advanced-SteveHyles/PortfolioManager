@@ -7,17 +7,17 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     {
         private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
         private readonly IPriceHistoryHandler _priceHistoryHandler;
-        private readonly IAccountHandlers _accountHandlers;
+        private readonly IAccountHandler _accountHandler;
         private readonly int _investmentId;
         private readonly DateTime _valuationDate;
 
 
-        public RevalueSinglePriceCommand(int investmentId, DateTime valuationDate, IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandlers accountHandlers)
+        public RevalueSinglePriceCommand(int investmentId, DateTime valuationDate, IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler)
         {
             _investmentId = investmentId;
             _priceHistoryHandler = priceHistoryHandler;
             _investmentMapProcessor = investmentMapProcessor;
-            _accountHandlers = accountHandlers;
+            _accountHandler = accountHandler;
             _valuationDate = valuationDate;            
         }
 
@@ -41,12 +41,12 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         private void AddNewValuationToAccount(int accountId, decimal valuation)
         {
-            _accountHandlers.IncreaseValuation(accountId, valuation);
+            _accountHandler.IncreaseValuation(accountId, valuation);
         }
 
         private void RemovePreviousValuationFromAccount(int accountId, decimal valuation)
         {
-            _accountHandlers.DecreaseValuation(accountId, valuation);
+            _accountHandler.DecreaseValuation(accountId, valuation);
         }
 
         public bool CommandValid { get; }

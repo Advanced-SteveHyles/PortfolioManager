@@ -47,12 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAccountHandlers.cs" />
+    <Compile Include="Interfaces\IAccountHandler.cs" />
+    <Compile Include="Interfaces\IAccountInvestmentMapProcessor.cs" />
+    <Compile Include="Interfaces\ICashTransactionHandler.cs" />
     <Compile Include="Interfaces\ICommandRunner.cs" />
+    <Compile Include="Interfaces\IFundTransactionHandler.cs" />
+    <Compile Include="Interfaces\IInvestmentHandler.cs" />
     <Compile Include="Interfaces\IIOCContainer.cs" />
     <Compile Include="Interfaces\IMediator.cs" />
     <Compile Include="Interfaces\Interface1.cs" />
     <Compile Include="Interfaces\INullInterface.cs" />
+    <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
     <Compile Include="Processors\Handlers\AccountInvestmentMapProcessor.cs" />

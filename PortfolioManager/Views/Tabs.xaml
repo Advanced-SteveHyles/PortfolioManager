@@ -22,6 +22,10 @@
                 <MenuItem Header="Add">
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="Investments">
+                <MenuItem Header="Add">
+                </MenuItem>
+            </MenuItem>
         </Menu>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
             <Button>A</Button>
