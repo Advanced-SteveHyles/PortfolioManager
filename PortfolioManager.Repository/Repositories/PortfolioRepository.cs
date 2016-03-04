@@ -36,16 +36,16 @@ namespace Portfolio.BackEnd.Repository.Repositories
                 var result = _context.SaveChanges();
                 if (result > 0)
                 {
-                    return new RepositoryActionResult<Portfolio>(entityPortfolio, RepositoryActionStatus.Created);
+                    return new RepositoryActionResult<Entities.Portfolio>(entityPortfolio, RepositoryActionStatus.Created);
                 }
                 else
                 {
-                    return new RepositoryActionResult<Portfolio>(entityPortfolio, RepositoryActionStatus.NothingModified, null);
+                    return new RepositoryActionResult<Entities.Portfolio>(entityPortfolio, RepositoryActionStatus.NothingModified, null);
                 }
             }
             catch (Exception ex)
             {
-                return new RepositoryActionResult<Portfolio>(null, RepositoryActionStatus.Error, ex);
+                return new RepositoryActionResult<Entities.Portfolio>(null, RepositoryActionStatus.Error, ex);
             }
         }
     }

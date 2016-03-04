@@ -113,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortfolioManagerWeb\PortfolioManagerWeb.csproj">
-      <Project>{1CF011AA-C0C6-41E2-BB70-75E5E4312B09}</Project>
+      <Project>{1cf011aa-c0c6-41e2-bb70-75e5e4312b09}</Project>
       <Name>PortfolioManagerWeb</Name>
     </ProjectReference>
   </ItemGroup>

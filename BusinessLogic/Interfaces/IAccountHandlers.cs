@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PortfolioManager.DTO;
-using PortfolioManager.DTO.DTOs;
-using PortfolioManager.DTO.Requests.Transactions;
-using PortfolioManager.DTO.Transactions;
-using PortfolioManager.Repository.Entities;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Interfaces
 {

@@ -1,3 +1,4 @@
+using System.Linq;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.Common.DTO.Requests;

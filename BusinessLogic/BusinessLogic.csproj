@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAccountHandlers.cs" />
+    <Compile Include="Interfaces\ICommandRunner.cs" />
+    <Compile Include="Interfaces\IIOCContainer.cs" />
+    <Compile Include="Interfaces\IMediator.cs" />
+    <Compile Include="Interfaces\Interface1.cs" />
+    <Compile Include="Interfaces\INullInterface.cs" />
+    <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
     <Compile Include="Processors\Handlers\AccountInvestmentMapProcessor.cs" />
     <Compile Include="Processors\Handlers\FundTransactionHandler.cs" />
@@ -66,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
-      <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
+      <Project>{77b12de0-53ea-43cd-8e33-06af1de7a8b6}</Project>
       <Name>PortfolioManager.Repository</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Portfolio.BackEnd.BusinessLogic.Validators;
+﻿using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
 

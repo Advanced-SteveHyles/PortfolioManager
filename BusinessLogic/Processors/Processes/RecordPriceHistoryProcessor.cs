@@ -1,4 +1,5 @@
 ﻿using System;
+using Interfaces;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes

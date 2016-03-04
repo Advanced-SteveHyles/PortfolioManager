@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Interfaces;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.Common.DTO.Requests.Transactions;
 

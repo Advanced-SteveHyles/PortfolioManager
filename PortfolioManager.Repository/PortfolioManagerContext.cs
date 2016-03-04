@@ -29,7 +29,7 @@ namespace Portfolio.BackEnd.Repository
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Portfolio>()
+            modelBuilder.Entity<Entities.Portfolio>()
                 .HasMany(e => e.Accounts);
         }
     }
