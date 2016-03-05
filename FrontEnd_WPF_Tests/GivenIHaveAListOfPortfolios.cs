@@ -28,7 +28,7 @@ namespace FrontEnd_WPF_Tests
         {
             await StartSTATask(() =>
             {
-                var tabItem = BuildPortfolioTabContent.CreateAccountListTab(_portfolioDtos[0]);
+                var tabItem = BuildPortfolioTabContent.CreatePortfolioTab(_portfolioDtos[0]);
 
                 Assert.Equal(_portfolioDtos[0].Name, tabItem.Header);
             }
@@ -40,7 +40,7 @@ namespace FrontEnd_WPF_Tests
         //{
         //    foreach (var portfolio in _portfolioDtos)
         //    { 
-        //    var tabItem = BuildPortfolioTabContent.CreateAccountListTab();
+        //    var tabItem = BuildPortfolioTabContent.CreatePortfolioTab();
         //    }
 
         //}

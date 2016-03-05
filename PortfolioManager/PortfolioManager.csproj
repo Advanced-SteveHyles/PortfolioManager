@@ -55,18 +55,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
+    <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
     <Compile Include="Views\AccountDetails.xaml.cs">
       <DependentUpon>AccountDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccountTab.xaml.cs">
-      <DependentUpon>AccountTab.xaml</DependentUpon>
+    <Compile Include="Views\AccountTabs.xaml.cs">
+      <DependentUpon>AccountTabs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InvestmentDetails.xaml.cs">
       <DependentUpon>InvestmentDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PortfolioTabs.xaml.cs">
-      <DependentUpon>PortfolioTabs.xaml</DependentUpon>
+    <Compile Include="Views\TabControls\PortfolioTabs.xaml.cs">
+      <DependentUpon>PortfolioTabsList.Xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
@@ -90,7 +91,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AccountTab.xaml">
+    <Page Include="Views\AccountTabs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PortfolioTabs.xaml">
+    <Page Include="Views\TabControls\PortfolioTabsList.Xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

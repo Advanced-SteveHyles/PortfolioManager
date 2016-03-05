@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <GroupBox>Account Details</GroupBox>
+        <GroupBox Header="Account Details"></GroupBox>
     </Grid>
 </UserControl>

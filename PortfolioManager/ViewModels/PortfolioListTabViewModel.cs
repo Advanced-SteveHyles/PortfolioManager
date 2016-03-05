@@ -12,20 +12,10 @@ namespace PortfolioManager
         
         public List<TabItem> PortfolioTabs => new List<TabItem>()
         {
-            { BuildPortfolioTabContent.CreateAccountListTab("A")},
-            { BuildPortfolioTabContent.CreateAccountListTab("B")},
-            { BuildPortfolioTabContent.CreateAccountListTab("C")}
+            { BuildPortfolioTabContent.CreatePortfolioTab("A")},
+            { BuildPortfolioTabContent.CreatePortfolioTab("B")},
+            { BuildPortfolioTabContent.CreatePortfolioTab("C")}
         };
 
-    }
-
-    public class AccountTabViewModel
-    {
-        private string v;
-
-        public AccountTabViewModel(string v)
-        {
-            this.v = v;
-        }
     }
 }

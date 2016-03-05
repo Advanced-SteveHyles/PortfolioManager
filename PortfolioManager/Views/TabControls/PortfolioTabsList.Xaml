@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PortfolioManager.Views.PortfolioTabs"
+﻿<UserControl x:Class="PortfolioManager.Views.PortfolioTabsList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -23,7 +23,7 @@
        
         <TabControl Grid.Row="1" Grid.Column="1" TabStripPlacement="Left">
             <TabItem Header="Portfolio">
-                <local:AccountTab DataContext="{Binding AccountTabViewModel}"></local:AccountTab>
+                <local:AccountTabs DataContext="{Binding AccountTabViewModel}"></local:AccountTabs>
             </TabItem>
             <TabItem Header="Portfolio 2">
             </TabItem>

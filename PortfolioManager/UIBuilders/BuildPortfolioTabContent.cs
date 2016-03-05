@@ -12,27 +12,43 @@ namespace PortfolioManager.UIBuilders
 {
     public static class BuildPortfolioTabContent
     {
-        public static TabItem CreateAccountListTab(string s)
+        private static AccountTabs PopulateAccounts(string s)
         {
-            return new TabItem()
-            {
-                Header = $"Portfolio {s}",
-
-                Content = PopulateAccounts(s)
-            };
-        }
-
-        private static AccountTab PopulateAccounts(string s)
-        {
-            return new AccountTab()
+            return new AccountTabs()
             {
                 DataContext = new AccountTabViewModel(s)
             };
         }
 
-        public static TabItem CreateAccountListTab(PortfolioDto portfolioDto)
+        //private static AccountTabs PopulateAccounts(string s)
+        //{
+        //    return new AccountTabs()
+        //    {
+        //        DataContext = new AccountTabViewModel(s)
+        //    };
+        //}
+
+        public static TabItem CreatePortfolioTab(PortfolioDto portfolioDto)
         {
-            return CreateAccountListTab(portfolioDto.Name);
+            return CreatePortfolioTab(portfolioDto.Name);
+        }
+
+        public static TabItem CreatePortfolioTab(string s)
+        {
+            return new TabItem()
+            {
+                Header = $"Portfolio {s}",
+                Content = PopulateAccounts(s)
+            };
+        }
+
+        public static TabItem CreateAccountTab(string s)
+        {
+            return new TabItem()
+            {
+                Header = $"Account {s}",
+//                Content = PopulateAccounts(s)
+            };
         }
     }
 }

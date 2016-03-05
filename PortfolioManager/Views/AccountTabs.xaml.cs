@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PortfolioManager.Views
 {
     /// <summary>
-    /// Interaction logic for AccountTab.xaml
+    /// Interaction logic for AccountTabs.xaml
     /// </summary>
-    public partial class AccountTab : UserControl
+    public partial class AccountTabs : UserControl
     {
-        public AccountTab()
+        public AccountTabs()
         {
             InitializeComponent();
         }
