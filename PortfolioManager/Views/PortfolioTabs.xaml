@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PortfolioManager.Views.Tabs"
+﻿<UserControl x:Class="PortfolioManager.Views.PortfolioTabs"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,35 +16,13 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="3">
-            <MenuItem Header="File"></MenuItem>
-            <MenuItem Header="Portfolio">
-                <MenuItem Header="Add">
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Investments">
-                <MenuItem Header="Add">
-                </MenuItem>
-            </MenuItem>
-        </Menu>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
-            <Button>A</Button>
-            <Button>B</Button>
-            <Button>C</Button>
-            <Button>D</Button>
-            <Button>E</Button>
-        </StackPanel>
+        <local:TopLevelMenu Grid.ColumnSpan="3"></local:TopLevelMenu>
+
+        <local:Tasks Grid.Row="1" Grid.Column="2"></local:Tasks>
+       
         <TabControl Grid.Row="1" Grid.Column="1" TabStripPlacement="Left">
             <TabItem Header="Portfolio">
-                <TabControl>
-                    <TabItem Header="Account 1">
-                        <StackPanel>
-                            <GroupBox>Account Details</GroupBox>
-                            <GroupBox>InvestmentDetails</GroupBox>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Account 2"></TabItem>
-                </TabControl>
+                <local:AccountTab DataContext="{Binding AccountTabViewModel}"></local:AccountTab>
             </TabItem>
             <TabItem Header="Portfolio 2">
             </TabItem>

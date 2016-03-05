@@ -55,8 +55,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\TabViewModel.cs" />
-    <Compile Include="Views\Tabs.xaml.cs">
-      <DependentUpon>Tabs.xaml</DependentUpon>
+    <Compile Include="Views\AccountDetails.xaml.cs">
+      <DependentUpon>AccountDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InvestmentDetails.xaml.cs">
+      <DependentUpon>InvestmentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortfolioTabs.xaml.cs">
+      <DependentUpon>PortfolioTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tasks.xaml.cs">
+      <DependentUpon>Tasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TopLevelMenu.xaml.cs">
+      <DependentUpon>TopLevelMenu.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -70,7 +85,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Tabs.xaml">
+    <Page Include="Views\AccountDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InvestmentDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PortfolioTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TopLevelMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

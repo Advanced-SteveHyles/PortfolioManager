@@ -5,9 +5,9 @@ namespace PortfolioManager.Views
     /// <summary>
     /// Interaction logic for Tabs.xaml
     /// </summary>
-    public partial class Tabs : UserControl
+    public partial class PortfolioTabs : UserControl
     {
-        public Tabs()
+        public PortfolioTabs()
         {
             InitializeComponent();
         }
