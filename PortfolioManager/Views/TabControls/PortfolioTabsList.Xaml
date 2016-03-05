@@ -20,15 +20,7 @@
         <local:TopLevelMenu Grid.ColumnSpan="3"></local:TopLevelMenu>
 
         <local:Tasks Grid.Row="1" Grid.Column="2"></local:Tasks>
-       
-        <TabControl Grid.Row="1" Grid.Column="1" TabStripPlacement="Left">
-            <TabItem Header="Portfolio">
-                <local:AccountTabs DataContext="{Binding AccountTabViewModel}"></local:AccountTabs>
-            </TabItem>
-            <TabItem Header="Portfolio 2">
-            </TabItem>
-        </TabControl>
-
+      
         <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left" ItemsSource="{Binding PortfolioTabs}">
         </TabControl>
     </Grid>

@@ -18,9 +18,9 @@ namespace PortfolioManager.Views
     /// <summary>
     /// Interaction logic for InvestmentDetails.xaml
     /// </summary>
-    public partial class InvestmentDetails : UserControl
+    public partial class AccountInvestmentDetails : UserControl
     {
-        public InvestmentDetails()
+        public AccountInvestmentDetails()
         {
             InitializeComponent();
         }

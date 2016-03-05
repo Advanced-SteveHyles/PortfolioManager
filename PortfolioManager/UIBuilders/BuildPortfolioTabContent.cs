@@ -6,19 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Portfolio.Common.DTO.DTOs;
-using PortfolioManager.Views;
+using PortfolioManager.Views.TabPanels;
 
 namespace PortfolioManager.UIBuilders
 {
     public static class BuildPortfolioTabContent
     {
-        private static AccountTabs PopulateAccounts(string s)
-        {
-            return new AccountTabs()
-            {
-                DataContext = new AccountTabViewModel(s)
-            };
-        }
+      
 
         //private static AccountTabs PopulateAccounts(string s)
         //{
@@ -28,26 +22,26 @@ namespace PortfolioManager.UIBuilders
         //    };
         //}
 
-        public static TabItem CreatePortfolioTab(PortfolioDto portfolioDto)
+        public static TabItem CreatePortfolioTabItem(PortfolioDto portfolioDto)
         {
-            return CreatePortfolioTab(portfolioDto.Name);
+            return CreatePortfolioTabItem(portfolioDto.Name);
         }
 
-        public static TabItem CreatePortfolioTab(string s)
+        public static TabItem CreatePortfolioTabItem(string s)
         {
             return new TabItem()
             {
-                Header = $"Portfolio {s}",
-                Content = PopulateAccounts(s)
+                Header = $"{s}",
+                Content = new PortfolioTabPanel {DataContext = new PortfolioTabPanelViewModel(s)} //PopulateAccounts(s)
             };
         }
 
-        public static TabItem CreateAccountTab(string s)
+        public static TabItem CreateAccountTabItem(string s)
         {
             return new TabItem()
             {
-                Header = $"Account {s}",
-//                Content = PopulateAccounts(s)
+                Header = $"{s}",
+                Content = new AccountTabPanel() {DataContext = new AccountTabPanelViewModel()}
             };
         }
     }

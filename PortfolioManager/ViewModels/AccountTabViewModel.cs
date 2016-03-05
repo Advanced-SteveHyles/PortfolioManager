@@ -8,12 +8,6 @@ namespace PortfolioManager
     {
         private string v;
         
-             public List<TabItem> AccountTabs => new List<TabItem>()
-        {
-            { BuildPortfolioTabContent.CreateAccountTab("1")},
-            { BuildPortfolioTabContent.CreateAccountTab("2")},
-            { BuildPortfolioTabContent.CreateAccountTab("3")}
-        };
 
         public AccountTabViewModel(string v)
         {

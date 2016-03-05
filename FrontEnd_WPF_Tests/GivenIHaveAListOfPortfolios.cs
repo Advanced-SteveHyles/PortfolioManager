@@ -17,9 +17,9 @@ namespace FrontEnd_WPF_Tests
         {
             _portfolioDtos = new List<PortfolioDto>()
             {
-                {new PortfolioDto() {Name = "One"} },
-                {new PortfolioDto()},
-                {new PortfolioDto()},
+                {new PortfolioDto() {Name = "Portfolio One"} },
+                {new PortfolioDto() {Name = "Portfolio Two"}},
+                {new PortfolioDto() {Name = "Portfolio Three"}},
             };
         }
 
@@ -28,8 +28,7 @@ namespace FrontEnd_WPF_Tests
         {
             await StartSTATask(() =>
             {
-                var tabItem = BuildPortfolioTabContent.CreatePortfolioTab(_portfolioDtos[0]);
-
+                var tabItem = BuildPortfolioTabContent.CreatePortfolioTabItem(_portfolioDtos[0]);
                 Assert.Equal(_portfolioDtos[0].Name, tabItem.Header);
             }
             );            
@@ -40,7 +39,7 @@ namespace FrontEnd_WPF_Tests
         //{
         //    foreach (var portfolio in _portfolioDtos)
         //    { 
-        //    var tabItem = BuildPortfolioTabContent.CreatePortfolioTab();
+        //    var tabItem = BuildPortfolioTabContent.CreatePortfolioTabItem();
         //    }
 
         //}

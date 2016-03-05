@@ -54,20 +54,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DummyData.cs" />
+    <Compile Include="UIBuilders\AccountDetailsViewModel.cs" />
+    <Compile Include="UIBuilders\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
+    <Compile Include="UIBuilders\PortfolioTabPanelViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
     <Compile Include="Views\AccountDetails.xaml.cs">
       <DependentUpon>AccountDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccountTabs.xaml.cs">
+    <Compile Include="Views\TabControls\AccountTabs.xaml.cs">
       <DependentUpon>AccountTabs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InvestmentDetails.xaml.cs">
-      <DependentUpon>InvestmentDetails.xaml</DependentUpon>
+    <Compile Include="Views\AccountInvestmentDetails.xaml.cs">
+      <DependentUpon>AccountInvestmentDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabControls\PortfolioTabs.xaml.cs">
       <DependentUpon>PortfolioTabsList.Xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabPanels\AccountTabPanel.xaml.cs">
+      <DependentUpon>AccountTabPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabPanels\PortfolioTabPanel.xaml.cs">
+      <DependentUpon>PortfolioTabPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
@@ -91,15 +101,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AccountTabs.xaml">
+    <Page Include="Views\TabControls\AccountTabs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InvestmentDetails.xaml">
+    <Page Include="Views\AccountInvestmentDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TabControls\PortfolioTabsList.Xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabPanels\AccountTabPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabPanels\PortfolioTabPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
