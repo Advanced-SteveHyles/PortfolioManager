@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioManager", "Portfol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualService", "VirtualService\VirtualService.csproj", "{A147027C-BC88-490A-833D-0F5966D51959}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd_WPF_Tests", "FrontEnd_WPF_Tests\FrontEnd_WPF_Tests.csproj", "{5E69A282-296F-4695-ADC7-D11FF43BC66D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{A147027C-BC88-490A-833D-0F5966D51959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A147027C-BC88-490A-833D-0F5966D51959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A147027C-BC88-490A-833D-0F5966D51959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E69A282-296F-4695-ADC7-D11FF43BC66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E69A282-296F-4695-ADC7-D11FF43BC66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E69A282-296F-4695-ADC7-D11FF43BC66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E69A282-296F-4695-ADC7-D11FF43BC66D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,5 +129,6 @@ Global
 		{A97D6231-48CB-43A6-BED3-58A3044384E8} = {0F2AF043-381C-4C2B-BF72-8C01A06CCC5A}
 		{46134C8B-B6C1-4EBA-B80A-5360306D06C8} = {B72F4619-509A-47FA-AE1F-20E0898C4794}
 		{A147027C-BC88-490A-833D-0F5966D51959} = {24972C2C-FC61-4619-A3D4-6C3A03A838AA}
+		{5E69A282-296F-4695-ADC7-D11FF43BC66D} = {EB85BADD-69CE-44C8-AF25-A73E773A8D47}
 	EndGlobalSection
 EndGlobal

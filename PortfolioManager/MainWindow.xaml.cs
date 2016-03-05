@@ -11,7 +11,7 @@ namespace PortfolioManager
         {
             InitializeComponent();
 
-            this.TabsView.DataContext = new TabViewModel();
+            this.TabsView.DataContext = new PortfolioListTabViewModel();
         }
     }
 }
