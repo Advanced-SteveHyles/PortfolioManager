@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Portfolio.API.Virtual;
+using Portfolio.API.Virtual.VirtualActionResults;
+using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
 
 namespace PortfolioManager.Model
 {
     public static class DummyData
     {
-        public static List<PortfolioDto> GetPortfolioList() => new List<PortfolioDto>()
+        public static List<PortfolioDto> GetPortfolioList()
         {
-            {new PortfolioDto() { Name = "Portfolio One", PortfolioId = 1}
-            },
-            {new PortfolioDto() { Name = "Portfolio Two", PortfolioId = 2}
-            },
-            {new PortfolioDto() { Name = "Portfolio Three", PortfolioId = 3}},
-        };
+            var x = new PortfoliosController(ApiConstants.Portfoliomanagercontext);
+            var y = x.Get() as Ok<PortfolioDto>;
+            return y?.objects.ToList() ?? new List<PortfolioDto>();
+        }
 
         internal static List<AccountDto> FakeAccountData()
         {

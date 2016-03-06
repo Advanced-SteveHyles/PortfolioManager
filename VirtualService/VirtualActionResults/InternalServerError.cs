@@ -6,15 +6,17 @@ namespace Portfolio.API.Virtual.VirtualActionResults
     {
     }
 
-    public class Ok : IVirtualActionResult
+    public class Ok<T> : IVirtualActionResult
     {
+        private IQueryable<T> _objects;
 
-        private IQueryable<BackEnd.Repository.Entities.Portfolio> portfolios;
-
-        public Ok(IQueryable<BackEnd.Repository.Entities.Portfolio> portfolios)
+        public Ok(IQueryable<T> objects)
         {
-            this.portfolios = portfolios;
+            _objects = objects;
         }
+
+        public IQueryable<T> objects => _objects;
+
     }
 
     public class InternalServerError : IVirtualActionResult

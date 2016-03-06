@@ -6,6 +6,7 @@ using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Factories;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.API.Virtual.VirtualControllers
@@ -36,9 +37,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 var totalCount = portfolios.Count();
                 var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
                 
-                return new  Ok(
-                    portfolios
-                    );
+                return new  Ok<PortfolioDto>(portfolios);
 
             }
             catch (Exception ex)

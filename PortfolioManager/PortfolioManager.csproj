@@ -162,6 +162,10 @@
       <Project>{51c5255f-8785-406d-8f4e-1dc6824e630b}</Project>
       <Name>PortfolioManager.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VirtualService\VirtualService.csproj">
+      <Project>{a147027c-bc88-490a-833d-0f5966d51959}</Project>
+      <Name>VirtualService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
