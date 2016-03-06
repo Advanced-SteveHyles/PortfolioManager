@@ -31,13 +31,13 @@ namespace Portfolio.API.Virtual.VirtualControllers
             {
                 if (request == null)
                 {
-                    return new BadRequest();
+                    return new BadRequestActionResult();
                 }
 
                 var entityPriceHistory = new PriceHistoryFactory().CreatePriceHistory(request);
                 if (entityPriceHistory == null)
                 {
-                    return new BadRequest();
+                    return new BadRequestActionResult();
                 }
 
                 /*
@@ -64,18 +64,18 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 if (priceHistoryProcessor.ExecuteResult && revalueSinglePriceCommand.ExecuteResult)
                 {
                     //var dtoPortfolio = result.Entity.MapToDto();
-                    return new Created(new { });
+                    return new CreatedActionResult(new { });
                 }
                 else
                 {
-                    return new BadRequest();
+                    return new BadRequestActionResult();
                 }
 
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return new InternalServerError();
+                return new InternalServerErrorActionResult();
             }
         }
     }

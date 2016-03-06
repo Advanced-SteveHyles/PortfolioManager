@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using PortfolioManager.Model;
@@ -9,12 +10,14 @@ namespace PortfolioManager
 {
     public class PortfolioListTabViewModel
     {        
-        public List<TabItem> PortfolioTabs => new List<TabItem>()
+        public List<TabItem> PortfolioTabs
         {
-            { BuildPortfolioTabContent.CreatePortfolioTabItem(DummyData.GetPortfolioList()[0])},
-            { BuildPortfolioTabContent.CreatePortfolioTabItem(DummyData.GetPortfolioList()[1])},
-            { BuildPortfolioTabContent.CreatePortfolioTabItem(DummyData.GetPortfolioList()[2])}
-        };
-
+            get
+            {
+                return DummyData.GetPortfolioList()
+                    .Select(portfolio => BuildPortfolioTabContent
+                    .CreatePortfolioTabItem(portfolio)).ToList();
+            }
+        }
     }
 }

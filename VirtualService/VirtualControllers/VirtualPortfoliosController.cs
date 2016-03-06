@@ -11,11 +11,11 @@ using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
-    public class PortfoliosController
+    public class VirtualPortfoliosController
     {
         readonly IPortfolioRepository _repository;
 
-        public PortfoliosController(string connection)
+        public VirtualPortfoliosController(string connection)
         {            
             _repository = new PortfolioRepository(connection);
             Tracer.Trace(this.ToString());
@@ -36,14 +36,16 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 // calculate data for metadata
                 var totalCount = portfolios.Count();
                 var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-                
-                return new  Ok<PortfolioDto>(portfolios);
+
+                var portfolioDtos = portfolios.ToList()
+                    .Select(p => p.MapToDto());
+                return new  OkMultipleActionResult<PortfolioDto>(portfolioDtos);
 
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return new InternalServerError();
+                return new InternalServerErrorActionResult();
             }
         }
 
@@ -76,17 +78,17 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
                 if (result != null)
                 {
-                    return new Ok(ShapedData.CreateDataShapedObject(portfolio, lstOfFields));
+                    return new OkSingleActionResult<Object>(ShapedData.CreateDataShapedObject(portfolio, lstOfFields));
                 }
                 else
                 {
-                    return new NotFound();
+                    return new NotFoundActionResult();
                 }
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return new InternalServerError();
+                return new InternalServerErrorActionResult();
             }
         }
 
@@ -96,13 +98,13 @@ namespace Portfolio.API.Virtual.VirtualControllers
             {
                 if (portfolio == null)
                 {
-                    return new  BadRequest();
+                    return new  BadRequestActionResult();
                 }
 
                 var entityPortfolio = new PortfolioFactory().CreatePortfolio(portfolio);
                 if (entityPortfolio == null)
                 {
-                    return new  BadRequest();
+                    return new  BadRequestActionResult();
                 }
 
                 /*
@@ -118,18 +120,18 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 if (result.Status == RepositoryActionStatus.Created)
                 {
                     var dtoPortfolio = result.Entity.MapToDto();
-                    return new Created(dtoPortfolio);
+                    return new CreatedActionResult(dtoPortfolio);
                 }
                 else
                 {
-                    return new  BadRequest();
+                    return new  BadRequestActionResult();
                 }
 
             }
             catch (Exception ex)
             {
                 ErrorLog.LogError(ex);
-                return new InternalServerError();
+                return new InternalServerErrorActionResult();
             }
         }
 

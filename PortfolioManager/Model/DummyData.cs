@@ -14,9 +14,9 @@ namespace PortfolioManager.Model
     {
         public static List<PortfolioDto> GetPortfolioList()
         {
-            var x = new PortfoliosController(ApiConstants.Portfoliomanagercontext);
-            var y = x.Get() as Ok<PortfolioDto>;
-            return y?.objects.ToList() ?? new List<PortfolioDto>();
+            var x = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var y = x.Get() as OkMultipleActionResult<PortfolioDto>;
+            return y?.EnumerateObjectInstances.ToList() ?? new List<PortfolioDto>();
         }
 
         internal static List<AccountDto> FakeAccountData()
