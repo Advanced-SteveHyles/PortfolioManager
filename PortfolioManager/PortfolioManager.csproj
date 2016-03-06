@@ -57,7 +57,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DummyData.cs" />
+    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\PortfolioModel.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />

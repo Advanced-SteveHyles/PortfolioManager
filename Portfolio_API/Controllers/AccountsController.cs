@@ -15,19 +15,19 @@ namespace Portfolio.API.WebApi.Controllers
 {
     public class AccountsController : ApiController
     {
-        IAccountRepository _repository;
+        readonly IAccountRepository _repository;
 
         public AccountsController()
         {
-            _repository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _repository = new AccountRepository(ApiConstants.Portfoliomanagercontext);
         }
 
         public IHttpActionResult Get(int id, string fields = null)
         {
             try
             {
-                bool includeInvestments = false;
-                List<string> lstOfFields = new List<string>();
+                var includeInvestments = false;
+                var lstOfFields = new List<string>();
 
                 // we should include expenses when the fields-string contains "expenses"
                 if (fields != null)
@@ -36,15 +36,9 @@ namespace Portfolio.API.WebApi.Controllers
                     includeInvestments = lstOfFields.Any(f => f.Contains("investments"));
                 }
 
-                Account accountEnt;
-                if (includeInvestments)
-                {
-                    accountEnt = _repository.GetAccountWithInvestments(id);
-                }
-                else
-                {
-                    accountEnt = _repository.GetAccount(id);
-                }
+                var accountEnt = includeInvestments 
+                    ? _repository.GetAccountWithInvestments(id) 
+                    : _repository.GetAccount(id);
 
                 var result = _repository.GetAccount(id);
 

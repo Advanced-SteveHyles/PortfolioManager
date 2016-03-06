@@ -10,26 +10,13 @@ using Portfolio.Common.DTO.DTOs;
 
 namespace PortfolioManager.Model
 {
-    public static class DummyData
+    public static class PortfolioModel
     {
         public static List<PortfolioDto> GetPortfolioList()
         {
-            var x = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
-            var y = x.Get() as OkMultipleActionResult<PortfolioDto>;
-            return y?.EnumerateObjectInstances.ToList() ?? new List<PortfolioDto>();
-        }
-
-        internal static List<AccountDto> FakeAccountData()
-        {
-            return new List<AccountDto>()
-            {
-                new AccountDto(){AccountId = 1, PortfolioId = 1, Name = "Account A"},
-                new AccountDto(){AccountId = 2, PortfolioId = 1, Name = "Account V"},
-                new AccountDto(){AccountId = 3, PortfolioId = 1, Name = "Account G"},
-                new AccountDto(){AccountId = 4, PortfolioId = 2, Name = "Account A1"},
-                new AccountDto(){AccountId = 5, PortfolioId = 2, Name = "Account A"},
-                new AccountDto(){AccountId = 6, PortfolioId = 3, Name = "Account A3"}
-            };
+            var service = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var portfolios = service.Get() as OkMultipleActionResult<PortfolioDto>;
+            return portfolios?.EnumerateObjectInstances.ToList() ?? new List<PortfolioDto>();
         }
 
         internal static List<AccountInvestmentMapDto> FakePopulatedInvestmentMap()

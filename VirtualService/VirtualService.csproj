@@ -71,8 +71,9 @@
     <Compile Include="ErrorLog.cs" />
     <Compile Include="VirtualActionResults\BadRequestActionResult.cs" />
     <Compile Include="VirtualActionResults\InternalServerErrorActionResult.cs" />
+    <Compile Include="VirtualControllers\VirtualAccountController.cs" />
     <Compile Include="VirtualControllers\VirtualPortfoliosController.cs" />
-    <Compile Include="VirtualControllers\PriceUpdateController.cs" />
+    <Compile Include="VirtualControllers\VirtualPriceUpdateController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VirtualActionResults\IVirtualActionResult.cs" />
   </ItemGroup>

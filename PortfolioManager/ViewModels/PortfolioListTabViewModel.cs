@@ -14,7 +14,7 @@ namespace PortfolioManager
         {
             get
             {
-                return DummyData.GetPortfolioList()
+                return Model.PortfolioModel.GetPortfolioList()
                     .Select(portfolio => BuildPortfolioTabContent
                     .CreatePortfolioTabItem(portfolio)).ToList();
             }

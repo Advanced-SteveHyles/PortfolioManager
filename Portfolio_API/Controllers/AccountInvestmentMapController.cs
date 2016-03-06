@@ -22,7 +22,7 @@ namespace Portfolio.API.WebApi.Controllers
         {
             
             _investmentRepository = new InvestmentRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
-            _accountRepository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _accountRepository = new AccountRepository(ApiConstants.Portfoliomanagercontext);
             _accountInvestmentRepository = new AccountInvestmentMapRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
         }
 

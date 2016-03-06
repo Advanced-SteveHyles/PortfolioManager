@@ -7,8 +7,8 @@ using Portfolio.BackEnd.Repository.Interfaces;
 namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class AccountRepository : BaseRepository, IAccountRepository
-    {
-        public AccountRepository(PortfolioManagerContext context) : base(context)
+    {        
+        public AccountRepository(string connection) : base(new PortfolioManagerContext (connection))
         {
         }
 

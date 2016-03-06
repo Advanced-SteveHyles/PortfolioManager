@@ -14,8 +14,9 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
 
         public TransactionSummaryController()
         {
-            _accountRepository = new AccountRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
-            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            var connection = ApiConstants.Portfoliomanagercontext;
+            _accountRepository = new AccountRepository(connection);
+            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext(connection));
         }
 
      //   [Route(ApiPaths.AccountTransactions)]

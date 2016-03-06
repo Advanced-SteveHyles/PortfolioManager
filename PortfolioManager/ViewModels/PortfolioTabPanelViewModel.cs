@@ -13,7 +13,7 @@ namespace PortfolioManager.UIBuilders
         {
             get
             {
-                return DummyData.FakeAccountData()
+                return AccountModel.GetAccountForPortfolio(_portfolioId)
                     .Where(a => a.PortfolioId == _portfolioId)
                     .Select(accountdto => BuildPortfolioTabContent.CreateAccountTabItem(accountdto))
                     .ToList();

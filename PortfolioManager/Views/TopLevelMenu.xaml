@@ -9,7 +9,7 @@
     <Grid>
         <Menu Grid.ColumnSpan="3">
             <MenuItem Header="File"></MenuItem>
-            <MenuItem Header="Portfolio">
+            <MenuItem Header="PortfolioModel">
                 <MenuItem Header="Add">
                 </MenuItem>
             </MenuItem>

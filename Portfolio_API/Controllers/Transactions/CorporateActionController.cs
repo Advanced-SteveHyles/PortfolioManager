@@ -22,12 +22,13 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
 
         public CorporateActionController()
         {
-            var context = new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext);
+            var connection = ApiConstants.Portfoliomanagercontext;
+            var context = new PortfolioManagerContext(connection);
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(context);
             _fundTransactionRepository = new FundTransactionRepository(context);
             _priceHistoryRepository = new PriceHistoryRepository(context);
             _cashTransactionRepository = new CashTransactionRepository(context);
-            _accountRepository = new AccountRepository(context);
+            _accountRepository = new AccountRepository(connection);
             _investmentRepository = new InvestmentRepository(context);
         }
 

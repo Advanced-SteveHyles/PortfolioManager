@@ -6,10 +6,10 @@ namespace Portfolio.API.Virtual.VirtualActionResults
 {
     public class OkMultipleActionResult<T> : IVirtualActionResult
     {
-        public IEnumerable<PortfolioDto> EnumerateObjectInstances { get; }
+        public IEnumerable<T> EnumerateObjectInstances { get; }
         public IQueryable<T> QueryObjectInstances { get; }
 
-        public OkMultipleActionResult(IEnumerable<PortfolioDto> enumerateObjectInstances)
+        public OkMultipleActionResult(IEnumerable<T> enumerateObjectInstances)
         {
             this.EnumerateObjectInstances = enumerateObjectInstances;
         }

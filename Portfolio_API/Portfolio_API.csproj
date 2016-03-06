@@ -247,6 +247,10 @@
       <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
       <Name>PortfolioManager.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VirtualService\VirtualService.csproj">
+      <Project>{A147027C-BC88-490A-833D-0F5966D51959}</Project>
+      <Name>VirtualService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

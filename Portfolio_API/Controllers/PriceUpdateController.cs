@@ -18,10 +18,11 @@ namespace Portfolio.API.WebApi.Controllers
 
         public PriceUpdateController()
         {
-            var context = new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext);
+            var connection = ApiConstants.Portfoliomanagercontext;
+            var context = new PortfolioManagerContext(connection);
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(context);
             _priceHistoryRepository = new PriceHistoryRepository(context);
-            _accountRepository = new AccountRepository(context);
+            _accountRepository = new AccountRepository(connection);
         }
         
         [System.Web.Http.HttpPost]

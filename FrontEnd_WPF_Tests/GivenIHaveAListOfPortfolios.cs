@@ -17,9 +17,9 @@ namespace FrontEnd_WPF_Tests
         {
             _portfolioDtos = new List<PortfolioDto>()
             {
-                {new PortfolioDto() {Name = "Portfolio One"} },
-                {new PortfolioDto() {Name = "Portfolio Two"}},
-                {new PortfolioDto() {Name = "Portfolio Three"}},
+                {new PortfolioDto() {Name = "PortfolioModel One"} },
+                {new PortfolioDto() {Name = "PortfolioModel Two"}},
+                {new PortfolioDto() {Name = "PortfolioModel Three"}},
             };
         }
 
