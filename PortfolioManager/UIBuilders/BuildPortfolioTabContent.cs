@@ -23,25 +23,20 @@ namespace PortfolioManager.UIBuilders
         //}
 
         public static TabItem CreatePortfolioTabItem(PortfolioDto portfolioDto)
-        {
-            return CreatePortfolioTabItem(portfolioDto.Name);
-        }
-
-        public static TabItem CreatePortfolioTabItem(string s)
-        {
+        {            
             return new TabItem()
             {
-                Header = $"{s}",
-                Content = new PortfolioTabPanel {DataContext = new PortfolioTabPanelViewModel(s)} //PopulateAccounts(s)
+                Header = $"{portfolioDto.Name}",
+                Content = new PortfolioTabPanel {DataContext = new PortfolioTabPanelViewModel(portfolioDto.PortfolioId) } //PopulateAccounts(s)
             };
         }
 
-        public static TabItem CreateAccountTabItem(string s)
+        public static TabItem CreateAccountTabItem(AccountDto account)
         {
             return new TabItem()
             {
-                Header = $"{s}",
-                Content = new AccountTabPanel() {DataContext = new AccountTabPanelViewModel()}
+                Header = $"{account.Name}",
+                Content = new AccountTabPanel() {DataContext = new AccountTabPanelViewModel(account.AccountId) }
             };
         }
     }

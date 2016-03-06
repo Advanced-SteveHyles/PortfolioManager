@@ -55,10 +55,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DummyData.cs" />
-    <Compile Include="UIBuilders\AccountDetailsViewModel.cs" />
-    <Compile Include="UIBuilders\AccountTabPanelViewModel.cs" />
+    <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
+    <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
-    <Compile Include="UIBuilders\PortfolioTabPanelViewModel.cs" />
+    <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
     <Compile Include="Views\AccountDetails.xaml.cs">
