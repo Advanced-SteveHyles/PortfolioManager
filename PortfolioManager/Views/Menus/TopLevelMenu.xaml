@@ -8,9 +8,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Menu Grid.ColumnSpan="3">
-            <MenuItem Header="File"></MenuItem>
-            <MenuItem Header="PortfolioModel">
-                <MenuItem Header="Add">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Portfolio">
+                <MenuItem Header="Add" Command="{Binding AddPortfolioCommand}">
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Investments">

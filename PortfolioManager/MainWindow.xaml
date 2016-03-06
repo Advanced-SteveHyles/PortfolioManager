@@ -8,6 +8,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <views:PortfolioTabsList x:Name="TabsView"></views:PortfolioTabsList>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <views:TopLevelMenu x:Name="TopLevelMenu" Grid.ColumnSpan="3"></views:TopLevelMenu>
+
+        <views:PortfolioTabsList Grid.Row="2" x:Name="TabsView"></views:PortfolioTabsList>
     </Grid>
 </Window>

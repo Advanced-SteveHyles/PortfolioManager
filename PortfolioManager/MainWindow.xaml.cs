@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PortfolioManager.ViewModels.Menus;
 
 namespace PortfolioManager
 {
@@ -12,6 +13,7 @@ namespace PortfolioManager
             InitializeComponent();
 
             this.TabsView.DataContext = new PortfolioListTabViewModel();
+            this.TopLevelMenu.DataContext = new TopLevelMenuViewModel();
         }
     }
 }
