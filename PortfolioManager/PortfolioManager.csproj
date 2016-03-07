@@ -92,6 +92,9 @@
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
+    <Compile Include="Other\RelayCommand.cs" />
+    <Compile Include="Interfaces\AbstractSaveCancelCommands.cs" />
+    <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />

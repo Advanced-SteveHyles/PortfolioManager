@@ -11,9 +11,10 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="1">
+        <StackPanel Grid.Row="1">
             <Label>PortfolioName</Label>
-        </GroupBox>
-        <local:SaveCancel Grid.Row="2"></local:SaveCancel>
+            <TextBox Text="{Binding PortfolioName}"></TextBox>
+        </StackPanel>
+        <local:SaveCancel Grid.Row="2" x:Name="SaveCancel"></local:SaveCancel>
     </Grid>
 </UserControl>

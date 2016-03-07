@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <StackPanel Orientation="Horizontal">
-        <Button>Save</Button>
-        <Button>Cancel</Button>
+        <Button Command="{Binding SaveCommand}">Save</Button>
+        <Button Command="{Binding CancelCommand}">Cancel</Button>
     </StackPanel>
 </UserControl>

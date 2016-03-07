@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <StackPanel>
         <Menu Grid.ColumnSpan="3">
             <MenuItem Header="File">
                 <MenuItem Header="Exit"></MenuItem>
@@ -20,5 +20,8 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-    </Grid>
+        <ContentControl Content="{Binding Bob}">
+            
+            </ContentControl>
+    </StackPanel>
 </UserControl>
