@@ -1,10 +1,10 @@
 namespace Portfolio.API.Virtual.VirtualActionResults
 {
-    public class CreatedActionResult : IVirtualActionResult
+    public class CreatedActionResult<T> : IVirtualActionResult
     {
-        private object p;
+        private T p;
 
-        public CreatedActionResult(object p)
+        public CreatedActionResult(T p)
         {
             this.AffectedObject = p;
         }

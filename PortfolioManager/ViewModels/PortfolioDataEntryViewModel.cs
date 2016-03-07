@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
+using Portfolio.API.Virtual.VirtualControllers;
+using Portfolio.Common.DTO.Requests;
+using PortfolioManager.Interfaces;
+using PortfolioManager.Model;
 
 namespace PortfolioManager.ViewModels.Menus
 {
@@ -18,7 +22,10 @@ namespace PortfolioManager.ViewModels.Menus
 
         private void Save()
         {
-            throw new NotImplementedException($"{PortfolioName} cannot be saved");
+            var portfolioRequest = new PortfolioRequest {Name = PortfolioName};
+            PortfolioModel.InsertPortfolio(portfolioRequest);
+
+            this.dialogClose.Invoke();
         }
 
         private void Cancel()

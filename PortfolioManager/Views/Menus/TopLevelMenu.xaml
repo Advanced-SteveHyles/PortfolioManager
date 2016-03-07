@@ -20,8 +20,6 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <ContentControl Content="{Binding Bob}">
-            
-            </ContentControl>
+        <ContentControl Content="{Binding DynamicContent}"></ContentControl>
     </StackPanel>
 </UserControl>

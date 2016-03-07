@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+using PortfolioManager.ViewModels.Menus;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.Interfaces
 {
     public abstract class AbstractSaveCancelCommands
     {
@@ -14,14 +15,8 @@ namespace PortfolioManager.ViewModels.Menus
             _saveCancelCommand = saveCancelCommand;
         }
 
-   public ICommand SaveCommand
-        {
-            get { return new RelayCommand(_saveCancelCommand); }
-        }
+        public ICommand SaveCommand => new RelayCommand(_saveCancelCommand);
 
-        public ICommand CancelCommand
-        {
-            get { return new RelayCommand(_cancelCommand); }
-        }
+        public ICommand CancelCommand => new RelayCommand(_cancelCommand);
     }
 }
