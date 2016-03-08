@@ -67,10 +67,11 @@
     <Compile Include="VirtualActionResults\NotFoundActionResult.cs" />
     <Compile Include="VirtualActionResults\OkMultipleActionResult.cs" />
     <Compile Include="VirtualActionResults\OkSingleActionResult.cs" />
-    <Compile Include="VirtualControllers\Class1.cs" />
     <Compile Include="ErrorLog.cs" />
     <Compile Include="VirtualActionResults\BadRequestActionResult.cs" />
     <Compile Include="VirtualActionResults\InternalServerErrorActionResult.cs" />
+    <Compile Include="Tracer.cs" />
+    <Compile Include="VirtualControllers\VirtualInvestmentsController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountController.cs" />
     <Compile Include="VirtualControllers\VirtualPortfoliosController.cs" />
     <Compile Include="VirtualControllers\VirtualPriceUpdateController.cs" />

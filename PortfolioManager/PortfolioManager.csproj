@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Binaries\Clients\PortfolioManager\</OutputPath>
+    <OutputPath>.\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -88,6 +88,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\PortfolioModel.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Other\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
+    <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />

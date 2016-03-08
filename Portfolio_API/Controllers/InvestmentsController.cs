@@ -19,7 +19,7 @@ namespace Portfolio.API.WebApi.Controllers
 
         public InvestmentsController()
         {
-            _repository = new InvestmentRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _repository = new InvestmentRepository(ApiConstants.Portfoliomanagercontext);
         }
         
 

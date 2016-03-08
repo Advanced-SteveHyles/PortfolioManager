@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class InvestmentRepository : BaseRepository, IInvestmentRepository
     {
-        public InvestmentRepository(PortfolioManagerContext context) : base(context)
+        public InvestmentRepository(string connection) : base(new PortfolioManagerContext(connection))
         {
         }
 

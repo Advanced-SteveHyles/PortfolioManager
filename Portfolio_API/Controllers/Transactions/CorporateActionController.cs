@@ -29,7 +29,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
             _priceHistoryRepository = new PriceHistoryRepository(context);
             _cashTransactionRepository = new CashTransactionRepository(context);
             _accountRepository = new AccountRepository(connection);
-            _investmentRepository = new InvestmentRepository(context);
+            _investmentRepository = new InvestmentRepository(connection);
         }
 
         [System.Web.Http.HttpPost]

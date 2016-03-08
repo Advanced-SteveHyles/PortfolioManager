@@ -21,7 +21,7 @@ namespace Portfolio.API.WebApi.Controllers
         public AccountInvestmentMapController()
         {
             
-            _investmentRepository = new InvestmentRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _investmentRepository = new InvestmentRepository(ApiConstants.Portfoliomanagercontext);
             _accountRepository = new AccountRepository(ApiConstants.Portfoliomanagercontext);
             _accountInvestmentRepository = new AccountInvestmentMapRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
         }
