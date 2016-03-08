@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         
         <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left">
-            <TabItem Header="List"></TabItem>
+            <TabItem Header="List" Content="{Binding InvestmentList}"></TabItem>
             <TabItem Header="Charts"></TabItem>
             <TabItem Header="Price Updates"></TabItem>
         </TabControl>
