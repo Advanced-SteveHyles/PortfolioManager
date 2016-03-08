@@ -9,7 +9,7 @@ using PortfolioManager.Views;
 namespace PortfolioManager
 {
     public class PortfolioListTabViewModel
-    {        
+    {                
         public List<TabItem> PortfolioTabs
         {
             get

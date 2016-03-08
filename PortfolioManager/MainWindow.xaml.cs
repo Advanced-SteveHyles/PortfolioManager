@@ -12,7 +12,8 @@ namespace PortfolioManager
         {
             InitializeComponent();
 
-            this.TabsView.DataContext = new PortfolioListTabViewModel();
+            this.PortfolioTabsView.DataContext = new PortfolioListTabViewModel();
+            this.InvestmentsTabsView.DataContext = new InvestmentsTabsViewModel();
             this.TopLevelMenu.DataContext = new TopLevelMenuViewModel();
         }
     }

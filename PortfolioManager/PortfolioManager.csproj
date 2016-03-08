@@ -96,6 +96,7 @@
     <Compile Include="Interfaces\AbstractSaveCancelCommands.cs" />
     <Compile Include="Other\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
+    <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="Views\AccountInvestmentDetails.xaml.cs">
       <DependentUpon>AccountInvestmentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabControls\InvestmentsTabsList.xaml.cs">
+      <DependentUpon>InvestmentsTabsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabControls\PortfolioTabs.xaml.cs">
       <DependentUpon>PortfolioTabsList.Xaml</DependentUpon>
@@ -160,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AccountInvestmentDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabControls\InvestmentsTabsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

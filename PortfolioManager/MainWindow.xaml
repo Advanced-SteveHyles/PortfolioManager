@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
         xmlns:local="clr-namespace:PortfolioManager"
         xmlns:views="clr-namespace:PortfolioManager.Views"
+        xmlns:tabControls="clr-namespace:PortfolioManager.Views.TabControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -21,6 +24,8 @@
         
         <views:TopLevelMenu x:Name="TopLevelMenu" Grid.ColumnSpan="3"></views:TopLevelMenu>
 
-        <views:PortfolioTabsList Grid.Row="2" x:Name="TabsView"></views:PortfolioTabsList>
+        <views:PortfolioTabsList Grid.Row="2" x:Name="PortfolioTabsView"></views:PortfolioTabsList>
+
+        <tabControls:InvestmentsTabsList Grid.Row="4" x:Name="InvestmentsTabsView"></tabControls:InvestmentsTabsList>
     </Grid>
 </Window>
