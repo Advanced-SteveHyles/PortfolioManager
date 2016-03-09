@@ -20,7 +20,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
         {
             return _context.Investments.SingleOrDefault(inv => inv.InvestmentId == investmentId);
         }
-
+        
         public RepositoryActionResult<Investment> InsertInvestment(Investment entityInvestment)
         {
             try

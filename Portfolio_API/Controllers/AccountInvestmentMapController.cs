@@ -19,11 +19,10 @@ namespace Portfolio.API.WebApi.Controllers
         private readonly IAccountInvestmentMapRepository _accountInvestmentRepository;
 
         public AccountInvestmentMapController()
-        {
-            
+        {            
             _investmentRepository = new InvestmentRepository(ApiConstants.Portfoliomanagercontext);
             _accountRepository = new AccountRepository(ApiConstants.Portfoliomanagercontext);
-            _accountInvestmentRepository = new AccountInvestmentMapRepository(new PortfolioManagerContext(ApiConstants.Portfoliomanagercontext));
+            _accountInvestmentRepository = new AccountInvestmentMapRepository(ApiConstants.Portfoliomanagercontext);
         }
 
         public IHttpActionResult Get(int id)

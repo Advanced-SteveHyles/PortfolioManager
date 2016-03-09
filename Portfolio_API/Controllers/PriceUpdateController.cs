@@ -20,7 +20,7 @@ namespace Portfolio.API.WebApi.Controllers
         {
             var connection = ApiConstants.Portfoliomanagercontext;
             var context = new PortfolioManagerContext(connection);
-            _accountInvestmentMapRepository = new AccountInvestmentMapRepository(context);
+            _accountInvestmentMapRepository = new AccountInvestmentMapRepository(connection);
             _priceHistoryRepository = new PriceHistoryRepository(context);
             _accountRepository = new AccountRepository(connection);
         }

@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class AccountInvestmentMapRepository : BaseRepository, IAccountInvestmentMapRepository
     {
-        public AccountInvestmentMapRepository(PortfolioManagerContext context) : base(context){}
+        public AccountInvestmentMapRepository(string connection) : base(new PortfolioManagerContext(connection)){}
 
         public RepositoryActionResult<AccountInvestmentMap> InsertAccountInvestmentMap(AccountInvestmentMap entityAccountInvestmentMap)
         {

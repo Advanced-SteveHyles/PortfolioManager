@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Portfolio.Common.DTO.DTOs;
+using PortfolioManager.Model;
 
 namespace PortfolioManager.UIBuilders
 {
@@ -17,14 +18,8 @@ namespace PortfolioManager.UIBuilders
         {
             get
             {
-                var x = new List<AccountInvestmentMapDto>()
-                {
-                    {
-                        new AccountInvestmentMapDto() {AccountId = 6}
-                    }
-                };
-
-                return new ObservableCollection<AccountInvestmentMapDto>(x);
+                var accountInvestmentMaps = AccountInvestmentMapModel.GetInvestments(accountId);
+                return new ObservableCollection<AccountInvestmentMapDto>(accountInvestmentMaps);
             }
         }
 
