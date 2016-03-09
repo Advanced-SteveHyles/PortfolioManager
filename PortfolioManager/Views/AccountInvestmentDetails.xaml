@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <StackPanel>
         <GroupBox Header="Investment Details"></GroupBox>
-    </Grid>
+        <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
+    </StackPanel>
 </UserControl>

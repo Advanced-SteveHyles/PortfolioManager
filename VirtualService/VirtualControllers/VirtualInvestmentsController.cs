@@ -21,7 +21,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
             _repository = new InvestmentRepository(connection);
         }
 
-        public IVirtualActionResult Get(int page = 1, int pageSize = ApiConstants.MaxPageSize)
+        public IVirtualActionResult Get()
         {
             try
 
