@@ -16,10 +16,17 @@ namespace PortfolioManager.ViewModels.Menus
         public object DynamicContent{ get; set; }
 
         public ICommand AddPortfolioCommand => new RelayCommand(AddPortfolio);
+        public ICommand AddInvestmentCommand => new RelayCommand(AddInvestment);
 
         public void AddPortfolio()
         {
             DynamicContent = BuildDynamicMenu.PortFolioDataEntryView(DialogClose);
+            OnPropertyChanged(DynamicContentControl);
+        }
+
+        public void AddInvestment()
+        {
+            DynamicContent = BuildDynamicMenu.InvestmentDataEntryView(DialogClose);
             OnPropertyChanged(DynamicContentControl);
         }
 

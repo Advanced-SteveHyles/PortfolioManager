@@ -98,6 +98,7 @@
     <Compile Include="Interfaces\AbstractSaveCancelCommands.cs" />
     <Compile Include="Other\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
+    <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
@@ -107,6 +108,9 @@
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
     <Compile Include="Views\AccountDetails.xaml.cs">
       <DependentUpon>AccountDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\InvestmentDataEntry.xaml.cs">
+      <DependentUpon>InvestmentDataEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\PortfolioDataEntry.xaml.cs">
       <DependentUpon>PortfolioDataEntry.xaml</DependentUpon>
@@ -154,6 +158,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AccountDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\InvestmentDataEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +239,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Constants\PortfolioManager.Constants.csproj">
+      <Project>{A97D6231-48CB-43A6-BED3-58A3044384E8}</Project>
+      <Name>PortfolioManager.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.DTO\PortfolioManager.DTO.csproj">
       <Project>{51c5255f-8785-406d-8f4e-1dc6824e630b}</Project>
       <Name>PortfolioManager.DTO</Name>

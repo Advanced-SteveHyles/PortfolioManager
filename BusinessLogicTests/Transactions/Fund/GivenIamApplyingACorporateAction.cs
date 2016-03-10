@@ -116,7 +116,7 @@ namespace BusinessLogicTests.Transactions.Fund
             var accountBeforeBalance = _fakeRepository.GetAccount(1).Cash;
 
             _fakeRepository.SetInvestmentClass(_existingInvestmentMapId,
-                FundClasses.Trustfund);
+                FundClasses.UnitTrust);
             SetupAndOrExecute(true);
 
             var accountBeforeAfter = _fakeRepository.GetAccount(1).Cash;
@@ -126,7 +126,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForATrustFundCashTransactionIsNotCreated()
         {
-            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId, FundClasses.Trustfund);
+            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId, FundClasses.UnitTrust);
             SetupAndOrExecute(true);
             Assert.Equal(0, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Interfaces;
@@ -13,11 +10,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
 {
     public class VirtualAccountInvestmentMapController
     {
-        private readonly InvestmentRepository _investmentRepository;
-        private readonly IAccountRepository _accountRepository;
         private readonly IAccountInvestmentMapRepository _accountInvestmentRepository;
-
-        private readonly IAccountInvestmentMapRepository _repository;
 
         public VirtualAccountInvestmentMapController(string connection)
         {
@@ -27,7 +20,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
         public IVirtualActionResult GetInvestmentsForAccount(int accountId)
         {
             try
-            {   
+            {
                 var accountInvestmentMaps = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(accountId);
                 var accountInvestmentMap = accountInvestmentMaps
                     .ToList()
@@ -36,7 +29,6 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
                 try
                 {
-                    //return Ok(ShapedData.CreateDataShapedObject(accountEnt, lstOfFields));
                     return new OkMultipleActionResult<AccountInvestmentMapDto>(accountInvestmentMap);
                 }
                 catch (Exception ex)

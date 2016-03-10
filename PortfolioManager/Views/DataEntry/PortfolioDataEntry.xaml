@@ -15,6 +15,6 @@
             <Label>PortfolioName</Label>
             <TextBox Text="{Binding PortfolioName}"></TextBox>
         </StackPanel>
-        <local:SaveCancel Grid.Row="2" x:Name="SaveCancel"></local:SaveCancel>
+           <local:SaveCancel Grid.Row="2" x:Name="SaveCancel"></local:SaveCancel>
     </Grid>
 </UserControl>

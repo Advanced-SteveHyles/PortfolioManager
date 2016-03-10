@@ -16,7 +16,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Investments">
-                <MenuItem Header="Add">
+                <MenuItem Header="Add" Command="{Binding AddInvestmentCommand}">
                 </MenuItem>
             </MenuItem>
         </Menu>
