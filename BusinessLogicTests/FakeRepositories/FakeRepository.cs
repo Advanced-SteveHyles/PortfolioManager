@@ -4,6 +4,7 @@ using System.Linq;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests;
 
 namespace BusinessLogicTests.FakeRepositories
@@ -16,7 +17,7 @@ namespace BusinessLogicTests.FakeRepositories
         , IFundTransactionRepository
         , IPriceHistoryRepository
     {
-        private readonly Investment _investment = new Investment();        
+        private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation};        
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
 
@@ -265,6 +266,11 @@ namespace BusinessLogicTests.FakeRepositories
         public void SetInvestmentClass(int fakeInvestmentId, string investmentClass)
         {
             _investment.Class = investmentClass;
+        }
+
+        public void SetInvestmentIncome(int fakeInvestmentId,  string investmentIncomeType)
+        {
+            _investment.IncomeType = investmentIncomeType;
         }
 
         public List<AccountInvestmentMap> GetAllAccountInvestmentMaps()

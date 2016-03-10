@@ -1,4 +1,6 @@
-﻿using Interfaces;
+﻿using System;
+using System.CodeDom;
+using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -32,9 +34,15 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
             _fundTransactionHandler.StoreFundTransaction(_request);
 
-            if (investment.Class == FundClasses.Oeic)
-            { 
-                _cashTransactionHandler.StoreCashTransaction(accountId, _request);
+            switch (investment.IncomeType)
+            {
+                case FundIncomeTypes.Income:
+                    _cashTransactionHandler.StoreCashTransaction(accountId, _request);
+                    break;
+                case FundIncomeTypes.Accumulation:
+                    break;
+                default:
+                    throw new NotSupportedException("Invalid Income Type Supplied");
             }
 
             ExecuteResult = true;

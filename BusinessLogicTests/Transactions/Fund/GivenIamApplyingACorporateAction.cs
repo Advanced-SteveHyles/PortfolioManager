@@ -78,9 +78,9 @@ namespace BusinessLogicTests.Transactions.Fund
         }
 
         [Fact]
-        public void WhenIRecordACorporateActionForAnOeicACashTransactionIsCreated()
+        public void WhenIRecordACorporateActionForAnIncomeFundACashTransactionIsCreated()
         {
-            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId, FundClasses.Oeic);
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             const int cashTransactionId = 1;
@@ -96,12 +96,12 @@ namespace BusinessLogicTests.Transactions.Fund
         }
 
         [Fact]
-        public void WhenIRecordACorporateActionForAnOeicTheAccountBalanceIsIncreased()
+        public void WhenIRecordACorporateActionForAnIncomeFundTheAccountBalanceIsIncreased()
         {
             var accountBeforeBalance =  _fakeRepository.GetAccount(1).Cash;
 
-            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId,
-                FundClasses.Oeic);
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId,
+               FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var accountBeforeAfter = _fakeRepository.GetAccount(1).Cash;
@@ -111,7 +111,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
 
         [Fact]
-        public void WhenIRecordACorporateActionForATrustFundTheAccountBalanceIsNotIncreased()
+        public void WhenIRecordACorporateActionForAnAccumulationFundTheAccountBalanceIsNotIncreased()
         {
             var accountBeforeBalance = _fakeRepository.GetAccount(1).Cash;
 
@@ -124,9 +124,9 @@ namespace BusinessLogicTests.Transactions.Fund
         }
 
         [Fact]
-        public void WhenIRecordACorporateActionForATrustFundCashTransactionIsNotCreated()
+        public void WhenIRecordACorporateActionForAnAccumulationFundCashTransactionIsNotCreated()
         {
-            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId, FundClasses.UnitTrust);
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
             Assert.Equal(0, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
