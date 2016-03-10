@@ -184,6 +184,11 @@ namespace BusinessLogicTests.FakeRepositories
             return _investmentMaps.Where(inv => inv.InvestmentId == investmentId).AsQueryable();
         }
 
+        public IQueryable<AccountInvestmentMap> GetAccountInvestmentMapsByAccountId(int accountId)
+        {
+            return _investmentMaps.Where(inv => inv.AccountId == accountId).AsQueryable();
+        }
+
         public IQueryable<AccountInvestmentMap> GetAccountInvestmentMaps()
         {
             return _investmentMaps.Select(map => new AccountInvestmentMap()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
 using Portfolio.BackEnd.Repository;
@@ -36,9 +37,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             return valuation ??0;
         }
 
-        public AccountInvestmentMapDto GetAccountInvestmentMap(int investmentMapId)
+        public AccountInvestmentMap GetAccountInvestmentMap(int investmentMapId)
         {
-            return _accountInvestmentMapRepository.GetAccountInvestmentMap(investmentMapId).MapToDto();
+            var accountInvestmentMap = _accountInvestmentMapRepository.GetAccountInvestmentMap(investmentMapId);         
+            return accountInvestmentMap;
         }
 
         public List<AccountInvestmentMap> GetMapsByInvestmentId(int investmentId)

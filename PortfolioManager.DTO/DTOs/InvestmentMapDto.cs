@@ -12,4 +12,5 @@
         public decimal Quantity { get; set; }
         public decimal Valuation { get; set; }
     }
+  
 }

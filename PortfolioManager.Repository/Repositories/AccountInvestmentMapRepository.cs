@@ -33,6 +33,14 @@ namespace Portfolio.BackEnd.Repository.Repositories
             return accountInvestmentMaps;               
         }
 
+        public IQueryable<AccountInvestmentMap> GetAccountInvestmentMapsByAccountId(int accountId)
+        {
+            var accountInvestmentMaps = _context.AccountInvestmentMaps
+           .Where(accountInvestmentMap => accountInvestmentMap.AccountId == accountId);
+
+            return accountInvestmentMaps;
+        }
+
         public IQueryable<AccountInvestmentMap> GetAccountInvestmentMaps()
         {
             return _context.AccountInvestmentMaps;

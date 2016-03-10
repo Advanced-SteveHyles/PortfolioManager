@@ -28,8 +28,8 @@ namespace Portfolio.API.Virtual.VirtualControllers
         {
             try
             {   
-                var investmentEntities = _accountInvestmentRepository.GetAccountInvestmentMapsByInvestmentId(accountId);
-                var investments = investmentEntities
+                var accountInvestmentMaps = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(accountId);
+                var accountInvestmentMap = accountInvestmentMaps
                     .ToList()
                     .Select(investment => investment.MapToDto())
                     .ToList();
@@ -37,7 +37,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 try
                 {
                     //return Ok(ShapedData.CreateDataShapedObject(accountEnt, lstOfFields));
-                    return new OkMultipleActionResult<AccountInvestmentMapDto>(investments);
+                    return new OkMultipleActionResult<AccountInvestmentMapDto>(accountInvestmentMap);
                 }
                 catch (Exception ex)
                 {

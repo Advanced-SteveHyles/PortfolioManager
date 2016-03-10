@@ -62,7 +62,7 @@ namespace Portfolio.BackEnd.Repository
                 AccountId = accountInvestmentMap.AccountId,
                 InvestmentId = accountInvestmentMap.InvestmentId,                
                 Quantity = accountInvestmentMap.Quantity,                
-                Valuation = accountInvestmentMap.Valuation ?? 0,                
+                Valuation = accountInvestmentMap.Valuation ?? 0,                                
             };
         }
     }
