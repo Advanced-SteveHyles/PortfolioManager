@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.DTOs.Transactions;
 using PortfolioManager.Model;
 
 namespace PortfolioManager.UIBuilders
@@ -19,6 +20,15 @@ namespace PortfolioManager.UIBuilders
             {
                 var accountInvestmentMaps = AccountInvestmentMapModel.GetInvestments(accountId);
                 return new ObservableCollection<AccountInvestmentMapDto>(accountInvestmentMaps);
+            }
+        }
+
+        public ObservableCollection<AccountTransactionSummaryDto> AccountTransactions
+        {
+            get
+            {
+                var accountTransactions = AccountModel.Get(accountId);
+                return new ObservableCollection<AccountTransactionSummaryDto>(accountTransactions);
             }
         }
 

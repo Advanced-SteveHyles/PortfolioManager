@@ -12,7 +12,8 @@
         <views:AccountDetails></views:AccountDetails>
         </Expander>
 
-        <Expander Header ="Spare">
+        <Expander Header ="Account Transactions">
+            <views:AccountTransactionSummary></views:AccountTransactionSummary>
         </Expander>
         
         <Expander Header="Investments">

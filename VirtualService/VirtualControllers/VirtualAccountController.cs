@@ -6,6 +6,7 @@ using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
 using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.DTOs.Transactions;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
@@ -35,5 +36,10 @@ namespace Portfolio.API.Virtual.VirtualControllers
             }
         }
 
+        public OkMultipleActionResult<AccountTransactionSummaryDto> GetTransactionSummary(int accountId)
+        {
+         
+         
+        }
     }
 }
