@@ -17,12 +17,11 @@ namespace PortfolioManager.Model
             return accounts?.EnumerateObjectInstances.ToList() ?? new List<AccountDto>();
         }
 
-        public static List<AccountTransactionSummaryDto> Get(int accountId)
+        public static List<CashTransactionDto> GetAccountTransactions(int accountId)
         {
-            WTF is mboxisgging
-            var service = new VirtualAccountController(ApiConstants.VirtualApiPortfoliomanagercontext);
-            var accounts = service.GetTransactionSummary(accountId) as OkMultipleActionResult<AccountTransactionSummaryDto>;
-            return accounts?.EnumerateObjectInstances.ToList() ?? new List<AccountTransactionSummaryDto>();
+            var service = new VirtualAccountSummaryController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var accounts = service.GetCashTransactionSummary(accountId) as OkMultipleActionResult<CashTransactionDto>;
+            return accounts?.EnumerateObjectInstances.ToList() ?? new List<CashTransactionDto>();
         }
     }
 }

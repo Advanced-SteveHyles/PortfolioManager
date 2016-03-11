@@ -10,7 +10,6 @@ using Portfolio.Common.DTO.DTOs.Transactions;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
-    
     public class VirtualAccountController
     {
         IAccountRepository _repository;
@@ -34,12 +33,6 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 ErrorLog.LogError(ex);
                 return new InternalServerErrorActionResult();
             }
-        }
-
-        public OkMultipleActionResult<AccountTransactionSummaryDto> GetTransactionSummary(int accountId)
-        {
-         
-         
-        }
+        }        
     }
 }

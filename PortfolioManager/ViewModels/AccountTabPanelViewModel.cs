@@ -23,12 +23,12 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
-        public ObservableCollection<AccountTransactionSummaryDto> AccountTransactions
+        public ObservableCollection<CashTransactionDto> AccountTransactions
         {
             get
             {
-                var accountTransactions = AccountModel.Get(accountId);
-                return new ObservableCollection<AccountTransactionSummaryDto>(accountTransactions);
+                var accountTransactions = AccountModel.GetAccountTransactions(accountId);
+                return new ObservableCollection<CashTransactionDto>(accountTransactions);
             }
         }
 

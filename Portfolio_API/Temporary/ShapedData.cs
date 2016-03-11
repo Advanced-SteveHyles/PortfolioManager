@@ -93,7 +93,7 @@ namespace Portfolio.API.WebApi.Temporary
             var x = new AccountTransactionSummaryDto()
             {
                 AccountId = accountId,
-                Transactions = new List<TransactionDto>()
+                Transactions = new List<CashTransactionDto>()
             };
 
             foreach (var tx in transactionEnts)
@@ -104,16 +104,16 @@ namespace Portfolio.API.WebApi.Temporary
             return x;
         }
 
-        private static TransactionDto CreateDataShapedObject(CashTransaction tx)
+        private static CashTransactionDto CreateDataShapedObject(CashTransaction tx)
         {
-            return new TransactionDto()
+            return new CashTransactionDto()
             {
-                TransactionId = tx.CashTransactionId,
+                CashTransactionId = tx.CashTransactionId,
                 AccountId = tx.AccountId,
                 TransactionType = tx.TransactionType,
                 TransactionDate = tx.TransactionDate,
                 Source = tx.Source,
-                Value = tx.TransactionValue,
+                TransactionValue = tx.TransactionValue,
                 IsTaxRefund = tx.IsTaxRefund
             };
         }

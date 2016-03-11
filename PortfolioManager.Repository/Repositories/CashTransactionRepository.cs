@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class CashTransactionRepository : BaseRepository, ICashTransactionRepository
     {
-        public CashTransactionRepository(PortfolioManagerContext context): base(context)
+        public CashTransactionRepository(string connection): base(new PortfolioManagerContext(connection))
         {        
         }
 

@@ -27,7 +27,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(connection);
             _fundTransactionRepository = new FundTransactionRepository(context);
             _priceHistoryRepository = new PriceHistoryRepository(context);
-            _cashTransactionRepository = new CashTransactionRepository(context);
+            _cashTransactionRepository = new CashTransactionRepository(connection);
             _accountRepository = new AccountRepository(connection);
             _investmentRepository = new InvestmentRepository(connection);
         }
@@ -77,7 +77,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 if (status)
                 {
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
-                    return Created(Request.RequestUri + "/", new TransactionDto());
+                    return Created(Request.RequestUri + "/", new CashTransactionDto());
                 }
                 else
                 {

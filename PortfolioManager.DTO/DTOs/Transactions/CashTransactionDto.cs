@@ -2,9 +2,9 @@ using System;
 
 namespace Portfolio.Common.DTO.DTOs.Transactions
 {
-    public class TransactionDto
+    public class CashTransactionDto
     {
-        public int TransactionId { get; set; }
+        public int CashTransactionId { get; set; }
 
         public int AccountId { get; set; }
 
@@ -12,7 +12,7 @@ namespace Portfolio.Common.DTO.DTOs.Transactions
 
         public DateTime? TransactionDate { get; set; }
         public string Source { get; set; }
-        public decimal Value { get; set; }
+        public decimal TransactionValue { get; set; }
         public bool IsTaxRefund { get; set; }
     }
 }
