@@ -5,38 +5,20 @@ using Portfolio.Common.DTO.Requests;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.ViewModels
 {
     public class InvestmentDataEntryViewModel : AbstractSaveCancelCommands
     {
         public ObservableCollection<string> InvestmentTypes
-        {
-            get
-            {
-                return new ObservableCollection<string>(FundInvestmentTypes.InvestmentTypeList);
-            }
-
-        }
+            => new ObservableCollection<string>(FundInvestmentTypes.InvestmentTypeList);
 
         public ObservableCollection<string> IncomeTypes
-        {
-            get
-            {
-                return new ObservableCollection<string>(FundIncomeTypes.IncomeTypeList);
-            }
+            => new ObservableCollection<string>(FundIncomeTypes.IncomeTypeList);
 
+        public ObservableCollection<string> ClassTypes 
+            => new ObservableCollection<string>(FundClasses.FundClassList);
 
-        }
-        public ObservableCollection<string> ClassTypes
-        {
-            get
-            {
-                return new ObservableCollection<string>(FundClasses.FundClassList);
-            }
-
-        }
-
-        private readonly Action dialogClose;
+        private readonly Action _dialogClose;
 
         public int InvestmentId { get; set; }
         public string Name { get; set; }
@@ -49,7 +31,7 @@ namespace PortfolioManager.ViewModels.Menus
 
         public InvestmentDataEntryViewModel(Action dialogClose) : base()
         {
-            this.dialogClose = dialogClose;
+            this._dialogClose = dialogClose;
             SetCommands(Save, Cancel);
         }
 
@@ -68,12 +50,12 @@ namespace PortfolioManager.ViewModels.Menus
 
             InvestmentModel.InsertInvestment (investmentRequest);
 
-            this.dialogClose.Invoke();
+            this._dialogClose.Invoke();
         }
 
         private void Cancel()
         {
-            this.dialogClose.Invoke();
+            this._dialogClose.Invoke();
         }
     }
 }

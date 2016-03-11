@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.BackEnd.Repository.Factories;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
 using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
@@ -21,7 +23,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
             _repository = new InvestmentRepository(connection);
         }
 
-        public IVirtualActionResult Get()
+        public IVirtualActionResult GetAllInvestments()
         {
             try
 
@@ -37,5 +39,40 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 return new InternalServerErrorActionResult();
             }
         }
+
+        public IVirtualActionResult InsertInvestment(InvestmentRequest investmentRequest)
+        {
+            try
+            {
+                if (investmentRequest == null)
+                {
+                    return new BadRequestActionResult();
+                }
+
+                var entityInvestment = new InvestmentFactory().CreateInvestment(investmentRequest);
+                if (entityInvestment == null)
+                {
+                    return new BadRequestActionResult();
+                }
+                
+                var result = _repository.InsertInvestment(entityInvestment);
+                if (result.Status == RepositoryActionStatus.Created)
+                {
+                    var dtoInvestment = result.Entity.MapToDto();
+                    return new CreatedActionResult<InvestmentDto>(dtoInvestment);
+                }
+                else
+                {
+                    return new BadRequestActionResult();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return new InternalServerErrorActionResult();
+            }
+        }
+
     }
 }

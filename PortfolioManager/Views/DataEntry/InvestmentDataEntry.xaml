@@ -12,33 +12,42 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel>
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <TextBox Text="{Binding InvestmentId}"></TextBox>
 
-            <TextBlock>Investment Name</TextBlock>
-            <TextBox Text="{Binding Name}"></TextBox>
-            
-            <TextBlock>Symbol</TextBlock>
-            <TextBox Text="{Binding Symbol}"></TextBox>
-            
-            <TextBlock>Type</TextBlock>
-            <TextBox Text="{Binding Type}"></TextBox>
-            <ComboBox ItemsSource="{Binding InvestmentTypes}" SelectedValue="{Binding Type}"></ComboBox>
-            
-            <TextBlock>Class</TextBlock>
-            <TextBox Text="{Binding Class}"></TextBox>
-            <ComboBox ItemsSource="{Binding ClassTypes}" SelectedValue="{Binding Class}"></ComboBox>
+            <TextBlock Grid.Row="1" Grid.Column="0">Investment Name</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"></TextBox>
 
-            <TextBlock>Income Types</TextBlock>
-            <TextBox Text="{Binding IncomeType}"></TextBox>
-            <ComboBox ItemsSource="{Binding IncomeTypes}" SelectedValue="{Binding IncomeType}"></ComboBox>
-            
-            <TextBlock>Market Index</TextBlock>
-            <TextBox Text="{Binding MarketIndex}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="0">Symbol</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Symbol}"></TextBox>
+
+            <TextBlock Grid.Row="3" Grid.Column="0">Type</TextBlock>
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding InvestmentTypes}" SelectedValue="{Binding Type}"></ComboBox>
+
+            <TextBlock Grid.Row="4" Grid.Column="0">Class</TextBlock>
+            <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ClassTypes}" SelectedValue="{Binding Class}"></ComboBox>
+
+            <TextBlock Grid.Row="5" Grid.Column="0">Income Types</TextBlock>
+            <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding IncomeTypes}" SelectedValue="{Binding IncomeType}"></ComboBox>
+
+            <TextBlock Grid.Row="6" Grid.Column="0">Market Index</TextBlock>
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding MarketIndex}"></TextBox>
 
 
-        </StackPanel>
+        </Grid>
         <local:SaveCancel Grid.Row="2" x:Name="SaveCancel"></local:SaveCancel>
     </Grid>
 </UserControl>
