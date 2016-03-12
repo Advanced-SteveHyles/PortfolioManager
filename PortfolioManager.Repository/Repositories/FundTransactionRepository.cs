@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class FundTransactionRepository : BaseRepository, IFundTransactionRepository
     {
-        public FundTransactionRepository(PortfolioManagerContext context) : base(context) { }
+        public FundTransactionRepository(string connection) : base(new PortfolioManagerContext(connection)) { }
         public FundTransaction GetFundTransaction(int fundTransactionId)
         {
             return _context.FundTransactions.SingleOrDefault(tx => tx.FundTransactionId == fundTransactionId);

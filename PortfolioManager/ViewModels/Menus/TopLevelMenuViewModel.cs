@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using PortfolioManager.Model;
 
 namespace PortfolioManager.ViewModels.Menus
 { 
@@ -17,6 +18,8 @@ namespace PortfolioManager.ViewModels.Menus
 
         public ICommand AddPortfolioCommand => new RelayCommand(AddPortfolio);
         public ICommand AddInvestmentCommand => new RelayCommand(AddInvestment);
+
+        public ICommand UpdateAllPricesCommand => new RelayCommand(UpdateAllPrices);
 
         public void AddPortfolio()
         {
@@ -30,10 +33,20 @@ namespace PortfolioManager.ViewModels.Menus
             OnPropertyChanged(DynamicContentControl);
         }
 
+        public void UpdateAllPrices()
+        {
+            PriceHistoryModel.UpdatePriceHistories();
+        }
+
         private void DialogClose ()
         {
             DynamicContent = null;            
             OnPropertyChanged(DynamicContentControl);
-        }        
+        }     
+        
+        InitialLoad
+        Decimal (18,4)   
+        ViewAccount
+        DataEntryForPriceUpdates
     }
 }

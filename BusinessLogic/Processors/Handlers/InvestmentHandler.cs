@@ -24,7 +24,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 
         public IEnumerable<InvestmentDto> GetInvestments()
         {
-            return _repository.GetInvestments().Select(inv=>EntityToDtoMap.MapToDto((Investment) inv));
+            return _repository.GetInvestments()
+                .ToList()
+                .Select(inv=>EntityToDtoMap.MapToDto((Investment) inv));
         }
     }
 }

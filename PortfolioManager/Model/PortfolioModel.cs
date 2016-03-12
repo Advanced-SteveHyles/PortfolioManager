@@ -14,7 +14,7 @@ namespace PortfolioManager.Model
         public static List<PortfolioDto> GetPortfolioList()
         {
             var service = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
-            var portfolios = service.Get() as OkMultipleActionResult<PortfolioDto>;
+            var portfolios = service.GetPortfolios() as OkMultipleActionResult<PortfolioDto>;
             return portfolios?.EnumerateObjectInstances.ToList() ?? new List<PortfolioDto>();
         }
 

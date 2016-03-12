@@ -21,7 +21,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
             Tracer.Trace(this.ToString());
         }
 
-        public IVirtualActionResult Get()
+        public IVirtualActionResult GetPortfolios()
         {
             try
             {

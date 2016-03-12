@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 {
     public class PriceHistoryRepository : BaseRepository, IPriceHistoryRepository
     {
-        public PriceHistoryRepository(PortfolioManagerContext context) : base(context) { }
+        public PriceHistoryRepository(string connection) : base(new PortfolioManagerContext(connection)) { }
 
         public IQueryable<PriceHistory> GetInvestmentSellPrices(int investmentId)
         {

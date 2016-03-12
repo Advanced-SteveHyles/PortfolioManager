@@ -93,6 +93,7 @@
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\PortfolioModel.cs" />
+    <Compile Include="Model\PriceHistoryModel.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />

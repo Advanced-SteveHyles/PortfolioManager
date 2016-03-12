@@ -76,6 +76,7 @@
     <Compile Include="VirtualControllers\VirtualInvestmentsController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountController.cs" />
     <Compile Include="VirtualControllers\VirtualPortfoliosController.cs" />
+    <Compile Include="VirtualControllers\VirtualPriceHistoryController.cs" />
     <Compile Include="VirtualControllers\VirtualPriceUpdateController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VirtualActionResults\IVirtualActionResult.cs" />
