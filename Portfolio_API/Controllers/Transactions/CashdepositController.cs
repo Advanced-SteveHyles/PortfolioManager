@@ -21,8 +21,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
         public CashdepositController()
         {
             var connection = ApiConstants.Portfoliomanagercontext;
-            var context = new PortfolioManagerContext(connection);
-            _cashTransactionRepository = new CashTransactionRepository(context);
+            _cashTransactionRepository = new CashTransactionRepository(connection);
             _accountRepository = new AccountRepository(connection);
         }
 
@@ -60,7 +59,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 if (status)
                 {                    
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
-                    return Created(Request.RequestUri + "/" + deposit.AccountId, new TransactionDto());
+                    return Created(Request.RequestUri + "/" + deposit.AccountId, new CashTransactionDto());
                 }
                 else
                 {

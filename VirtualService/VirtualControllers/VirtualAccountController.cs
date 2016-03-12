@@ -6,10 +6,10 @@ using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
 using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.DTOs.Transactions;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
-    
     public class VirtualAccountController
     {
         IAccountRepository _repository;
@@ -33,7 +33,6 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 ErrorLog.LogError(ex);
                 return new InternalServerErrorActionResult();
             }
-        }
-
+        }        
     }
 }

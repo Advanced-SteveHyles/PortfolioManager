@@ -8,15 +8,15 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
 {
     public class TransactionSummaryController : ApiController
     {        
-        private AccountRepository _accountRepository;
-        private CashTransactionRepository _cashTransactionRepository;
+        private readonly AccountRepository _accountRepository;
+        private readonly CashTransactionRepository _cashTransactionRepository;
 
 
         public TransactionSummaryController()
         {
             var connection = ApiConstants.Portfoliomanagercontext;
             _accountRepository = new AccountRepository(connection);
-            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext(connection));
+            _cashTransactionRepository = new CashTransactionRepository(connection);
         }
 
      //   [Route(ApiPaths.AccountTransactions)]

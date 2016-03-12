@@ -43,7 +43,7 @@
     <Compile Include="DTOs\PriceUpdates\InvestmentPriceSummaryDto.cs" />
     <Compile Include="Requests\AccountInvestmentMapRequest.cs" />
     <Compile Include="DTOs\Transactions\AccountTransactionSummaryDto.cs" />
-    <Compile Include="DTOs\Transactions\TransactionDTO.cs" />
+    <Compile Include="DTOs\Transactions\CashTransactionDto.cs" />
     <Compile Include="Requests\AccountRequest.cs" />
     <Compile Include="Requests\CreateCashTransactionRequest.cs" />
     <Compile Include="Requests\CreateFundTransactionRequest.cs" />

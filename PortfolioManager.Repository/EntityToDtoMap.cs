@@ -16,7 +16,7 @@ namespace Portfolio.BackEnd.Repository
                 //        Accounts = portfolioEnt.Accounts.Select(e => CreateAccount(e, false)).ToList()
             };
         }
-        
+
         public static AccountDto MapToDto(this Account entity)
         {
             return new AccountDto()
@@ -35,34 +35,48 @@ namespace Portfolio.BackEnd.Repository
 
 
 
-      public static TransactionDto MapToDto(object entity)
+        public static CashTransactionDto MapToDto(object entity)
         {
             throw new System.NotImplementedException();
         }
 
-      public static InvestmentDto MapToDto(this Investment entity)
-      {
-        return new InvestmentDto
+        public static InvestmentDto MapToDto(this Investment entity)
         {
-          InvestmentId = entity.InvestmentId,
-          Name = entity.Name,
-          Symbol = entity.Symbol,
-          Type = entity.Type,
-          Class = entity.Class,
-          IncomeType = entity.IncomeType,
-          MarketIndex = entity.MarketIndex
-        };
-      }
+            return new InvestmentDto
+            {
+                InvestmentId = entity.InvestmentId,
+                Name = entity.Name,
+                Symbol = entity.Symbol,
+                Type = entity.Type,
+                Class = entity.Class,
+                IncomeType = entity.IncomeType,
+                MarketIndex = entity.MarketIndex
+            };
+        }
 
-      public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap)
+        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap)
         {
             return new AccountInvestmentMapDto
             {
                 AccountInvestmentMapId = accountInvestmentMap.AccountInvestmentMapId,
                 AccountId = accountInvestmentMap.AccountId,
-                InvestmentId = accountInvestmentMap.InvestmentId,                
-                Quantity = accountInvestmentMap.Quantity,                
-                Valuation = accountInvestmentMap.Valuation ?? 0,                                
+                InvestmentId = accountInvestmentMap.InvestmentId,
+                Quantity = accountInvestmentMap.Quantity,
+                Valuation = accountInvestmentMap.Valuation ?? 0,
+            };
+        }
+
+        public static CashTransactionDto MapToDto(this CashTransaction cashTransaction)
+        {
+            return new CashTransactionDto
+            {
+                CashTransactionId = cashTransaction.CashTransactionId,
+                AccountId = cashTransaction.AccountId,
+                TransactionType = cashTransaction.TransactionType,
+                TransactionDate = cashTransaction.TransactionDate,
+                Source = cashTransaction.Source,
+                TransactionValue = cashTransaction.TransactionValue,
+                IsTaxRefund = cashTransaction.IsTaxRefund,
             };
         }
     }

@@ -18,7 +18,7 @@ public class CashWithdrawalController : ApiController
         public CashWithdrawalController()
         {
             var connection = ApiConstants.Portfoliomanagercontext;
-            _cashTransactionRepository = new CashTransactionRepository(new PortfolioManagerContext(connection));
+            _cashTransactionRepository = new CashTransactionRepository(connection);
             _accountRepository = new AccountRepository(connection);
         }
 
@@ -57,7 +57,7 @@ public class CashWithdrawalController : ApiController
                 if (status)
                 {
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
-                    return Created(Request.RequestUri + "/" + withdrawal.AccountId, new TransactionDto());
+                    return Created(Request.RequestUri + "/" + withdrawal.AccountId, new CashTransactionDto());
                 }
                 else
                 {

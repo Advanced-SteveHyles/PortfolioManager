@@ -109,6 +109,9 @@
     <Compile Include="Views\AccountDetails.xaml.cs">
       <DependentUpon>AccountDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AccountTransactionSummary.xaml.cs">
+      <DependentUpon>AccountTransactionSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataEntry\InvestmentDataEntry.xaml.cs">
       <DependentUpon>InvestmentDataEntry.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AccountDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountTransactionSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

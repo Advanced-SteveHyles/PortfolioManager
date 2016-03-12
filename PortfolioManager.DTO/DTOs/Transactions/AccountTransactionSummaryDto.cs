@@ -6,7 +6,7 @@ namespace Portfolio.Common.DTO.DTOs.Transactions
     {
         public int AccountId;
 
-        public ICollection<TransactionDto> Transactions;
+        public ICollection<CashTransactionDto> Transactions;
 
     }
 }
