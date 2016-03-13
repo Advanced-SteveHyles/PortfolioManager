@@ -21,7 +21,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private IInvestmentHandler _investmentHandler;
 
         private readonly int _accountId = 1;
-        readonly decimal _corporateActionAmount = (decimal)50;
+        readonly decimal _corporateActionAmount = 50;
         readonly DateTime _transactionDate = DateTime.Now;
         readonly int _existingInvestmentMapId = 1;
 
@@ -72,13 +72,13 @@ namespace BusinessLogicTests.Transactions.Fund
 
             Assert.Equal(_existingInvestmentMapId, fundTransaction.InvestmentMapId);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
-            Assert.Equal("Corporate Action", fundTransaction.TransactionType);
+            Assert.Equal(FundTransactionTypes.CorporateAction, fundTransaction.TransactionType);
             Assert.Equal(_corporateActionAmount, fundTransaction.TransactionValue);
             Assert.Equal(0, fundTransaction.Quantity);
         }
 
         [Fact]
-        public void WhenIRecordACorporateActionForAnIncomeFundACashTransactionIsCreated()
+        public void WhenIRecordACorporateActionForAnIncomeFundACashRefundIsCreated()
         {
             _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
@@ -90,7 +90,7 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(_corporateActionAmount, transaction.TransactionValue);
             Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.CorporateAction, transaction.TransactionType);
+            Assert.Equal(CashTransactionTypes.CashRefund, transaction.TransactionType);
 
             Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
@@ -99,17 +99,12 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIRecordACorporateActionForAnIncomeFundTheAccountBalanceIsIncreased()
         {
             var accountBeforeBalance =  _fakeRepository.GetAccount(1).Cash;
-
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId,
-               FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
-
             var accountBeforeAfter = _fakeRepository.GetAccount(1).Cash;
-
             Assert.Equal(accountBeforeBalance + _corporateActionAmount, accountBeforeAfter); 
         }
-
-
+        
         [Fact]
         public void WhenIRecordACorporateActionForAnAccumulationFundTheAccountBalanceIsNotIncreased()
         {
@@ -132,5 +127,3 @@ namespace BusinessLogicTests.Transactions.Fund
         }
     }    
 }
-
-

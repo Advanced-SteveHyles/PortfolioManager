@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
@@ -12,10 +11,11 @@ namespace Portfolio.API.Virtual.VirtualControllers
 {
     public class VirtualAccountController
     {
-        IAccountRepository _repository;
+        readonly IAccountRepository _repository;
 
-        public VirtualAccountController(string connection)
+        public VirtualAccountController()
         {
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
             _repository = new AccountRepository(connection);
         }
         

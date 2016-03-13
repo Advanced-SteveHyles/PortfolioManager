@@ -13,8 +13,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
         private readonly AccountRepository _accountRepository;
         private readonly PriceHistoryRepository _priceHistoryRepository;
 
-        public VirtualPriceHistoryController(string connection)
+        public VirtualPriceHistoryController()
         {
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
             _accountInvestmentMapRepository = new AccountInvestmentMapRepository(connection);
             _investmentRepository = new InvestmentRepository(connection);
             _priceHistoryRepository = new PriceHistoryRepository(connection);

@@ -1,6 +1,6 @@
 namespace Portfolio.API.Virtual
 {
-    public class ApiConstants
+    internal class ApiConstants
     {        
         public const string WebapiPortfoliomanagercontext = "";
 
@@ -10,8 +10,8 @@ namespace Portfolio.API.Virtual
         public const string VirtualApiPortfoliomanagercontext =
         @"Data Source=.\PowerHouse;Initial Catalog=aspnet-Portfolio_API-20160118080906;Integrated Security=True";
 
-        //public const string VirtualApiPortfoliomanagercontext =
-        //@"Data Source=.\PowerHouse;Initial Catalog=PortfolioLive;Integrated Security=True";
+   //     public const string VirtualApiPortfoliomanagercontext =
+     //   @"Data Source=.\PowerHouse;Initial Catalog=PortfolioLive;Integrated Security=True";
 
 
         //       public const string VirtualApiPortfoliomanagercontext =

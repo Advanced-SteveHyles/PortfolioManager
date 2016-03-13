@@ -18,9 +18,10 @@ namespace Portfolio.API.Virtual.VirtualControllers
     {
         private readonly IInvestmentRepository _repository;
 
-        public VirtualInvestmentsController(string connection)
+        public VirtualInvestmentsController()
         {
-            _repository = new InvestmentRepository(connection);
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
+               _repository = new InvestmentRepository(connection);
         }
 
         public IVirtualActionResult GetAllInvestments()

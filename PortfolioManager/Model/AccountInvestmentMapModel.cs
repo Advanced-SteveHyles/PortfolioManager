@@ -14,7 +14,7 @@ namespace PortfolioManager.Model
     {
         public static List<AccountInvestmentMapDto> GetInvestments(int accountId)
         {
-            var service = new VirtualAccountInvestmentMapController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualAccountInvestmentMapController();
             var investmentMaps = service.GetInvestmentsForAccount(accountId) as OkMultipleActionResult<AccountInvestmentMapDto>;
             return investmentMaps?.EnumerateObjectInstances.ToList() ?? new List<AccountInvestmentMapDto>();
         }

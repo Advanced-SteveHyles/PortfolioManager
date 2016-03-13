@@ -13,14 +13,14 @@ namespace PortfolioManager.Model
     {
         public static List<InvestmentDto> GetInvestments()
         {
-            var service = new VirtualInvestmentsController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualInvestmentsController();
             var investments = service.GetAllInvestments() as OkMultipleActionResult<InvestmentDto>;
             return investments?.EnumerateObjectInstances.ToList() ?? new List<InvestmentDto>();
         }
 
         public static void InsertInvestment(InvestmentRequest investmentRequest)
         {
-            var service = new VirtualInvestmentsController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualInvestmentsController();
             service.InsertInvestment(investmentRequest);
         }
     }

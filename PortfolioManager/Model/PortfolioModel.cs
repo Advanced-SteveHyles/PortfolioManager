@@ -13,14 +13,14 @@ namespace PortfolioManager.Model
     {
         public static List<PortfolioDto> GetPortfolioList()
         {
-            var service = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualPortfoliosController();
             var portfolios = service.GetPortfolios() as OkMultipleActionResult<PortfolioDto>;
             return portfolios?.EnumerateObjectInstances.ToList() ?? new List<PortfolioDto>();
         }
 
         public static void InsertPortfolio(PortfolioRequest portfolioRequest)
         {
-            var service = new VirtualPortfoliosController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualPortfoliosController();
             var portfolio = service.Post(portfolioRequest) as CreatedActionResult<PortfolioDto>;
 
             if (portfolio == null)

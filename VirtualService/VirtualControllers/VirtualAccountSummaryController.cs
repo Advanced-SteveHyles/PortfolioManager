@@ -11,8 +11,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
     {
         private readonly CashTransactionRepository _cashTransactionRepository;
         
-        public VirtualAccountSummaryController(string connection)
-        {                        
+        public VirtualAccountSummaryController()
+        {
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
             _cashTransactionRepository = new CashTransactionRepository(connection);
         }
 

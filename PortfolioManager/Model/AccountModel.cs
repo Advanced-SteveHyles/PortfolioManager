@@ -12,14 +12,14 @@ namespace PortfolioManager.Model
     {
         internal static List<AccountDto> GetAccountForPortfolio(int portfolioId)
         {
-            var service = new VirtualAccountController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualAccountController();
             var accounts = service.Get(portfolioId) as OkMultipleActionResult<AccountDto>;
             return accounts?.EnumerateObjectInstances.ToList() ?? new List<AccountDto>();
         }
 
         public static List<CashTransactionDto> GetAccountTransactions(int accountId)
         {
-            var service = new VirtualAccountSummaryController(ApiConstants.VirtualApiPortfoliomanagercontext);
+            var service = new VirtualAccountSummaryController();
             var accounts = service.GetCashTransactionSummary(accountId) as OkMultipleActionResult<CashTransactionDto>;
             return accounts?.EnumerateObjectInstances.ToList() ?? new List<CashTransactionDto>();
         }

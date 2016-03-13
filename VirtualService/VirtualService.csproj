@@ -71,6 +71,7 @@
     <Compile Include="VirtualActionResults\BadRequestActionResult.cs" />
     <Compile Include="VirtualActionResults\InternalServerErrorActionResult.cs" />
     <Compile Include="Tracer.cs" />
+    <Compile Include="VirtualControllers\Cache.cs" />
     <Compile Include="VirtualControllers\VirtualAccountInvestmentMapController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountSummaryController.cs" />
     <Compile Include="VirtualControllers\VirtualInvestmentsController.cs" />

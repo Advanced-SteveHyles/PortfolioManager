@@ -67,7 +67,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           investmentCorporateActionRequest.Amount,
                           false,
-                          CashTransactionTypes.CorporateAction,
+                          CashTransactionTypes.CashRefund,
                          increaseAccountBalance: true
                           );
         }

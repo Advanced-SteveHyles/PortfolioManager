@@ -15,8 +15,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
     {
         readonly IPortfolioRepository _repository;
 
-        public VirtualPortfoliosController(string connection)
+        public VirtualPortfoliosController()
         {
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
             _repository = new PortfolioRepository(connection);
             Tracer.Trace(this.ToString());
         }

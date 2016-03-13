@@ -12,8 +12,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
     {
         private readonly IAccountInvestmentMapRepository _accountInvestmentRepository;
 
-        public VirtualAccountInvestmentMapController(string connection)
+        public VirtualAccountInvestmentMapController()
         {
+            var connection = ApiConstants.VirtualApiPortfoliomanagercontext;
             _accountInvestmentRepository = new AccountInvestmentMapRepository(connection);
         }
 
@@ -24,7 +25,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 var accountInvestmentMaps = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(accountId);
                 var accountInvestmentMap = accountInvestmentMaps
                     .ToList()
-                    .Select(investment => investment.MapToDto())
+                    .Select(investment => investment.MapToDto(Cache.GetInvestmentName(investment.InvestmentId)))
                     .ToList();
 
                 try

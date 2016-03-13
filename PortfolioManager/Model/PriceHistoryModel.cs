@@ -6,9 +6,9 @@ namespace PortfolioManager.Model
     public static class PriceHistoryModel
     {
         public static void UpdatePriceHistories()
-        {        
-        var service = new VirtualPriceHistoryController(ApiConstants.VirtualApiPortfoliomanagercontext);
-        service.UpdateAllPrices();
+        {            
+            var service = new VirtualPriceHistoryController();
+            service.UpdateAllPrices();
         }
     }
 }

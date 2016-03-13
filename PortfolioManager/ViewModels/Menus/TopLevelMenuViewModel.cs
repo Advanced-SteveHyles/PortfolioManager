@@ -43,10 +43,6 @@ namespace PortfolioManager.ViewModels.Menus
             DynamicContent = null;            
             OnPropertyChanged(DynamicContentControl);
         }     
-        
-        InitialLoad
-        Decimal (18,4)   
-        ViewAccount
-        DataEntryForPriceUpdates
+                
     }
 }

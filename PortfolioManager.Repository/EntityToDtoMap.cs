@@ -54,7 +54,7 @@ namespace Portfolio.BackEnd.Repository
             };
         }
 
-        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap)
+        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap, string investmentName)
         {
             return new AccountInvestmentMapDto
             {
@@ -62,7 +62,8 @@ namespace Portfolio.BackEnd.Repository
                 AccountId = accountInvestmentMap.AccountId,
                 InvestmentId = accountInvestmentMap.InvestmentId,
                 Quantity = accountInvestmentMap.Quantity,
-                Valuation = accountInvestmentMap.Valuation ?? 0,
+                Valuation = accountInvestmentMap.Valuation ?? 0,                
+                InvestmentName = investmentName
             };
         }
 

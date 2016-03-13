@@ -81,7 +81,7 @@ namespace Portfolio.API.WebApi.Controllers
                 var result = _accountInvestmentRepository.InsertAccountInvestmentMap(accountInvestmentMap);
                 if (result.Status == RepositoryActionStatus.Created)
                 {
-                    var dtoAccountInvestmentMap = result.Entity.MapToDto();
+                    var dtoAccountInvestmentMap = result.Entity.MapToDto(string.Empty);
                     return Created(Request.RequestUri + "/" + dtoAccountInvestmentMap.AccountInvestmentMapId, dtoAccountInvestmentMap);
                 }
                 else
