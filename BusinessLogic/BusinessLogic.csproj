@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\INullInterface.cs" />
     <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
+    <Compile Include="Processors\Processes\RecordFundBuyTransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
     <Compile Include="Processors\Handlers\AccountInvestmentMapProcessor.cs" />
     <Compile Include="Processors\Handlers\FundTransactionHandler.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="Processors\Processes\RecordCorporateActionTransaction.cs" />
     <Compile Include="Processors\Processes\RecordDepositTransaction.cs" />
     <Compile Include="Processors\Handlers\AccountHandler.cs" />
-    <Compile Include="Processors\Processes\RecordFundBuyTransaction.cs" />
+    <Compile Include="Processors\Processes\RecordFundSellTransaction.cs" />
     <Compile Include="Processors\Processes\RecordPriceHistoryProcessor.cs" />
     <Compile Include="Processors\Processes\RecordWithdrawalTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,9 +49,10 @@
     <Compile Include="Requests\CreateFundTransactionRequest.cs" />
     <Compile Include="Requests\InvestmentRequest.cs" />
     <Compile Include="Requests\PortfolioRequest.cs" />
+    <Compile Include="Requests\Transactions\InvestmentBuyRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentCorporateActionRequest.cs" />
     <Compile Include="Requests\Transactions\DepositTransactionRequest.cs" />
-    <Compile Include="Requests\Transactions\InvestmentBuyRequest.cs" />
+    <Compile Include="Requests\Transactions\InvestmentSellRequest.cs" />
     <Compile Include="DTOs\InvestmentDto.cs" />
     <Compile Include="DTOs\InvestmentMapDto.cs" />
     <Compile Include="DTOs\PortfolioDTO.cs" />
