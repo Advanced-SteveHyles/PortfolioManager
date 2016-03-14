@@ -6,7 +6,7 @@ namespace Portfolio.Common.DTO.Requests.Transactions
     {
         public int InvestmentMapId { get; set; }
         public decimal Quantity { get; set; }
-        public decimal Price { get; set; }
+        public decimal BuyPrice { get; set; }
         public decimal Value { get; set; }
         public decimal Charges { get; set; }
 

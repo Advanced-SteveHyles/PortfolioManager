@@ -41,24 +41,25 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             var accountId = investmentMapDto.AccountId;
 
             _cashTransactionHandler.StoreCashTransaction(accountId, _fundSellRequest);
-            _fundTransactionHandler.StoreFundTransaction(_fundSellRequest);            
-            _accountInvestmentMapProcessor.ChangeQuantity(_fundSellRequest.InvestmentMapId, _fundSellRequest.Quantity);
+            _fundTransactionHandler.StoreFundTransaction(_fundSellRequest);
+            var quantityToRemove = 0 -  _fundSellRequest.Quantity;
+            _accountInvestmentMapProcessor.ChangeQuantity(_fundSellRequest.InvestmentMapId, quantityToRemove);
 
             var investment = _investmentHandler.GetInvestment(investmentId);
 
             var priceRequest = new PriceHistoryRequest
             {
                 InvestmentId = investmentId,
-                BuyPrice = _fundSellRequest.Price,
-                SellPrice = (investment.Class == FundClasses.Oeic) ? _fundSellRequest.Price : new decimal?(),
-                ValuationDate = _fundSellRequest.PurchaseDate
+                BuyPrice = (investment.Class == FundClasses.Oeic) ? _fundSellRequest.SellPrice : new decimal?(),
+                SellPrice = _fundSellRequest.SellPrice,                
+                ValuationDate = _fundSellRequest.SellDate
             };
 
             _priceHistoryHandler.StorePriceHistory(priceRequest, DateTime.Now);
 
             var revaluePriceTransaction = new RevalueSinglePriceCommand(
                 investmentId,
-                _fundSellRequest.PurchaseDate, _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandler );
+                _fundSellRequest.SellDate, _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandler );
             revaluePriceTransaction.Execute();
 
             ExecuteResult = true;

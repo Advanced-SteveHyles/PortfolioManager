@@ -47,7 +47,7 @@ namespace BusinessLogicTests.Transactions.Fund
             {
                 InvestmentMapId = _existingInvestmentMapId,
                 Quantity = _numberOfShares,
-                Price = _priceOfOneShare,
+                BuyPrice = _priceOfOneShare,
                 PurchaseDate = _transactionDate,
                 SettlementDate = _settlementDate,
                 UpdatePriceHistory = false,
@@ -83,7 +83,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var account = _fakeRepository.GetAccount(_accountId);
-            Assert.Equal(-_valueOfTransaction, account.Cash);
+            Assert.Equal(-_valueOfTransaction -_commission, account.Cash);
         }
 
         [Fact]
@@ -99,6 +99,21 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.FundPurchase, transaction.TransactionType);
+        }
+
+        [Fact]
+        public void WhenIBuyThenTheAccountHasARecordOfTheCommision()
+        {
+            SetupAndOrExecute(true);
+
+            var cashTransactionId = 2;
+            var transaction = _fakeRepository.GetCashTransaction(cashTransactionId);
+            Assert.Equal(_accountId, transaction.AccountId);
+            Assert.Equal(_transactionDate, transaction.TransactionDate);
+            Assert.Equal(_commission, transaction.TransactionValue);
+            Assert.Equal(string.Empty, transaction.Source);
+            Assert.Equal(false, transaction.IsTaxRefund);
+            Assert.Equal(CashTransactionTypes.Commission, transaction.TransactionType);
         }
 
         [Fact]
@@ -209,7 +224,6 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);
             Assert.Equal(null, prices.First().SellPrice);
         }
-
-
+        
     }
 }

@@ -46,7 +46,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 
         public void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest)
         {
-            var source = string.Empty;       
+            var source = string.Empty;
             StoreCashTransaction(
                           accountId,
                           investmentBuyRequest.PurchaseDate,
@@ -56,7 +56,43 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           CashTransactionTypes.FundPurchase,
                           increaseAccountBalance: false
                           );
+
+            StoreCommision(accountId, investmentBuyRequest.PurchaseDate, source, investmentBuyRequest.Charges);
         }
+
+        private void StoreCommision(int accountId, DateTime purchaseDate, string source, decimal commision)
+        {
+            if (commision == 0)
+                return;
+
+            StoreCashTransaction(
+                          accountId,
+                          purchaseDate,
+                          source,
+                          commision,
+                          false,
+                          CashTransactionTypes.Commission,
+                          increaseAccountBalance: false
+                          );
+        }
+
+
+        public void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest)
+        {
+            var source = string.Empty;
+            StoreCashTransaction(
+                          accountId,
+                          investmentSellRequest.SellDate,
+                          source,
+                          investmentSellRequest.Value,
+                          false,
+                          CashTransactionTypes.FundSale,
+                          increaseAccountBalance: true
+                          );
+
+            StoreCommision(accountId, investmentSellRequest.SellDate, source, investmentSellRequest.Charges);
+        }
+
 
         public void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest)
         {

@@ -76,6 +76,7 @@
     <Compile Include="Processors\Processes\RevalueSinglePriceCommand.cs" />
     <Compile Include="Validators\CorporateActionRequestValidator.cs" />
     <Compile Include="Validators\InvestmentBuyRequestValidator.cs" />
+    <Compile Include="Validators\InvestmentSellRequestValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">

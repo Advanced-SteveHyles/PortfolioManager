@@ -6,5 +6,6 @@ namespace Interfaces
     {
         void StoreFundTransaction(InvestmentBuyRequest request);
         void StoreFundTransaction(InvestmentCorporateActionRequest request);
+        void StoreFundTransaction(InvestmentSellRequest request);
     }
 }

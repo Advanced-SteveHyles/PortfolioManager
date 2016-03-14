@@ -13,7 +13,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
             }
 
             return request.InvestmentMapId != 0 &&
-                   request.PurchaseDate != DateTime.MinValue;
+                   request.PurchaseDate != DateTime.MinValue &&
+                   request.Quantity >= 0;
         }
     }
 }

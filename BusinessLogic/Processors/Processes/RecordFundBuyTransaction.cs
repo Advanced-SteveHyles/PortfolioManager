@@ -49,8 +49,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             var priceRequest = new PriceHistoryRequest
             {
                 InvestmentId = investmentId,
-                BuyPrice = _fundBuyRequest.Price,
-                SellPrice = (investment.Class == FundClasses.Oeic) ? _fundBuyRequest.Price : new decimal?(),
+                BuyPrice = _fundBuyRequest.BuyPrice,
+                SellPrice = (investment.Class == FundClasses.Oeic) ? _fundBuyRequest.BuyPrice : new decimal?(),
                 ValuationDate = _fundBuyRequest.PurchaseDate
             };
 

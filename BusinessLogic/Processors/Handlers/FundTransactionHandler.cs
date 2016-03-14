@@ -9,7 +9,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
     public class FundTransactionHandler : IFundTransactionHandler
     {
-        private IFundTransactionRepository _repository;
+        private readonly IFundTransactionRepository _repository;
 
         public FundTransactionHandler(IFundTransactionRepository repository)
         {
@@ -18,9 +18,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 
         public void StoreFundTransaction(InvestmentBuyRequest request)
         {
-            int? sellPrice =null;
+            int? sellPrice = null;
             var source = string.Empty;
-            
+
             StoreFundTransaction(
                 request.InvestmentMapId,
                 request.PurchaseDate,
@@ -29,10 +29,28 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 request.Value,
                 request.Quantity,
                 sellPrice,
-                request.Price,
+                request.BuyPrice,
                 request.Charges,
                 FundTransactionTypes.Buy);
-            }
+        }
+
+        public void StoreFundTransaction(InvestmentSellRequest request)
+        {
+            int? buyPrice = null;
+            var source = string.Empty;
+
+            StoreFundTransaction(
+                request.InvestmentMapId,
+                request.SellDate,
+                request.SettlementDate,
+                source,
+                request.Value,
+                request.Quantity,
+                request.SellPrice,
+                buyPrice,
+                request.Charges,
+                FundTransactionTypes.Sell);
+        }
 
         public void StoreFundTransaction(InvestmentCorporateActionRequest request)
         {
@@ -40,7 +58,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             int? buyPrice = null;
             var source = string.Empty;
             var quantity = 0;
-            
+
             var charges = 0;
 
             StoreFundTransaction(
@@ -65,7 +83,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             decimal quantity,
             decimal? sellPrice,
             decimal? buyPrice,
-            decimal charges,            
+            decimal charges,
             string transactionType)
         {
             var fundTransaction = new CreateFundTransactionRequest()
@@ -80,9 +98,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 SellPrice = sellPrice,
                 BuyPrice = buyPrice,
                 Charges = charges,
-                TransactionValue = transactionValue,                
+                TransactionValue = transactionValue,
             };
-            
+
             if (fundTransaction.SettlementDate < fundTransaction.TransactionDate)
             {
                 fundTransaction.SettlementDate = fundTransaction.TransactionDate;
