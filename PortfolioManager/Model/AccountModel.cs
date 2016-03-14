@@ -23,5 +23,12 @@ namespace PortfolioManager.Model
             var accounts = service.GetCashTransactionSummary(accountId) as OkMultipleActionResult<CashTransactionDto>;
             return accounts?.EnumerateObjectInstances.ToList() ?? new List<CashTransactionDto>();
         }
+
+        public static AccountDto GetAccount(int accountId)
+        {
+            var service = new VirtualAccountController();
+            var account = service.GetAccount(accountId) as OkSingleActionResult<AccountDto>; ;
+            return account?.ObjectInstance;
+        }
     }
 }

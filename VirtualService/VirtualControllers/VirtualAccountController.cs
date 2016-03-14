@@ -33,6 +33,20 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 ErrorLog.LogError(ex);
                 return new InternalServerErrorActionResult();
             }
-        }        
+        }
+
+        public IVirtualActionResult GetAccount(int accountId)
+        {
+            try
+            {
+                var account = _repository.GetAccount(accountId);                    
+                return new OkSingleActionResult<AccountDto>(account.MapToDto());
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                return new InternalServerErrorActionResult();
+            }
+        }
     }
 }

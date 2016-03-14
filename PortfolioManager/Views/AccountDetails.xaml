@@ -7,6 +7,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="Account Details"></GroupBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="0"> Account Id</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}"></TextBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="0">Account Name</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name, Mode=OneWay}"></TextBox>
+
+
+        <TextBlock Grid.Row="3" Grid.Column="0">Portfolio Id</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PortfolioId, Mode=OneWay}"></TextBox>
+
+        <TextBlock Grid.Row="4" Grid.Column="0">Cash Value</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Cash, Mode=OneWay}"></TextBox>
+
+        <TextBlock Grid.Row="5" Grid.Column="0">Valuation</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Valuation, Mode=OneWay}"></TextBox>
+
+        <TextBlock Grid.Row="6" Grid.Column="0">Type</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Type, Mode=OneWay}"></TextBox>
+
+        <TextBlock Grid.Row="7" Grid.Column="0">AccountBalance</TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding AccountBalance, Mode=OneWay}"></TextBox>
+        
     </Grid>
 </UserControl>

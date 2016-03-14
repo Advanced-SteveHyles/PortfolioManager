@@ -7,18 +7,27 @@ namespace PortfolioManager.UIBuilders
 {
     public class AccountTabPanelViewModel
     {
-        private int accountId;
+        private readonly AccountDto _account;
 
+        public int AccountId => _account.AccountId;
+        public string Name => _account.Name;
+        public int PortfolioId => _account.PortfolioId;
+        public decimal Cash => _account.Cash;
+        public decimal Valuation => _account.Valuation;
+        public string Type => _account.Type;
+        public decimal  AccountBalance => _account.AccountBalance;
+         
+        
         public AccountTabPanelViewModel(int accountId)
         {
-            this.accountId = accountId;
+            _account = AccountModel.GetAccount(accountId);
         }
 
         public ObservableCollection<AccountInvestmentMapDto> InvestmentMaps
         {
             get
             {
-                var accountInvestmentMaps = AccountInvestmentMapModel.GetInvestments(accountId);
+                var accountInvestmentMaps = AccountInvestmentMapModel.GetInvestments(_account.AccountId);
                 return new ObservableCollection<AccountInvestmentMapDto>(accountInvestmentMaps);
             }
         }
@@ -27,7 +36,7 @@ namespace PortfolioManager.UIBuilders
         {
             get
             {
-                var accountTransactions = AccountModel.GetAccountTransactions(accountId);
+                var accountTransactions = AccountModel.GetAccountTransactions(_account.AccountId);
                 return new ObservableCollection<CashTransactionDto>(accountTransactions);
             }
         }
