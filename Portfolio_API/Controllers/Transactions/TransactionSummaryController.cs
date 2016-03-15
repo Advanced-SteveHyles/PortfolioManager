@@ -27,7 +27,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
             {
                var transactionEnt = _cashTransactionRepository.GetCashTransactionsForAccount(id);
                 
-                var result = _accountRepository.GetAccount(id);
+                var result = _accountRepository.GetAccountByAccountId(id);
 
                 if (result != null)
                 {

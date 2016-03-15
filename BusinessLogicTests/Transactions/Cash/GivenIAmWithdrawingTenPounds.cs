@@ -44,7 +44,7 @@ namespace BusinessLogicTests.Transactions.Cash
             Assert.True(_withdrawalTransaction.CommandValid);
 
             _withdrawalTransaction.Execute();
-            var account = _fakeRepository.GetAccount(ArbitaryId);            
+            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            
             Assert.Equal(-TransactionValue, account.Cash);
         }
         
@@ -71,7 +71,7 @@ namespace BusinessLogicTests.Transactions.Cash
         public void WhenTheTransactionCompletesThereAccountBalanceIsCorrect()
         {
             _withdrawalTransaction.Execute();
-            var account = _fakeRepository.GetAccount(ArbitaryId);
+            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);
         }
     }

@@ -176,8 +176,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             var valuation1 = todaysBuyPrice * request1.Quantity;
             var valuation2 = todaysBuyPrice * request2.Quantity;
 
-            var investmentMap1 = _repository.GetAccount(1);
-            var investmentMap2 = _repository.GetAccount(2);
+            var investmentMap1 = _repository.GetAccountByAccountId(1);
+            var investmentMap2 = _repository.GetAccountByAccountId(2);
 
             Assert.Equal(valuation1, investmentMap1.Valuation);
             Assert.Equal(valuation2, investmentMap2.Valuation);
@@ -201,8 +201,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             var valuation1 = todaysSellPrice * request1.Quantity;
             var valuation2 = todaysSellPrice * request2.Quantity;
 
-            var account1 = _repository.GetAccount(1);
-            var account2 = _repository.GetAccount(2);
+            var account1 = _repository.GetAccountByAccountId(1);
+            var account2 = _repository.GetAccountByAccountId(2);
 
 
             Assert.Equal(valuation1, account1.Valuation);
@@ -215,8 +215,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             _recordPriceHistoryProcessor.Execute();
             _revalueSinglePriceCommand.Execute();
 
-            account1 = _repository.GetAccount(1);
-             account2 = _repository.GetAccount(2);
+            account1 = _repository.GetAccountByAccountId(1);
+             account2 = _repository.GetAccountByAccountId(2);
 
 
             Assert.Equal(valuation1, account1.Valuation);

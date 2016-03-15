@@ -46,24 +46,24 @@ namespace BusinessLogicTests.FakeRepositories
             throw new NotImplementedException();
         }
 
-        public Account GetAccount(int id)
+        public Account GetAccountByAccountId(int id)
         {
             return _accounts.Single(a => a.AccountId == id);
         }
 
         public void IncreaseAccountBalance(int accountId, decimal amount)
         {
-            GetAccount(accountId).Cash += amount;
+            GetAccountByAccountId(accountId).Cash += amount;
         }
 
         public void DecreaseAccountBalance(int accountId, decimal amount)
         {
-            GetAccount(accountId).Cash -= amount;
+            GetAccountByAccountId(accountId).Cash -= amount;
         }
 
         public void IncreaseValuation(int accountId, decimal valuation)
         {
-            var account = GetAccount(accountId);
+            var account = GetAccountByAccountId(accountId);
             account.Valuation += valuation;
             _accounts.RemoveAll(acc => acc.AccountId == accountId);
             _accounts.Add(account);
@@ -71,7 +71,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         public void DecreaseValuation(int accountId, decimal valuation)
         {
-            var account = GetAccount(accountId);
+            var account = GetAccountByAccountId(accountId);
             account.Valuation -= valuation;
             _accounts.RemoveAll(acc => acc.AccountId == accountId);
             _accounts.Add(account);
@@ -84,7 +84,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         public void SetValuation(int accountId, decimal valuation)
         {
-            var account = GetAccount(accountId);
+            var account = GetAccountByAccountId(accountId);
             account.Valuation = valuation;
             _accounts.RemoveAll(acc => acc.AccountId == accountId);
             _accounts.Add(account);

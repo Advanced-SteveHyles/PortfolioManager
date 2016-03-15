@@ -98,23 +98,23 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnIncomeFundTheAccountBalanceIsIncreased()
         {
-            var accountBeforeBalance =  _fakeRepository.GetAccount(1).Cash;
+            var accountBeforeBalance =  _fakeRepository.GetAccountByAccountId(1).Cash;
             _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
-            var accountBeforeAfter = _fakeRepository.GetAccount(1).Cash;
+            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance + _corporateActionAmount, accountBeforeAfter); 
         }
         
         [Fact]
         public void WhenIRecordACorporateActionForAnAccumulationFundTheAccountBalanceIsNotIncreased()
         {
-            var accountBeforeBalance = _fakeRepository.GetAccount(1).Cash;
+            var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
 
             _fakeRepository.SetInvestmentClass(_existingInvestmentMapId,
                 FundClasses.UnitTrust);
             SetupAndOrExecute(true);
 
-            var accountBeforeAfter = _fakeRepository.GetAccount(1).Cash;
+            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance, accountBeforeAfter);
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Factories;
@@ -24,56 +23,27 @@ namespace Portfolio.API.Virtual.VirtualControllers
                _repository = new InvestmentRepository(connection);
         }
 
-        public IVirtualActionResult GetAllInvestments()
-        {
-            try
-
-            {
+        public IEnumerable<InvestmentDto> GetAllInvestments()
+        {            
                 var results = _repository.GetInvestments()
                     .ToList()
                     .Select(p => p.MapToDto());
-                return new OkMultipleActionResult<InvestmentDto>(results);
-            }
-            catch (Exception ex)
-            {
-                ErrorLog.LogError(ex);
-                return new InternalServerErrorActionResult();
-            }
+                return results;
+            
         }
 
-        public IVirtualActionResult InsertInvestment(InvestmentRequest investmentRequest)
+        public InvestmentDto InsertInvestment(InvestmentRequest investmentRequest)
         {
-            try
-            {
-                if (investmentRequest == null)
-                {
-                    return new BadRequestActionResult();
-                }
-
                 var entityInvestment = new InvestmentFactory().CreateInvestment(investmentRequest);
-                if (entityInvestment == null)
-                {
-                    return new BadRequestActionResult();
-                }
                 
                 var result = _repository.InsertInvestment(entityInvestment);
                 if (result.Status == RepositoryActionStatus.Created)
                 {
                     var dtoInvestment = result.Entity.MapToDto();
-                    return new CreatedActionResult<InvestmentDto>(dtoInvestment);
-                }
-                else
-                {
-                    return new BadRequestActionResult();
+                    return dtoInvestment;
                 }
 
-            }
-            catch (Exception ex)
-            {
-                ErrorLog.LogError(ex);
-                return new InternalServerErrorActionResult();
-            }
+            throw new NotSupportedException("Resolve this");
         }
-
     }
 }

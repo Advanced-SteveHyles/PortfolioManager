@@ -7,7 +7,7 @@ namespace Portfolio.BackEnd.Repository.Interfaces
     {
         RepositoryActionResult<Account> InsertAccount(Account entityAccount);
         Account GetAccountWithInvestments(int id);
-        Account GetAccount(int id);
+        Account GetAccountByAccountId(int accountId);
 
         void IncreaseAccountBalance(int accountId, decimal amount);
         void DecreaseAccountBalance(int accountId, decimal amount);

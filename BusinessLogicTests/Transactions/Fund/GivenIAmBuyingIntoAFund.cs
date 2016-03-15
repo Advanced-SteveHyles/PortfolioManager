@@ -82,7 +82,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             SetupAndOrExecute(true);
 
-            var account = _fakeRepository.GetAccount(_accountId);
+            var account = _fakeRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(-_valueOfTransaction -_commission, account.Cash);
         }
 
@@ -196,7 +196,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             var evaluation = (maps.Single().Quantity)*_priceOfOneShare;
 
-            var account = _fakeRepository.GetAccount(_accountId);
+            var account = _fakeRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(evaluation, account.Valuation);            
         }
 
@@ -207,7 +207,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _fakeRepository.SetInvestmentClass(fakeInvestmentId, "UnitTrust");
             SetupAndOrExecute(true);
 
-            var account = _fakeRepository.GetAccount(_accountId);
+            var account = _fakeRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(0, account.Valuation);
         }
         

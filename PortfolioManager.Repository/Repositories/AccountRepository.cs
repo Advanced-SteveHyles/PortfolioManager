@@ -33,15 +33,15 @@ namespace Portfolio.BackEnd.Repository.Repositories
             }
         }
 
-        public Account GetAccount(int id)
+        public Account GetAccountByAccountId(int accountId)
         {
-            var account = _context.Accounts.SingleOrDefault(p => p.AccountId == id);
+            var account = _context.Accounts.SingleOrDefault(p => p.AccountId == accountId);
             return account;
         }
 
-        public Account GetAccountWithInvestments(int id)
+        public Account GetAccountWithInvestments(int accountId)
         {
-            var account = _context.Accounts.Include("Investments").SingleOrDefault(p => p.AccountId == id);
+            var account = _context.Accounts.Include("Investments").SingleOrDefault(p => p.AccountId == accountId);
             return account;
         }
 
@@ -69,7 +69,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 
         public void DecreaseValuation(int accountId, decimal valuation)
         {
-            var account = GetAccount(accountId);
+            var account = GetAccountByAccountId(accountId);
             account.Valuation -= valuation;
             _context.SaveChanges();
         }
@@ -81,7 +81,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 
         public void SetValuation(int accountId, decimal valuation)
         {
-            var account = GetAccount(accountId);
+            var account = GetAccountByAccountId(accountId);
             account.Valuation = valuation;
             _context.SaveChanges();
         }

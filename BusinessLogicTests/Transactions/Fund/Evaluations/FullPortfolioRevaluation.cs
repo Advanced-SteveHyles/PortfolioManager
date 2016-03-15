@@ -81,7 +81,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void WhenTheAccountHasNoMapsAccountsIsCorrect()
         {
             RunForYesterdaysPrice();
-            Assert.Equal(0, _fakeRepository.GetAccount(5).Valuation);
+            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(5).Valuation);
         }
 
         [Fact]
@@ -96,11 +96,11 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10
             //    InvestmentId = 3, AccountId = 6, Quantity = 21            //12.5
             RunForYesterdaysPrice();
-            Assert.Equal(170, _fakeRepository.GetAccount(1).Valuation);
-            Assert.Equal(50, _fakeRepository.GetAccount(2).Valuation);
-            Assert.Equal(254, _fakeRepository.GetAccount(3).Valuation);
-            Assert.Equal((decimal)17.89230, _fakeRepository.GetAccount(4).Valuation);
-            Assert.Equal((decimal)262.5, _fakeRepository.GetAccount(6).Valuation);
+            Assert.Equal(170, _fakeRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(50, _fakeRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal(254, _fakeRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)17.89230, _fakeRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal((decimal)262.5, _fakeRepository.GetAccountByAccountId(6).Valuation);
         }
         
         [Fact]
@@ -116,11 +116,11 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             //    InvestmentId = 3, AccountId = 6, Quantity = 21            //0
             RunForYesterdaysPrice();
             RunForTodaysPrice();
-            Assert.Equal(177, _fakeRepository.GetAccount(1).Valuation);
-            Assert.Equal(53, _fakeRepository.GetAccount(2).Valuation);
-            Assert.Equal((decimal)269.24, _fakeRepository.GetAccount(3).Valuation);
-            Assert.Equal((decimal)18.965838, _fakeRepository.GetAccount(4).Valuation);
-            Assert.Equal(0, _fakeRepository.GetAccount(6).Valuation);
+            Assert.Equal(177, _fakeRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(53, _fakeRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal((decimal)269.24, _fakeRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)18.965838, _fakeRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(6).Valuation);
         }
     }
 }

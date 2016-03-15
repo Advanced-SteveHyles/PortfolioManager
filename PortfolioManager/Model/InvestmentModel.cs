@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Portfolio.API.Virtual;
-using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.Requests;
@@ -15,8 +14,8 @@ namespace PortfolioManager.Model
         public static List<InvestmentDto> GetInvestments()
         {
             var service = new VirtualInvestmentsController();
-            var investments = service.GetAllInvestments() as OkMultipleActionResult<InvestmentDto>;
-            return investments?.EnumerateObjectInstances.ToList() ?? new List<InvestmentDto>();
+            var investments = service.GetAllInvestments();
+            return investments?.ToList() ?? new List<InvestmentDto>();
         }
 
         public static void InsertInvestment(InvestmentRequest investmentRequest)

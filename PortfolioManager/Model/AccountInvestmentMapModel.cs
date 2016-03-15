@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Portfolio.API.Virtual;
-using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
 
@@ -15,8 +14,8 @@ namespace PortfolioManager.Model
         public static List<AccountInvestmentMapDto> GetInvestments(int accountId)
         {
             var service = new VirtualAccountInvestmentMapController();
-            var investmentMaps = service.GetInvestmentsForAccount(accountId) as OkMultipleActionResult<AccountInvestmentMapDto>;
-            return investmentMaps?.EnumerateObjectInstances.ToList() ?? new List<AccountInvestmentMapDto>();
+            var investmentMaps = service.GetInvestmentsForAccount(accountId);
+            return investmentMaps?.ToList() ?? new List<AccountInvestmentMapDto>();
         }
     }
 }

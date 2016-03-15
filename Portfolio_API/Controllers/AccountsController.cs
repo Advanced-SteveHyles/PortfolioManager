@@ -38,9 +38,9 @@ namespace Portfolio.API.WebApi.Controllers
 
                 var accountEnt = includeInvestments 
                     ? _repository.GetAccountWithInvestments(id) 
-                    : _repository.GetAccount(id);
+                    : _repository.GetAccountByAccountId(id);
 
-                var result = _repository.GetAccount(id);
+                var result = _repository.GetAccountByAccountId(id);
 
                 if (result != null)
                 {

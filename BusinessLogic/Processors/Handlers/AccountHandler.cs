@@ -42,7 +42,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 
         public Account GetAccount(int accountId)
         {
-            return _repository.GetAccount(accountId);
+            return _repository.GetAccountByAccountId(accountId);
         }
 
         public IEnumerable<Account> GetAccounts()

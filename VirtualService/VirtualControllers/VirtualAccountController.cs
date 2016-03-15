@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
@@ -11,7 +11,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
 {
     public class VirtualAccountController
     {
-        readonly IAccountRepository _repository;
+        public readonly IAccountRepository _repository;
 
         public VirtualAccountController()
         {
@@ -19,34 +19,20 @@ namespace Portfolio.API.Virtual.VirtualControllers
             _repository = new AccountRepository(connection);
         }
         
-        public IVirtualActionResult Get(int id, string fields = null)
+        public AccountDto GetAccount(int accountId)
         {
-            try
-            {
-                var accounts = _repository.GetAccounts();                
-                var accountDtos = accounts.ToList()
-                    .Select(p => p.MapToDto());
-                return new OkMultipleActionResult<AccountDto>(accountDtos);
-            }
-            catch (Exception ex)
-            {
-                ErrorLog.LogError(ex);
-                return new InternalServerErrorActionResult();
-            }
+                var account = _repository.GetAccountByAccountId(accountId);                    
+                return account.MapToDto();            
         }
 
-        public IVirtualActionResult GetAccount(int accountId)
+        public IEnumerable<AccountDto>  GetAccountsForPortfolio(int portfolioId)
         {
-            try
-            {
-                var account = _repository.GetAccount(accountId);                    
-                return new OkSingleActionResult<AccountDto>(account.MapToDto());
-            }
-            catch (Exception ex)
-            {
-                ErrorLog.LogError(ex);
-                return new InternalServerErrorActionResult();
-            }
+            var accounts = _repository.GetAccounts();
+            var accountDtos = accounts
+                .Where(acc=>acc.PortfolioId == portfolioId)
+                .ToList()
+                .Select(p => p.MapToDto());
+            return accountDtos;
         }
     }
 }

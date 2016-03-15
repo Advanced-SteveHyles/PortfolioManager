@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Portfolio.API.Virtual;
-using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.DTOs.Transactions;
@@ -13,22 +12,22 @@ namespace PortfolioManager.Model
         internal static List<AccountDto> GetAccountForPortfolio(int portfolioId)
         {
             var service = new VirtualAccountController();
-            var accounts = service.Get(portfolioId) as OkMultipleActionResult<AccountDto>;
-            return accounts?.EnumerateObjectInstances.ToList() ?? new List<AccountDto>();
+            var accounts = service.GetAccountsForPortfolio (portfolioId);
+            return accounts?.ToList() ?? new List<AccountDto>();
         }
 
         public static List<CashTransactionDto> GetAccountTransactions(int accountId)
         {
             var service = new VirtualAccountSummaryController();
-            var accounts = service.GetCashTransactionSummary(accountId) as OkMultipleActionResult<CashTransactionDto>;
-            return accounts?.EnumerateObjectInstances.ToList() ?? new List<CashTransactionDto>();
+            var accounts = service.GetCashTransactionSummary(accountId);
+            return accounts?.ToList() ?? new List<CashTransactionDto>();
         }
 
         public static AccountDto GetAccount(int accountId)
         {
             var service = new VirtualAccountController();
-            var account = service.GetAccount(accountId) as OkSingleActionResult<AccountDto>; ;
-            return account?.ObjectInstance;
+            var account = service.GetAccount(accountId) ;
+            return account;
         }
     }
 }
