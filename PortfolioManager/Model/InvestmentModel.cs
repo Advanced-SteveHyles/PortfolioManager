@@ -27,14 +27,7 @@ namespace PortfolioManager.Model
 
         public static List<PriceHistoryDecorator>  GetInvestmentsForPriceUpdate()
         {
-            var decoratedInvestments = new List<PriceHistoryDecorator>();
-
-            foreach (var Investment in GetInvestments())
-            {
-                decoratedInvestments.Add(new PriceHistoryDecorator(Investment));
-            }
-
-            return decoratedInvestments;
-        }
+            return GetInvestments().Select(investment => new PriceHistoryDecorator(investment)).ToList();
+        }        
     }
 }

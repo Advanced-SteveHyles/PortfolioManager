@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.API.Virtual.VirtualControllers
 {
@@ -26,14 +28,31 @@ namespace Portfolio.API.Virtual.VirtualControllers
         public void UpdateAllPrices()
         {
             var revalueAllPricesCommand = new RevalueAllPricesCommand(
-                DateTime.Now, 
-                new AccountInvestmentMapProcessor(_accountInvestmentMapRepository), 
-                new InvestmentHandler(_investmentRepository), 
-                new PriceHistoryHandler(_priceHistoryRepository), 
+                DateTime.Now,
+                new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
+                new InvestmentHandler(_investmentRepository),
+                new PriceHistoryHandler(_priceHistoryRepository),
                 new AccountHandler(_accountRepository)
                 );
 
             revalueAllPricesCommand.Execute();
+        }
+
+        public void SavePriceHistories(IEnumerable<PriceHistoryRequest> requests)
+        {
+            var priceHistoryHandler = new PriceHistoryHandler(_priceHistoryRepository);
+
+            foreach (var request in requests)
+            {
+                if (!request.BuyPrice.HasValue && !request.SellPrice.HasValue) continue;
+
+                var revalueAllPricesCommand = new RecordPriceHistoryProcessor(
+                    request,
+                    priceHistoryHandler
+                    );
+
+                revalueAllPricesCommand.Execute();
+            }
         }
     }
 }

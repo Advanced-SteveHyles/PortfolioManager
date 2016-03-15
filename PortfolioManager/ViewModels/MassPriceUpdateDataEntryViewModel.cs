@@ -10,20 +10,31 @@ namespace PortfolioManager.ViewModels
 {
     public class MassPriceUpdateDataEntryViewModel : AbstractSaveCancelCommands
     {
+
+        private readonly Action _dialogClose;
+        private List<PriceHistoryDecorator> _investments;
+
         public ObservableCollection<PriceHistoryDecorator> AllInvestments
         {
             get
             {
-                var investments = InvestmentModel.GetInvestmentsForPriceUpdate();
-                return new ObservableCollection<PriceHistoryDecorator>(investments);
+                _investments = InvestmentModel.GetInvestmentsForPriceUpdate();
+                return new ObservableCollection<PriceHistoryDecorator>(_investments);
             }
         }
-
-        private readonly Action _dialogClose;
 
         public MassPriceUpdateDataEntryViewModel(Action dialogClose)
         {
             this._dialogClose = dialogClose;
+            SetCommands(Save, Cancel);
+        }
+
+        private void Save()
+        {
+
+            PriceHistoryModel.MassSavePriceHistories(_investments);
+
+            this._dialogClose.Invoke();
         }
 
         private void Cancel()

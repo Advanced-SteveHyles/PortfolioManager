@@ -10,6 +10,7 @@ namespace PortfolioManager.Model.Decorators
     public class PriceHistoryDecorator
     {
         private readonly InvestmentDto _investment;
+        public int InvestmentId => _investment.InvestmentId;
 
         public PriceHistoryDecorator(InvestmentDto investment)
         {
