@@ -71,7 +71,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 sellPrice,
                 buyPrice,
                 charges,
-                FundTransactionTypes.CorporateAction);
+                request.ReturnCashToAccount ? FundTransactionTypes.ReturnOfCapital : FundTransactionTypes.CorporateAction
+            );
         }
 
         private void StoreFundTransaction(

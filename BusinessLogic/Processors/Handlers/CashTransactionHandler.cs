@@ -103,7 +103,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           investmentCorporateActionRequest.Amount,
                           false,
-                          CashTransactionTypes.CashRefund,
+                          CashTransactionTypes.CorporateAction,
                          increaseAccountBalance: true
                           );
         }

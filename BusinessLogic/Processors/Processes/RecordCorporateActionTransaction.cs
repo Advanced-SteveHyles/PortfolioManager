@@ -32,7 +32,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
             var investment = _investmentHandler.GetInvestment(investmentId);
 
-            _fundTransactionHandler.StoreFundTransaction(_request);
+            _request.ReturnCashToAccount = investment.IncomeType == FundIncomeTypes.Income;
 
             switch (investment.IncomeType)
             {
@@ -44,6 +44,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
                 default:
                     throw new NotSupportedException("Invalid Income Type Supplied");
             }
+
+            _fundTransactionHandler.StoreFundTransaction(_request);
 
             ExecuteResult = true;
         }

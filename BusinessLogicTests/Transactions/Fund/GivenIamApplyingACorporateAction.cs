@@ -90,7 +90,7 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(_corporateActionAmount, transaction.TransactionValue);
             Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.CashRefund, transaction.TransactionType);
+            Assert.Equal(CashTransactionTypes.CorporateAction, transaction.TransactionType);
 
             Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
@@ -124,6 +124,29 @@ namespace BusinessLogicTests.Transactions.Fund
             _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
             Assert.Equal(0, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
+        }
+
+        [Fact]
+        public void WhenIRecordACorporateActionForAnIncomeFundTheFundTransactionIsCorrect()
+        {
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            SetupAndOrExecute(true);
+
+            const int fundTransactionId = 1;
+            var transaction = _fakeRepository.GetFundTransaction(fundTransactionId);
+            Assert.Equal(FundTransactionTypes.ReturnOfCapital, transaction.TransactionType);
+        }
+
+
+        [Fact]
+        public void WhenIRecordACorporateActionForAnAccumulationFundTheFundTransactionIsCorrect()
+        {
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
+            SetupAndOrExecute(true);
+
+            const int fundTransactionId = 1;
+            var transaction = _fakeRepository.GetFundTransaction(fundTransactionId);
+            Assert.Equal(FundTransactionTypes.CorporateAction, transaction.TransactionType);           
         }
     }    
 }
