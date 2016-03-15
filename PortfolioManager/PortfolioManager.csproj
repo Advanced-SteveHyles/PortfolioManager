@@ -91,6 +91,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\AccountInvestmentMapModel.cs" />
     <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\Decorators\PriceHistoryDecorator.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\PortfolioModel.cs" />
     <Compile Include="Model\PriceHistoryModel.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
+    <Compile Include="ViewModels\MassPriceUpdateDataEntryViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
@@ -117,6 +119,9 @@
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentDataEntry.xaml.cs">
       <DependentUpon>InvestmentDataEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\MassPriceUpdateDataEntry.xaml.cs">
+      <DependentUpon>MassPriceUpdateDataEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\PortfolioDataEntry.xaml.cs">
       <DependentUpon>PortfolioDataEntry.xaml</DependentUpon>
@@ -172,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DataEntry\InvestmentDataEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\MassPriceUpdateDataEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

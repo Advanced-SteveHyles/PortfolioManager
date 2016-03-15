@@ -6,6 +6,7 @@ using Portfolio.API.Virtual.VirtualActionResults;
 using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.Requests;
+using PortfolioManager.Model.Decorators;
 
 namespace PortfolioManager.Model
 {
@@ -22,6 +23,18 @@ namespace PortfolioManager.Model
         {
             var service = new VirtualInvestmentsController();
             service.InsertInvestment(investmentRequest);
+        }
+
+        public static List<PriceHistoryDecorator>  GetInvestmentsForPriceUpdate()
+        {
+            var decoratedInvestments = new List<PriceHistoryDecorator>();
+
+            foreach (var Investment in GetInvestments())
+            {
+                decoratedInvestments.Add(new PriceHistoryDecorator(Investment));
+            }
+
+            return decoratedInvestments;
         }
     }
 }

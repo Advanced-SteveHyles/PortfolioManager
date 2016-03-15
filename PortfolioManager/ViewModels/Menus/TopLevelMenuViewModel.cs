@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using PortfolioManager.Model;
 
@@ -18,6 +19,8 @@ namespace PortfolioManager.ViewModels.Menus
 
         public ICommand AddPortfolioCommand => new RelayCommand(AddPortfolio);
         public ICommand AddInvestmentCommand => new RelayCommand(AddInvestment);
+
+        public ICommand RevalueFundsCommand => new RelayCommand(RevalueFunds);
 
         public ICommand UpdateAllPricesCommand => new RelayCommand(UpdateAllPrices);
 
@@ -33,7 +36,14 @@ namespace PortfolioManager.ViewModels.Menus
             OnPropertyChanged(DynamicContentControl);
         }
 
-        public void UpdateAllPrices()
+        private void UpdateAllPrices()
+        {
+            DynamicContent = BuildDynamicMenu.PriceHistoryDataEntryView(DialogClose);
+            OnPropertyChanged(DynamicContentControl);
+        }
+
+
+        public void RevalueFunds()
         {
             PriceHistoryModel.UpdatePriceHistories();
         }

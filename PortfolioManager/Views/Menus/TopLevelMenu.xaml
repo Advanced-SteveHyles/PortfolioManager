@@ -18,8 +18,13 @@
             <MenuItem Header="Investments">
                 <MenuItem Header="Add" Command="{Binding AddInvestmentCommand}">
                 </MenuItem>
+
                 <MenuItem Header="Update All Prices" Command="{Binding UpdateAllPricesCommand}">
                 </MenuItem>
+
+                <MenuItem Header="Revalue All Funds" Command="{Binding RevalueFundsCommand}">
+                </MenuItem>
+
             </MenuItem>
         </Menu>
         <ContentControl Content="{Binding DynamicContent}"></ContentControl>

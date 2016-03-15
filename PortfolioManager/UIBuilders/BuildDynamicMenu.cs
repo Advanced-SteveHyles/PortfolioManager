@@ -14,5 +14,10 @@ namespace PortfolioManager.ViewModels.Menus
         {
             return new InvestmentDataEntry() { DataContext = new InvestmentDataEntryViewModel(DialogClose) };
         }
+
+        public static object PriceHistoryDataEntryView(Action DialogClose)
+        {
+            return new MassPriceUpdateDataEntry() { DataContext = new MassPriceUpdateDataEntryViewModel(DialogClose) };
+        }
     }
 }
