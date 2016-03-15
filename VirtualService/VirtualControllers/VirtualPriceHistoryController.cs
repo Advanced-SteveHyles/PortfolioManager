@@ -44,16 +44,16 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
             foreach (var request in requests)
             {
-                if  ((request.BuyPrice.HasValue && request.BuyPrice>0) 
+                if ((request.BuyPrice.HasValue && request.BuyPrice > 0)
                    || (request.SellPrice.HasValue && request.SellPrice > 0))
-                        continue;
+                {
+                    var revalueAllPricesCommand = new RecordPriceHistoryProcessor(
+                        request,
+                        priceHistoryHandler
+                        );
 
-                var revalueAllPricesCommand = new RecordPriceHistoryProcessor(
-                    request,
-                    priceHistoryHandler
-                    );
-
-                revalueAllPricesCommand.Execute();
+                    revalueAllPricesCommand.Execute();
+                }
             }
         }
     }
