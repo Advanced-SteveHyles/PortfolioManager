@@ -44,7 +44,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
             foreach (var request in requests)
             {
-                if (!request.BuyPrice.HasValue && !request.SellPrice.HasValue) continue;
+                if  ((request.BuyPrice.HasValue && request.BuyPrice>0) 
+                   || (request.SellPrice.HasValue && request.SellPrice > 0))
+                        continue;
 
                 var revalueAllPricesCommand = new RecordPriceHistoryProcessor(
                     request,
