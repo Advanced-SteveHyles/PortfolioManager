@@ -10,11 +10,11 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
     
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  ItemsSource="{Binding AllInvestments}"></DataGrid>
-        
-        <local:SaveCancel Grid.Row="2" x:Name="SaveCancel"></local:SaveCancel>
+
+        <local:SaveCancel Grid.Row="2" Grid.Column="0" x:Name="SaveCancel"></local:SaveCancel>
     </Grid>
 </UserControl>

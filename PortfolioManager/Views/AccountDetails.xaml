@@ -21,6 +21,9 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
+        
+        <Expander Header="Account Details">
+            <StackPanel>
         <TextBlock Grid.Row="1" Grid.Column="0"> Account Id</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}"></TextBox>
 
@@ -42,6 +45,14 @@
 
         <TextBlock Grid.Row="7" Grid.Column="0">AccountBalance</TextBlock>
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding AccountBalance, Mode=OneWay}"></TextBox>
-        
+            </StackPanel>
+        </Expander>
+    
+        <Expander Grid.Row="8" Header="Actions">
+            <StackPanel Orientation="Horizontal">
+                <Button>Deposit</Button>
+                <Button>Withdraw</Button>
+            </StackPanel>
+        </Expander>
     </Grid>
 </UserControl>
