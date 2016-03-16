@@ -9,5 +9,18 @@
     <StackPanel>
         <GroupBox Header="Investment Details"></GroupBox>
         <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
+        <ItemsControl ItemsSource="{Binding InvestmentMaps}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                        <TextBlock Text="{Binding InvestmentName}"></TextBlock>
+                        <Button Command="{Binding BuyCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding AccountInvestmentMapId}">Buy</Button>
+                        <Button>Sell</Button>
+                        <Button>Corporate Action</Button>
+                    </StackPanel>
+                </DataTemplate>
+    </ItemsControl.ItemTemplate>
+    </ItemsControl>
     </StackPanel>
 </UserControl>
