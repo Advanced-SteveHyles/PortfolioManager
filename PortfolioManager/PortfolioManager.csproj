@@ -96,6 +96,7 @@
     <Compile Include="Model\PortfolioModel.cs" />
     <Compile Include="Model\PriceHistoryModel.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
+    <Compile Include="ViewModels\AccountInvestmentDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
     <Compile Include="Other\RelayCommand.cs" />

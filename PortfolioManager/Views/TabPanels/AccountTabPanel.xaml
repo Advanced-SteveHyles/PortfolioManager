@@ -17,7 +17,7 @@
         </Expander>
         
         <Expander Header="Investments">
-            <views:AccountInvestmentDetails></views:AccountInvestmentDetails>
+            <views:AccountInvestmentDetails DataContext="{Binding AccountInvestmentDetailsVm}"></views:AccountInvestmentDetails>
         </Expander>
     </StackPanel>
 </UserControl>
