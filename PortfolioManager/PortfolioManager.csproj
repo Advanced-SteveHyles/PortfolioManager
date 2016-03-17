@@ -97,13 +97,14 @@
     <Compile Include="Model\PriceHistoryModel.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountInvestmentDetailsViewModel.cs" />
-    <Compile Include="ViewModels\AccountInvestmentMapWrapperDto.cs" />
+    <Compile Include="Model\Decorators\AccountInvestmentMapDecorator.cs" />
     <Compile Include="ViewModels\AccountTabPanelViewModel.cs" />
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
     <Compile Include="Other\RelayCommand.cs" />
     <Compile Include="Interfaces\AbstractSaveCancelCommands.cs" />
     <Compile Include="Other\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
+    <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
@@ -113,11 +114,14 @@
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
-    <Compile Include="Views\AccountDetails.xaml.cs">
-      <DependentUpon>AccountDetails.xaml</DependentUpon>
+    <Compile Include="Views\AccountDetailsView.xaml.cs">
+      <DependentUpon>AccountDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccountTransactionSummary.xaml.cs">
       <DependentUpon>AccountTransactionSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\InvestmentBuyView.xaml.cs">
+      <DependentUpon>InvestmentBuyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentDataEntry.xaml.cs">
       <DependentUpon>InvestmentDataEntry.xaml</DependentUpon>
@@ -170,11 +174,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AccountDetails.xaml">
+    <Page Include="Views\AccountDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AccountTransactionSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\InvestmentBuyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

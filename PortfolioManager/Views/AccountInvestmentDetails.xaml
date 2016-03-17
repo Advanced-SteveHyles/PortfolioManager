@@ -8,21 +8,24 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <GroupBox Header="Investment Details"></GroupBox>
-        <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                        <TextBlock Text="{Binding InvestmentName}"></TextBlock>
-                        <Button Command="{Binding BuyCommand}">Buy</Button>
-                        <Button>Sell</Button>
-                        <Button>Corporate Action</Button>
-                        <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>
-                        <Button>Last</Button>
-                    </StackPanel>
-                </DataTemplate>
-    </ItemsControl.ItemTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                                <TextBlock Text="{Binding InvestmentName}"></TextBlock>
+                                <Button Command="{Binding BuyCommand}">Buy</Button>
+                                <Button>Sell</Button>
+                                <Button>Corporate Action</Button>
+                            </StackPanel>
+                            <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>
+                        </StackPanel>
+                    </DataTemplate>
+            </ItemsControl.ItemTemplate>
     </ItemsControl>
+        </ScrollViewer>
+        <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
     </StackPanel>
 </UserControl>

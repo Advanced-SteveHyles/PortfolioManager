@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Expander IsExpanded="True" Header ="Account">
-        <views:AccountDetails></views:AccountDetails>
+        <views:AccountDetailsView></views:AccountDetailsView>
         </Expander>
 
         <Expander Header ="Account Transactions">

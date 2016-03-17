@@ -1,6 +1,9 @@
-﻿namespace PortfolioManager.UIBuilders
+﻿using PortfolioManager.Views.DataEntry;
+
+namespace PortfolioManager.UIBuilders
 {
     public class AccountDetailsViewModel
     {
+        
     }
 }

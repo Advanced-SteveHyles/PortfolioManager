@@ -26,14 +26,14 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
-        public ObservableCollection<AccountInvestmentMapWrapperDto> InvestmentMapWrappers
+        public ObservableCollection<AccountInvestmentMapDecorator> InvestmentMapWrappers
         {
             get
             {
                 var accountInvestmentMaps = AccountInvestmentMapModel.GetInvestments(_accountId);
-                var wrappers = accountInvestmentMaps.Select(ai => new AccountInvestmentMapWrapperDto(ai));
+                var wrappers = accountInvestmentMaps.Select(ai => new AccountInvestmentMapDecorator(ai));
 
-                return new ObservableCollection<AccountInvestmentMapWrapperDto>(wrappers);
+                return new ObservableCollection<AccountInvestmentMapDecorator>(wrappers);
             }
         }
         
