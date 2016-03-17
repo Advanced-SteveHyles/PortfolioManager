@@ -55,6 +55,8 @@ namespace Portfolio.API.Virtual.VirtualControllers
                     revalueAllPricesCommand.Execute();
                 }
             }
+
+            UpdateAllPrices();
         }
     }
 }
