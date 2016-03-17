@@ -19,7 +19,7 @@ namespace PortfolioManager.Model.Decorators
 
         public string InvestmentName => _investment.Name;
 
-        public decimal BuyPrice { get; set; }
-        public decimal SellPrice { get; set; }
+        public decimal? BuyPrice { get; set; }
+        public decimal? SellPrice { get; set; }
     }
 }
