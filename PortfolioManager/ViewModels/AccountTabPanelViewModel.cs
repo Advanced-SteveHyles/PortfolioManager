@@ -1,10 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
-using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.DTOs.Transactions;
 using PortfolioManager.Model;
-using PortfolioManager.ViewModels.Menus;
 
 namespace PortfolioManager.UIBuilders
 {
@@ -47,24 +45,5 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
-    }
-
-    public class AccountInvestmentMapWrapperDto
-    {
-        private AccountInvestmentMapDto ai;
-
-        public AccountInvestmentMapWrapperDto(AccountInvestmentMapDto ai)
-        {
-            this.ai = ai;
-        }
-
-        public int AccountInvestmentMapId => this.ai.AccountInvestmentMapId;
-
-        public ICommand BuyCommand => new RelayCommand(Buy);
-
-        private void Buy()
-        {
-            int i = 1;
-        }
     }
 }

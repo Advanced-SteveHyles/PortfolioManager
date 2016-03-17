@@ -7,6 +7,9 @@ namespace PortfolioManager.UIBuilders
 {
     public class AccountInvestmentDetailsViewModel
     {
+
+
+
         private readonly int _accountId;
 
         public AccountInvestmentDetailsViewModel(int accountId)

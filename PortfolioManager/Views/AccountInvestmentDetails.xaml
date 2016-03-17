@@ -18,6 +18,8 @@
                         <Button Command="{Binding BuyCommand}">Buy</Button>
                         <Button>Sell</Button>
                         <Button>Corporate Action</Button>
+                        <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>
+                        <Button>Last</Button>
                     </StackPanel>
                 </DataTemplate>
     </ItemsControl.ItemTemplate>
