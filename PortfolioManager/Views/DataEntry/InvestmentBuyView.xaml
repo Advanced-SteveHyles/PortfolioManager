@@ -6,23 +6,36 @@
              xmlns:local="clr-namespace:PortfolioManager.Views.DataEntry"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBlock>Quantity</TextBlock>
-        <TextBox Text="{Binding Quantity}"></TextBox>
-        <TextBlock>BuyPrice</TextBlock>
-        <TextBox Text="{Binding PurchasePrice}"></TextBox>
-        <TextBlock>Value</TextBlock>
-        <TextBox  Text="{Binding TransactionValue}"></TextBox>
-        <TextBlock>Charges</TextBlock>
-        <TextBox  Text="{Binding Charges}"></TextBox>
-        <TextBlock>PurchaseDate</TextBlock>
-        <Calendar  SelectedDate="{Binding PurchaseDate}"></Calendar>
-        <Button></Button>
-        <TextBlock>SettlementDate</TextBlock>
-        <Calendar SelectedDate="{Binding SettlementDate}"></Calendar>
-        <Button></Button>
-        <TextBlock>RecordPrice?</TextBlock>
-        <CheckBox IsChecked="{Binding RecordPrice}"></CheckBox>
-        <local:SaveCancel></local:SaveCancel>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="0" >Quantity</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Quantity}"></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="0">BuyPrice</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PurchasePrice}"></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="0">Value</TextBlock>
+        <TextBox  Grid.Row="3" Grid.Column="1" Text="{Binding TransactionValue}"></TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="0">Charges</TextBlock>
+        <TextBox  Grid.Row="4" Grid.Column="1" Text="{Binding Charges}"></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="3">PurchaseDate</TextBlock>
+        <Calendar  Grid.Row="1" Grid.Column="4" SelectedDate="{Binding PurchaseDate}"></Calendar>
+        <TextBlock Grid.Row="3" Grid.Column="3"> SettlementDate</TextBlock>
+        <Calendar Grid.Row="3" Grid.Column="4" SelectedDate="{Binding SettlementDate}"></Calendar>
+        <TextBlock Grid.Row="4" Grid.Column="3">RecordPrice?</TextBlock>
+        <CheckBox Grid.Row="4" Grid.Column="4" IsChecked="{Binding RecordPrice}"></CheckBox>
+        <local:SaveCancel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" ></local:SaveCancel>
+    </Grid>
 </UserControl>

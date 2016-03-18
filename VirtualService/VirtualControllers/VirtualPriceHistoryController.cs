@@ -12,8 +12,8 @@ namespace Portfolio.API.Virtual.VirtualControllers
     {
         private readonly IAccountInvestmentMapRepository _accountInvestmentMapRepository;
         private readonly IInvestmentRepository _investmentRepository;
-        private readonly AccountRepository _accountRepository;
-        private readonly PriceHistoryRepository _priceHistoryRepository;
+        private readonly IAccountRepository _accountRepository;
+        private readonly IPriceHistoryRepository _priceHistoryRepository;
 
         public VirtualPriceHistoryController()
         {

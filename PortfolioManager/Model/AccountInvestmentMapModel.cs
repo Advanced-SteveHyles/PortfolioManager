@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Portfolio.API.Virtual;
 using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.DTOs;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace PortfolioManager.Model
 {
@@ -16,6 +17,12 @@ namespace PortfolioManager.Model
             var service = new VirtualAccountInvestmentMapController();
             var investmentMaps = service.GetInvestmentsForAccount(accountId);
             return investmentMaps?.ToList() ?? new List<AccountInvestmentMapDto>();
+        }
+
+     public static void Buy(InvestmentBuyRequest request)
+     {
+            var service = new VirtualInvestmentTransactions();         
+            service.Buy(request);            
         }
     }
 }

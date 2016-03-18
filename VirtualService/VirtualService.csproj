@@ -66,10 +66,12 @@
     <Compile Include="ErrorLog.cs" />
     <Compile Include="Tracer.cs" />
     <Compile Include="VirtualControllers\Cache.cs" />
+    <Compile Include="VirtualControllers\CommandExecutor.cs" />
     <Compile Include="VirtualControllers\VirtualAccountInvestmentMapController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountSummaryController.cs" />
     <Compile Include="VirtualControllers\VirtualInvestmentsController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountController.cs" />
+    <Compile Include="VirtualControllers\VirtualInvestmentTransactions.cs" />
     <Compile Include="VirtualControllers\VirtualPortfoliosController.cs" />
     <Compile Include="VirtualControllers\VirtualPriceHistoryController.cs" />
     <Compile Include="VirtualControllers\VirtualPriceUpdateController.cs" />

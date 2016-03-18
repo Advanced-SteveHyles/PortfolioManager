@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
+using PortfolioManager.Model;
 
 namespace PortfolioManager.UIBuilders
 {
@@ -23,7 +24,7 @@ namespace PortfolioManager.UIBuilders
                 TrangulatePrices("PurchasePrice");
             }
         }
-        
+
         public decimal Quantity
         {
             get { return _quantity; }
@@ -41,13 +42,13 @@ namespace PortfolioManager.UIBuilders
             switch (source)
             {
                 case "PurchasePrice":
-                    _transactionValue = _quantity*_purchasePrice;
+                    _transactionValue = _quantity * _purchasePrice;
                     break;
                 case "TransactionValue":
                     _purchasePrice = _transactionValue / _quantity;
                     break;
                 case "Quantity":
-                    _transactionValue = _quantity*_purchasePrice;
+                    _transactionValue = _quantity * _purchasePrice;
                     break;
             }
 
@@ -57,8 +58,8 @@ namespace PortfolioManager.UIBuilders
         }
 
         public decimal Charges { get; set; }
-        public DateTime PurchaseDate { get; set; } =DateTime.Today;
-        public DateTime SettlementDate { get; set; } =  DateTime.Today.AddDays(7);
+        public DateTime PurchaseDate { get; set; } = DateTime.Today;
+        public DateTime SettlementDate { get; set; } = DateTime.Today.AddDays(7);
         public bool RecordPrice { get; set; } = true;
 
         public InvestmentBuyViewModel(int accountInvestmentMapId, Action completeTransaction)
@@ -86,16 +87,18 @@ namespace PortfolioManager.UIBuilders
                 SettlementDate = this.SettlementDate,
                 UpdatePriceHistory = this.RecordPrice
             };
+
+            AccountInvestmentMapModel.Buy(buyRequest);
             
             this._completeTransaction.Invoke();
         }
- 
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
     }
 

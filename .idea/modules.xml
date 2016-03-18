@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PortfolioManager.sln.iml" filepath="$PROJECT_DIR$/PortfolioManager.sln.iml" />
       <module fileurl="file://$PROJECT_DIR$/Services.sln.iml" filepath="$PROJECT_DIR$/Services.sln.iml" />
     </modules>
   </component>

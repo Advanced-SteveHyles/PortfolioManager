@@ -9,22 +9,24 @@
     <StackPanel>
         <GroupBox Header="Investment Details"></GroupBox>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                        <StackPanel>
+            <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
                                 <TextBlock Text="{Binding InvestmentName}"></TextBlock>
+                                <Button Command="{Binding ViewCommand}">View</Button>
                                 <Button Command="{Binding BuyCommand}">Buy</Button>
                                 <Button Command="{Binding SellCommand}">Sell</Button>
-                                <Button>Corporate Action</Button>
+                                <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
                             </StackPanel>
                             <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>
                         </StackPanel>
                     </DataTemplate>
-            </ItemsControl.ItemTemplate>
-    </ItemsControl>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
         </ScrollViewer>
         <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
     </StackPanel>
