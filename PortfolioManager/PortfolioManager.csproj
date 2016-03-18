@@ -102,7 +102,7 @@
     <Compile Include="UIBuilders\BuildPortfolioTabContent.cs" />
     <Compile Include="Other\RelayCommand.cs" />
     <Compile Include="Interfaces\AbstractSaveCancelCommands.cs" />
-    <Compile Include="Other\ViewModel.cs" />
+    <Compile Include="Interfaces\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
