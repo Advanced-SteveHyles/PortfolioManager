@@ -8,21 +8,21 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock>Quantity</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding Quantity}"></TextBox>
         <TextBlock>BuyPrice</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding PurchasePrice}"></TextBox>
         <TextBlock>Value</TextBlock>
-        <TextBox></TextBox>
+        <TextBox  Text="{Binding TransactionValue}"></TextBox>
         <TextBlock>Charges</TextBlock>
-        <TextBox></TextBox>
+        <TextBox  Text="{Binding Charges}"></TextBox>
         <TextBlock>PurchaseDate</TextBlock>
-        <Calendar></Calendar>
+        <Calendar  SelectedDate="{Binding PurchaseDate}"></Calendar>
         <Button></Button>
         <TextBlock>SettlementDate</TextBlock>
-        <Calendar></Calendar>
+        <Calendar SelectedDate="{Binding SettlementDate}"></Calendar>
         <Button></Button>
-        <TextBlock>UpdatePriceHistory</TextBlock>
-        <CheckBox></CheckBox>
+        <TextBlock>RecordPrice?</TextBlock>
+        <CheckBox IsChecked="{Binding RecordPrice}"></CheckBox>
         <local:SaveCancel></local:SaveCancel>
     </StackPanel>
 </UserControl>

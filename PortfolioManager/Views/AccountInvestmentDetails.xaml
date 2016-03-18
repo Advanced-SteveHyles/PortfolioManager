@@ -17,7 +17,7 @@
                                 <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
                                 <TextBlock Text="{Binding InvestmentName}"></TextBlock>
                                 <Button Command="{Binding BuyCommand}">Buy</Button>
-                                <Button>Sell</Button>
+                                <Button Command="{Binding SellCommand}">Sell</Button>
                                 <Button>Corporate Action</Button>
                             </StackPanel>
                             <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>

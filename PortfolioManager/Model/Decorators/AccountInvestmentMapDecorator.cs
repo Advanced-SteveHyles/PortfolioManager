@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
 using PortfolioManager.ViewModels.Menus;
@@ -13,8 +12,8 @@ namespace PortfolioManager.UIBuilders
         public int AccountInvestmentMapId => this._accountInvestmentMapDto.AccountInvestmentMapId;
         public string InvestmentName => this._accountInvestmentMapDto.InvestmentName;
 
-        private InvestmentBuyView _investmentTransaction;
-        public InvestmentBuyView InvestmentTransaction => _investmentTransaction;
+        private UserControl _investmentTransaction;
+        public UserControl InvestmentTransaction => _investmentTransaction;
 
         private readonly AccountInvestmentMapDto _accountInvestmentMapDto;
 
@@ -24,16 +23,29 @@ namespace PortfolioManager.UIBuilders
         }
         
         public ICommand BuyCommand => new RelayCommand(Buy);
+        public ICommand SellCommand => new RelayCommand(Sell);
+
 
         private void Buy()
         {
             _investmentTransaction = new InvestmentBuyView()
             {
-                DataContext = new InvestmentBuyViewModel(CompleteTransaction)
+                DataContext = new InvestmentBuyViewModel(AccountInvestmentMapId, CompleteTransaction)
             };
             OnPropertyChanged("InvestmentTransaction");
         }
 
+
+        private void Sell()
+        {
+            _investmentTransaction = new InvestmentSellView()
+            {
+                DataContext = new InvestmentSellViewModel(CompleteTransaction)
+            };
+            OnPropertyChanged("InvestmentTransaction");
+        }
+
+     
         private void CompleteTransaction()
         {
             _investmentTransaction = null;

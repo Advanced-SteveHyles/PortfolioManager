@@ -106,6 +106,7 @@
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
+    <Compile Include="ViewModels\InvestmentSellViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
     <Compile Include="ViewModels\MassPriceUpdateDataEntryViewModel.cs" />
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentDataEntry.xaml.cs">
       <DependentUpon>InvestmentDataEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\InvestmentSellView.xaml.cs">
+      <DependentUpon>InvestmentSellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\MassPriceUpdateDataEntry.xaml.cs">
       <DependentUpon>MassPriceUpdateDataEntry.xaml</DependentUpon>
@@ -187,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DataEntry\InvestmentDataEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\InvestmentSellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
