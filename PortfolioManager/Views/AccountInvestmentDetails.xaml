@@ -12,17 +12,28 @@
             <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                                <TextBlock Text="{Binding InvestmentName}"></TextBlock>
-                                <Button Command="{Binding ViewCommand}">View</Button>
-                                <Button Command="{Binding BuyCommand}">Buy</Button>
-                                <Button Command="{Binding SellCommand}">Sell</Button>
-                                <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
-                            </StackPanel>
-                            <ContentControl Content="{Binding InvestmentTransaction}"></ContentControl>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding InvestmentName}"></TextBlock>
+                            <Button Grid.Row="1" Grid.Column="0" Command="{Binding ViewCommand}">View</Button>
+                            <Button Grid.Row="1" Grid.Column="2" Command="{Binding BuyCommand}">Buy</Button>
+                            <Button Grid.Row="1" Grid.Column="3" Command="{Binding SellCommand}">Sell</Button>
+                            <Button Grid.Row="1" Grid.Column="4" Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+
+                            <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                        </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

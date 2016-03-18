@@ -18,8 +18,7 @@ namespace PortfolioManager
         {
             InitializeComponent();
 
-            this.DataContext = new MainWindowViewModel();
-           
+            this.DataContext = new MainWindowViewModel();           
             this.TopLevelMenu.DataContext = new TopLevelMenuViewModel();
         }
     }
