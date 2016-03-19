@@ -4,22 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PortfolioManager.Views.DataEntry"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             mc:Ignorable="d">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="0" >Quantity</TextBlock>
@@ -32,8 +34,8 @@
         <TextBox  Grid.Row="4" Grid.Column="1" Text="{Binding Charges}"></TextBox>
         <TextBlock Grid.Row="1" Grid.Column="3">PurchaseDate</TextBlock>
         <Calendar  Grid.Row="1" Grid.Column="4" SelectedDate="{Binding PurchaseDate}"></Calendar>
-        <TextBlock Grid.Row="3" Grid.Column="3"> SettlementDate</TextBlock>
-        <Calendar Grid.Row="3" Grid.Column="4" SelectedDate="{Binding SettlementDate}"></Calendar>
+        <TextBlock Grid.Row="1" Grid.Column="5"> SettlementDate</TextBlock>
+        <Calendar Grid.Row="1" Grid.Column="6" SelectedDate="{Binding SettlementDate}"></Calendar>
         <TextBlock Grid.Row="4" Grid.Column="3">RecordPrice?</TextBlock>
         <CheckBox Grid.Row="4" Grid.Column="4" IsChecked="{Binding RecordPrice}"></CheckBox>
         <local:SaveCancel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" ></local:SaveCancel>

@@ -12,28 +12,37 @@
             <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding InvestmentName}"></TextBlock>
-                            <Button Grid.Row="1" Grid.Column="0" Command="{Binding ViewCommand}">View</Button>
-                            <Button Grid.Row="1" Grid.Column="2" Command="{Binding BuyCommand}">Buy</Button>
-                            <Button Grid.Row="1" Grid.Column="3" Command="{Binding SellCommand}">Sell</Button>
-                            <Button Grid.Row="1" Grid.Column="4" Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                            <TextBlock Text="{Binding InvestmentName}"></TextBlock>
+                            <TextBlock Text="{Binding Quantity}"></TextBlock>
+                            <TextBlock Text="{Binding Valuation}"></TextBlock>
+                            
+                            <Expander Header="Actions" ExpandDirection="Right">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
 
-                            <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
-                        </Grid>
+                                    <Button Grid.Row="1" Grid.Column="0" Command="{Binding ViewCommand}">View</Button>
+                                    <Button Grid.Row="1" Grid.Column="2" Command="{Binding BuyCommand}">Buy</Button>
+                                    <Button Grid.Row="1" Grid.Column="3" Command="{Binding SellCommand}">Sell</Button>
+                                    <Button Grid.Row="1" Grid.Column="4" Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+                                
+                                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                                </Grid>
+                            </Expander>
+
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

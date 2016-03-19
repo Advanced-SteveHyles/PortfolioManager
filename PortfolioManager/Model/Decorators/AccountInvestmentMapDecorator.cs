@@ -12,6 +12,9 @@ namespace PortfolioManager.UIBuilders
         public int AccountInvestmentMapId => this._accountInvestmentMapDto.AccountInvestmentMapId;
         public string InvestmentName => this._accountInvestmentMapDto.InvestmentName;
 
+        public decimal Quantity => this._accountInvestmentMapDto.Quantity ;
+        public decimal Valuation => this._accountInvestmentMapDto.Valuation;
+
         private UserControl _investmentTransaction;
         public UserControl InvestmentTransaction => _investmentTransaction;
 
