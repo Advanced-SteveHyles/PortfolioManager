@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.BackEnd.Repository;
@@ -54,7 +55,12 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 var accountHandler = new AccountHandler(_accountRepository);
                 var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
-                var status = Command.ExecuteCommand(new RecordDepositTransaction(deposit, transactionHandler));
+                var status = Command.ExecuteCommand(
+                        new RecordDepositTransaction(
+                            deposit, 
+                            transactionHandler, 
+                            TransactionLink.FundToCash())
+                        );
 
                 if (status)
                 {                    

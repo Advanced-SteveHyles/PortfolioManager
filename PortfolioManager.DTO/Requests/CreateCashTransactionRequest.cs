@@ -10,5 +10,7 @@ namespace Portfolio.Common.DTO.Requests
         public string Source { get; set; }
         public bool IsTaxRefund { get; set; }
         public string TransactionType { get; set; }
+        public Guid? LinkedTransaction { get; set; }
+        public string LinkedTransactionType { get; set; }        
     }
 }

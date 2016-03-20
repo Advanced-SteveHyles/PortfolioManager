@@ -23,6 +23,8 @@ namespace Portfolio.BackEnd.Repository.Entities
         public decimal? BuyPrice { get; set; }
 
         public decimal Charges { get; set; }
-        public decimal TransactionValue { get; set; }        
+        public decimal TransactionValue { get; set; }
+        public Guid? LinkedTransaction { get; set; }
+        public string LinkedTransactionType { get; set; }
     }
 }

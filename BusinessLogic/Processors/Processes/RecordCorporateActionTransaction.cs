@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -21,7 +22,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _fundTransactionHandler = fundTransactionHandler;
             _cashTransactionHandler = cashTransactionHandler;
             _accountInvestmentMapProcessor = accountInvestmentMapProcessor;
-            _investmentHandler = investmentHandler;
+            _investmentHandler = investmentHandler;            
         }
 
         public void Execute()
@@ -34,10 +35,12 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
             _request.ReturnCashToAccount = investment.IncomeType == FundIncomeTypes.Income;
 
+            TransactionLink linkedTransaction = null;
             switch (investment.IncomeType)
             {
                 case FundIncomeTypes.Income:
-                    _cashTransactionHandler.StoreCashTransaction(accountId, _request);
+                    linkedTransaction = TransactionLink.FundToCash();
+                    _cashTransactionHandler.StoreCashTransaction(accountId, _request, linkedTransaction);
                     break;
                 case FundIncomeTypes.Accumulation:
                     break;
@@ -45,7 +48,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
                     throw new NotSupportedException("Invalid Income Type Supplied");
             }
 
-            _fundTransactionHandler.StoreFundTransaction(_request);
+            _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);
 
             ExecuteResult = true;
         }

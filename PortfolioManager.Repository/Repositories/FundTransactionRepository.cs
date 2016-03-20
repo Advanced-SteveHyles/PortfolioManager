@@ -26,7 +26,9 @@ namespace Portfolio.BackEnd.Repository.Repositories
                 SellPrice = request.SellPrice,
                 BuyPrice = request.BuyPrice,
                 Charges = request.Charges,
-                TransactionValue = request.TransactionValue
+                TransactionValue = request.TransactionValue,
+                LinkedTransactionType = request.LinkedTransactionType,
+                LinkedTransaction = request.LinkedTransaction
             };
             
             _context.FundTransactions.Add(fundTransaction);

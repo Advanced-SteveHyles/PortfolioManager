@@ -33,7 +33,7 @@ namespace BusinessLogicTests.Transactions.Cash
                 TransactionDate = transactionDate
             };
 
-            _depositTransaction = new RecordDepositTransaction(depositTransactionRequest, cashTransactionHandler);
+            _depositTransaction = new RecordDepositTransaction(depositTransactionRequest, cashTransactionHandler, null);
         }
 
         [Fact]

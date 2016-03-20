@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.Funds;
@@ -232,5 +233,44 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(null, prices.First().BuyPrice);
         }
 
+
+        [Fact]
+        public void WhenISellTheSellTransactionAndCashTransactionAreLinked()
+        {
+
+            SetupAndOrExecute(true);
+
+            var arbitaryId = 1;
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
+
+            Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
+            Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
+            Assert.Equal(fundTransaction.LinkedTransaction, cashTransaction.LinkedTransaction);
+            var linkedTransactionType = TransactionLink.FundToCash().LinkedTransactionType;
+            Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
+            Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
+        }
+
+        [Fact]
+        public void WhenISellTheSellTransactionAndCommisionTransactionAreLinked()
+        {
+            var arbitaryId = 1;
+            const int commissionId = 2;
+
+            SetupAndOrExecute(true);
+            
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            
+            var cashTransaction = _fakeRepository.GetCashTransaction(commissionId);
+
+            Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
+            Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
+            Assert.Equal(fundTransaction.LinkedTransaction, cashTransaction.LinkedTransaction);
+
+            var linkedTransactionType = TransactionLink.FundToCash().LinkedTransactionType;
+            Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
+            Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
+        }
     }
 }

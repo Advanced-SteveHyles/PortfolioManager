@@ -18,5 +18,7 @@ namespace Portfolio.BackEnd.Repository.Entities
         public string Source { get; set; }
         public decimal TransactionValue { get; set; }
         public bool IsTaxRefund { get; set; }
+        public Guid? LinkedTransaction { get; set; }
+        public string LinkedTransactionType { get; set; }
     }
 }

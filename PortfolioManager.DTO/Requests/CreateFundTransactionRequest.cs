@@ -19,5 +19,7 @@ namespace Portfolio.Common.DTO.Requests
 
         public decimal Charges { get; set; }
         public decimal TransactionValue { get; set; }
+        public Guid? LinkedTransaction { get; set; }
+        public string LinkedTransactionType { get; set; }
     }
 }

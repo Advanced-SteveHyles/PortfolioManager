@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\INullInterface.cs" />
     <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
+    <Compile Include="Linking\TransactionLink.cs" />
     <Compile Include="Processors\Processes\RecordFundBuyTransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
     <Compile Include="Processors\Handlers\AccountInvestmentMapProcessor.cs" />

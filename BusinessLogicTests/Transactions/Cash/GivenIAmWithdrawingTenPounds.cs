@@ -22,10 +22,8 @@ namespace BusinessLogicTests.Transactions.Cash
         public GivenIAmWithdrawingTenPounds()
         {
             _fakeRepository = new FakeRepository();
-            IAccountHandler accountHandler = new AccountHandler(_fakeRepository);
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
-
-
+            
             
             var withdrawalTransactionRequest = new WithdrawalTransactionRequest()
             {
@@ -35,7 +33,7 @@ namespace BusinessLogicTests.Transactions.Cash
                 TransactionDate = transactionDate,                
             };
 
-            _withdrawalTransaction = new  RecordWithdrawalTransaction(withdrawalTransactionRequest, accountHandler, _cashTransactionHandler);
+            _withdrawalTransaction = new  RecordWithdrawalTransaction(withdrawalTransactionRequest, _cashTransactionHandler);
         }
 
         [Fact]

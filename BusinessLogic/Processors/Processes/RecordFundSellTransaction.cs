@@ -1,5 +1,6 @@
 ﻿using System;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -30,18 +31,18 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _accountInvestmentMapProcessor = accountInvestmentMapProcessor;
             _fundTransactionHandler = fundTransactionHandler;
             _priceHistoryHandler = priceHistoryHandler;
-            _investmentHandler = investmentHandler;
+            _investmentHandler = investmentHandler;            
         }
 
         public void Execute()
         {
-            
+            var transactionLink = TransactionLink.FundToCash();
             var investmentMapDto = _accountInvestmentMapProcessor.GetAccountInvestmentMap(_fundSellRequest.InvestmentMapId);
             var investmentId = investmentMapDto.InvestmentId;
             var accountId = investmentMapDto.AccountId;
 
-            _cashTransactionHandler.StoreCashTransaction(accountId, _fundSellRequest);
-            _fundTransactionHandler.StoreFundTransaction(_fundSellRequest);
+            _cashTransactionHandler.StoreCashTransaction(accountId, _fundSellRequest, transactionLink);
+            _fundTransactionHandler.StoreFundTransaction(_fundSellRequest, transactionLink);
             var quantityToRemove = 0 -  _fundSellRequest.Quantity;
             _accountInvestmentMapProcessor.ChangeQuantity(_fundSellRequest.InvestmentMapId, quantityToRemove);
 

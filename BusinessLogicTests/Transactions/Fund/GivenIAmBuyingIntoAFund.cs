@@ -2,6 +2,7 @@
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.Funds;
@@ -22,7 +23,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private RecordFundBuyTransaction _buyTransaction;
         private int _accountId;
 
-        private IAccountHandler _accountHandler;        
+        private IAccountHandler _accountHandler;
         private ICashTransactionHandler _cashCashTransactionHandler;
         private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
         private IFundTransactionHandler _fundTransactionHandler;
@@ -54,12 +55,12 @@ namespace BusinessLogicTests.Transactions.Fund
                 Value = _valueOfTransaction,
                 Charges = _commission
             };
-            
+
             _accountHandler = new AccountHandler(_fakeRepository);
             _cashCashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
-            _priceHistoryHandler = new  PriceHistoryHandler(_fakeRepository);
+            _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
             _investmentHandler = new InvestmentHandler(_fakeRepository);
 
             _buyTransaction = new RecordFundBuyTransaction(request, _accountHandler,
@@ -83,7 +84,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var account = _fakeRepository.GetAccountByAccountId(_accountId);
-            Assert.Equal(-_valueOfTransaction -_commission, account.Cash);
+            Assert.Equal(-_valueOfTransaction - _commission, account.Cash);
         }
 
         [Fact]
@@ -123,7 +124,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             var accountFundMap = _fakeRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
             var startingNumberOfShares = 10;
-            Assert.Equal(_numberOfShares +startingNumberOfShares, accountFundMap.Quantity);
+            Assert.Equal(_numberOfShares + startingNumberOfShares, accountFundMap.Quantity);
         }
 
         [Fact]
@@ -133,7 +134,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
-            Assert.Equal(_priceOfOneShare, fundTransaction.BuyPrice);            
+            Assert.Equal(_priceOfOneShare, fundTransaction.BuyPrice);
             Assert.Equal(FundTransactionTypes.Buy, fundTransaction.TransactionType);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
             Assert.Equal(_settlementDate, fundTransaction.SettlementDate);
@@ -153,7 +154,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
             _buyTransaction.Execute();
 
-            var arbitaryId= 1;
+            var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
             var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
 
@@ -166,7 +167,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
             var startingNumberOfShares = 10;
             var accountFundMap = _fakeRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
-            Assert.Equal(_numberOfShares+ startingNumberOfShares, accountFundMap.Quantity);
+            Assert.Equal(_numberOfShares + startingNumberOfShares, accountFundMap.Quantity);
             Assert.Equal(0, accountFundMap.Valuation);
         }
 
@@ -192,12 +193,12 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var maps = _fakeRepository.GetAccountInvestmentMapsByInvestmentId(fakeInvestmentId)
-                .Where(map=>map.AccountId == _accountId);
+                .Where(map => map.AccountId == _accountId);
 
-            var evaluation = (maps.Single().Quantity)*_priceOfOneShare;
+            var evaluation = (maps.Single().Quantity) * _priceOfOneShare;
 
             var account = _fakeRepository.GetAccountByAccountId(_accountId);
-            Assert.Equal(evaluation, account.Valuation);            
+            Assert.Equal(evaluation, account.Valuation);
         }
 
         [Fact]
@@ -210,7 +211,7 @@ namespace BusinessLogicTests.Transactions.Fund
             var account = _fakeRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(0, account.Valuation);
         }
-        
+
         [Fact]
         public void WhenIBuyAndTheAccountIsAUnitTrustFundOnlyTheBuyIsRecorded()
         {
@@ -224,6 +225,45 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);
             Assert.Equal(null, prices.First().SellPrice);
         }
-        
+
+        [Fact]
+        public void WhenIBuyTheBuyTransactionAndTheCashTransactionAreLinked()
+        {
+
+            SetupAndOrExecute(true);
+
+            var arbitaryId = 1;
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
+
+            Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
+            Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
+            Assert.Equal(fundTransaction.LinkedTransaction, cashTransaction.LinkedTransaction);
+
+            var linkedTransactionType = TransactionLink.FundToCash().LinkedTransactionType;
+            Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
+            Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
+        }
+
+        [Fact]
+        public void WhenISellTheSellTransactionAndCommisionTransactionAreLinked()
+        {
+            var arbitaryId = 1;
+            const int commissionId = 2;
+
+            SetupAndOrExecute(true);
+
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+
+            var cashTransaction = _fakeRepository.GetCashTransaction(commissionId);
+
+            Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
+            Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
+            Assert.Equal(fundTransaction.LinkedTransaction, cashTransaction.LinkedTransaction);
+
+            var linkedTransactionType = TransactionLink.FundToCash().LinkedTransactionType;
+            Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
+            Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
+        }
     }
 }

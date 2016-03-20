@@ -127,7 +127,9 @@ namespace BusinessLogicTests.FakeRepositories
                 TransactionValue = request.TransactionValue,
                 Source = request.Source,
                 IsTaxRefund = request.IsTaxRefund,
-                TransactionType = request.TransactionType
+                TransactionType = request.TransactionType,
+                LinkedTransactionType = request.LinkedTransactionType,
+                LinkedTransaction = request.LinkedTransaction
             };
             _dummyCashTransactions.Add(
                 cashTransaction
@@ -221,7 +223,9 @@ namespace BusinessLogicTests.FakeRepositories
                 SellPrice = request.SellPrice,
                 BuyPrice = request.BuyPrice,
                 Charges = request.Charges,
-                TransactionValue = request.TransactionValue
+                TransactionValue = request.TransactionValue,
+                LinkedTransactionType = request.LinkedTransactionType,
+                LinkedTransaction = request.LinkedTransaction
             };
             
             _dummyFundTransactions.Add(dummyFundTransaction);

@@ -1,13 +1,15 @@
-﻿using Portfolio.Common.DTO.Requests.Transactions;
+﻿using System;
+using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Interfaces
 {
     public interface ICashTransactionHandler
     {
-        void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest);
-        void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest);
-        void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest);
-        void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest);
-        void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest);
+        void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest, TransactionLink transactionLink);
+        void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest, TransactionLink transactionLink);
+        void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest, TransactionLink transactionLink);
+        void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest, TransactionLink transactionLink);
+        void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest, TransactionLink transactionLink);
     }
 }

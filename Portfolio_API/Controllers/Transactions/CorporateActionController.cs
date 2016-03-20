@@ -49,7 +49,8 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                     new FundTransactionHandler(_fundTransactionRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
                         new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
-                        new InvestmentHandler(_investmentRepository)                        
+                        new InvestmentHandler(_investmentRepository)
+                        
                     );
 
                 var status = Command.ExecuteCommand

@@ -1,4 +1,5 @@
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
@@ -6,20 +7,17 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordWithdrawalTransaction : ICommandRunner
     {
         private readonly WithdrawalTransactionRequest _withdrawalTransactionRequest;
-        private readonly IAccountHandler _accountHandler;
         private readonly ICashTransactionHandler _transactionHandler;
 
-        public RecordWithdrawalTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest,
-            IAccountHandler accountHandler, ICashTransactionHandler transactionHandler)
+        public RecordWithdrawalTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest, ICashTransactionHandler transactionHandler)
         {
             this._withdrawalTransactionRequest = withdrawalTransactionRequest;
-            _accountHandler = accountHandler;
-            _transactionHandler = transactionHandler;
+            _transactionHandler = transactionHandler;            
         }
 
         public void Execute()
         {
-            _transactionHandler.StoreCashTransaction(_withdrawalTransactionRequest);
+            _transactionHandler.StoreCashTransaction(_withdrawalTransactionRequest, TransactionLink.FundToCash());
             
             ExecuteResult = true;
         }

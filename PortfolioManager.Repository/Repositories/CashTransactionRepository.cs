@@ -20,7 +20,9 @@ namespace Portfolio.BackEnd.Repository.Repositories
                 Source = request.Source,
                 TransactionValue = request.TransactionValue,
                 IsTaxRefund = request.IsTaxRefund,
-                TransactionType = request.TransactionType
+                TransactionType = request.TransactionType,
+                LinkedTransaction = request.LinkedTransaction,
+                LinkedTransactionType = request.LinkedTransactionType
             };
 
            _context.CashTransactions.Add(entityTransaction);

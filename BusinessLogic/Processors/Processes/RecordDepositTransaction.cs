@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
@@ -7,16 +8,16 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     {
         private readonly DepositTransactionRequest _depositTransactionRequest;
         private readonly ICashTransactionHandler _transactionHandler;
-
-        public RecordDepositTransaction(DepositTransactionRequest depositTransactionRequest, ICashTransactionHandler transactionHandler)
+        
+        public RecordDepositTransaction(DepositTransactionRequest depositTransactionRequest, ICashTransactionHandler transactionHandler, TransactionLink transactionLink)
         {
             this._depositTransactionRequest = depositTransactionRequest;
-            _transactionHandler = transactionHandler;
+            _transactionHandler = transactionHandler;            
         }
 
         public void Execute()
         {            
-            _transactionHandler.StoreCashTransaction(_depositTransactionRequest);                                 
+            _transactionHandler.StoreCashTransaction(_depositTransactionRequest, null);                                 
             ExecuteResult = true;
         }
 
