@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PortfolioManager.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -22,37 +21,53 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         
-        <Expander Header="Account Details">
-            <StackPanel>
-        <TextBlock Grid.Row="1" Grid.Column="0"> Account Id</TextBlock>
+        <Expander Header="Account Details" ExpandDirection="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" Grid.Column="0"> Account Id</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}"></TextBox>
 
         <TextBlock Grid.Row="2" Grid.Column="0">Account Name</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name, Mode=OneWay}"></TextBox>
+       
+        <TextBlock Grid.Row="1" Grid.Column="4">Cash Value</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding Cash, Mode=OneWay}"></TextBox>
 
+        <TextBlock Grid.Row="2" Grid.Column="4">Valuation</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding Valuation, Mode=OneWay}"></TextBox>
 
-        <TextBlock Grid.Row="3" Grid.Column="0">Portfolio Id</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PortfolioId, Mode=OneWay}"></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="0">Type</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Type, Mode=OneWay}"></TextBox>
 
-        <TextBlock Grid.Row="4" Grid.Column="0">Cash Value</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Cash, Mode=OneWay}"></TextBox>
-
-        <TextBlock Grid.Row="5" Grid.Column="0">Valuation</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Valuation, Mode=OneWay}"></TextBox>
-
-        <TextBlock Grid.Row="6" Grid.Column="0">Type</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Type, Mode=OneWay}"></TextBox>
-
-        <TextBlock Grid.Row="7" Grid.Column="0">AccountBalance</TextBlock>
-        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding AccountBalance, Mode=OneWay}"></TextBox>
-            </StackPanel>
-        </Expander>
-    
-        <Expander Grid.Row="8" Header="Actions">
-            <StackPanel Orientation="Horizontal">
+        <TextBlock Grid.Row="3" Grid.Column="4">AccountBalance</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding AccountBalance, Mode=OneWay}"></TextBox>
+                    
+        <Expander Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Header="Actions" ExpandDirection="Right">
+            <StackPanel Orientation="Vertical">
                 <Button>Deposit</Button>
                 <Button>Withdraw</Button>
             </StackPanel>
         </Expander>
+            </Grid>
+        </Expander>
+
     </Grid>
 </UserControl>

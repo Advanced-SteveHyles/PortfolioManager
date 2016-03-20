@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <StackPanel>
         <GroupBox Header="Investment Details"></GroupBox>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -17,37 +18,23 @@
                             <TextBlock Text="{Binding InvestmentName}"></TextBlock>
                             <TextBlock Text="{Binding Quantity}"></TextBlock>
                             <TextBlock Text="{Binding Valuation}"></TextBlock>
-                            
-                            <Expander Header="Actions" ExpandDirection="Right">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Row="1" Grid.Column="0" Command="{Binding ViewCommand}">View</Button>
-                                    <Button Grid.Row="1" Grid.Column="2" Command="{Binding BuyCommand}">Buy</Button>
-                                    <Button Grid.Row="1" Grid.Column="3" Command="{Binding SellCommand}">Sell</Button>
-                                    <Button Grid.Row="1" Grid.Column="4" Command="{Binding CorporateActionCommand}">Corporate Action</Button>
-                                
-                                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
-                                </Grid>
+                            <Expander Header="Actions" ExpandDirection="Down">
+                                <StackPanel>
+                                    <Button Command="{Binding ViewCommand}">View</Button>
+                                    <Button Command="{Binding BuyCommand}">Buy</Button>
+                                    <Button Command="{Binding SellCommand}">Sell</Button>
+                                    <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+                                    <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                                </StackPanel>
                             </Expander>
 
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
         </ScrollViewer>
+        
         <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
     </StackPanel>
 </UserControl>
