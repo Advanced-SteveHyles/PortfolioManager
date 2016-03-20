@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.Other
 {
     public class RelayCommand : ICommand
     {

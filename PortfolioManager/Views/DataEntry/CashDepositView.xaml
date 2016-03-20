@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="PortfolioManager.Views.DataEntry.CashDepositView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PortfolioManager.Views.DataEntry"
+        mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock>Transaction Date { get; set; }</TextBlock>
+        <Calendar SelectedDate="{Binding TransactionDate}"></Calendar>
+        <TextBlock>Value{ get; set; }</TextBlock>
+        <TextBox Text="{Binding TransactionValue}"></TextBox>
+       <TextBlock>Source</TextBlock>
+        <TextBox Text="{Binding TransactionSource}"></TextBox>
+        <TextBlock>Tax Refund?{ get; set; }</TextBlock>
+        <CheckBox IsChecked="{Binding IsTaxRefund}"></CheckBox>
+        <local:SaveCancel></local:SaveCancel>
+    </StackPanel>
+</UserControl>

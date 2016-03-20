@@ -34,30 +34,30 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
         public void Buy(InvestmentBuyRequest purchaseRequest)
         {
-                if (purchaseRequest == null)
-                {
-                    throw new InvalidOperationException();
-                }
+            if (purchaseRequest == null)
+            {
+                throw new InvalidOperationException();
+            }
 
-                var createFundBuyTransaction = new RecordFundBuyTransaction
-                    (purchaseRequest,
-                        new AccountHandler(_accountRepository),
-                        new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
-                        new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
-                        new FundTransactionHandler(_fundTransactionRepository),
-                        new PriceHistoryHandler(_priceHistoryRepository),
-                        new InvestmentHandler(_investmentRepository)
-                    );
+            var createFundBuyTransaction = new RecordFundBuyTransaction
+                (purchaseRequest,
+                    new AccountHandler(_accountRepository),
+                    new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
+                    new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
+                    new FundTransactionHandler(_fundTransactionRepository),
+                    new PriceHistoryHandler(_priceHistoryRepository),
+                    new InvestmentHandler(_investmentRepository)
+                );
 
-                var status = CommandExecutor.ExecuteCommand
-                    (
-                        createFundBuyTransaction
-                    );
+            var status = CommandExecutor.ExecuteCommand
+                (
+                    createFundBuyTransaction
+                );
 
 
             if (status == false)
             {
-                throw new InvalidOperationException("Transaction Failed" );
+                throw new InvalidOperationException("Transaction Failed");
             }
         }
     }

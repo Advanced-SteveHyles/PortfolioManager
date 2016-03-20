@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
+using PortfolioManager.Other;
+using PortfolioManager.ViewModels;
 using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views;
 using PortfolioManager.Views.DataEntry;
@@ -11,6 +13,7 @@ namespace PortfolioManager.UIBuilders
     {
         public int AccountInvestmentMapId => this._accountInvestmentMapDto.AccountInvestmentMapId;
         public string InvestmentName => this._accountInvestmentMapDto.InvestmentName;
+        private const string InvestmentTransactionName = "InvestmentTransaction";
 
         public decimal Quantity => this._accountInvestmentMapDto.Quantity ;
         public decimal Valuation => this._accountInvestmentMapDto.Valuation;
@@ -34,8 +37,8 @@ namespace PortfolioManager.UIBuilders
             _investmentTransaction = new InvestmentBuyView()
             {
                 DataContext = new InvestmentBuyViewModel(AccountInvestmentMapId, CompleteTransaction)
-            };
-            OnPropertyChanged("InvestmentTransaction");
+            };            
+            OnPropertyChanged(InvestmentTransactionName);
         }
 
 
@@ -45,14 +48,14 @@ namespace PortfolioManager.UIBuilders
             {
                 DataContext = new InvestmentSellViewModel(CompleteTransaction)
             };
-            OnPropertyChanged("InvestmentTransaction");
+            OnPropertyChanged(InvestmentTransactionName);
         }
 
      
         private void CompleteTransaction()
         {
             _investmentTransaction = null;
-            OnPropertyChanged("InvestmentTransaction");
+            OnPropertyChanged(InvestmentTransactionName);
         }
 
     }

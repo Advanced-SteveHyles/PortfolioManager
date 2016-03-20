@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using PortfolioManager.Other;
 using PortfolioManager.ViewModels.Menus;
 
 namespace PortfolioManager.Interfaces

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using PortfolioManager.Other;
 using PortfolioManager.ViewModels;
 using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views;

@@ -5,10 +5,13 @@ using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
 
-namespace PortfolioManager.UIBuilders
+namespace PortfolioManager.ViewModels
 {
     internal class InvestmentBuyViewModel : AbstractSaveCancelCommands, INotifyPropertyChanged
     {
+        private const string QuantityName = "Quantity";
+        private const string PurchasePriceName = "PurchasePrice";
+        private const string TransactionValueName = "TransactionValue";
         private readonly Action _completeTransaction;
         private readonly int _accountInvestmentMapId;
         private decimal _quantity;
@@ -21,45 +24,28 @@ namespace PortfolioManager.UIBuilders
             set
             {
                 _purchasePrice = value;
-                TrangulatePrices("PurchasePrice");
+                TrangulatePrices(PurchasePriceName);
             }
         }
 
         public decimal Quantity
         {
             get { return _quantity; }
-            set { _quantity = value; TrangulatePrices("Quantity"); }
+            set { _quantity = value; TrangulatePrices(QuantityName); }
         }
 
         public decimal TransactionValue
         {
             get { return _transactionValue; }
-            set { _transactionValue = value; TrangulatePrices("TransactionValue"); }
-        }
-
-        private void TrangulatePrices(string source)
-        {
-            switch (source)
-            {
-                case "PurchasePrice":
-                    _transactionValue = _quantity * _purchasePrice;
-                    break;
-                case "TransactionValue":
-                    _purchasePrice = _transactionValue / _quantity;
-                    break;
-                case "Quantity":
-                    _transactionValue = _quantity * _purchasePrice;
-                    break;
-            }
-
-            OnPropertyChanged("PurchasePrice");
-            OnPropertyChanged("Quantity");
-            OnPropertyChanged("TransactionValue");
+            set { _transactionValue = value; TrangulatePrices(TransactionValueName); }
         }
 
         public decimal Charges { get; set; }
+
         public DateTime PurchaseDate { get; set; } = DateTime.Today;
+
         public DateTime SettlementDate { get; set; } = DateTime.Today.AddDays(7);
+
         public bool RecordPrice { get; set; } = true;
 
         public InvestmentBuyViewModel(int accountInvestmentMapId, Action completeTransaction)
@@ -67,6 +53,26 @@ namespace PortfolioManager.UIBuilders
             _accountInvestmentMapId = accountInvestmentMapId;
             SetCommands(Save, Cancel);
             this._completeTransaction = completeTransaction;
+        }
+
+        private void TrangulatePrices(string source)
+        {            
+            switch (source)
+            {
+                case PurchasePriceName:
+                    _transactionValue = _quantity * _purchasePrice;
+                    break;
+                case TransactionValueName:
+                    _purchasePrice = _transactionValue / _quantity;
+                    break;
+                case QuantityName:
+                    _transactionValue = _quantity * _purchasePrice;
+                    break;
+            }
+
+            OnPropertyChanged(PurchasePriceName);
+            OnPropertyChanged(QuantityName);
+            OnPropertyChanged(TransactionValueName);
         }
 
         private void Cancel()
@@ -101,5 +107,4 @@ namespace PortfolioManager.UIBuilders
         }
 
     }
-
 }

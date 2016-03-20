@@ -8,6 +8,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using PortfolioManager.Model;
+using PortfolioManager.Other;
 
 namespace PortfolioManager.ViewModels.Menus
 { 

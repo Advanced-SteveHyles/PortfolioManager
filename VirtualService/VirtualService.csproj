@@ -69,6 +69,7 @@
     <Compile Include="VirtualControllers\CommandExecutor.cs" />
     <Compile Include="VirtualControllers\VirtualAccountInvestmentMapController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountSummaryController.cs" />
+    <Compile Include="VirtualControllers\VirtualCashTransactions.cs" />
     <Compile Include="VirtualControllers\VirtualInvestmentsController.cs" />
     <Compile Include="VirtualControllers\VirtualAccountController.cs" />
     <Compile Include="VirtualControllers\VirtualInvestmentTransactions.cs" />

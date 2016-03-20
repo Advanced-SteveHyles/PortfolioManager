@@ -1,13 +1,19 @@
 ﻿using System.Collections.ObjectModel;
-using System.Data;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.DTOs.Transactions;
 using PortfolioManager.Model;
+using PortfolioManager.Other;
+using PortfolioManager.ViewModels;
+using PortfolioManager.ViewModels.Menus;
+using PortfolioManager.Views.DataEntry;
 
 namespace PortfolioManager.UIBuilders
 {
-    public class AccountTabPanelViewModel
+    public class AccountTabPanelViewModel : ViewModel
     {
+        private const string CashTransactionName = "CashTransaction";
         private readonly AccountDto _account;
         private AccountInvestmentDetailsViewModel _accountInvestmentDetailsVm;
 
@@ -17,14 +23,15 @@ namespace PortfolioManager.UIBuilders
         public decimal Cash => _account.Cash;
         public decimal Valuation => _account.Valuation;
         public string Type => _account.Type;
-        public decimal  AccountBalance => _account.AccountBalance;
-         
-        
+        public decimal AccountBalance => _account.AccountBalance;
+
+
         public AccountTabPanelViewModel(int accountId)
         {
             _account = AccountModel.GetAccount(accountId);
         }
 
+        public ICommand DepositCommand => new RelayCommand(Deposit);
 
         public AccountInvestmentDetailsViewModel AccountInvestmentDetailsVm
         {
@@ -35,7 +42,7 @@ namespace PortfolioManager.UIBuilders
                 return _accountInvestmentDetailsVm;
             }
         }
-        
+
         public ObservableCollection<CashTransactionDto> AccountTransactions
         {
             get
@@ -45,5 +52,22 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
+        private UserControl _cashTransaction;
+        public UserControl CashTransaction => this._cashTransaction;
+
+        private void Deposit()
+        {
+            _cashTransaction = new CashDepositView()
+            {
+                DataContext = new CashDepositViewModel(_account.AccountId, CompleteTransaction)
+            };
+            OnPropertyChanged(CashTransactionName);
+        }
+
+        private void CompleteTransaction()
+        {
+            _cashTransaction = null;
+            OnPropertyChanged(CashTransactionName);
+        }
     }
 }
