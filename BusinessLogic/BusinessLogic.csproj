@@ -60,6 +60,7 @@
     <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Linking\TransactionLink.cs" />
+    <Compile Include="Processors\Processes\RecordCashTransferTransaction.cs" />
     <Compile Include="Processors\Processes\RecordFundBuyTransaction.cs" />
     <Compile Include="Processors\Processes\RecordLoyaltyBonusTransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
@@ -77,7 +78,7 @@
     <Compile Include="Processors\Handlers\CashTransactionHandler.cs" />
     <Compile Include="Processors\Processes\RevalueSinglePriceCommand.cs" />
     <Compile Include="Validators\CorporateActionRequestValidator.cs" />
-    <Compile Include="Validators\InvestmentBuyRequestValidator.cs" />
+    <Compile Include="Validators\RequestValidator.cs" />
     <Compile Include="Validators\InvestmentSellRequestValidator.cs" />
   </ItemGroup>
   <ItemGroup>

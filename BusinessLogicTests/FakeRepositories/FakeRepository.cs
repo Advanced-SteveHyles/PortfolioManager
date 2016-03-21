@@ -17,7 +17,7 @@ namespace BusinessLogicTests.FakeRepositories
         , IFundTransactionRepository
         , IPriceHistoryRepository
     {
-        private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation};        
+        private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation, Name = "Investment 1"};        
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
 

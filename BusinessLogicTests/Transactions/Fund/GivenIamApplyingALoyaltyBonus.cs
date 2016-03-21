@@ -26,7 +26,6 @@ namespace BusinessLogicTests.Transactions.Fund
         readonly DateTime _transactionDate = DateTime.Now;
         readonly int _existingInvestmentMapId = 1;
 
-        private const int FundTransactionId = 1;
         private const int CashTransactionId = 1;
 
         public GivenIamApplyingALoyaltyBonus()
@@ -94,7 +93,7 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(_loyaltyBonusAmount, transaction.TransactionValue);            
             Assert.Equal(source, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.CorporateAction, transaction.TransactionType);
+            Assert.Equal(CashTransactionTypes.LoyaltyBonus, transaction.TransactionType);
 
             Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
@@ -108,6 +107,28 @@ namespace BusinessLogicTests.Transactions.Fund
             var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance + _loyaltyBonusAmount, accountBeforeAfter);
         }
-        
+
+
+
+        [Fact]
+        public void WhenISellTheSellTransactionAndCommisionTransactionAreLinked()
+        {
+         Assert.False(true);
+            var arbitaryId = 1;
+            const int commissionId = 2;
+
+            SetupAndOrExecute(true);
+
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var cashTransaction = _fakeRepository.GetCashTransaction(commissionId);
+
+            Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
+            Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
+            Assert.Equal(fundTransaction.LinkedTransaction, cashTransaction.LinkedTransaction);
+
+            var linkedTransactionType = TransactionLink.FundToCash().LinkedTransactionType;
+            Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
+            Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
+        }
     }
 }

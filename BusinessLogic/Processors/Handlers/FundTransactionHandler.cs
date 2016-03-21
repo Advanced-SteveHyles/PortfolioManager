@@ -63,12 +63,13 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             const int quantity = 0;
             const decimal charges = 0;
             const decimal transactionValue = 0;
+            const string source = "";
 
             StoreFundTransaction(
                 request.InvestmentMapId,
                 request.TransactionDate,
                 request.TransactionDate,
-                request.Source,
+                source,
                 transactionValue,
                 quantity,
                 sellPrice,

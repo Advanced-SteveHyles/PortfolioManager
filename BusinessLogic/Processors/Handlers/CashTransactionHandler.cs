@@ -114,14 +114,14 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                          increaseAccountBalance, transactionLink);
         }
 
-        public void StoreCashTransaction(int accountId, InvestmentLoyaltyBonusRequest _request, TransactionLink linkedTransaction)
+        public void StoreCashTransaction(int accountId, InvestmentLoyaltyBonusRequest _request, TransactionLink linkedTransaction, string source)
         {
             const bool increaseAccountBalance = true;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           accountId,
                           _request.TransactionDate,
-                          _request.Source,
+                          source,
                           _request.Amount,
                           isTaxRefund,
                           CashTransactionTypes.LoyaltyBonus,

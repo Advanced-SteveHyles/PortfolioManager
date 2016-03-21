@@ -75,6 +75,7 @@
     <Compile Include="Transactions\Fund\GivenIAmSellingAFund.cs" />
     <Compile Include="Transactions\Fund\GivenIamApplyingALoyaltyBonus.cs" />
     <Compile Include="Transactions\Fund\Evaluations\PriceHistoryTests.cs" />
+    <Compile Include="Transactions\Fund\GivenIAmTransferingCashFromOneAccountToAnother.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

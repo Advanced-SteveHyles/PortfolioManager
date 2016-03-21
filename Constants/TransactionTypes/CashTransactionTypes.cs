@@ -9,6 +9,7 @@
         public const string FundSale = "Fund Sale";
         public const string CorporateAction = "Corporate Action";
         public const string Commission = "Commission";
-        public const string LoyaltyBonus = "LoyaltyBonus";
+        public const string LoyaltyBonus = "Loyalty Bonus";
+        public const string CashTransfer = "Cash Transfer";
     }
 }

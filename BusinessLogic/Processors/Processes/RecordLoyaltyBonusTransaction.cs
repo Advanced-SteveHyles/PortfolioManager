@@ -29,7 +29,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             var linkedTransaction = TransactionLink.FundToCash();
             var investment = _investmentHandler.GetInvestment(investmentMapDto.InvestmentId);
 
-            _cashTransactionHandler.StoreCashTransaction(accountId, _request, linkedTransaction);
+            _cashTransactionHandler.StoreCashTransaction(accountId, _request, linkedTransaction, investment.Name);
             _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);
 
             ExecuteResult = true;
