@@ -56,6 +56,28 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 transactionLink);
         }
 
+        public void StoreFundTransaction(InvestmentLoyaltyBonusRequest request, TransactionLink linkedTransaction)
+        {
+            decimal? buyPrice = null;
+            decimal? sellPrice = null;
+            const int quantity = 0;
+            const decimal charges = 0;
+            const decimal transactionValue = 0;
+
+            StoreFundTransaction(
+                request.InvestmentMapId,
+                request.TransactionDate,
+                request.TransactionDate,
+                request.Source,
+                transactionValue,
+                quantity,
+                sellPrice,
+                buyPrice,
+                charges,
+                FundTransactionTypes.LoyaltyBonus,
+                linkedTransaction);
+        }
+
         public void StoreFundTransaction(InvestmentCorporateActionRequest request, TransactionLink transactionLink)
         {
             int? sellPrice = null;

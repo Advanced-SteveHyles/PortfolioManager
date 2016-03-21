@@ -70,9 +70,10 @@
     <Compile Include="Transactions\Cash\GivenIAmDepositingTenPounds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transactions\Fund\Evaluations\FullPortfolioRevaluation.cs" />
+    <Compile Include="Transactions\Fund\GivenIamApplyingACorporateAction.cs" />
     <Compile Include="Transactions\Fund\GivenIAmBuyingIntoAFund.cs" />
     <Compile Include="Transactions\Fund\GivenIAmSellingAFund.cs" />
-    <Compile Include="Transactions\Fund\GivenIamApplyingACorporateAction.cs" />
+    <Compile Include="Transactions\Fund\GivenIamApplyingALoyaltyBonus.cs" />
     <Compile Include="Transactions\Fund\Evaluations\PriceHistoryTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,4 +11,13 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
                    request.TransactionDate != DateTime.MinValue;
         }
     }
+
+    public static class LoyaltyBonusRequestValidator
+    {
+        public static bool Validate(this InvestmentLoyaltyBonusRequest request)
+        {
+            return request.InvestmentMapId != 0 &&
+                   request.TransactionDate != DateTime.MinValue;
+        }
+    }
 }

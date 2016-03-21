@@ -6,5 +6,6 @@ namespace Portfolio.Common.Constants.TransactionTypes
         public const string Sell = "Sell";
         public const string CorporateAction = "Corporate Action";
         public const string ReturnOfCapital = "Return Of Capital";
+        public const string LoyaltyBonus = "Loyalty Bonus";
     }
 }

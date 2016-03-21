@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Linking\TransactionLink.cs" />
     <Compile Include="Processors\Processes\RecordFundBuyTransaction.cs" />
+    <Compile Include="Processors\Processes\RecordLoyaltyBonusTransaction.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesCommand.cs" />
     <Compile Include="Processors\Handlers\AccountInvestmentMapProcessor.cs" />
     <Compile Include="Processors\Handlers\FundTransactionHandler.cs" />
