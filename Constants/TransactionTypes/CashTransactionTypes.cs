@@ -10,6 +10,7 @@
         public const string CorporateAction = "Corporate Action";
         public const string Commission = "Commission";
         public const string LoyaltyBonus = "Loyalty Bonus";
-        public const string CashTransfer = "Cash Transfer";
+        public const string CashTransferOut = "Cash Transfer Out";
+        public const string CashTransferIn = "Cash Transfer In";
     }
 }

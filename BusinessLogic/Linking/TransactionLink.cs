@@ -24,6 +24,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Linking
             return new TransactionLink(LinkTypes.FundToCash);
         }
 
+        public static TransactionLink CashToCash()
+        {
+            return new TransactionLink(LinkTypes.CashToCash);
+        }
+
         private TransactionLink(LinkTypes linkType)
         {
             LinkedTransaction = Guid.NewGuid();

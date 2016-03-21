@@ -9,12 +9,12 @@ namespace BusinessLogicTests.FakeRepositories
         {
             return new List<Account>()
             {
-                new Account(){AccountId = 1},
-                new Account(){AccountId = 2},
-                new Account(){AccountId = 3},
-                new Account(){AccountId = 4},
-                new Account(){AccountId = 5},
-                new Account(){AccountId = 6}
+                new Account(){AccountId = 1, Name = "Acc1"},
+                new Account(){AccountId = 2, Name = "Acc2"},
+                new Account(){AccountId = 3, Name = "Acc3"},
+                new Account(){AccountId = 4, Name = "Acc4"},
+                new Account(){AccountId = 5, Name = "Acc5"},
+                new Account(){AccountId = 6, Name = "Acc6"}
             };
         }
 

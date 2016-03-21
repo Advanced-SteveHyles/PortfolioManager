@@ -113,14 +113,12 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenISellTheSellTransactionAndCommisionTransactionAreLinked()
         {
-         Assert.False(true);
             var arbitaryId = 1;
-            const int commissionId = 2;
-
+            
             SetupAndOrExecute(true);
 
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
-            var cashTransaction = _fakeRepository.GetCashTransaction(commissionId);
+            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
