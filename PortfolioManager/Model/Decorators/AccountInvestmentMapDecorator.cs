@@ -30,6 +30,8 @@ namespace PortfolioManager.UIBuilders
         
         public ICommand BuyCommand => new RelayCommand(Buy);
         public ICommand SellCommand => new RelayCommand(Sell);
+        public ICommand LoyaltyCommand => new RelayCommand(Loyalty);
+        
 
 
         private void Buy()
@@ -40,6 +42,16 @@ namespace PortfolioManager.UIBuilders
             };            
             OnPropertyChanged(InvestmentTransactionName);
         }
+
+        private void Loyalty()
+        {
+            _investmentTransaction = new InvestmentLoyaltyBonusView()
+            {
+                DataContext = new InvestmentLoyaltyBonusViewModel(AccountInvestmentMapId, CompleteTransaction)
+            };
+            OnPropertyChanged(InvestmentTransactionName);
+        }
+
 
 
         private void Sell()

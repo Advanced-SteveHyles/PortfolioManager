@@ -5,7 +5,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordLoyaltyBonusTransaction
+    public class RecordLoyaltyBonusTransaction : ICommandRunner
     {
         private readonly InvestmentLoyaltyBonusRequest _request;
         private readonly IFundTransactionHandler _fundTransactionHandler;

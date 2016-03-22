@@ -60,5 +60,34 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException("Transaction Failed");
             }
         }
+
+
+        public void LoyaltyBonus(InvestmentLoyaltyBonusRequest loyaltyBonusRequest)
+        {
+            if (loyaltyBonusRequest == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var loyaltyBonusTransaction = new RecordLoyaltyBonusTransaction
+                (loyaltyBonusRequest,
+                new FundTransactionHandler(_fundTransactionRepository),
+                    new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
+                    new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
+                    new InvestmentHandler(_investmentRepository)
+            );
+
+
+            var status = CommandExecutor.ExecuteCommand
+                (
+                    loyaltyBonusTransaction
+                );
+
+
+            if (status == false)
+            {
+                throw new InvalidOperationException("Transaction Failed");
+            }
+        }
     }
 }

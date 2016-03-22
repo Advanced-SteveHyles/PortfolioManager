@@ -10,7 +10,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace PortfolioManager.Model
 {
- public   class AccountInvestmentMapModel
+    public class AccountInvestmentMapModel
     {
         public static List<AccountInvestmentMapDto> GetInvestments(int accountId)
         {
@@ -19,10 +19,18 @@ namespace PortfolioManager.Model
             return investmentMaps?.ToList() ?? new List<AccountInvestmentMapDto>();
         }
 
-     public static void Buy(InvestmentBuyRequest request)
-     {
-            var service = new VirtualInvestmentTransactions();         
-            service.Buy(request);            
+        public static void Buy(InvestmentBuyRequest request)
+        {
+            var service = new VirtualInvestmentTransactions();
+            service.Buy(request);
+        }
+
+        public static void ApplyLoyaltyBonus(InvestmentLoyaltyBonusRequest loyaltyBonusRequest)
+        {
+            var service = new VirtualInvestmentTransactions();
+            service.LoyaltyBonus(loyaltyBonusRequest);
         }
     }
+
+
 }

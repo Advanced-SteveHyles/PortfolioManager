@@ -109,6 +109,7 @@
     <Compile Include="ViewModels\CashWithdrawalViewModel.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
+    <Compile Include="ViewModels\InvestmentLoyaltyBonusViewModel.cs" />
     <Compile Include="ViewModels\InvestmentSellViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
     <Compile Include="ViewModels\InvestmentTabPanelViewModel.cs" />
@@ -129,6 +130,9 @@
     </Compile>
     <Compile Include="Views\DataEntry\CashDepositView.xaml.cs">
       <DependentUpon>CashDepositView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\InvestmentLoyaltyBonusView.xaml.cs">
+      <DependentUpon>InvestmentLoyaltyBonusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentBuyView.xaml.cs">
       <DependentUpon>InvestmentBuyView.xaml</DependentUpon>
@@ -202,6 +206,10 @@
     <Page Include="Views\DataEntry\CashDepositView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\InvestmentLoyaltyBonusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataEntry\InvestmentBuyView.xaml">
       <SubType>Designer</SubType>
