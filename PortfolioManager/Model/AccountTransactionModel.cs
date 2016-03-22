@@ -15,5 +15,13 @@ namespace PortfolioManager.Model
             var service = new VirtualCashTransactions();
             service.InsertDeposit(request);
         }
+
+        public static void InsertWithdrawal(WithdrawalTransactionRequest request)
+        {
+            var service = new VirtualCashTransactions();
+            service.InsertWithdrawal(request);
+        }
+
+
     }
 }

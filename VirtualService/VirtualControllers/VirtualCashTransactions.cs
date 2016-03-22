@@ -35,5 +35,23 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException("Transaction Failed");
             }
         }
+
+        public void InsertWithdrawal(WithdrawalTransactionRequest request)
+        {
+            var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
+
+            var createWithdrawalTransaction = new RecordWithdrawalTransaction(request, transactionHandler);
+
+            var status = CommandExecutor.ExecuteCommand
+                (
+                    createWithdrawalTransaction
+                );
+
+            if (status == false)
+            {
+                throw new InvalidOperationException("Transaction Failed");
+            }
+        }
+        
     }
 }

@@ -63,7 +63,7 @@
         <Expander Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Header="Actions" ExpandDirection="Right">
             <StackPanel Orientation="Vertical">
                 <Button Command="{Binding DepositCommand}">Deposit</Button>
-                <Button>Withdraw</Button>
+                        <Button Command="{Binding WithdrawalCommand}">Withdraw</Button>
                         <ContentControl Content="{Binding CashTransaction}"></ContentControl>
             </StackPanel>
         </Expander>

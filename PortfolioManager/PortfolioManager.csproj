@@ -106,6 +106,7 @@
     <Compile Include="Interfaces\ViewModel.cs" />
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
     <Compile Include="ViewModels\CashDepositViewModel.cs" />
+    <Compile Include="ViewModels\CashWithdrawalViewModel.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentSellViewModel.cs" />
@@ -122,6 +123,9 @@
     </Compile>
     <Compile Include="Views\AccountTransactionSummary.xaml.cs">
       <DependentUpon>AccountTransactionSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\CashWithdrawalView.xaml.cs">
+      <DependentUpon>CashWithdrawalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\CashDepositView.xaml.cs">
       <DependentUpon>CashDepositView.xaml</DependentUpon>
@@ -190,6 +194,10 @@
     <Page Include="Views\AccountTransactionSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\CashWithdrawalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataEntry\CashDepositView.xaml">
       <SubType>Designer</SubType>
@@ -292,6 +300,10 @@
     <ProjectReference Include="..\PortfolioManager.DTO\PortfolioManager.DTO.csproj">
       <Project>{51c5255f-8785-406d-8f4e-1dc6824e630b}</Project>
       <Name>PortfolioManager.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
+      <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
+      <Name>PortfolioManager.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\VirtualService\VirtualService.csproj">
       <Project>{a147027c-bc88-490a-833d-0f5966d51959}</Project>

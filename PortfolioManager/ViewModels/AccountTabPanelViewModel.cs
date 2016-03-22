@@ -1,38 +1,26 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.DTOs.Transactions;
 using PortfolioManager.Model;
-using PortfolioManager.Other;
-using PortfolioManager.ViewModels;
 using PortfolioManager.ViewModels.Menus;
-using PortfolioManager.Views.DataEntry;
 
 namespace PortfolioManager.UIBuilders
 {
     public class AccountTabPanelViewModel : ViewModel
     {
-        private const string CashTransactionName = "CashTransaction";
+    
         private readonly AccountDto _account;
         private AccountInvestmentDetailsViewModel _accountInvestmentDetailsVm;
+        private AccountDetailsViewModel _accountDetailsVm;
 
-        public int AccountId => _account.AccountId;
-        public string Name => _account.Name;
-        public int PortfolioId => _account.PortfolioId;
-        public decimal Cash => _account.Cash;
-        public decimal Valuation => _account.Valuation;
-        public string Type => _account.Type;
-        public decimal AccountBalance => _account.AccountBalance;
-
+        
 
         public AccountTabPanelViewModel(int accountId)
         {
             _account = AccountModel.GetAccount(accountId);
         }
 
-        public ICommand DepositCommand => new RelayCommand(Deposit);
-
+        
         public AccountInvestmentDetailsViewModel AccountInvestmentDetailsVm
         {
             get
@@ -43,6 +31,16 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
+        public AccountDetailsViewModel AccountDetailsVm
+            {
+            get
+            {
+                if (_accountDetailsVm == null)
+                    _accountDetailsVm = new AccountDetailsViewModel(_account);
+                return _accountDetailsVm;
+            }
+}
+
         public ObservableCollection<CashTransactionDto> AccountTransactions
         {
             get
@@ -52,22 +50,5 @@ namespace PortfolioManager.UIBuilders
             }
         }
 
-        private UserControl _cashTransaction;
-        public UserControl CashTransaction => this._cashTransaction;
-
-        private void Deposit()
-        {
-            _cashTransaction = new CashDepositView()
-            {
-                DataContext = new CashDepositViewModel(_account.AccountId, CompleteTransaction)
-            };
-            OnPropertyChanged(CashTransactionName);
-        }
-
-        private void CompleteTransaction()
-        {
-            _cashTransaction = null;
-            OnPropertyChanged(CashTransactionName);
-        }
     }
 }
