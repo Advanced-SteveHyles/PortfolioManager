@@ -9,10 +9,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row ="1"  Header="Investment Details"></GroupBox>
 
@@ -20,14 +20,26 @@
         <ListView ItemsSource="{Binding InvestmentMapWrappers}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                        <TextBlock Text="{Binding InvestmentName}"></TextBlock>
-                        <TextBlock Text="{Binding Quantity}"></TextBlock>
-                        <TextBlock Text="{Binding Valuation}"></TextBlock>
+                    <Grid ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding InvestmentName}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Quantity}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Valuation}"></TextBlock>
 
-                        <Expander Header="Actions" ExpandDirection="Down">
-                            <StackPanel>
+                        <Expander Grid.Row="1" Grid.Column="5" ExpandDirection="Right" >
+                            <StackPanel Orientation="Horizontal">
                                 <Button Command="{Binding ViewCommand}">View</Button>
                                 <Button Command="{Binding BuyCommand}">Buy</Button>
                                 <Button Command="{Binding SellCommand}">Sell</Button>
@@ -37,7 +49,7 @@
                             </StackPanel>
                         </Expander>
 
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
