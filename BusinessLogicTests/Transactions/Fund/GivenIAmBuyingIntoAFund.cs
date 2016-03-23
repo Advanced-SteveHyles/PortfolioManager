@@ -20,7 +20,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private decimal _valueOfTransaction;
         private DateTime _transactionDate;
         private readonly FakeRepository _fakeRepository = new FakeRepository();
-        private RecordFundBuyTransaction _buyTransaction;
+        private RecordFundBuyProcess _buyProcess;
         private int _accountId;
 
         private IAccountHandler _accountHandler;
@@ -63,19 +63,19 @@ namespace BusinessLogicTests.Transactions.Fund
             _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
             _investmentHandler = new InvestmentHandler(_fakeRepository);
 
-            _buyTransaction = new RecordFundBuyTransaction(request, _accountHandler,
+            _buyProcess = new RecordFundBuyProcess(request, _accountHandler,
                         _cashCashTransactionHandler, _accountInvestmentMapProcessor,
                         _fundTransactionHandler, _priceHistoryHandler,
                         _investmentHandler);
 
-            if (execute) _buyTransaction.Execute();
+            if (execute) _buyProcess.Execute();
         }
 
         [Fact]
         public void WhenIBuyTransactionIsValid()
         {
             SetupAndOrExecute(false);
-            Assert.True(_buyTransaction.CommandValid);
+            Assert.True(_buyProcess.ProcessValid);
         }
 
         [Fact]
@@ -152,7 +152,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyThenTheFundTransactionAndTheCashTransactionValueAreIdenticalButOpposite()
         {
             SetupAndOrExecute(true);
-            _buyTransaction.Execute();
+            _buyProcess.Execute();
 
             var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);

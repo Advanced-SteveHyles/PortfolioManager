@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Transactions.Fund
     public class GivenIamApplyingADividend
     {
         private readonly FakeRepository _fakeRepository;
-        private RecordDividendTransaction _transaction;
+        private RecordDividendProcess _process;
         private IFundTransactionHandler _fundTransactionHandler;
         private ICashTransactionHandler _cashTransactionHandler;
         private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
@@ -46,21 +46,21 @@ namespace BusinessLogicTests.Transactions.Fund
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             new InvestmentHandler(_fakeRepository);
 
-            _transaction = new RecordDividendTransaction(
+            _process = new RecordDividendProcess(
                 request,
                 _fundTransactionHandler,
                 _cashTransactionHandler,
                 _accountInvestmentMapProcessor
                 );
 
-            if (execute) _transaction.Execute();
+            if (execute) _process.Execute();
         }
 
         [Fact]
         public void TransactionIsValid()
         {
             SetupAndOrExecute(false);
-            Assert.True(_transaction.CommandValid);
+            Assert.True(_process.ProcessValid);
         }
 
 

@@ -7,11 +7,11 @@ namespace Portfolio.API.Virtual.VirtualControllers
     internal class CommandExecutor
     {
 
-        internal static bool ExecuteCommand(ICommandRunner command)
+        internal static bool ExecuteCommand(IProcess command)
         {
             try
             {
-                if (!command.CommandValid)
+                if (!command.ProcessValid)
                 {
                     ErrorLog.LogError(new InvalidDataException());
                     return false;

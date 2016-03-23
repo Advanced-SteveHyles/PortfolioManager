@@ -44,7 +44,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 }
 
 
-                var createFundBuyTransaction = new RecordCorporateActionTransaction
+                var createFundBuyTransaction = new RecordCorporateActionProcess
                     (request,
                     new FundTransactionHandler(_fundTransactionRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),

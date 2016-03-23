@@ -4,12 +4,12 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordPriceHistoryProcessor: ICommandRunner
+    public class RecordPriceHistoryProcess: IProcess
 {
         private readonly PriceHistoryRequest _priceHistoryRequest;
         private readonly IPriceHistoryHandler _priceHistoryHandler;
 
-        public RecordPriceHistoryProcessor(PriceHistoryRequest priceHistoryRequest, IPriceHistoryHandler priceHistoryHandler)
+        public RecordPriceHistoryProcess(PriceHistoryRequest priceHistoryRequest, IPriceHistoryHandler priceHistoryHandler)
         {
             _priceHistoryRequest = priceHistoryRequest;
             _priceHistoryHandler = priceHistoryHandler;        
@@ -23,7 +23,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             ExecuteResult = true;
         }
 
-        public bool CommandValid => _priceHistoryRequest.InvestmentId != 0;
+        public bool ProcessValid => _priceHistoryRequest.InvestmentId != 0;
         public bool ExecuteResult { get; private set; }
 }
 

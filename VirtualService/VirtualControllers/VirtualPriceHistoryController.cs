@@ -27,7 +27,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
         public void UpdateAllPrices()
         {
-            var revalueAllPricesCommand = new RevalueAllPricesCommand(
+            var revalueAllPricesCommand = new RevalueAllPricesProcess(
                 DateTime.Now,
                 new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
                 new InvestmentHandler(_investmentRepository),
@@ -46,7 +46,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
             {
                 if (UpdateRequired(request)) continue;
 
-                var revalueAllPricesCommand = new RecordPriceHistoryProcessor(
+                var revalueAllPricesCommand = new RecordPriceHistoryProcess(
                     request,
                     priceHistoryHandler
                     );

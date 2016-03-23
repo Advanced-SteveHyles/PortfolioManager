@@ -13,14 +13,14 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
     {
         private readonly FakeRepository _repository;
         private readonly PriceHistoryHandler _priceHistoryHandler;
-        private RecordPriceHistoryProcessor _recordPriceHistoryProcessor;
+        private RecordPriceHistoryProcess _recordPriceHistoryProcess;
 
         private int investmentId = 629;
 
         private DateTime todaysValuationDate = DateTime.Today;
         decimal? todaysBuyPrice = (decimal)1.25;
         decimal? todaysSellPrice = (decimal)1.25;
-        private RevalueSinglePriceCommand _revalueSinglePriceCommand;
+        private RevalueSinglePriceProcess _revalueSinglePriceProcess;
 
 
         public PriceHistoryTests()
@@ -30,7 +30,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
             var accountMapHandler = new AccountHandler(_repository);
             var investmentMapProcessor = new AccountInvestmentMapProcessor(_repository);
-            _revalueSinglePriceCommand = new RevalueSinglePriceCommand(investmentId, todaysValuationDate, _priceHistoryHandler, investmentMapProcessor, accountMapHandler);
+            _revalueSinglePriceProcess = new RevalueSinglePriceProcess(investmentId, todaysValuationDate, _priceHistoryHandler, investmentMapProcessor, accountMapHandler);
         }
 
         private void SetupPriceHistory(DateTime valuationDate, decimal? buyAt, decimal? sellAt)
@@ -43,7 +43,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
                 BuyPrice = buyAt
             };
 
-            _recordPriceHistoryProcessor = new RecordPriceHistoryProcessor(
+            _recordPriceHistoryProcess = new RecordPriceHistoryProcess(
                 priceHistoryRequest, _priceHistoryHandler);
         }
 
@@ -52,9 +52,9 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         {
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
 
-            Assert.True(_recordPriceHistoryProcessor.CommandValid);
-            _recordPriceHistoryProcessor.Execute();
-            Assert.True(_recordPriceHistoryProcessor.ExecuteResult);
+            Assert.True(_recordPriceHistoryProcess.ProcessValid);
+            _recordPriceHistoryProcess.Execute();
+            Assert.True(_recordPriceHistoryProcess.ExecuteResult);
 
             var priceHistory = _repository.GetInvestmentSellPrices(investmentId);
             Assert.Equal(investmentId, priceHistory.FirstOrDefault()?.InvestmentId);
@@ -81,7 +81,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void WhenAHistoricalPriceExistsTheCurrentPriceIsTheClosestBeforeTheCurrentDate()
         {
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
+            _recordPriceHistoryProcess.Execute();
 
             var currentSellPrice = _priceHistoryHandler.GetInvestmentSellPrice(investmentId, todaysValuationDate);
             var currentBuyPrice = _priceHistoryHandler.GetInvestmentBuyPrice(investmentId, todaysValuationDate);
@@ -94,13 +94,13 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void WhenAFutureDatePriceExistsTheCurrentPriceIsTheClosestBeforeTheCurrentDate()
         {
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
+            _recordPriceHistoryProcess.Execute();
 
             var tomorrowsDate = DateTime.Today.AddDays(1);
             decimal? tomorrowsBuyPrice = (decimal)2.25;
             decimal? tomorrowsSellPrice = (decimal)2.25;
             SetupPriceHistory(tomorrowsDate, tomorrowsBuyPrice, tomorrowsSellPrice);
-            _recordPriceHistoryProcessor.Execute();
+            _recordPriceHistoryProcess.Execute();
 
 
             var currentSellPrice = _priceHistoryHandler.GetInvestmentSellPrice(investmentId, todaysValuationDate);
@@ -115,13 +115,13 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void WhenTwoPricesExistForTheCurrentDateTheOneAddedLastIsUsed()
         {
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
+            _recordPriceHistoryProcess.Execute();
 
             decimal? latestBuyPrice = (decimal)3.25;
             decimal? latestSellPrice = (decimal)5.25;
 
             SetupPriceHistory(todaysValuationDate, latestBuyPrice, latestSellPrice);
-            _recordPriceHistoryProcessor.Execute();
+            _recordPriceHistoryProcess.Execute();
             
 
             var currentSellPrice = _priceHistoryHandler.GetInvestmentSellPrice(investmentId, todaysValuationDate);
@@ -145,8 +145,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             _repository.InsertAccountInvestmentMap(request2);
 
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
-            _revalueSinglePriceCommand.Execute();
+            _recordPriceHistoryProcess.Execute();
+            _revalueSinglePriceProcess.Execute();
 
             var valuation1 = todaysBuyPrice * request1.Quantity;
             var valuation2 = todaysBuyPrice * request2.Quantity;
@@ -170,8 +170,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             _repository.InsertAccountInvestmentMap(request2);
 
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
-            _revalueSinglePriceCommand.Execute();
+            _recordPriceHistoryProcess.Execute();
+            _revalueSinglePriceProcess.Execute();
 
             var valuation1 = todaysBuyPrice * request1.Quantity;
             var valuation2 = todaysBuyPrice * request2.Quantity;
@@ -195,8 +195,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             _repository.InsertAccountInvestmentMap(request2);
 
             SetupPriceHistory(todaysValuationDate.AddDays(-1), todaysBuyPrice, todaysSellPrice);
-            _recordPriceHistoryProcessor.Execute();
-            _revalueSinglePriceCommand.Execute();
+            _recordPriceHistoryProcess.Execute();
+            _revalueSinglePriceProcess.Execute();
 
             var valuation1 = todaysSellPrice * request1.Quantity;
             var valuation2 = todaysSellPrice * request2.Quantity;
@@ -212,8 +212,8 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             valuation1 = (todaysSellPrice + sellPriceIncrement) * request1.Quantity;            
             valuation2 = (todaysSellPrice + sellPriceIncrement) * request2.Quantity;
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice+1, todaysSellPrice+ sellPriceIncrement);
-            _recordPriceHistoryProcessor.Execute();
-            _revalueSinglePriceCommand.Execute();
+            _recordPriceHistoryProcess.Execute();
+            _revalueSinglePriceProcess.Execute();
 
             account1 = _repository.GetAccountByAccountId(1);
              account2 = _repository.GetAccountByAccountId(2);

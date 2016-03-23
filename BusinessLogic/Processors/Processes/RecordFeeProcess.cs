@@ -5,12 +5,12 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordFeeTransaction    : ICommandRunner
+    public class RecordFeeProcess    : IProcess
     {
         private readonly FeeTransactionRequest _feeTransactionRequest;
         private readonly ICashTransactionHandler _transactionHandler;
 
-        public RecordFeeTransaction(FeeTransactionRequest feeTransactionRequest, ICashTransactionHandler transactionHandler)
+        public RecordFeeProcess(FeeTransactionRequest feeTransactionRequest, ICashTransactionHandler transactionHandler)
         {
             this._feeTransactionRequest = feeTransactionRequest;
             _transactionHandler = transactionHandler;
@@ -25,6 +25,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         public bool ExecuteResult { get; set; }
 
-        public bool CommandValid => _feeTransactionRequest.Validate();
+        public bool ProcessValid => _feeTransactionRequest.Validate();
     }
 }

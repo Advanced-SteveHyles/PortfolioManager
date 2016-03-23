@@ -11,7 +11,7 @@ namespace BusinessLogicTests.Transactions.Cash
 {
     public class GivenIAmApplyingAFee
     {
-        private readonly ICommandRunner _feeTransaction;
+        private readonly IProcess _feeTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
@@ -32,13 +32,13 @@ namespace BusinessLogicTests.Transactions.Cash
                 TransactionDate = transactionDate,
             };
 
-            _feeTransaction = new RecordFeeTransaction(feeTransactionRequest, _cashTransactionHandler);
+            _feeTransaction = new RecordFeeProcess(feeTransactionRequest, _cashTransactionHandler);
         }
 
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_feeTransaction.CommandValid);
+            Assert.True(_feeTransaction.ProcessValid);
 
             _feeTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);

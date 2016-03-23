@@ -8,7 +8,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordCorporateActionTransaction: ICommandRunner
+    public class RecordCorporateActionProcess: IProcess
     {
         private readonly InvestmentCorporateActionRequest _request;
         private readonly IFundTransactionHandler _fundTransactionHandler;
@@ -16,7 +16,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
         private readonly IInvestmentHandler _investmentHandler;
 
-        public RecordCorporateActionTransaction(InvestmentCorporateActionRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor, IInvestmentHandler investmentHandler)
+        public RecordCorporateActionProcess(InvestmentCorporateActionRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor, IInvestmentHandler investmentHandler)
         {
             _request = request;
             _fundTransactionHandler = fundTransactionHandler;
@@ -53,7 +53,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             ExecuteResult = true;
         }
 
-        public bool CommandValid => _request.Validate();
+        public bool ProcessValid => _request.Validate();
         public bool ExecuteResult { get; set; }
     }
 }

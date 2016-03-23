@@ -23,7 +23,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
         {            
             var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
-            var createDepositTransaction = new RecordDepositTransaction(request, transactionHandler,null);
+            var createDepositTransaction = new RecordDepositProcess(request, transactionHandler,null);
 
             var status = CommandExecutor.ExecuteCommand
                 (
@@ -40,7 +40,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
         {
             var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
-            var createWithdrawalTransaction = new RecordWithdrawalTransaction(request, transactionHandler);
+            var createWithdrawalTransaction = new RecordWithdrawalProcess(request, transactionHandler);
 
             var status = CommandExecutor.ExecuteCommand
                 (

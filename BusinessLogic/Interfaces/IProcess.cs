@@ -1,10 +1,10 @@
 ﻿namespace Interfaces
 {
-    public interface ICommandRunner
+    public interface IProcess
     {
         void Execute();
 
-        bool CommandValid { get; }
+        bool ProcessValid { get; }
         bool ExecuteResult { get; }
     }
 }

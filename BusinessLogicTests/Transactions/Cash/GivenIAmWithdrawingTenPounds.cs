@@ -11,7 +11,7 @@ namespace BusinessLogicTests.Transactions.Cash
 {
     public class GivenIAmWithdrawingTenPounds
     {
-        private readonly ICommandRunner _withdrawalTransaction;
+        private readonly IProcess _withdrawalTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
@@ -34,13 +34,13 @@ namespace BusinessLogicTests.Transactions.Cash
                 TransactionDate = transactionDate,                
             };
 
-            _withdrawalTransaction = new  RecordWithdrawalTransaction(withdrawalTransactionRequest, _cashTransactionHandler);
+            _withdrawalTransaction = new  RecordWithdrawalProcess(withdrawalTransactionRequest, _cashTransactionHandler);
         }
 
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_withdrawalTransaction.CommandValid);
+            Assert.True(_withdrawalTransaction.ProcessValid);
 
             _withdrawalTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            

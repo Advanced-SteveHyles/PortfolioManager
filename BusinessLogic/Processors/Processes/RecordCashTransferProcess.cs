@@ -6,14 +6,14 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordCashTransferTransaction : ICommandRunner
+    public class RecordCashTransferProcess : IProcess
     {
         private readonly CashTransferRequest _request;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         private readonly IAccountHandler _accountHandler;
 
 
-        public RecordCashTransferTransaction(CashTransferRequest request, ICashTransactionHandler cashTransactionHandler, IAccountHandler accountHandler)
+        public RecordCashTransferProcess(CashTransferRequest request, ICashTransactionHandler cashTransactionHandler, IAccountHandler accountHandler)
         {
             _request = request;
             _cashTransactionHandler = cashTransactionHandler;
@@ -32,7 +32,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             ExecuteResult = true;
         }
 
-        public bool CommandValid => _request.Validate();
+        public bool ProcessValid => _request.Validate();
         public bool ExecuteResult { get; private set; }
     }
 }

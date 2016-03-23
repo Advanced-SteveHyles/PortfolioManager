@@ -4,7 +4,7 @@ using Interfaces;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RevalueAllPricesCommand : ICommandRunner
+    public class RevalueAllPricesProcess : IProcess
     {
         private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
         private readonly IInvestmentHandler _investmentHandler;
@@ -12,7 +12,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly IAccountHandler _accountHandler;
         private readonly DateTime _evaluationDate;
         
-        public RevalueAllPricesCommand(DateTime evaluationDate, IAccountInvestmentMapProcessor investmentMapProcessor, IInvestmentHandler investmentHandler, IPriceHistoryHandler priceHistoryHandler, IAccountHandler accountHandler)
+        public RevalueAllPricesProcess(DateTime evaluationDate, IAccountInvestmentMapProcessor investmentMapProcessor, IInvestmentHandler investmentHandler, IPriceHistoryHandler priceHistoryHandler, IAccountHandler accountHandler)
         {
             _investmentMapProcessor = investmentMapProcessor;
             _investmentHandler = investmentHandler;
@@ -57,7 +57,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             }
         }
 
-        public bool CommandValid => true;
+        public bool ProcessValid => true;
         public bool ExecuteResult { get; private set; }
     }
 }

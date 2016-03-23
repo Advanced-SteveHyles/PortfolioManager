@@ -39,7 +39,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException();
             }
 
-            var createFundBuyTransaction = new RecordFundBuyTransaction
+            var createFundBuyTransaction = new RecordFundBuyProcess
                 (purchaseRequest,
                     new AccountHandler(_accountRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
@@ -69,7 +69,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException();
             }
 
-            var loyaltyBonusTransaction = new RecordLoyaltyBonusTransaction
+            var loyaltyBonusTransaction = new RecordLoyaltyBonusProcess
                 (loyaltyBonusRequest,
                 new FundTransactionHandler(_fundTransactionRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),

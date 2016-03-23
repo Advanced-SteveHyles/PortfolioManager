@@ -3,7 +3,7 @@ using Interfaces;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RevalueSinglePriceCommand: ICommandRunner
+    public class RevalueSinglePriceProcess: IProcess
     {
         private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
         private readonly IPriceHistoryHandler _priceHistoryHandler;
@@ -12,7 +12,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly DateTime _valuationDate;
 
 
-        public RevalueSinglePriceCommand(int investmentId, DateTime valuationDate, IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler)
+        public RevalueSinglePriceProcess(int investmentId, DateTime valuationDate, IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler)
         {
             _investmentId = investmentId;
             _priceHistoryHandler = priceHistoryHandler;
@@ -49,7 +49,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _accountHandler.DecreaseValuation(accountId, valuation);
         }
 
-        public bool CommandValid { get; }
+        public bool ProcessValid { get; }
         public bool ExecuteResult { get; private set; }
     }
 }

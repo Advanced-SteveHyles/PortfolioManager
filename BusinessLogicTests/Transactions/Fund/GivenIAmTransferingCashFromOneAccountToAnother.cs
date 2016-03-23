@@ -14,7 +14,7 @@ namespace BusinessLogicTests.Transactions.Fund
     public class GivenIAmTransferingCashFromOneAccountToAnother
     {
         private readonly FakeRepository _fakeRepository;
-        private RecordCashTransferTransaction _transaction;
+        private RecordCashTransferProcess _process;
         private ICashTransactionHandler _cashTransactionHandler;
         private IAccountHandler _accountHandler;
 
@@ -40,20 +40,20 @@ namespace BusinessLogicTests.Transactions.Fund
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
             _accountHandler = new AccountHandler(_fakeRepository);
 
-            _transaction = new RecordCashTransferTransaction(
+            _process = new RecordCashTransferProcess(
                 request,
                 _cashTransactionHandler,
                 _accountHandler
                 );
 
-            if (execute) _transaction.Execute();
+            if (execute) _process.Execute();
         }
 
         [Fact]
         public void TransactionIsValid()
         {
             SetupAndOrExecute(false);
-            Assert.True(_transaction.CommandValid);
+            Assert.True(_process.ProcessValid);
         }
 
         [Fact]

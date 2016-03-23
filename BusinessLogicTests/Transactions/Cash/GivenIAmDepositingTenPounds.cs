@@ -12,7 +12,7 @@ namespace BusinessLogicTests.Transactions.Cash
 
     public class GivenIAmDepositingTenPounds
     {
-        private readonly ICommandRunner _depositTransaction;
+        private readonly IProcess _depositTransaction;
         private readonly FakeRepository _fakeRepository;
         const int AccountId = 1;
         const int TransactionValue = 10;
@@ -33,13 +33,13 @@ namespace BusinessLogicTests.Transactions.Cash
                 TransactionDate = transactionDate
             };
 
-            _depositTransaction = new RecordDepositTransaction(depositTransactionRequest, cashTransactionHandler, null);
+            _depositTransaction = new RecordDepositProcess(depositTransactionRequest, cashTransactionHandler, null);
         }
 
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_depositTransaction.CommandValid);
+            Assert.True(_depositTransaction.ProcessValid);
 
             _depositTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);

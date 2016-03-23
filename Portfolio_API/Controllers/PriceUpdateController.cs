@@ -53,8 +53,8 @@ namespace Portfolio.API.WebApi.Controllers
                 }
                 */
                 var historyHandler = new PriceHistoryHandler(_priceHistoryRepository);
-                var priceHistoryProcessor = new RecordPriceHistoryProcessor(request, historyHandler);
-                var revalueSinglePriceCommand = new RevalueSinglePriceCommand(
+                var priceHistoryProcessor = new RecordPriceHistoryProcess(request, historyHandler);
+                var revalueSinglePriceCommand = new RevalueSinglePriceProcess(
                     request.InvestmentId,
                     request.ValuationDate,
                     historyHandler,

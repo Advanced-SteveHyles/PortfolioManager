@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Transactions.Fund
     public class GivenIamApplyingALoyaltyBonus
     {
         private readonly FakeRepository _fakeRepository;
-        private RecordLoyaltyBonusTransaction _transaction;
+        private RecordLoyaltyBonusProcess _process;
         private IFundTransactionHandler _fundTransactionHandler;
         private ICashTransactionHandler _cashTransactionHandler;
         private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
@@ -46,7 +46,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             _investmentHandler = new InvestmentHandler(_fakeRepository);
             
-            _transaction = new RecordLoyaltyBonusTransaction(
+            _process = new RecordLoyaltyBonusProcess(
                 request,
                 _fundTransactionHandler,
                 _cashTransactionHandler,
@@ -54,14 +54,14 @@ namespace BusinessLogicTests.Transactions.Fund
                 _investmentHandler
                 );
 
-            if (execute) _transaction.Execute();
+            if (execute) _process.Execute();
         }
 
         [Fact]
         public void TransactionIsValid()
         {
             SetupAndOrExecute(false);
-            Assert.True(_transaction.CommandValid);
+            Assert.True(_process.ProcessValid);
         }
 
 

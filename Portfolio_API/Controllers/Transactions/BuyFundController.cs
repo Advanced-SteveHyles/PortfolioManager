@@ -59,7 +59,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 //}
                 //*/
 
-                var createFundBuyTransaction = new RecordFundBuyTransaction
+                var createFundBuyTransaction = new RecordFundBuyProcess
                     (purchaseRequest,
                         new AccountHandler(_accountRepository),
                         new CashTransactionHandler(_cashTransactionRepository, _accountRepository),

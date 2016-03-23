@@ -56,7 +56,7 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
                 var status = Command.ExecuteCommand(
-                        new RecordDepositTransaction(
+                        new RecordDepositProcess(
                             deposit, 
                             transactionHandler, 
                             TransactionLink.FundToCash())

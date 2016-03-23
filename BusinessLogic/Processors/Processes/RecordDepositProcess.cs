@@ -5,12 +5,12 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordDepositTransaction : ICommandRunner
+    public class RecordDepositProcess : IProcess
     {
         private readonly DepositTransactionRequest _depositTransactionRequest;
         private readonly ICashTransactionHandler _transactionHandler;
         
-        public RecordDepositTransaction(DepositTransactionRequest depositTransactionRequest, ICashTransactionHandler transactionHandler, TransactionLink transactionLink)
+        public RecordDepositProcess(DepositTransactionRequest depositTransactionRequest, ICashTransactionHandler transactionHandler, TransactionLink transactionLink)
         {
             this._depositTransactionRequest = depositTransactionRequest;
             _transactionHandler = transactionHandler;            
@@ -24,6 +24,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         public bool ExecuteResult { get; set; }
 
-        public bool CommandValid => _depositTransactionRequest.Validate();        
+        public bool ProcessValid => _depositTransactionRequest.Validate();        
     }
 }

@@ -53,7 +53,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
         private void SetupMassUpdate()
         {
-            var revalueAllPricesCommand = new RevalueAllPricesCommand(
+            var revalueAllPricesCommand = new RevalueAllPricesProcess(
                 DateTime.Now,
                 investmentMapProcessor: new AccountInvestmentMapProcessor(_fakeRepository),
                 investmentHandler: new InvestmentHandler(_fakeRepository),
