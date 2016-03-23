@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="FakeRepositories\FakeData.cs" />
     <Compile Include="FakeRepositories\FakePortfolioRepository.cs" />
+    <Compile Include="Transactions\Cash\GivenIAmApplyingAFee.cs" />
     <Compile Include="Transactions\Cash\GivenIAmWithdrawingTenPounds.cs" />
     <Compile Include="FakeRepositories\FakeRepository.cs" />
     <Compile Include="Transactions\Cash\GivenIAmDepositingTenPounds.cs" />

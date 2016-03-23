@@ -1,5 +1,6 @@
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
@@ -17,16 +18,13 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         public void Execute()
         {
-            _transactionHandler.StoreCashTransaction(_withdrawalTransactionRequest, TransactionLink.FundToCash());
+            _transactionHandler.StoreCashTransaction(_withdrawalTransactionRequest);
             
             ExecuteResult = true;
         }
 
         public bool ExecuteResult { get; set; }
 
-        public bool CommandValid => _withdrawalTransactionRequest.AccountId > 0
-                                    && _withdrawalTransactionRequest.Value > 0
-                                    && _withdrawalTransactionRequest.TransactionDate != null
-                                    && !string.IsNullOrWhiteSpace(_withdrawalTransactionRequest.Source);
+        public bool CommandValid => _withdrawalTransactionRequest.Validate();
     }
 }

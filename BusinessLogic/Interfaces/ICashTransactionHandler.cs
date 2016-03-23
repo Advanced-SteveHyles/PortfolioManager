@@ -6,14 +6,17 @@ namespace Interfaces
 {
     public interface ICashTransactionHandler
     {
-        void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest, TransactionLink transactionLink);
-        void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest, TransactionLink transactionLink);
+        void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest);
+        void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest);
+        void StoreCashTransaction(FeeTransactionRequest feeTransactionRequest);
+
         void StoreCashTransaction(CashTransferRequest request, TransactionLink linkedTransaction, string source);
 
         void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest, TransactionLink transactionLink);
         void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest, TransactionLink transactionLink);
+        
         void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest, TransactionLink transactionLink);
         void StoreCashTransaction(int accountId, InvestmentLoyaltyBonusRequest request, TransactionLink linkedTransaction, string source);
-        void StoreCashTransaction(int accountId, InvestmentDividendRequest _request, TransactionLink linkedTransaction);
+        void StoreCashTransaction(int accountId, InvestmentDividendRequest request, TransactionLink linkedTransaction);
     }
 }

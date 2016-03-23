@@ -13,5 +13,6 @@
         public const string CashTransferOut = "Cash Transfer Out";
         public const string CashTransferIn = "Cash Transfer In";
         public const string Dividend = "Dividend";
+        public const string Fees = "Fees";
     }
 }

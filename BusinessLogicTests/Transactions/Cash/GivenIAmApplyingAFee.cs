@@ -9,67 +9,64 @@ using Xunit;
 
 namespace BusinessLogicTests.Transactions.Cash
 {
-    public class GivenIAmWithdrawingTenPounds
+    public class GivenIAmApplyingAFee
     {
-        private readonly ICommandRunner _withdrawalTransaction;
+        private readonly ICommandRunner _feeTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
-        const int TransactionValue = 10;
+        const decimal TransactionValue = (decimal)34.39;
         const int ArbitaryId = 1;
-        DateTime transactionDate = DateTime.Now;
-        const string Source = "Test";
-
-        public GivenIAmWithdrawingTenPounds()
+        readonly DateTime transactionDate = DateTime.Now;
+        
+        public GivenIAmApplyingAFee()
         {
             _fakeRepository = new FakeRepository();
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
-            
-            
-            var withdrawalTransactionRequest = new WithdrawalTransactionRequest()
+
+
+            var feeTransactionRequest = new FeeTransactionRequest()
             {
                 AccountId = AccountId,
-                Value = TransactionValue,
-                Source = Source,
-                TransactionDate = transactionDate,                
+                Value = TransactionValue,                
+                TransactionDate = transactionDate,
             };
 
-            _withdrawalTransaction = new  RecordWithdrawalTransaction(withdrawalTransactionRequest, _cashTransactionHandler);
+            _feeTransaction = new RecordFeeTransaction(feeTransactionRequest, _cashTransactionHandler);
         }
 
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_withdrawalTransaction.CommandValid);
+            Assert.True(_feeTransaction.CommandValid);
 
-            _withdrawalTransaction.Execute();
-            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            
+            _feeTransaction.Execute();
+            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);
         }
-        
+
 
         [Fact]
         public void WhenTheTransactionCompletesThereIsARecordOfTheDeposit()
         {
             const bool isTaxRefund = false;
 
-            _withdrawalTransaction.Execute();
+            _feeTransaction.Execute();
 
             var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
-            
+
             Assert.Equal(AccountId, transaction.AccountId);
             Assert.Equal(transactionDate, transaction.TransactionDate);
             Assert.Equal(TransactionValue, transaction.TransactionValue);
-            Assert.Equal(Source, transaction.Source);
             
             Assert.Equal(isTaxRefund, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.Withdrawal, transaction.TransactionType);
+            Assert.Equal(CashTransactionTypes.Fees, transaction.TransactionType);
         }
 
         [Fact]
         public void WhenTheTransactionCompletesThereAccountBalanceIsCorrect()
         {
-            _withdrawalTransaction.Execute();
+            _feeTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);
         }
