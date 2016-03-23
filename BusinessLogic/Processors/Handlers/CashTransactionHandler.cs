@@ -128,6 +128,21 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                          increaseAccountBalance, linkedTransaction);
         }
 
+        public void StoreCashTransaction(int accountId, InvestmentDividendRequest _request, TransactionLink linkedTransaction)
+        {
+            const bool increaseAccountBalance = true;
+            const bool isTaxRefund = false;
+            var source = "";
+            StoreCashTransaction(
+                          accountId,
+                          _request.TransactionDate,
+                          source,
+                          _request.Amount,
+                          isTaxRefund,
+                          CashTransactionTypes.Dividend,
+                         increaseAccountBalance, linkedTransaction);
+        }
+
         public void StoreCashTransaction(CashTransferRequest request, TransactionLink linkedTransaction, string source)
         {
             const bool increaseAccountBalance = true;

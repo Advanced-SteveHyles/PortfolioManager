@@ -12,5 +12,6 @@
         public const string LoyaltyBonus = "Loyalty Bonus";
         public const string CashTransferOut = "Cash Transfer Out";
         public const string CashTransferIn = "Cash Transfer In";
+        public const string Dividend = "Dividend";
     }
 }

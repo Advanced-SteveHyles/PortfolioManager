@@ -62,7 +62,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             decimal? sellPrice = null;
             const int quantity = 0;
             const decimal charges = 0;
-            const decimal transactionValue = 0;
             const string source = "";
 
             StoreFundTransaction(
@@ -70,12 +69,34 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 request.TransactionDate,
                 request.TransactionDate,
                 source,
-                transactionValue,
+                request.Amount,
                 quantity,
                 sellPrice,
                 buyPrice,
                 charges,
                 FundTransactionTypes.LoyaltyBonus,
+                linkedTransaction);
+        }
+
+        public void StoreFundTransaction(InvestmentDividendRequest request, TransactionLink linkedTransaction)
+        {
+            decimal? buyPrice = null;
+            decimal? sellPrice = null;
+            const int quantity = 0;
+            const decimal charges = 0;
+            const string source = "";
+
+            StoreFundTransaction(
+                request.InvestmentMapId,
+                request.TransactionDate,
+                request.TransactionDate,
+                source,
+                request.Amount,
+                quantity,
+                sellPrice,
+                buyPrice,
+                charges,
+                FundTransactionTypes.Dividend,
                 linkedTransaction);
         }
 

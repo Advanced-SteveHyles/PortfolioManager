@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transactions\Fund\Evaluations\FullPortfolioRevaluation.cs" />
     <Compile Include="Transactions\Fund\GivenIamApplyingACorporateAction.cs" />
+    <Compile Include="Transactions\Fund\GivenIamApplyingADividend.cs" />
     <Compile Include="Transactions\Fund\GivenIAmBuyingIntoAFund.cs" />
     <Compile Include="Transactions\Fund\GivenIAmSellingAFund.cs" />
     <Compile Include="Transactions\Fund\GivenIamApplyingALoyaltyBonus.cs" />

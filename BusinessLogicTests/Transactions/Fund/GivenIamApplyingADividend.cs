@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
@@ -12,46 +12,45 @@ using Xunit;
 
 namespace BusinessLogicTests.Transactions.Fund
 {
-    public class GivenIamApplyingALoyaltyBonus
+    public class GivenIamApplyingADividend
     {
         private readonly FakeRepository _fakeRepository;
-        private RecordLoyaltyBonusTransaction _transaction;
+        private RecordDividendTransaction _transaction;
         private IFundTransactionHandler _fundTransactionHandler;
         private ICashTransactionHandler _cashTransactionHandler;
         private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
-        private IInvestmentHandler _investmentHandler;
 
         private readonly int _accountId = 1;
-        readonly decimal _loyaltyBonusAmount = (decimal) 0.84;
+        readonly decimal _dividentAmount = 50;
         readonly DateTime _transactionDate = DateTime.Now;
         readonly int _existingInvestmentMapId = 1;
 
+        private const int FundTransactionId = 1;
         private const int CashTransactionId = 1;
 
-        public GivenIamApplyingALoyaltyBonus()
+        public GivenIamApplyingADividend()
         {
             _fakeRepository = new FakeRepository();
         }
         private void SetupAndOrExecute(bool execute)
         {
-            var request = new InvestmentLoyaltyBonusRequest
+            var request = new InvestmentDividendRequest
             {
                 InvestmentMapId = _existingInvestmentMapId,
-                Amount = _loyaltyBonusAmount,
+                Amount = _dividentAmount,
                 TransactionDate = _transactionDate
             };
 
             _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
-            _investmentHandler = new InvestmentHandler(_fakeRepository);
-            
-            _transaction = new RecordLoyaltyBonusTransaction(
+            new InvestmentHandler(_fakeRepository);
+
+            _transaction = new RecordDividendTransaction(
                 request,
                 _fundTransactionHandler,
                 _cashTransactionHandler,
-                _accountInvestmentMapProcessor,
-                _investmentHandler
+                _accountInvestmentMapProcessor
                 );
 
             if (execute) _transaction.Execute();
@@ -66,7 +65,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
 
         [Fact]
-        public void WhenIRecordALoyaltyTransactionThenAFundTransactionIsRecorded()
+        public void WhenIRecordADividendThenAFundTransactionIsRecorded()
         {
             SetupAndOrExecute(true);
 
@@ -75,50 +74,46 @@ namespace BusinessLogicTests.Transactions.Fund
 
             Assert.Equal(_existingInvestmentMapId, fundTransaction.InvestmentMapId);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
-            Assert.Equal(FundTransactionTypes.LoyaltyBonus, fundTransaction.TransactionType);
-            Assert.Equal(_loyaltyBonusAmount, fundTransaction.TransactionValue);
+            Assert.Equal(FundTransactionTypes.Dividend, fundTransaction.TransactionType);
+            Assert.Equal(_dividentAmount, fundTransaction.TransactionValue);
             Assert.Equal(0, fundTransaction.Quantity);
         }
 
         [Fact]
-        public void WhenIRecordALoyaltyTransactionThenACashDepositIsCreated()
+        public void WhenIRecordADividendACashRefundIsCreated()
         {
-            var source = "Investment 1";
             _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var transaction = _fakeRepository.GetCashTransaction(CashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
-            Assert.Equal(_loyaltyBonusAmount, transaction.TransactionValue);            
-            Assert.Equal(source, transaction.Source);
+            Assert.Equal(_dividentAmount, transaction.TransactionValue);
+            Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.LoyaltyBonus, transaction.TransactionType);
+            Assert.Equal(CashTransactionTypes.Dividend, transaction.TransactionType);
 
             Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
 
         [Fact]
-        public void WhenIRecordALoyaltyTransactionTheAccountBalanceIsIncreased()
+        public void WhenIRecordADividendTheAccountBalanceIsIncreased()
         {
             var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
             _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
             var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
-            Assert.Equal(accountBeforeBalance + _loyaltyBonusAmount, accountBeforeAfter);
+            Assert.Equal(accountBeforeBalance + _dividentAmount, accountBeforeAfter);
         }
-
-
-
+        
         [Fact]
-        public void WhenISellTheSellTransactionAndCommisionTransactionAreLinked()
+        public void WhenIRecordADividendThenALinkedTransactionExists()
         {
-            var arbitaryId = 1;
-            
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
-            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
+            var fundTransaction = _fakeRepository.GetFundTransaction(FundTransactionId);
+            var cashTransaction = _fakeRepository.GetCashTransaction(CashTransactionId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
@@ -128,5 +123,6 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(linkedTransactionType, fundTransaction.LinkedTransactionType);
             Assert.Equal(linkedTransactionType, cashTransaction.LinkedTransactionType);
         }
+
     }
 }

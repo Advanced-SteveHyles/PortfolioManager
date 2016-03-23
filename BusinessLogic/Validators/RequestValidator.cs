@@ -26,5 +26,12 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
                 request.Amount > 0 &&
                 request.TransactionDate != DateTime.MinValue;
         }
+
+        public static bool Validate(this InvestmentDividendRequest request)
+        {
+            return request.InvestmentMapId != 0 &&
+                request.Amount > 0 &&
+                request.TransactionDate != DateTime.MinValue;
+        }
     }
 }

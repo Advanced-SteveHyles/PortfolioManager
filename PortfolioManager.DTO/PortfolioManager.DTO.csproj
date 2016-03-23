@@ -53,6 +53,7 @@
     <Compile Include="Requests\Transactions\InvestmentBuyRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentCorporateActionRequest.cs" />
     <Compile Include="Requests\Transactions\DepositTransactionRequest.cs" />
+    <Compile Include="Requests\Transactions\InvestmentDividendRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentLoyaltyBonusRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentSellRequest.cs" />
     <Compile Include="DTOs\InvestmentDto.cs" />

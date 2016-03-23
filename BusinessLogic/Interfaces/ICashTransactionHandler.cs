@@ -14,6 +14,6 @@ namespace Interfaces
         void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest, TransactionLink transactionLink);
         void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest, TransactionLink transactionLink);
         void StoreCashTransaction(int accountId, InvestmentLoyaltyBonusRequest request, TransactionLink linkedTransaction, string source);
-        
+        void StoreCashTransaction(int accountId, InvestmentDividendRequest _request, TransactionLink linkedTransaction);
     }
 }
