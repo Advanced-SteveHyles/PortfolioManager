@@ -7,35 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <StackPanel>
-        <GroupBox Header="Investment Details"></GroupBox>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                            <TextBlock Text="{Binding InvestmentName}"></TextBlock>
-                            <TextBlock Text="{Binding Quantity}"></TextBlock>
-                            <TextBlock Text="{Binding Valuation}"></TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  />
+            <RowDefinition Height="*"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row ="1"  Header="Investment Details"></GroupBox>
 
-                            <Expander Header="Actions" ExpandDirection="Down">
-                                <StackPanel>
-                                    <Button Command="{Binding ViewCommand}">View</Button>
-                                    <Button Command="{Binding BuyCommand}">Buy</Button>
-                                    <Button Command="{Binding SellCommand}">Sell</Button>
-                                    <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
-                                    <Button Command="{Binding LoyaltyCommand}">Loyalty Bonus</Button>
-                                    <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
-                                </StackPanel>
-                            </Expander>
+        <ScrollViewer Grid.Row="2">
+        <ListView ItemsSource="{Binding InvestmentMapWrappers}" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding AccountInvestmentMapId}"></TextBlock>
+                        <TextBlock Text="{Binding InvestmentName}"></TextBlock>
+                        <TextBlock Text="{Binding Quantity}"></TextBlock>
+                        <TextBlock Text="{Binding Valuation}"></TextBlock>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        <Expander Header="Actions" ExpandDirection="Down">
+                            <StackPanel>
+                                <Button Command="{Binding ViewCommand}">View</Button>
+                                <Button Command="{Binding BuyCommand}">Buy</Button>
+                                <Button Command="{Binding SellCommand}">Sell</Button>
+                                <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+                                <Button Command="{Binding LoyaltyCommand}">Loyalty Bonus</Button>
+                                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListView>
         </ScrollViewer>
         
-        <DataGrid ItemsSource="{Binding InvestmentMaps}"></DataGrid>
-    </StackPanel>
+     
+        
+        <DataGrid Grid.Row="3" ItemsSource="{Binding InvestmentMaps}"></DataGrid>
+    </Grid>
 </UserControl>
