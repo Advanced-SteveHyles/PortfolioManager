@@ -22,6 +22,11 @@ namespace PortfolioManager.Model
             service.InsertWithdrawal(request);
         }
 
+        public static void InsertFee(FeeTransactionRequest request)
+        {
+            var service = new VirtualCashTransactions();
+            service.InsertFee(request);
+        }
 
     }
 }

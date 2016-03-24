@@ -107,6 +107,7 @@
     <Compile Include="UIBuilders\BuildDynamicMenu.cs" />
     <Compile Include="ViewModels\CashDepositViewModel.cs" />
     <Compile Include="ViewModels\CashWithdrawalViewModel.cs" />
+    <Compile Include="ViewModels\FeesViewModel.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentLoyaltyBonusViewModel.cs" />
@@ -125,11 +126,17 @@
     <Compile Include="Views\AccountTransactionSummary.xaml.cs">
       <DependentUpon>AccountTransactionSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DataEntry\CashTransferView.xaml.cs">
+      <DependentUpon>CashTransferView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataEntry\CashWithdrawalView.xaml.cs">
       <DependentUpon>CashWithdrawalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\CashDepositView.xaml.cs">
       <DependentUpon>CashDepositView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\FeesView.xaml.cs">
+      <DependentUpon>FeesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentLoyaltyBonusView.xaml.cs">
       <DependentUpon>InvestmentLoyaltyBonusView.xaml</DependentUpon>
@@ -199,11 +206,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DataEntry\CashTransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DataEntry\CashWithdrawalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataEntry\CashDepositView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\FeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

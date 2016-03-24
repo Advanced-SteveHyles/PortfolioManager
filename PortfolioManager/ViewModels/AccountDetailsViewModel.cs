@@ -34,6 +34,12 @@ namespace PortfolioManager.UIBuilders
 
         public ICommand DepositCommand => new RelayCommand(Deposit);
         public ICommand WithdrawalCommand => new RelayCommand(Withdrawal);
+        public ICommand FeesCommand => new RelayCommand(Fees);
+        public ICommand TransferCommandOut => new RelayCommand(TransferOut);
+        
+
+        public ICommand TransferCommandIn => new RelayCommand(TransferIn);
+        
 
         private void Deposit()
         {
@@ -52,6 +58,36 @@ namespace PortfolioManager.UIBuilders
             };
             OnPropertyChanged(CashTransactionName);
         }
+
+        private void Fees()
+        {
+            _cashTransaction = new FeesView()
+            {
+                DataContext = new FeesViewModel(_account.AccountId, CompleteTransaction)
+            };
+            OnPropertyChanged(CashTransactionName);
+        }
+
+        private void TransferOut()
+        {
+            _cashTransaction = new CashTransferView()
+            {
+                DataContext = new CashTransferOutViewModel(_account.AccountId, CompleteTransaction)
+            };
+            OnPropertyChanged(CashTransactionName);
+            throw new System.NotImplementedException();
+        }
+
+        private void TransferIn()
+        {
+            _cashTransaction = new CashTransferView()
+            {
+                DataContext = new CashTransferInViewModel(_account.AccountId, CompleteTransaction)
+            };
+            OnPropertyChanged(CashTransactionName);
+            throw new System.NotImplementedException();
+        }
+
 
         private void CompleteTransaction()
         {

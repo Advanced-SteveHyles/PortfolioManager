@@ -65,8 +65,8 @@
                 <Button Command="{Binding DepositCommand}">Deposit</Button>
                         <Button Command="{Binding WithdrawalCommand}">Withdraw</Button>
                         <Button Command="{Binding FeesCommand}">Fees</Button>
-                        <Button Command="{Binding TransferCommand}">Transfer Out</Button>
-                        <Button Command="{Binding TransferCommand}">Transfer In</Button>
+                        <Button Command="{Binding TransferCommandOut}">Transfer Out</Button>
+                        <Button Command="{Binding TransferCommandIn}">Transfer In</Button>
                         <ContentControl Content="{Binding CashTransaction}"></ContentControl>
             </StackPanel>
         </Expander>
