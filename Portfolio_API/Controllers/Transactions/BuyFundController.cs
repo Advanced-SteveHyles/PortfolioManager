@@ -69,12 +69,9 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                         new InvestmentHandler(_investmentRepository)
                     );
 
-                var status = Command.ExecuteCommand
-                    (
-                        createFundBuyTransaction    
-                    );
+                createFundBuyTransaction.Execute();
 
-                if (status)
+                if (createFundBuyTransaction.ExecuteResult)
                 {
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
                     return Created(Request.RequestUri + "/", new CashTransactionDto());

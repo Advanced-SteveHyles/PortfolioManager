@@ -1,30 +1,31 @@
 ﻿using System;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Validators;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RevalueSinglePriceProcess: IProcess
+    public class RevalueSinglePriceProcess: BaseProcess<RevalueSinglePriceRequest>
     {
         private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
         private readonly IPriceHistoryHandler _priceHistoryHandler;
         private readonly IAccountHandler _accountHandler;
-        private readonly int _investmentId;
-        private readonly DateTime _valuationDate;
-
-
-        public RevalueSinglePriceProcess(int investmentId, DateTime valuationDate, IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler)
+        private readonly RevalueSinglePriceRequest _request;
+        
+        public RevalueSinglePriceProcess(RevalueSinglePriceRequest request,IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler) 
+            : base(request)
         {
-            _investmentId = investmentId;
+            _request = request;            
             _priceHistoryHandler = priceHistoryHandler;
             _investmentMapProcessor = investmentMapProcessor;
-            _accountHandler = accountHandler;
-            _valuationDate = valuationDate;            
+            _accountHandler = accountHandler;            
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
-            var currentSellPrice = _priceHistoryHandler.GetInvestmentSellPrice(_investmentId, _valuationDate);
-            var accountsMappedToInvestment = _investmentMapProcessor.GetMapsByInvestmentId(_investmentId);
+            var currentSellPrice = _priceHistoryHandler.GetInvestmentSellPrice(_request.InvestmentId, _request.ValuationDate);
+            var accountsMappedToInvestment = _investmentMapProcessor.GetMapsByInvestmentId(_request.InvestmentId);
 
             foreach (var map in accountsMappedToInvestment)
             {
@@ -34,11 +35,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
                 var newValuation = _investmentMapProcessor.RevalueMap(map.AccountInvestmentMapId, currentSellPrice);
 
                 AddNewValuationToAccount(map.AccountId, newValuation);
-            }
-
-            ExecuteResult = true;
+            }        
         }
 
+        protected override bool Validate(RevalueSinglePriceRequest request) => _request.Validate();
+        
         private void AddNewValuationToAccount(int accountId, decimal valuation)
         {
             _accountHandler.IncreaseValuation(accountId, valuation);
@@ -48,8 +49,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         {
             _accountHandler.DecreaseValuation(accountId, valuation);
         }
-
-        public bool ProcessValid { get; }
-        public bool ExecuteResult { get; private set; }
+        
     }
 }

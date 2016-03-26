@@ -2,7 +2,7 @@ using System;
 
 namespace Portfolio.Common.DTO.Requests.Transactions
 {
-    public class CashTransferRequest
+    public class CashTransferRequest : ITransactionRequest
     {
         public int FromAccount { get; set; }
         public int ToAccount { get; set; }

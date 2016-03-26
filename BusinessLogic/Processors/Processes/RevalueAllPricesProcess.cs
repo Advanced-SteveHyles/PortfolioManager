@@ -1,10 +1,12 @@
 using System;
 using System.Linq;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
+using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RevalueAllPricesProcess : IProcess
+    public class RevalueAllPricesProcess : BaseProcess<RevalueAllPricesRequest>
     {
         private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
         private readonly IInvestmentHandler _investmentHandler;
@@ -12,22 +14,24 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly IAccountHandler _accountHandler;
         private readonly DateTime _evaluationDate;
         
-        public RevalueAllPricesProcess(DateTime evaluationDate, IAccountInvestmentMapProcessor investmentMapProcessor, IInvestmentHandler investmentHandler, IPriceHistoryHandler priceHistoryHandler, IAccountHandler accountHandler)
+        public RevalueAllPricesProcess(RevalueAllPricesRequest request, IAccountInvestmentMapProcessor investmentMapProcessor, IInvestmentHandler investmentHandler, IPriceHistoryHandler priceHistoryHandler, IAccountHandler accountHandler)
+            :base(request)
         {
             _investmentMapProcessor = investmentMapProcessor;
             _investmentHandler = investmentHandler;
             _priceHistoryHandler = priceHistoryHandler;
             _accountHandler = accountHandler;
-            _evaluationDate = evaluationDate;
+            _evaluationDate = request.EvaluationDate;
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {            
             RevalueAllMaps();
-            UpdateAllAccounts();           
-            ExecuteResult = true;
+            UpdateAllAccounts();                    
         }
-
+                
+        protected override bool Validate(RevalueAllPricesRequest request) => request.EvaluationDate != DateTime.MinValue;
+    
         private void UpdateAllAccounts()
         {
             foreach (var account in _accountHandler.GetAccounts().ToList())
@@ -55,9 +59,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             {
                 _investmentMapProcessor.RevalueMap(map.AccountInvestmentMapId, investmentSellPriceAtDate);
             }
-        }
-
-        public bool ProcessValid => true;
-        public bool ExecuteResult { get; private set; }
+        }        
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Portfolio.Common.DTO.Requests.Transactions
 {
-    public class PriceHistoryRequest
+    public class PriceHistoryRequest : ITransactionRequest
     {
         public int InvestmentId { get; set; }
         public DateTime ValuationDate { get; set; }

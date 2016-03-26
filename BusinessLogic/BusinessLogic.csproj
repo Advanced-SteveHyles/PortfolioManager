@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\BaseProcess.cs" />
     <Compile Include="Interfaces\IAccountHandler.cs" />
     <Compile Include="Interfaces\IAccountInvestmentMapProcessor.cs" />
     <Compile Include="Interfaces\ICashTransactionHandler.cs" />
-    <Compile Include="Interfaces\IProcess.cs" />
     <Compile Include="Interfaces\IFundTransactionHandler.cs" />
     <Compile Include="Interfaces\IInvestmentHandler.cs" />
     <Compile Include="Interfaces\IIOCContainer.cs" />

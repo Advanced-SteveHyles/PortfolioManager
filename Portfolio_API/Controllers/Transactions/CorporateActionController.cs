@@ -53,12 +53,10 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                         
                     );
 
-                var status = Command.ExecuteCommand
-                    (
-                        createFundBuyTransaction
-                    );
 
-                if (status)
+                createFundBuyTransaction.Execute();
+
+                if (createFundBuyTransaction.ExecuteResult)                    
                 {
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
                     return Created(Request.RequestUri + "/", new CashTransactionDto());

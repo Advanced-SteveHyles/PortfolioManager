@@ -1,11 +1,12 @@
 ﻿using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordLoyaltyBonusProcess : IProcess
+    public class RecordLoyaltyBonusProcess : BaseProcess<InvestmentLoyaltyBonusRequest>
     {
         private readonly InvestmentLoyaltyBonusRequest _request;
         private readonly IFundTransactionHandler _fundTransactionHandler;
@@ -14,6 +15,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly IInvestmentHandler _investmentHandler;
 
         public RecordLoyaltyBonusProcess(InvestmentLoyaltyBonusRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor, IInvestmentHandler investmentHandler)
+            :base(request)
         {
             _request = request;
             _fundTransactionHandler = fundTransactionHandler;
@@ -22,7 +24,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _investmentHandler = investmentHandler;
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
             var investmentMapDto = _accountInvestmentMapProcessor.GetAccountInvestmentMap(_request.InvestmentMapId);
             var accountId = investmentMapDto.AccountId;
@@ -30,13 +32,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             var investment = _investmentHandler.GetInvestment(investmentMapDto.InvestmentId);
 
             _cashTransactionHandler.StoreCashTransaction(accountId, _request, linkedTransaction, investment.Name);
-            _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);
-
-            ExecuteResult = true;
+            _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);            
         }
-
-        public bool ProcessValid => _request.Validate();
-        public bool ExecuteResult { get; set; }
-
+        
+        protected override bool Validate(InvestmentLoyaltyBonusRequest request) => _request.Validate();
+        
     }
 }

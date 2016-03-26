@@ -2,7 +2,7 @@
 
 namespace Portfolio.Common.DTO.Requests.Transactions
 {
-    public class InvestmentDividendRequest
+    public class InvestmentDividendRequest : ITransactionRequest
     {
         public int InvestmentMapId { get; set; }
         public decimal Amount { get; set; }

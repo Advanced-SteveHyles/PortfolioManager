@@ -1,5 +1,6 @@
 using System;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
@@ -7,7 +8,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordFundBuyProcess : IProcess
+    public class RecordFundBuyProcess : BaseProcess<InvestmentBuyRequest>
     {
         private readonly InvestmentBuyRequest _fundBuyRequest;
         private readonly IAccountHandler _accountHandler;
@@ -19,14 +20,15 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         
 
         public RecordFundBuyProcess(
-            InvestmentBuyRequest fundBuyRequest,
+            InvestmentBuyRequest request,
             IAccountHandler accountHandler,
             ICashTransactionHandler cashTransactionHandler,
             IAccountInvestmentMapProcessor accountInvestmentMapProcessor,
             IFundTransactionHandler fundTransactionHandler,
             IPriceHistoryHandler priceHistoryHandler, IInvestmentHandler investmentHandler)
+            :base(request)
         {
-            _fundBuyRequest = fundBuyRequest;
+            _fundBuyRequest = request;
             _accountHandler = accountHandler;
             _cashTransactionHandler = cashTransactionHandler;
             _accountInvestmentMapProcessor = accountInvestmentMapProcessor;
@@ -35,9 +37,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _investmentHandler = investmentHandler;            
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
-
             var investmentMapDto = _accountInvestmentMapProcessor.GetAccountInvestmentMap(_fundBuyRequest.InvestmentMapId);
             var investmentId = investmentMapDto.InvestmentId;
             var accountId = investmentMapDto.AccountId;
@@ -59,16 +60,17 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
             _priceHistoryHandler.StorePriceHistory(priceRequest, DateTime.Now);
 
-            var revaluePriceTransaction = new RevalueSinglePriceProcess(
-                investmentId,
-                _fundBuyRequest.PurchaseDate, _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandler);
-            revaluePriceTransaction.Execute();
+            var singlePriceRequest = new RevalueSinglePriceRequest()
+            {
+                InvestmentId = investmentId,
+                ValuationDate = _fundBuyRequest.PurchaseDate
+            };
 
-            ExecuteResult = true;
+            var revaluePriceTransaction = new RevalueSinglePriceProcess(singlePriceRequest,
+                _priceHistoryHandler, _accountInvestmentMapProcessor, _accountHandler);
+            revaluePriceTransaction.Execute();        
         }
-
-        public bool ProcessValid => _fundBuyRequest.Validate();
-
-        public bool ExecuteResult { get; private set; }
+        
+        protected override bool Validate(InvestmentBuyRequest request) => _fundBuyRequest.Validate();        
     }
 }

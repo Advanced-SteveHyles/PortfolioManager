@@ -2,7 +2,7 @@
 
 namespace Portfolio.Common.DTO.DTOs
 {
-    public class AccountDto
+    public class AccountDto 
     {
         public int AccountId { get; set; }
         public string Name { get; set; }

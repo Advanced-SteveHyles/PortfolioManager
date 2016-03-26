@@ -44,5 +44,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
                 request.TransactionDate != DateTime.MinValue;
         }
 
+        public static bool Validate(this RevalueSinglePriceRequest request)
+        {
+            return request.InvestmentId != 0 && 
+                request.ValuationDate != DateTime.MinValue;
+        }
     }
 }

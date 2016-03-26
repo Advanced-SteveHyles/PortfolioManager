@@ -72,20 +72,18 @@ namespace PortfolioManager.UIBuilders
         {
             _cashTransaction = new CashTransferView()
             {
-                DataContext = new CashTransferOutViewModel(_account.AccountId, CompleteTransaction)
+                DataContext = CashTransferViewModel.CreateCashTransferOutViewModel( _account.AccountId, CompleteTransaction)
             };
-            OnPropertyChanged(CashTransactionName);
-            throw new System.NotImplementedException();
+            OnPropertyChanged(CashTransactionName);            
         }
 
         private void TransferIn()
         {
             _cashTransaction = new CashTransferView()
             {
-                DataContext = new CashTransferInViewModel(_account.AccountId, CompleteTransaction)
+                DataContext = CashTransferViewModel.CreateCashTransferInViewModel(_account.AccountId, CompleteTransaction)
             };
-            OnPropertyChanged(CashTransactionName);
-            throw new System.NotImplementedException();
+            OnPropertyChanged(CashTransactionName);            
         }
 
 

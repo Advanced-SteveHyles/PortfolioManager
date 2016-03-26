@@ -2,7 +2,7 @@ using System;
 
 namespace Portfolio.Common.DTO.Requests.Transactions
 {
-    public class InvestmentBuyRequest
+    public class InvestmentBuyRequest : ITransactionRequest
     {
         public int InvestmentMapId { get; set; }
         public decimal Quantity { get; set; }

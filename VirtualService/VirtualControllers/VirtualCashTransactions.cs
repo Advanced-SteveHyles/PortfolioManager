@@ -25,12 +25,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
             var createDepositTransaction = new RecordDepositProcess(request, transactionHandler,null);
 
-            var status = CommandExecutor.ExecuteCommand
-                (
-                    createDepositTransaction
-                );
-
-            if (status == false)
+            createDepositTransaction.Execute();
+            
+            if (createDepositTransaction.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }
@@ -42,12 +39,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
             var createWithdrawalTransaction = new RecordWithdrawalProcess(request, transactionHandler);
 
-            var status = CommandExecutor.ExecuteCommand
-                (
-                    createWithdrawalTransaction
-                );
-
-            if (status == false)
+            createWithdrawalTransaction.Execute();
+            
+            if (createWithdrawalTransaction.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }
@@ -59,12 +53,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
             var createFeeProcess = new RecordFeeProcess(request, transactionHandler);
 
-            var status = CommandExecutor.ExecuteCommand
-                (
-                    createFeeProcess
-                );
+            createFeeProcess.Execute();
 
-            if (status == false)
+            if (createFeeProcess.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }

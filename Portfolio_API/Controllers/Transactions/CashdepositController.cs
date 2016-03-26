@@ -51,18 +51,15 @@ namespace Portfolio.API.WebApi.Controllers.Transactions
                 //    "expenseGroupStatusId": 1,
                 //}
                 //*/
-
-                var accountHandler = new AccountHandler(_accountRepository);
                 var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
-                var status = Command.ExecuteCommand(
-                        new RecordDepositProcess(
-                            deposit, 
-                            transactionHandler, 
-                            TransactionLink.FundToCash())
-                        );
+                var recordDepositProcess = new RecordDepositProcess(deposit,
+                        transactionHandler,
+                        TransactionLink.FundToCash());
+                
+                recordDepositProcess.Execute();
 
-                if (status)
+                if (recordDepositProcess.ExecuteResult)                
                 {                    
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
                     return Created(Request.RequestUri + "/" + deposit.AccountId, new CashTransactionDto());

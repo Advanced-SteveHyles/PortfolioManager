@@ -53,12 +53,12 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
         private void SetupMassUpdate()
         {
+            var request = new RevalueAllPricesRequest() { EvaluationDate = DateTime.Now };
             var revalueAllPricesCommand = new RevalueAllPricesProcess(
-                DateTime.Now,
-                investmentMapProcessor: new AccountInvestmentMapProcessor(_fakeRepository),
-                investmentHandler: new InvestmentHandler(_fakeRepository),
-                priceHistoryHandler: new PriceHistoryHandler(_fakeRepository),
-                accountHandler: new AccountHandler(_fakeRepository)
+                request, new AccountInvestmentMapProcessor(_fakeRepository),
+                new InvestmentHandler(_fakeRepository),
+                new PriceHistoryHandler(_fakeRepository),
+                new AccountHandler(_fakeRepository)
                 );
 
             revalueAllPricesCommand.Execute();

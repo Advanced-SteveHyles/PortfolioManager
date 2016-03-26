@@ -49,12 +49,13 @@ public class CashWithdrawalController : ApiController
                 //}
                 //*/
 
-                var accountHandler = new AccountHandler(_accountRepository);
                 var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
 
-                var status = Command.ExecuteCommand(new RecordWithdrawalProcess(withdrawal, transactionHandler));
+                var withdrawalProcess = new RecordWithdrawalProcess(withdrawal, transactionHandler);
+                
+                withdrawalProcess.Execute();
 
-                if (status)
+                if (withdrawalProcess.ExecuteResult)
                 {
                     //var dtoTransaction = EntityToDtoMap.MapTransactionToDto(result.Entity);
                     return Created(Request.RequestUri + "/" + withdrawal.AccountId, new CashTransactionDto());

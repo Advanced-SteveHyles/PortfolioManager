@@ -56,13 +56,6 @@ namespace BusinessLogicTests.Transactions.Fund
             if (execute) _process.Execute();
         }
 
-        [Fact]
-        public void TransactionIsValid()
-        {
-            SetupAndOrExecute(false);
-            Assert.True(_process.ProcessValid);
-        }
-
 
         [Fact]
         public void WhenIRecordADividendThenAFundTransactionIsRecorded()

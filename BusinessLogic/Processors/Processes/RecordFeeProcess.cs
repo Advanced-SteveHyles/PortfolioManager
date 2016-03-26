@@ -1,30 +1,30 @@
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordFeeProcess    : IProcess
+    public class RecordFeeProcess    : BaseProcess<FeeTransactionRequest>
     {
         private readonly FeeTransactionRequest _feeTransactionRequest;
         private readonly ICashTransactionHandler _transactionHandler;
 
-        public RecordFeeProcess(FeeTransactionRequest feeTransactionRequest, ICashTransactionHandler transactionHandler)
-        {
-            this._feeTransactionRequest = feeTransactionRequest;
+        public RecordFeeProcess(FeeTransactionRequest request, ICashTransactionHandler transactionHandler)
+            :base(request)
+        {            
+            this._feeTransactionRequest = request;
             _transactionHandler = transactionHandler;
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
             _transactionHandler.StoreCashTransaction(_feeTransactionRequest);
-
-            ExecuteResult = true;
+    
         }
 
-        public bool ExecuteResult { get; set; }
-
-        public bool ProcessValid => _feeTransactionRequest.Validate();
+        protected override bool Validate(FeeTransactionRequest request) => _feeTransactionRequest.Validate();
+    
     }
 }

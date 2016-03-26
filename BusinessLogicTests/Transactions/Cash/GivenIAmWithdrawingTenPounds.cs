@@ -1,6 +1,7 @@
 using System;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.TransactionTypes;
@@ -11,7 +12,7 @@ namespace BusinessLogicTests.Transactions.Cash
 {
     public class GivenIAmWithdrawingTenPounds
     {
-        private readonly IProcess _withdrawalTransaction;
+        private readonly BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
@@ -40,8 +41,6 @@ namespace BusinessLogicTests.Transactions.Cash
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_withdrawalTransaction.ProcessValid);
-
             _withdrawalTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            
             Assert.Equal(-TransactionValue, account.Cash);

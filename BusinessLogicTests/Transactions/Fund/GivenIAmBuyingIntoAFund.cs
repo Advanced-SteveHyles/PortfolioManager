@@ -72,13 +72,6 @@ namespace BusinessLogicTests.Transactions.Fund
         }
 
         [Fact]
-        public void WhenIBuyTransactionIsValid()
-        {
-            SetupAndOrExecute(false);
-            Assert.True(_buyProcess.ProcessValid);
-        }
-
-        [Fact]
         public void WhenIBuyThenTheAccountValueIsReduced()
         {
             SetupAndOrExecute(true);

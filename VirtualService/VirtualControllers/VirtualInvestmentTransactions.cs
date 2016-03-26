@@ -39,7 +39,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException();
             }
 
-            var createFundBuyTransaction = new RecordFundBuyProcess
+            var createFundBuyProcess = new RecordFundBuyProcess
                 (purchaseRequest,
                     new AccountHandler(_accountRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
@@ -49,13 +49,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
                     new InvestmentHandler(_investmentRepository)
                 );
 
-            var status = CommandExecutor.ExecuteCommand
-                (
-                    createFundBuyTransaction
-                );
+            createFundBuyProcess.Execute();
 
-
-            if (status == false)
+            if (createFundBuyProcess.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }
@@ -69,7 +65,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException();
             }
 
-            var loyaltyBonusTransaction = new RecordLoyaltyBonusProcess
+            var loyaltyBonusProcess = new RecordLoyaltyBonusProcess
                 (loyaltyBonusRequest,
                 new FundTransactionHandler(_fundTransactionRepository),
                     new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
@@ -78,13 +74,9 @@ namespace Portfolio.API.Virtual.VirtualControllers
             );
 
 
-            var status = CommandExecutor.ExecuteCommand
-                (
-                    loyaltyBonusTransaction
-                );
+            loyaltyBonusProcess.Execute();
 
-
-            if (status == false)
+            if (loyaltyBonusProcess.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }

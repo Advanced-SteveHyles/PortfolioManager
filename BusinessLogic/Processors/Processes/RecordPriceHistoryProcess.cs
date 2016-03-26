@@ -1,30 +1,30 @@
 ﻿using System;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordPriceHistoryProcess: IProcess
-{
+    public class RecordPriceHistoryProcess : BaseProcess<PriceHistoryRequest>
+    {
         private readonly PriceHistoryRequest _priceHistoryRequest;
         private readonly IPriceHistoryHandler _priceHistoryHandler;
 
         public RecordPriceHistoryProcess(PriceHistoryRequest priceHistoryRequest, IPriceHistoryHandler priceHistoryHandler)
+            :base(priceHistoryRequest)
         {
             _priceHistoryRequest = priceHistoryRequest;
-            _priceHistoryHandler = priceHistoryHandler;        
+            _priceHistoryHandler = priceHistoryHandler;
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
             var recordedDate = DateTime.Now;
             _priceHistoryHandler.StorePriceHistory(_priceHistoryRequest, recordedDate);
-
-            ExecuteResult = true;
         }
 
-        public bool ProcessValid => _priceHistoryRequest.InvestmentId != 0;
-        public bool ExecuteResult { get; private set; }
-}
+        protected override bool Validate(PriceHistoryRequest request) => _priceHistoryRequest.InvestmentId != 0;
+
+    }
 
 }

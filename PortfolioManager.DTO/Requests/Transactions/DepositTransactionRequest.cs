@@ -2,7 +2,7 @@
 
 namespace Portfolio.Common.DTO.Requests.Transactions
 {
-    public class DepositTransactionRequest
+    public class DepositTransactionRequest : ITransactionRequest
     {
        public int AccountId { get; set; }
 

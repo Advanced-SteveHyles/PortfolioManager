@@ -30,7 +30,13 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
             var accountMapHandler = new AccountHandler(_repository);
             var investmentMapProcessor = new AccountInvestmentMapProcessor(_repository);
-            _revalueSinglePriceProcess = new RevalueSinglePriceProcess(investmentId, todaysValuationDate, _priceHistoryHandler, investmentMapProcessor, accountMapHandler);
+
+            var request = new RevalueSinglePriceRequest()
+            {
+                InvestmentId =  investmentId,                 
+                ValuationDate = todaysValuationDate
+            };
+            _revalueSinglePriceProcess = new RevalueSinglePriceProcess(request, _priceHistoryHandler, investmentMapProcessor, accountMapHandler);
         }
 
         private void SetupPriceHistory(DateTime valuationDate, decimal? buyAt, decimal? sellAt)
@@ -51,8 +57,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void CanSaveAPriceHistory()
         {
             SetupPriceHistory(todaysValuationDate, todaysBuyPrice, todaysSellPrice);
-
-            Assert.True(_recordPriceHistoryProcess.ProcessValid);
+            
             _recordPriceHistoryProcess.Execute();
             Assert.True(_recordPriceHistoryProcess.ExecuteResult);
 

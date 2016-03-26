@@ -27,8 +27,13 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
         public void UpdateAllPrices()
         {
+            var request = new RevalueAllPricesRequest()
+            {
+                EvaluationDate = DateTime.Now
+            };
+
             var revalueAllPricesCommand = new RevalueAllPricesProcess(
-                DateTime.Now,
+                request,
                 new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
                 new InvestmentHandler(_investmentRepository),
                 new PriceHistoryHandler(_priceHistoryRepository),

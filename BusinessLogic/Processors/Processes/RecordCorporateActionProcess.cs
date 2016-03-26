@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
@@ -8,7 +9,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
-    public class RecordCorporateActionProcess: IProcess
+    public class RecordCorporateActionProcess: BaseProcess<InvestmentCorporateActionRequest>
     {
         private readonly InvestmentCorporateActionRequest _request;
         private readonly IFundTransactionHandler _fundTransactionHandler;
@@ -17,7 +18,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         private readonly IInvestmentHandler _investmentHandler;
 
         public RecordCorporateActionProcess(InvestmentCorporateActionRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor, IInvestmentHandler investmentHandler)
-        {
+            :base(request)
+        {            
             _request = request;
             _fundTransactionHandler = fundTransactionHandler;
             _cashTransactionHandler = cashTransactionHandler;
@@ -25,7 +27,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             _investmentHandler = investmentHandler;            
         }
 
-        public void Execute()
+        protected override void ProcessToRun()
         {
             var investmentMapDto = _accountInvestmentMapProcessor.GetAccountInvestmentMap(_request.InvestmentMapId);
             var investmentId = investmentMapDto.InvestmentId;
@@ -48,13 +50,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
                     throw new NotSupportedException("Invalid Income Type Supplied");
             }
 
-            _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);
-
-            ExecuteResult = true;
+            _fundTransactionHandler.StoreFundTransaction(_request, linkedTransaction);            
         }
-
-        public bool ProcessValid => _request.Validate();
-        public bool ExecuteResult { get; set; }
+        
+        protected override bool Validate(InvestmentCorporateActionRequest request) => _request.Validate();        
     }
 }
 

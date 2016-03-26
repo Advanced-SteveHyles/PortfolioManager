@@ -1,6 +1,7 @@
 using System;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.TransactionTypes;
@@ -11,7 +12,7 @@ namespace BusinessLogicTests.Transactions.Cash
 {
     public class GivenIAmApplyingAFee
     {
-        private readonly IProcess _feeTransaction;
+        private readonly BaseProcess<FeeTransactionRequest> _feeTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
@@ -38,8 +39,6 @@ namespace BusinessLogicTests.Transactions.Cash
         [Fact]
         public void ValidTransactionCanExecute()
         {
-            Assert.True(_feeTransaction.ProcessValid);
-
             _feeTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);

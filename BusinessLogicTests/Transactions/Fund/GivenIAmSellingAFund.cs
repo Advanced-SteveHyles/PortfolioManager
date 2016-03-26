@@ -80,13 +80,6 @@ namespace BusinessLogicTests.Transactions.Fund
         }
 
         [Fact]
-        public void WhenISellTransactionIsValid()
-        {
-            SetupAndOrExecute(false);
-            Assert.True(_sellProcess.ProcessValid);
-        }
-
-        [Fact]
         public void WhenISellThenTheAccountValueIsIncreased()
         {
             SetupAndOrExecute(true);

@@ -9,7 +9,7 @@ namespace PortfolioManager.ViewModels
 {
     public class CashDepositViewModel : AbstractSaveCancelCommands, INotifyPropertyChanged
     {
-        private int _accountId;
+        private readonly int _accountId;
         private readonly Action _completeTransaction;
 
         public DateTime TransactionDate { get; set; } = DateTime.Now;
