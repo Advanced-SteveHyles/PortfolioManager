@@ -45,7 +45,8 @@
                                 <Button Command="{Binding SellCommand}">Sell</Button>
                                 <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
                                 <Button Command="{Binding LoyaltyCommand}">Loyalty Bonus</Button>
-                                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                                    <Button Command="{Binding DividendCommand}">Dividend</Button>
+                                    <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
                             </StackPanel>
                         </Expander>
 

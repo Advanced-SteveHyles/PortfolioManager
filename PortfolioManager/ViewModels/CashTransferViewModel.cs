@@ -21,22 +21,22 @@ namespace PortfolioManager.ViewModels
         public AccountDtoDecorator SelectedFromAccount { get; set; }
 
         public AccountDtoDecorator SelectedToAccount { get; set; }
-        
-            private int accountId;
+
+        private int accountId;
         private readonly Action completeTransaction;
 
         public static CashTransferViewModel CreateCashTransferOutViewModel(int accountId, Action completeTransaction)
         {
             var account = LoadAccount(accountId);
-            var accountsFrom = new List<AccountDto>() { account };            
+            var accountsFrom = new List<AccountDto>() { account };
             var accountsTo = LoadAccountsList(account.PortfolioId, accountId);
             return new CashTransferViewModel(accountId, completeTransaction, accountsFrom, accountsTo);
         }
 
         public static CashTransferViewModel CreateCashTransferInViewModel(int accountId, Action completeTransaction)
         {
-            var account = LoadAccount(accountId);            
-            var accountsFrom = LoadAccountsList(account.PortfolioId, accountId); 
+            var account = LoadAccount(accountId);
+            var accountsFrom = LoadAccountsList(account.PortfolioId, accountId);
             var accountsTo = new List<AccountDto>() { account };
             return new CashTransferViewModel(accountId, completeTransaction, accountsFrom, accountsTo);
         }
@@ -57,7 +57,7 @@ namespace PortfolioManager.ViewModels
             this.completeTransaction = completeTransaction;
             AccountsFrom = accountsFrom.Select(account => new AccountDtoDecorator(account)).ToList();
             AccountsTo = accountsTo.Select(account => new AccountDtoDecorator(account)).ToList();
-            SetCommands(Save,Cancel);
+            SetCommands(Save, Cancel);
 
             SelectedFromAccount = AccountsFrom.FirstOrDefault();
             SelectedToAccount = AccountsTo.FirstOrDefault();
@@ -72,12 +72,11 @@ namespace PortfolioManager.ViewModels
         {
             var cashTransferRequest = new CashTransferRequest()
             {
-        FromAccount = SelectedFromAccount?.AccountId ?? 0,
-        ToAccount = SelectedToAccount?.AccountId ?? 0,
-        Amount = TransferAmount,
-        TransactionDate = TransactionDate
-            }
-            ;
+                FromAccount = SelectedFromAccount?.AccountId ?? 0,
+                ToAccount = SelectedToAccount?.AccountId ?? 0,
+                Amount = TransferAmount,
+                TransactionDate = TransactionDate
+            };
             AccountTransactionModel.InsertTransfer(cashTransferRequest);
 
             completeTransaction.Invoke();

@@ -33,12 +33,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
 
         public void Buy(InvestmentBuyRequest purchaseRequest)
-        {
-            if (purchaseRequest == null)
-            {
-                throw new InvalidOperationException();
-            }
-
+        {          
             var createFundBuyProcess = new RecordFundBuyProcess
                 (purchaseRequest,
                     new AccountHandler(_accountRepository),
@@ -57,14 +52,29 @@ namespace Portfolio.API.Virtual.VirtualControllers
             }
         }
 
+        public void Sell(InvestmentSellRequest saleRequest)
+        {
+            var createFundBuyProcess = new RecordFundSellProcess
+                (saleRequest,
+                    new AccountHandler(_accountRepository),
+                    new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
+                    new AccountInvestmentMapProcessor(_accountInvestmentMapRepository),
+                    new FundTransactionHandler(_fundTransactionRepository),
+                    new PriceHistoryHandler(_priceHistoryRepository),
+                    new InvestmentHandler(_investmentRepository)
+                );
+
+            createFundBuyProcess.Execute();
+
+            if (createFundBuyProcess.ExecuteResult == false)
+            {
+                throw new InvalidOperationException("Transaction Failed");
+            }
+        }
+
 
         public void LoyaltyBonus(InvestmentLoyaltyBonusRequest loyaltyBonusRequest)
-        {
-            if (loyaltyBonusRequest == null)
-            {
-                throw new InvalidOperationException();
-            }
-
+        {           
             var loyaltyBonusProcess = new RecordLoyaltyBonusProcess
                 (loyaltyBonusRequest,
                 new FundTransactionHandler(_fundTransactionRepository),
@@ -77,6 +87,25 @@ namespace Portfolio.API.Virtual.VirtualControllers
             loyaltyBonusProcess.Execute();
 
             if (loyaltyBonusProcess.ExecuteResult == false)
+            {
+                throw new InvalidOperationException("Transaction Failed");
+            }
+        }
+
+        public void Divdend(InvestmentDividendRequest investmentDividendRequest)
+        {
+            
+            var recordDividendProcess = new RecordDividendProcess
+                (investmentDividendRequest,
+                new FundTransactionHandler(_fundTransactionRepository),
+                    new CashTransactionHandler(_cashTransactionRepository, _accountRepository),
+                    new AccountInvestmentMapProcessor(_accountInvestmentMapRepository)                    
+            );
+
+
+            recordDividendProcess.Execute();
+
+            if (recordDividendProcess.ExecuteResult == false)
             {
                 throw new InvalidOperationException("Transaction Failed");
             }

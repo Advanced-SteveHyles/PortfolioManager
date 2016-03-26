@@ -25,11 +25,25 @@ namespace PortfolioManager.Model
             service.Buy(request);
         }
 
+        public static void Sell(InvestmentSellRequest request)
+        {
+            var service = new VirtualInvestmentTransactions();
+            service.Sell(request);
+        }
+
         public static void ApplyLoyaltyBonus(InvestmentLoyaltyBonusRequest loyaltyBonusRequest)
         {
             var service = new VirtualInvestmentTransactions();
             service.LoyaltyBonus(loyaltyBonusRequest);
         }
+
+        public static void ApplyDividend(InvestmentDividendRequest investmentDividendRequest)
+        {
+            var service = new VirtualInvestmentTransactions();
+            service.Divdend(investmentDividendRequest);
+        }
+
+        
     }
 
 

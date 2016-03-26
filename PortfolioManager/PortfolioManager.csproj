@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Portfolio Manager</ProductName>
     <PublisherName>Hyles Industries</PublisherName>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\FeesViewModel.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
+    <Compile Include="ViewModels\InvestmentDividendViewModel.cs" />
     <Compile Include="ViewModels\InvestmentLoyaltyBonusViewModel.cs" />
     <Compile Include="ViewModels\InvestmentSellViewModel.cs" />
     <Compile Include="ViewModels\InvestmentsTabsViewModel.cs" />
@@ -139,6 +140,9 @@
     </Compile>
     <Compile Include="Views\DataEntry\FeesView.xaml.cs">
       <DependentUpon>FeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntry\InvestmentDividendView.xaml.cs">
+      <DependentUpon>InvestmentDividendView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentLoyaltyBonusView.xaml.cs">
       <DependentUpon>InvestmentLoyaltyBonusView.xaml</DependentUpon>
@@ -223,6 +227,10 @@
     <Page Include="Views\DataEntry\FeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntry\InvestmentDividendView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataEntry\InvestmentLoyaltyBonusView.xaml">
       <Generator>MSBuild:Compile</Generator>
