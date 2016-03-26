@@ -22,7 +22,6 @@ namespace Portfolio.API.Virtual.VirtualControllers
         public void InsertDeposit(DepositTransactionRequest request)
         {            
             var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
-
             var createDepositTransaction = new RecordDepositProcess(request, transactionHandler,null);
 
             createDepositTransaction.Execute();
@@ -50,7 +49,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
         public void InsertFee(FeeTransactionRequest request)
         {
             var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
-
+            
             var createFeeProcess = new RecordFeeProcess(request, transactionHandler);
 
             createFeeProcess.Execute();
@@ -60,7 +59,19 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException("Transaction Failed");
             }
         }
-      
 
+        public void InsertTransfer(CashTransferRequest request)
+        {            
+            var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
+            var accountHandler = new AccountHandler(_accountRepository);
+            var createTransferProcess = new RecordCashTransferProcess(request, transactionHandler, accountHandler);
+
+            createTransferProcess.Execute();
+
+            if (createTransferProcess.ExecuteResult == false)
+            {
+                throw new InvalidOperationException("Transaction Failed");
+            }
+        }
     }
 }

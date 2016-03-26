@@ -23,9 +23,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1">Copy From</TextBlock>
-        <ComboBox Grid.Row="2" ItemsSource="{Binding AccountsFrom}"></ComboBox>
+        <ComboBox Grid.Row="2" ItemsSource="{Binding AccountsFrom}" SelectedItem="{Binding SelectedFromAccount}"></ComboBox>
         <TextBlock Grid.Row="3">Copy To</TextBlock>
-        <ComboBox  Grid.Row="4" ItemsSource="{Binding AccountsTo}"></ComboBox>
+        <ComboBox  Grid.Row="4" ItemsSource="{Binding AccountsTo}" SelectedItem="{Binding SelectedToAccount}"></ComboBox>
         <TextBlock Grid.Row="5">Amount</TextBlock>
         <TextBox    Grid.Row="5" Grid.Column="1" Text="{Binding TransferAmount}"></TextBox>
         <TextBlock Grid.Row="6">Transaction Date</TextBlock>

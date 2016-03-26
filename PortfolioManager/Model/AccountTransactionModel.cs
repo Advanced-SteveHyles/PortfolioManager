@@ -8,7 +8,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace PortfolioManager.Model
 {
-    class AccountTransactionModel
+    internal class AccountTransactionModel
     {
         public static void InsertDeposit(DepositTransactionRequest request)
         {
@@ -28,5 +28,10 @@ namespace PortfolioManager.Model
             service.InsertFee(request);
         }
 
+        public static void InsertTransfer(CashTransferRequest request)
+        {
+            var service = new VirtualCashTransactions();
+            service.InsertTransfer(request);            
+        }
     }
 }

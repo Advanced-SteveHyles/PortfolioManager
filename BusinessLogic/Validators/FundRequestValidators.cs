@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.NetworkInformation;
 using Portfolio.Common.DTO.Requests.Transactions;
+using static Portfolio.BackEnd.BusinessLogic.Validators.Validators;
 
 namespace Portfolio.BackEnd.BusinessLogic.Validators
 {
@@ -44,10 +45,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
         {
             return request.InvestmentId != 0 && IsValidDate(request.ValuationDate);
         }
-
-        private static bool IsValidDate(DateTime date)
-        {
-            return date != DateTime.MinValue;
-        }
+        
     }
 }
