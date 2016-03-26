@@ -9,55 +9,60 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row ="1"  Header="Investment Details"></GroupBox>
+        <GroupBox Grid.Row ="2"  Header="Investment Details">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding AccountInvestmentMapId}" Margin="8"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding InvestmentName}" Margin="8"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding Quantity}"  Margin="8"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="7" Text="{Binding Valuation}"  Margin="8"></TextBlock>
 
-        <ScrollViewer Grid.Row="2">
-        <ListView ItemsSource="{Binding InvestmentMapWrappers}" >
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid ShowGridLines="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding AccountInvestmentMapId}"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding InvestmentName}"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Quantity}"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Valuation}"></TextBlock>
+                                <Expander Grid.Row="1" Grid.Column="9" ExpandDirection="Right" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Command="{Binding ViewCommand}">View</Button>
+                                        <Button Command="{Binding BuyCommand}">Buy</Button>
+                                        <Button Command="{Binding SellCommand}">Sell</Button>
+                                        <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
+                                        <Button Command="{Binding LoyaltyCommand}">Loyalty Bonus</Button>
+                                        <Button Command="{Binding DividendCommand}">Dividend</Button>
+                                        <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
+                                    </StackPanel>
+                                </Expander>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
+        <!--        
+        ItemsSource="{Binding InvestmentMaps}"
+        -->
 
-                        <Expander Grid.Row="1" Grid.Column="5" ExpandDirection="Right" >
-                            <StackPanel Orientation="Horizontal">
-                                <Button Command="{Binding ViewCommand}">View</Button>
-                                <Button Command="{Binding BuyCommand}">Buy</Button>
-                                <Button Command="{Binding SellCommand}">Sell</Button>
-                                <Button Command="{Binding CorporateActionCommand}">Corporate Action</Button>
-                                <Button Command="{Binding LoyaltyCommand}">Loyalty Bonus</Button>
-                                    <Button Command="{Binding DividendCommand}">Dividend</Button>
-                                    <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding InvestmentTransaction}"></ContentControl>
-                            </StackPanel>
-                        </Expander>
-
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ListView>
-        </ScrollViewer>
-        
-     
-        
-        <DataGrid Grid.Row="3" ItemsSource="{Binding InvestmentMaps}"></DataGrid>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding InvestmentMaps}" />        
     </Grid>
 </UserControl>
+

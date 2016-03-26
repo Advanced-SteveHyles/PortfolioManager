@@ -9,13 +9,13 @@ using PortfolioManager.Views.DataEntry;
 
 namespace PortfolioManager.UIBuilders
 {
-    public class AccountInvestmentMapDecorator:ViewModel
+    public class AccountInvestmentMapDecorator : ViewModel
     {
         public int AccountInvestmentMapId => this._accountInvestmentMapDto.AccountInvestmentMapId;
         public string InvestmentName => this._accountInvestmentMapDto.InvestmentName;
         private const string InvestmentTransactionName = "InvestmentTransaction";
 
-        public decimal Quantity => this._accountInvestmentMapDto.Quantity ;
+        public decimal Quantity => this._accountInvestmentMapDto.Quantity;
         public decimal Valuation => this._accountInvestmentMapDto.Valuation;
 
         private UserControl _investmentTransaction;
@@ -27,7 +27,7 @@ namespace PortfolioManager.UIBuilders
         {
             this._accountInvestmentMapDto = accountInvestmentMapDto;
         }
-        
+
         public ICommand BuyCommand => new RelayCommand(Buy);
         public ICommand SellCommand => new RelayCommand(Sell);
         public ICommand LoyaltyCommand => new RelayCommand(Loyalty);
@@ -39,7 +39,7 @@ namespace PortfolioManager.UIBuilders
             _investmentTransaction = new InvestmentBuyView()
             {
                 DataContext = new InvestmentBuyViewModel(AccountInvestmentMapId, CompleteTransaction)
-            };            
+            };
             OnPropertyChanged(InvestmentTransactionName);
         }
 
@@ -53,18 +53,17 @@ namespace PortfolioManager.UIBuilders
         }
 
 
-
         private void Sell()
         {
             _investmentTransaction = new InvestmentSellView()
             {
-                DataContext = new InvestmentSellViewModel(AccountInvestmentMapId,CompleteTransaction)
+                DataContext = new InvestmentSellViewModel(AccountInvestmentMapId, CompleteTransaction)
             };
             OnPropertyChanged(InvestmentTransactionName);
         }
 
-        
-            private void Dividend()
+
+        private void Dividend()
         {
             _investmentTransaction = new InvestmentDividendView()
             {

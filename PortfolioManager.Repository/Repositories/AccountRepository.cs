@@ -45,7 +45,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
             return account;
         }
 
-        public void IncreaseAccountBalance(int accountId, decimal amount)
+        public void AdjustAccountBalance(int accountId, decimal amount)
         {
             var account = _context.Accounts.Single(a => a.AccountId == accountId);
             account.Cash += amount;

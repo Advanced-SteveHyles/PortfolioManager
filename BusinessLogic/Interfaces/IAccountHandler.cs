@@ -5,8 +5,8 @@ namespace Interfaces
 {
     public interface IAccountHandler
     {
-        void IncreaseAccountBalance(int accountId, decimal amount);
-        void DecreaseAccountBalance(int accountId, decimal amount);
+        void AdjustAccountBalance(int accountId, decimal amount);
+
         void IncreaseValuation(int accountId, decimal mapValue);
         void DecreaseValuation(int accountId, decimal mapValue);
         void SetValuation(int accountId, decimal valuation);

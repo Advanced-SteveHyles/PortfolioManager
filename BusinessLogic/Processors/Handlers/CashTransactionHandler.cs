@@ -21,7 +21,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 
         public void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest)
         {
-            const bool increaseAccountBalance = true;
             TransactionLink noTransactionLink = null;
             StoreCashTransaction(
                 depositTransactionRequest.AccountId,
@@ -29,28 +28,26 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 depositTransactionRequest.Source,
                 depositTransactionRequest.Value,
                 depositTransactionRequest.IsTaxRefund,
-                 CashTransactionTypes.Deposit,
-                 increaseAccountBalance, noTransactionLink);
+                 CashTransactionTypes.Deposit, noTransactionLink);
         }
 
         public void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest)
         {
-            const bool increaseAccountBalance = false;
             const bool isTaxRefund = false;
             TransactionLink noTransactionLink = null;
+            var negatedValue = withdrawalTransactionRequest.Value.Negate();
             StoreCashTransaction(
                       withdrawalTransactionRequest.AccountId,
                       withdrawalTransactionRequest.TransactionDate,
                       withdrawalTransactionRequest.Source,
-                      withdrawalTransactionRequest.Value,
+                      negatedValue,
                       isTaxRefund,
-                  CashTransactionTypes.Withdrawal,
-                   increaseAccountBalance, noTransactionLink);
+                      CashTransactionTypes.Withdrawal,
+                      noTransactionLink);
         }
 
         public void StoreCashTransaction(FeeTransactionRequest feeTransactionRequest)
         {
-            const bool increaseAccountBalance = false;
             const bool isTaxRefund = false;
             TransactionLink noTransactionLink = null;
             const string source = "";
@@ -58,35 +55,31 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                       feeTransactionRequest.AccountId,
                       feeTransactionRequest.TransactionDate,
                       source,
-                      feeTransactionRequest.Value,
+                      -feeTransactionRequest.Value,
                       isTaxRefund,
-                  CashTransactionTypes.Fees,
-                   increaseAccountBalance, noTransactionLink);
+                  CashTransactionTypes.Fees, noTransactionLink);
         }
 
 
         public void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest, TransactionLink transactionLink)
         {
             const string source = "";
-            const bool increaseAccountBalance = false;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           accountId,
                           investmentBuyRequest.PurchaseDate,
                           source,
-                          investmentBuyRequest.Value,
+                          -investmentBuyRequest.Value,
                           isTaxRefund,
-                          CashTransactionTypes.FundPurchase,
-                          increaseAccountBalance, transactionLink);
+                          CashTransactionTypes.FundPurchase, transactionLink);
 
-            StoreCommision(accountId, investmentBuyRequest.PurchaseDate, source, investmentBuyRequest.Charges, transactionLink);
+            StoreCommision(accountId, investmentBuyRequest.PurchaseDate, source, investmentBuyRequest.Charges.Negate(), transactionLink);
         }
 
 
         public void StoreCashTransaction(int accountId, InvestmentSellRequest investmentSellRequest, TransactionLink transactionLink)
         {
             const string source = "";
-            const bool  increaseAccountBalance = true;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           accountId,
@@ -94,17 +87,15 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           investmentSellRequest.Value,
                           isTaxRefund,
-                          CashTransactionTypes.FundSale,
-                          increaseAccountBalance, transactionLink);
+                          CashTransactionTypes.FundSale, transactionLink);
 
-            StoreCommision(accountId, investmentSellRequest.SellDate, source, investmentSellRequest.Charges, transactionLink);
+            StoreCommision(accountId, investmentSellRequest.SellDate, source, investmentSellRequest.Charges.Negate(), transactionLink);
         }
 
 
         public void StoreCashTransaction(int accountId, InvestmentCorporateActionRequest investmentCorporateActionRequest, TransactionLink transactionLink)
         {
             const string source = "";
-            const bool increaseAccountBalance = true;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           accountId,
@@ -112,13 +103,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           investmentCorporateActionRequest.Amount,
                           isTaxRefund,
-                          CashTransactionTypes.CorporateAction,
-                         increaseAccountBalance, transactionLink);
+                          CashTransactionTypes.CorporateAction, transactionLink);
         }
 
         public void StoreCashTransaction(int accountId, InvestmentLoyaltyBonusRequest _request, TransactionLink linkedTransaction, string source)
         {
-            const bool increaseAccountBalance = true;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           accountId,
@@ -126,13 +115,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           _request.Amount,
                           isTaxRefund,
-                          CashTransactionTypes.LoyaltyBonus,
-                         increaseAccountBalance, linkedTransaction);
+                          CashTransactionTypes.LoyaltyBonus, linkedTransaction);
         }
 
         public void StoreCashTransaction(int accountId, InvestmentDividendRequest request, TransactionLink linkedTransaction)
         {
-            const bool increaseAccountBalance = true;
             const bool isTaxRefund = false;
             var source = "";
             StoreCashTransaction(
@@ -141,13 +128,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           request.Amount,
                           isTaxRefund,
-                          CashTransactionTypes.Dividend,
-                         increaseAccountBalance, linkedTransaction);
+                          CashTransactionTypes.Dividend, linkedTransaction);
         }
 
         public void StoreCashTransaction(CashTransferRequest request, TransactionLink linkedTransaction, string source)
         {
-            const bool increaseAccountBalance = true;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                           request.FromAccount,
@@ -155,8 +140,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                           source,
                           -request.Amount,
                           isTaxRefund,
-                          CashTransactionTypes.CashTransferOut,
-                         increaseAccountBalance, linkedTransaction);
+                          CashTransactionTypes.CashTransferOut, linkedTransaction);
 
             StoreCashTransaction(
               request.ToAccount,
@@ -164,11 +148,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
               source,
               request.Amount,
               isTaxRefund,
-              CashTransactionTypes.CashTransferIn,
-             increaseAccountBalance, linkedTransaction);            
+              CashTransactionTypes.CashTransferIn, linkedTransaction);
         }
 
-        private void StoreCashTransaction(int accountId, DateTime transactionDate, string source, decimal value, bool isTaxRefund, string transactionType, bool increaseAccountBalance, TransactionLink transactionLink)
+        private void StoreCashTransaction(int accountId, DateTime transactionDate, string source, decimal value, bool isTaxRefund, string transactionType, TransactionLink transactionLink)
         {
             var cashTransaction = new CreateCashTransactionRequest()
             {
@@ -183,16 +166,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             };
 
             _repository.InsertCashTransaction(cashTransaction);
-
-            if (increaseAccountBalance)
-            {
-                _accountRepository.IncreaseAccountBalance(accountId, value);
-            }
-            else
-            {
-                _accountRepository.DecreaseAccountBalance(accountId, value);
-            }
-
+            _accountRepository.AdjustAccountBalance(accountId, value);
         }
 
         private void StoreCommision(int accountId, DateTime purchaseDate, string source, decimal commision, TransactionLink transactionLink)
@@ -200,7 +174,6 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             if (commision == 0)
                 return;
 
-            const bool increaseAccountBalance = false;
             const bool isTaxRefund = false;
             StoreCashTransaction(
                 accountId,
@@ -208,8 +181,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 source,
                 commision,
                 isTaxRefund,
-                CashTransactionTypes.Commission,
-                increaseAccountBalance, transactionLink);
+                CashTransactionTypes.Commission, transactionLink);
         }
     }
 

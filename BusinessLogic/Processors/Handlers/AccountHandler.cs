@@ -14,16 +14,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
             _repository = repository;
         }
 
-        public void IncreaseAccountBalance(int accountId, decimal amount)
+        public void AdjustAccountBalance(int accountId, decimal amount)
         {
-            _repository.IncreaseAccountBalance(accountId, amount);
+            _repository.AdjustAccountBalance(accountId, amount);
         }
-
-        public void DecreaseAccountBalance(int accountId, decimal amount)
-        {
-            _repository.DecreaseAccountBalance(accountId, amount);
-        }
-
+        
         public void IncreaseValuation(int accountId, decimal mapValue)
         {
             _repository.IncreaseValuation(accountId, mapValue);

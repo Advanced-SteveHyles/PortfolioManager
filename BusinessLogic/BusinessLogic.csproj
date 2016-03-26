@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Interfaces\BaseProcess.cs" />
     <Compile Include="Interfaces\IAccountHandler.cs" />
     <Compile Include="Interfaces\IAccountInvestmentMapProcessor.cs" />

@@ -2,6 +2,7 @@
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
@@ -89,7 +90,7 @@ namespace BusinessLogicTests.Transactions.Fund
             var transaction = _fakeRepository.GetCashTransaction(cashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
-            Assert.Equal(_valueOfTransaction, transaction.TransactionValue);
+            Assert.Equal(_valueOfTransaction, transaction.TransactionValue.Negate());
             Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.FundPurchase, transaction.TransactionType);
@@ -104,7 +105,7 @@ namespace BusinessLogicTests.Transactions.Fund
             var transaction = _fakeRepository.GetCashTransaction(cashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
-            Assert.Equal(_commission, transaction.TransactionValue);
+            Assert.Equal(_commission, transaction.TransactionValue.Negate());
             Assert.Equal(string.Empty, transaction.Source);
             Assert.Equal(false, transaction.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.Commission, transaction.TransactionType);
@@ -151,9 +152,10 @@ namespace BusinessLogicTests.Transactions.Fund
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
             var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
 
-            Assert.Equal(fundTransaction.TransactionValue, cashTransaction.TransactionValue);
+            var cashValue = cashTransaction.TransactionValue;
+            Assert.Equal(fundTransaction.TransactionValue, cashValue.Negate());
         }
-
+        
         [Fact]
         public void WhenIBuyThenTheValuationIsCorrect()
         {

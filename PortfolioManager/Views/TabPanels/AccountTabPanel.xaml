@@ -7,17 +7,26 @@
              xmlns:views="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <Expander IsExpanded="True" Header ="Account">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="1" IsExpanded="True" Header ="Account">
             <views:AccountDetailsView DataContext="{Binding AccountDetailsVm}"></views:AccountDetailsView>
         </Expander>
 
-        <Expander Header ="Account Transactions">
+        <Expander Grid.Row="2" Header ="Account Transactions">
             <views:AccountTransactionSummary></views:AccountTransactionSummary>
         </Expander>
         
-        <Expander Header="Investments">
+        <Expander Grid.Row="3" Header="Investments" MaxHeight="500">
             <views:AccountInvestmentDetails DataContext="{Binding AccountInvestmentDetailsVm}"></views:AccountInvestmentDetails>
         </Expander>
-    </StackPanel>
+
+        <Expander Grid.Row="4"></Expander>
+    </Grid>
 </UserControl>

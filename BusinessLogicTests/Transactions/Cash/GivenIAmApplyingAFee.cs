@@ -1,6 +1,7 @@
 using System;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
+using Portfolio.BackEnd.BusinessLogic;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
@@ -56,7 +57,7 @@ namespace BusinessLogicTests.Transactions.Cash
 
             Assert.Equal(AccountId, transaction.AccountId);
             Assert.Equal(transactionDate, transaction.TransactionDate);
-            Assert.Equal(TransactionValue, transaction.TransactionValue);
+            Assert.Equal(TransactionValue, transaction.TransactionValue.Negate());
             
             Assert.Equal(isTaxRefund, transaction.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.Fees, transaction.TransactionType);

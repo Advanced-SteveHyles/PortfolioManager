@@ -58,7 +58,7 @@ namespace BusinessLogicTests.Transactions.Cash
             
             Assert.Equal(AccountId, transaction.AccountId);
             Assert.Equal(transactionDate, transaction.TransactionDate);
-            Assert.Equal(TransactionValue, transaction.TransactionValue);
+            Assert.Equal(-TransactionValue, transaction.TransactionValue);
             Assert.Equal(Source, transaction.Source);
             
             Assert.Equal(isTaxRefund, transaction.IsTaxRefund);

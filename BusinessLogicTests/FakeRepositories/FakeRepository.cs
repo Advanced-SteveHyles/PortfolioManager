@@ -51,7 +51,7 @@ namespace BusinessLogicTests.FakeRepositories
             return _accounts.Single(a => a.AccountId == id);
         }
 
-        public void IncreaseAccountBalance(int accountId, decimal amount)
+        public void AdjustAccountBalance(int accountId, decimal amount)
         {
             GetAccountByAccountId(accountId).Cash += amount;
         }

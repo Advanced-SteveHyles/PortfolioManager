@@ -9,9 +9,8 @@ namespace Portfolio.BackEnd.Repository.Interfaces
         Account GetAccountWithInvestments(int id);
         Account GetAccountByAccountId(int accountId);
 
-        void IncreaseAccountBalance(int accountId, decimal amount);
-        void DecreaseAccountBalance(int accountId, decimal amount);
-
+        void AdjustAccountBalance(int accountId, decimal amount);
+        
         void IncreaseValuation(int accountId, decimal valuation);
         void DecreaseValuation(int accountId, decimal valuation);
         IEnumerable<Account> GetAccounts();
