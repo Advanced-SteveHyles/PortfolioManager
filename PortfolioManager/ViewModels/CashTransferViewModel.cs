@@ -6,20 +6,21 @@ using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
+using PortfolioManager.Model.Decorators;
 
 namespace PortfolioManager.ViewModels
 {
     public class CashTransferViewModel : AbstractSaveCancelCommands
     {
-        public List<AccountDto> AccountsFrom { get; set; }
-        public List<AccountDto> AccountsTo { get; set; }
+        public List<AccountDtoDecorator> AccountsFrom { get; set; }
+        public List<AccountDtoDecorator> AccountsTo { get; set; }
 
         public decimal TransferAmount { get; set; }
         public DateTime TransactionDate { get; set; } = DateTime.Today;
 
-        public AccountDto SelectedFromAccount { get; set; }
+        public AccountDtoDecorator SelectedFromAccount { get; set; }
 
-        public AccountDto SelectedToAccount { get; set; }
+        public AccountDtoDecorator SelectedToAccount { get; set; }
         
             private int accountId;
         private readonly Action completeTransaction;
@@ -54,12 +55,12 @@ namespace PortfolioManager.ViewModels
         {
             this.accountId = accountId;
             this.completeTransaction = completeTransaction;
-            AccountsFrom = accountsFrom;
-            AccountsTo = accountsTo;
+            AccountsFrom = accountsFrom.Select(account => new AccountDtoDecorator(account)).ToList();
+            AccountsTo = accountsTo.Select(account => new AccountDtoDecorator(account)).ToList();
             SetCommands(Save,Cancel);
 
-            SelectedFromAccount = accountsFrom.FirstOrDefault();
-            SelectedToAccount = accountsTo.FirstOrDefault();
+            SelectedFromAccount = AccountsFrom.FirstOrDefault();
+            SelectedToAccount = AccountsTo.FirstOrDefault();
         }
 
         private void Cancel()

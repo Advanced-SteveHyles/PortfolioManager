@@ -23,7 +23,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1">Copy From</TextBlock>
-        <ComboBox Grid.Row="2" ItemsSource="{Binding AccountsFrom}" SelectedItem="{Binding SelectedFromAccount}"></ComboBox>
+        <ComboBox Grid.Row="2" ItemsSource="{Binding AccountsFrom}" SelectedItem="{Binding SelectedFromAccount}" DisplayMemberPath="{Binding Datacontext.AccountName}" />
         <TextBlock Grid.Row="3">Copy To</TextBlock>
         <ComboBox  Grid.Row="4" ItemsSource="{Binding AccountsTo}" SelectedItem="{Binding SelectedToAccount}"></ComboBox>
         <TextBlock Grid.Row="5">Amount</TextBlock>

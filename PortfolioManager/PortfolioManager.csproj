@@ -92,6 +92,7 @@
     <Compile Include="Model\AccountInvestmentMapModel.cs" />
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\AccountTransactionModel.cs" />
+    <Compile Include="Model\Decorators\AccountDtoDecorator.cs" />
     <Compile Include="Model\Decorators\PriceHistoryDecorator.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\PortfolioModel.cs" />
