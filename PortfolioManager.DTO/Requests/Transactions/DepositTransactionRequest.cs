@@ -6,7 +6,9 @@ namespace Portfolio.Common.DTO.Requests.Transactions
     {
        public int AccountId { get; set; }
 
-       public DateTime TransactionDate { get; set; }
+        public string TransactionType { get; set; }
+
+        public DateTime TransactionDate { get; set; }
         
        public decimal Value { get; set; }
 

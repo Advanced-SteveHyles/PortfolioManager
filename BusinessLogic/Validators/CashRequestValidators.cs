@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
-using static Portfolio.BackEnd.BusinessLogic.Validators.Validators;
+using static Portfolio.BackEnd.BusinessLogic.Validators.GlobalValidators;
 
 namespace Portfolio.BackEnd.BusinessLogic.Validators
 {
@@ -37,7 +38,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
             return request.AccountId > 0
                    && request.Value > 0
                    && IsValidDate(request.TransactionDate)
-                   && !string.IsNullOrWhiteSpace(request.Source);
+                   && !string.IsNullOrWhiteSpace(request.Source)
+                   && CashDepositTransactionTypes.DepositTypes.Contains(request.TransactionType);
         }
     }
 }

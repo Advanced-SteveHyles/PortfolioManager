@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:PortfolioManager.Views.DataEntry"
         mc:Ignorable="d">
     <StackPanel>
+        <TextBlock>Deposit Type</TextBlock>
+        <ComboBox ItemsSource="{Binding TransactionTypes}" SelectedItem="{Binding SelectedTransactionType}"></ComboBox>
         <TextBlock>Transaction Date { get; set; }</TextBlock>
-        <Calendar SelectedDate="{Binding TransactionDate}"></Calendar>
+        <DatePicker SelectedDate="{Binding TransactionDate}"></DatePicker>
         <TextBlock>Value{ get; set; }</TextBlock>
         <TextBox Text="{Binding TransactionValue}"></TextBox>
        <TextBlock>Source</TextBlock>

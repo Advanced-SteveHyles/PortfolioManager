@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.NetworkInformation;
 using Portfolio.Common.DTO.Requests.Transactions;
-using static Portfolio.BackEnd.BusinessLogic.Validators.Validators;
+using static Portfolio.BackEnd.BusinessLogic.Validators.GlobalValidators;
 
 namespace Portfolio.BackEnd.BusinessLogic.Validators
 {

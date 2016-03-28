@@ -82,7 +82,7 @@
     <Compile Include="Processors\Processes\RevalueSinglePriceProcess.cs" />
     <Compile Include="Validators\FundRequestValidators.cs" />
     <Compile Include="Validators\CashRequestValidators.cs" />
-    <Compile Include="Validators\Validators.cs" />
+    <Compile Include="Validators\GlobalValidators.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">

@@ -29,7 +29,7 @@
         <TextBlock Grid.Row="5">Amount</TextBlock>
         <TextBox    Grid.Row="5" Grid.Column="1" Text="{Binding TransferAmount}"></TextBox>
         <TextBlock Grid.Row="6">Transaction Date</TextBlock>
-        <Calendar Grid.Row="7" SelectedDate="{Binding TransactionDate}"></Calendar>
+        <DatePicker Grid.Row="7" SelectedDate="{Binding TransactionDate}"></DatePicker>
         <local:SaveCancel Grid.Row="8"></local:SaveCancel>
     </Grid>
 </UserControl>

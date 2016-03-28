@@ -166,6 +166,9 @@
     <Compile Include="Views\DataEntry\SaveCancel.xaml.cs">
       <DependentUpon>SaveCancel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Demo.xaml.cs">
+      <DependentUpon>Demo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabControls\AccountTabs.xaml.cs">
       <DependentUpon>AccountTabs.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DataEntry\SaveCancel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

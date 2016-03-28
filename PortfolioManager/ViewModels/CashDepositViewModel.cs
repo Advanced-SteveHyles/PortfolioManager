@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
@@ -16,6 +19,10 @@ namespace PortfolioManager.ViewModels
         public decimal TransactionValue { get; set; }
         public string TransactionSource { get; set; }
         public bool IsTaxRefund { get; set; } = false;
+
+        public ObservableCollection<string> TransactionTypes => new ObservableCollection<string>(CashDepositTransactionTypes.DepositTypes);
+
+        public string SelectedTransactionType { get; set; }
 
         public CashDepositViewModel(int accountId, Action completeTransaction)
         {
@@ -38,7 +45,8 @@ namespace PortfolioManager.ViewModels
                 IsTaxRefund = this.IsTaxRefund,
                 Source = this.TransactionSource,
                 TransactionDate = this.TransactionDate,
-                Value = this.TransactionValue
+                Value = this.TransactionValue,
+                TransactionType = SelectedTransactionType
             };
 
             AccountTransactionModel.InsertDeposit(request);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Portfolio.Common.DTO.DTOs;
 using PortfolioManager.Views.TabPanels;
 
@@ -12,7 +13,7 @@ namespace PortfolioManager.UIBuilders
 {
     public static class BuildPortfolioTabContent
     {
-      
+
 
         //private static AccountTabs PopulateAccounts(string s)
         //{
@@ -22,13 +23,16 @@ namespace PortfolioManager.UIBuilders
         //    };
         //}
 
+        //public static TabItem CreatePortfolioTabItem(PortfolioDto portfolioDto)
         public static TabItem CreatePortfolioTabItem(PortfolioDto portfolioDto)
-        {            
-            return new TabItem()
+        {
+            var portfolioTabItem = new TabItem()
             {
                 Header = $"{portfolioDto.Name}",
-                Content = new PortfolioTabPanel {DataContext = new PortfolioTabPanelViewModel(portfolioDto.PortfolioId) } //PopulateAccounts(s)
+                Content = new PortfolioTabPanel { DataContext = new PortfolioTabPanelViewModel(portfolioDto.PortfolioId) } //PopulateAccounts(s)
             };
+                        
+         return portfolioTabItem;            
         }
 
         public static TabItem CreateAccountTabItem(AccountDto account)

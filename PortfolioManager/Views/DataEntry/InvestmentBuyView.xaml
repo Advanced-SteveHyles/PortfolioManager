@@ -33,9 +33,9 @@
         <TextBlock Grid.Row="4" Grid.Column="0">Charges</TextBlock>
         <TextBox  Grid.Row="4" Grid.Column="1" Text="{Binding Charges}"></TextBox>
         <TextBlock Grid.Row="1" Grid.Column="3">PurchaseDate</TextBlock>
-        <Calendar  Grid.Row="1" Grid.Column="4" SelectedDate="{Binding PurchaseDate}"></Calendar>
+        <DatePicker  Grid.Row="1" Grid.Column="4" SelectedDate="{Binding PurchaseDate}"></DatePicker>
         <TextBlock Grid.Row="1" Grid.Column="5"> SettlementDate</TextBlock>
-        <Calendar Grid.Row="1" Grid.Column="6" SelectedDate="{Binding SettlementDate}"></Calendar>
+        <DatePicker Grid.Row="1" Grid.Column="6" SelectedDate="{Binding SettlementDate}"></DatePicker>
         <TextBlock Grid.Row="4" Grid.Column="3">RecordPrice?</TextBlock>
         <CheckBox Grid.Row="4" Grid.Column="4" IsChecked="{Binding RecordPrice}"></CheckBox>
         <local:SaveCancel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" ></local:SaveCancel>

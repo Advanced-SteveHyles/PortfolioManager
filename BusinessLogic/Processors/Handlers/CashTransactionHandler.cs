@@ -28,7 +28,8 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 depositTransactionRequest.Source,
                 depositTransactionRequest.Value,
                 depositTransactionRequest.IsTaxRefund,
-                 CashTransactionTypes.Deposit, noTransactionLink);
+                 depositTransactionRequest.TransactionType,
+                 noTransactionLink);
         }
 
         public void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest)
