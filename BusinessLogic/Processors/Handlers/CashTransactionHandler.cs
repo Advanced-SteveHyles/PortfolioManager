@@ -43,25 +43,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                       withdrawalTransactionRequest.Source,
                       negatedValue,
                       isTaxRefund,
-                      CashTransactionTypes.Withdrawal,
+                      withdrawalTransactionRequest.TransactionType,
                       noTransactionLink);
         }
-
-        public void StoreCashTransaction(FeeTransactionRequest feeTransactionRequest)
-        {
-            const bool isTaxRefund = false;
-            TransactionLink noTransactionLink = null;
-            const string source = "";
-            StoreCashTransaction(
-                      feeTransactionRequest.AccountId,
-                      feeTransactionRequest.TransactionDate,
-                      source,
-                      -feeTransactionRequest.Value,
-                      isTaxRefund,
-                  CashTransactionTypes.Fees, noTransactionLink);
-        }
-
-
+        
         public void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest, TransactionLink transactionLink)
         {
             const string source = "";

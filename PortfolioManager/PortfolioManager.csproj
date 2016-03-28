@@ -110,7 +110,6 @@
     <Compile Include="ViewModels\CashDepositViewModel.cs" />
     <Compile Include="ViewModels\CashTransferViewModel.cs" />
     <Compile Include="ViewModels\CashWithdrawalViewModel.cs" />
-    <Compile Include="ViewModels\FeesViewModel.cs" />
     <Compile Include="ViewModels\InvestmentBuyViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDataEntryViewModel.cs" />
     <Compile Include="ViewModels\InvestmentDividendViewModel.cs" />
@@ -138,9 +137,6 @@
     </Compile>
     <Compile Include="Views\DataEntry\CashDepositView.xaml.cs">
       <DependentUpon>CashDepositView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DataEntry\FeesView.xaml.cs">
-      <DependentUpon>FeesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DataEntry\InvestmentDividendView.xaml.cs">
       <DependentUpon>InvestmentDividendView.xaml</DependentUpon>
@@ -225,10 +221,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataEntry\CashDepositView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DataEntry\FeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

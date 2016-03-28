@@ -63,7 +63,6 @@
     <Compile Include="Linking\TransactionLink.cs" />
     <Compile Include="Processors\Processes\RecordCashTransferProcess.cs" />
     <Compile Include="Processors\Processes\RecordDividendProcess.cs" />
-    <Compile Include="Processors\Processes\RecordFeeProcess.cs" />
     <Compile Include="Processors\Processes\RecordFundBuyProcess.cs" />
     <Compile Include="Processors\Processes\RecordLoyaltyBonusProcess.cs" />
     <Compile Include="Processors\Processes\RevalueAllPricesProcess.cs" />

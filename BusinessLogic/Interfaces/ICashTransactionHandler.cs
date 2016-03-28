@@ -8,8 +8,7 @@ namespace Interfaces
     {
         void StoreCashTransaction(DepositTransactionRequest depositTransactionRequest);
         void StoreCashTransaction(WithdrawalTransactionRequest withdrawalTransactionRequest);
-        void StoreCashTransaction(FeeTransactionRequest feeTransactionRequest);
-
+        
         void StoreCashTransaction(CashTransferRequest request, TransactionLink linkedTransaction, string source);
 
         void StoreCashTransaction(int accountId, InvestmentBuyRequest investmentBuyRequest, TransactionLink transactionLink);

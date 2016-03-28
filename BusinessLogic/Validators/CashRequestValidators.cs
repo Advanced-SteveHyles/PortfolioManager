@@ -22,16 +22,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
             return request.AccountId > 0
                                     && request.Value > 0
                                     && IsValidDate(request.TransactionDate)
-                                    && !string.IsNullOrWhiteSpace(request.Source);
+                                    && !string.IsNullOrWhiteSpace(request.Source)
+                                    && CashWithdrawalTransactionTypes.WithdrawalTypes.Contains(request.TransactionType); ;
         }
-
-        public static bool Validate(this FeeTransactionRequest request)
-        {
-            return request.AccountId > 0
-                                    && request.Value > 0
-                                    && IsValidDate(request.TransactionDate);
-        }
-
 
         public static bool Validate(this DepositTransactionRequest request)
         {

@@ -45,21 +45,7 @@ namespace Portfolio.API.Virtual.VirtualControllers
                 throw new InvalidOperationException("Transaction Failed");
             }
         }
-
-        public void InsertFee(FeeTransactionRequest request)
-        {
-            var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);
-            
-            var createFeeProcess = new RecordFeeProcess(request, transactionHandler);
-
-            createFeeProcess.Execute();
-
-            if (createFeeProcess.ExecuteResult == false)
-            {
-                throw new InvalidOperationException("Transaction Failed");
-            }
-        }
-
+        
         public void InsertTransfer(CashTransferRequest request)
         {            
             var transactionHandler = new CashTransactionHandler(_cashTransactionRepository, _accountRepository);

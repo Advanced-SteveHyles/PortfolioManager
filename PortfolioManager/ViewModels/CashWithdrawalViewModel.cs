@@ -1,6 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
@@ -9,13 +11,17 @@ namespace PortfolioManager.ViewModels
 {
     public class CashWithdrawalViewModel : AbstractSaveCancelCommands, INotifyPropertyChanged
     {
-        private int _accountId;
+        private readonly int _accountId;
         private readonly Action _completeTransaction;
 
         public DateTime TransactionDate { get; set; } = DateTime.Now;
         public decimal TransactionValue { get; set; }
         public string TransactionSource { get; set; }
-        
+
+        public ObservableCollection<string> TransactionTypes => new ObservableCollection<string>(CashWithdrawalTransactionTypes.WithdrawalTypes);
+
+        public string SelectedTransactionType { get; set; }
+
         public CashWithdrawalViewModel(int accountId, Action completeTransaction)
         {
             _accountId = accountId;
@@ -36,7 +42,8 @@ namespace PortfolioManager.ViewModels
                 AccountId = this._accountId,
                 Source = this.TransactionSource,
                 TransactionDate = this.TransactionDate,
-                Value = this.TransactionValue
+                Value = this.TransactionValue,
+                TransactionType = SelectedTransactionType
             };
 
             AccountTransactionModel.InsertWithdrawal(request);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using BusinessLogicTests.FakeRepositories;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
@@ -12,35 +13,38 @@ namespace BusinessLogicTests.Transactions.Cash
 {
     public class GivenIAmWithdrawingTenPounds
     {
-        private readonly BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
+        private BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
         private readonly FakeRepository _fakeRepository;
         private readonly ICashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
         const int TransactionValue = 10;
         const int ArbitaryId = 1;
-        DateTime transactionDate = DateTime.Now;
+        readonly DateTime transactionDate = DateTime.Now;
         const string Source = "Test";
 
         public GivenIAmWithdrawingTenPounds()
         {
             _fakeRepository = new FakeRepository();
-            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
-            
-            
+            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);                                   
+        }
+
+        private void MakeRequest(string transactionType)
+        {
             var withdrawalTransactionRequest = new WithdrawalTransactionRequest()
             {
                 AccountId = AccountId,
                 Value = TransactionValue,
                 Source = Source,
-                TransactionDate = transactionDate,                
+                TransactionDate = transactionDate,
+                TransactionType = transactionType
             };
 
-            _withdrawalTransaction = new  RecordWithdrawalProcess(withdrawalTransactionRequest, _cashTransactionHandler);
+            _withdrawalTransaction = new RecordWithdrawalProcess(withdrawalTransactionRequest, _cashTransactionHandler);
         }
 
-        [Fact]
         public void ValidTransactionCanExecute()
         {
+            MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            
             Assert.Equal(-TransactionValue, account.Cash);
@@ -51,7 +55,7 @@ namespace BusinessLogicTests.Transactions.Cash
         public void WhenTheTransactionCompletesThereIsARecordOfTheDeposit()
         {
             const bool isTaxRefund = false;
-
+            MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
 
             var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
@@ -61,16 +65,34 @@ namespace BusinessLogicTests.Transactions.Cash
             Assert.Equal(-TransactionValue, transaction.TransactionValue);
             Assert.Equal(Source, transaction.Source);
             
-            Assert.Equal(isTaxRefund, transaction.IsTaxRefund);
-            Assert.Equal(CashTransactionTypes.Withdrawal, transaction.TransactionType);
+            Assert.Equal(isTaxRefund, transaction.IsTaxRefund);            
         }
 
         [Fact]
         public void WhenTheTransactionCompletesThereAccountBalanceIsCorrect()
         {
+            MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
             var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);
         }
+
+
+        [Theory]
+        [MemberData("GetData")]
+        public void WhenTheTransactionCompletesTheTransactionTypeMatches(string requestedType)
+        {
+            MakeRequest(requestedType);
+            _withdrawalTransaction.Execute();
+            var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
+
+            Assert.Equal(requestedType, transaction.TransactionType);
+        }
+
+        public static IEnumerable<object> GetData => new object[]
+       {
+          new object[] { CashWithdrawalTransactionTypes.Withdrawal},
+          new object[] { CashWithdrawalTransactionTypes.Fees}
+       };
     }
 }

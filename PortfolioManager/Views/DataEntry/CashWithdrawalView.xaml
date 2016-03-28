@@ -5,13 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PortfolioManager.Views.DataEntry"
         mc:Ignorable="d">
-    <StackPanel>
-        <TextBlock>Transaction Date { get; set; }</TextBlock>
-        <Calendar SelectedDate="{Binding TransactionDate}"></Calendar>
-        <TextBlock>Value{ get; set; }</TextBlock>
-        <TextBox Text="{Binding TransactionValue}"></TextBox>
-       <TextBlock>Source</TextBlock>
-        <TextBox Text="{Binding TransactionSource}"></TextBox>
-        <local:SaveCancel></local:SaveCancel>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1">Withdrawal Type</TextBlock>
+        <ComboBox  Grid.Row="1"  Grid.Column="2" ItemsSource="{Binding TransactionTypes}" SelectedItem="{Binding SelectedTransactionType}"></ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="1">Transaction Date</TextBlock>
+        <DatePicker Grid.Row="2" Grid.Column="2" SelectedDate="{Binding TransactionDate}"></DatePicker>
+        <TextBlock Grid.Row="3"  Grid.Column="1">Value</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding TransactionValue}"></TextBox>
+        <TextBlock Grid.Row="4"  Grid.Column="1">Source</TextBlock>
+        <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding TransactionSource}"></TextBox>
+        <local:SaveCancel Grid.Row="5"  Grid.Column="1"></local:SaveCancel>
+    </Grid>
 </UserControl>
