@@ -10,11 +10,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>            
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row ="2"  Header="Investment Details">
+        <GroupBox Grid.Row ="1"  Header="Investment Details">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
                 <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
                     <ItemsControl.ItemTemplate>
@@ -58,11 +57,6 @@
                 </ItemsControl>
             </ScrollViewer>
         </GroupBox>
-        <!--        
-        ItemsSource="{Binding InvestmentMaps}"
-        -->
-
-        <DataGrid Grid.Row="3" ItemsSource="{Binding InvestmentMaps}" />        
     </Grid>
 </UserControl>
 
