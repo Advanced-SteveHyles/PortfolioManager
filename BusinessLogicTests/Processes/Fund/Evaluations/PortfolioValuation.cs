@@ -15,15 +15,25 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         public PortfolioValuation()
         {
             _fakeRepository = new FakeRepository();
+
+            PortfolioRevaluationRequest portfolioRevaluationRequest = new PortfolioRevaluationRequest()
+            {
+                PortfolioId = portfolioId
+            };
+
+            var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest);
+
+            portfolioValuationProcessor.execute();
+
         }
 
         [Fact]
         public void WhenAPortfolioHasNoAccountsTheValulationIsZero()
         {
+
             var portfolioValuation = portfolioValuation;
 
-
-            Assert(0, portfolioValuation.PropertyValue);
+            Assert.Equal(0, portfolioValuation.PropertyValue);
         }
     }
 }
