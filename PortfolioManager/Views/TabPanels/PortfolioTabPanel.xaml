@@ -8,7 +8,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-            <Expander Header="PortfolioModel"></Expander>
+            <Expander Header="PortfolioModel">
+                <local:PortfolioDetailsView></local:PortfolioDetailsView>
+            </Expander>
             <Expander></Expander>
             <Expander Header="Account" IsExpanded="True">
                 <views:AccountTabs></views:AccountTabs>

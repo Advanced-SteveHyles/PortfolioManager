@@ -183,6 +183,9 @@
     <Compile Include="Views\TabPanels\InvestmentTabPanel.xaml.cs">
       <DependentUpon>InvestmentTabPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PortfolioDetailsView.xaml.cs">
+      <DependentUpon>PortfolioDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabPanels\PortfolioTabPanel.xaml.cs">
       <DependentUpon>PortfolioTabPanel.xaml</DependentUpon>
     </Compile>
@@ -281,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TabPanels\InvestmentTabPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PortfolioDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
