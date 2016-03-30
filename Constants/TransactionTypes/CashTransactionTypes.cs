@@ -37,4 +37,14 @@ namespace Portfolio.Common.Constants.TransactionTypes
             Fees
         };
     }
+
+    public static class PortfolioAccountTypes
+    {
+        public const string Property = "Property";
+
+        public static List<string> AccountTypes { get; } = new List<string>()
+        {
+             Property
+        };
+    }
 }

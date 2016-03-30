@@ -27,6 +27,7 @@ namespace Portfolio.BackEnd.Repository.Entities
         public int PortfolioValuationId { get; set; }
 
         public int PortfolioId { get; set; }
+        public int PropertyValue { get; set; }
     }
 
 

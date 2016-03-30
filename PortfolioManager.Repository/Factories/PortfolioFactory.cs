@@ -14,5 +14,13 @@ namespace Portfolio.BackEnd.Repository.Factories
                 Accounts = new List<Account>()
             };
         }
+
+        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request)
+        {
+            return new Entities.PortfolioValuation()
+            {
+                PortfolioId = request.PortfolioId                
+            };
+        }
     }
 }

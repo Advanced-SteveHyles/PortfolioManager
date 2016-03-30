@@ -15,15 +15,14 @@ namespace BusinessLogicTests.FakeRepositories
         , ICashTransactionRepository
         , IAccountInvestmentMapRepository
         , IFundTransactionRepository
-        , IPriceHistoryRepository
+        , IPriceHistoryRepository        
     {
         private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation, Name = "Investment 1"};        
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
 
         private readonly List<PriceHistory> _dummyPriceHistoryList;
-        private readonly List<AccountInvestmentMap> _investmentMaps;
-        private readonly List<PortfolioValuation> _portfolioValuations;
+        private readonly List<AccountInvestmentMap> _investmentMaps;        
 
         readonly List<Account> _accounts;
 
@@ -32,8 +31,7 @@ namespace BusinessLogicTests.FakeRepositories
             _dummyCashTransactions = new List<CashTransaction>();
             _dummyFundTransactions = new List<FundTransaction>();
             _dummyPriceHistoryList = new List<PriceHistory>();
-            _investmentMaps = FakeData.FakePopulatedInvestmentMap();
-            _portfolioValuations = new List<PortfolioValuation>();
+            _investmentMaps = FakeData.FakePopulatedInvestmentMap();            
             _accounts = FakeData.FakeAccountData();
         }
         
@@ -283,9 +281,21 @@ namespace BusinessLogicTests.FakeRepositories
             return _investmentMaps;
         }
 
-        public PortfolioValuation GetPortfolioValuation(int portfolioId)
+        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolio(int id)
         {
-            return _portfolioValuations.Single(ph => ph.PortfolioId == portfolioId);
+            throw new NotImplementedException();
         }
+
+        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolioWithAccounts(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Portfolio.BackEnd.Repository.Entities.Portfolio> GetPortfolios()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

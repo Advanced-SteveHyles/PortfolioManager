@@ -1,18 +1,36 @@
+using System.Linq;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Validators;
+using Portfolio.BackEnd.Repository.Factories;
+using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class PortfolioValuationProcessor : BaseProcess<PortfolioRevaluationRequest>
     {
-        public PortfolioValuationProcessor(PortfolioRevaluationRequest request) : base(request)
+        private readonly PortfolioRevaluationRequest _request;
+        private readonly IPortfolioRepository _portfolioRepository;
+        private IAccountRepository _accountRepository;
+
+        public PortfolioValuationProcessor(PortfolioRevaluationRequest request, IPortfolioRepository portfolioRepository, IAccountRepository accountRepository) : base(request)
         {
+            _request = request;
+            _portfolioRepository = portfolioRepository;
+            _accountRepository = accountRepository;
         }
 
         protected override void ProcessToRun()
         {
-            throw new System.NotImplementedException();
+            var x = _portfolioRepository.GetPortfolioWithAccounts(_request.PortfolioId);
+            var propertyAccountValue =  x.Accounts.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
+
+            propertyAccountValue
+
+            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request);
+
+            _portfolioRepository.UpdatePortfolioValuation(entityPortfolioValuation);
         }
 
         protected override bool Validate(PortfolioRevaluationRequest request) => request.Validate();

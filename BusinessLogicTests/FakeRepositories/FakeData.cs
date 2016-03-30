@@ -5,6 +5,8 @@ namespace BusinessLogicTests.FakeRepositories
 {
     internal class FakeData
     {
+        public const int PropertyAccountId = 7;
+
         internal static List<Account> FakeAccountData()
         {
             return new List<Account>()
@@ -14,7 +16,8 @@ namespace BusinessLogicTests.FakeRepositories
                 new Account(){AccountId = 3, Name = "Acc3"},
                 new Account(){AccountId = 4, Name = "Acc4"},
                 new Account(){AccountId = 5, Name = "Acc5"},
-                new Account(){AccountId = 6, Name = "Acc6"}
+                new Account(){AccountId = 6, Name = "Acc6"},
+                new Account(){AccountId = 7, Name = "Acc6", Type = "Property", PortfolioId = 1}
             };
         }
 
