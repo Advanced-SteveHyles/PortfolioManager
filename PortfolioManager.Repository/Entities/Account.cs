@@ -19,4 +19,15 @@ namespace Portfolio.BackEnd.Repository.Entities
         public string Type { get; set; }
         public virtual ICollection<AccountInvestmentMap> Investments { get; set; }
     }
+
+    [Table("PortfolioValuation")]
+    public class PortfolioValuation
+    {
+        [Key]
+        public int PortfolioValuationId { get; set; }
+
+        public int PortfolioId { get; set; }
+    }
+
+
 }

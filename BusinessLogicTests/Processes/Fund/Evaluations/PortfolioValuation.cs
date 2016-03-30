@@ -13,15 +13,16 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
     public class PortfolioValuation
     {
         private FakeRepository _fakeRepository;
+        const int PortfolioId = 1;
 
         public PortfolioValuation()
         {
             _fakeRepository = new FakeRepository();
 
-            var portfolioId = 1;
+            
             PortfolioRevaluationRequest portfolioRevaluationRequest = new PortfolioRevaluationRequest()
             {
-                PortfolioId = portfolioId
+                PortfolioId = PortfolioId
             };
 
             var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest);
@@ -33,9 +34,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioHasNoAccountsTheValulationIsZero()
         {
-
-            var portfolioValuation = portfolioValuation;
-
+          var  portfolioValuation = _fakeRepository.GetPortfolioValuation(PortfolioId);
+            
             Assert.Equal(0, portfolioValuation.PropertyValue);
         }
     }

@@ -23,6 +23,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         private readonly List<PriceHistory> _dummyPriceHistoryList;
         private readonly List<AccountInvestmentMap> _investmentMaps;
+        private readonly List<PortfolioValuation> _portfolioValuations;
 
         readonly List<Account> _accounts;
 
@@ -32,7 +33,7 @@ namespace BusinessLogicTests.FakeRepositories
             _dummyFundTransactions = new List<FundTransaction>();
             _dummyPriceHistoryList = new List<PriceHistory>();
             _investmentMaps = FakeData.FakePopulatedInvestmentMap();
-
+            _portfolioValuations = new List<PortfolioValuation>();
             _accounts = FakeData.FakeAccountData();
         }
         
@@ -280,6 +281,11 @@ namespace BusinessLogicTests.FakeRepositories
         public List<AccountInvestmentMap> GetAllAccountInvestmentMaps()
         {
             return _investmentMaps;
+        }
+
+        public PortfolioValuation GetPortfolioValuation(int portfolioId)
+        {
+            return _portfolioValuations.Single(ph => ph.PortfolioId == portfolioId);
         }
     }
 }
