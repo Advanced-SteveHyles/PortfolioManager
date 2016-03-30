@@ -1,17 +1,25 @@
-﻿using Portfolio.BackEnd.Repository;
+﻿using System;
+using System.Linq;
+using System.Net.Mime;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using Portfolio.BackEnd.Repository;
 
 namespace DBCreator
 {
     class Program
-    {
+    {                
         static void Main(string[] args)
-        {          
-            using (var ctx = new PortfolioManagerContext(string.Empty))
-            {
-                //var x = from x1 in ctx.DBGenerator select x1;
+        {
+            var databasePath = Environment.CurrentDirectory;
+            string RawConnection =
+                    $"Data Source=(LocalDb)\\MSSQLLocalDB;AttachDbFilename={databasePath}\\PortfolioManagerDummy.mdf;Initial Catalog=TestConnection;Integrated Security=True";
+            
 
-                //ctx.SaveChanges();
-                                
+            using (var ctx = new PortfolioManagerContext(RawConnection, true))
+            {                
+                var x = from x1 in ctx.PortfolioValuations select x1;
+                ctx.SaveChanges();                                
             }
             
         }

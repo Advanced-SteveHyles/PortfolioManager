@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.DTO.Requests;
 
@@ -15,12 +16,14 @@ namespace Portfolio.BackEnd.Repository.Factories
             };
         }
 
-        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request)
+        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request, decimal propertyAccountValue)
         {
-            return new Entities.PortfolioValuation()
+            return new PortfolioValuation()
             {
-                PortfolioId = request.PortfolioId                
+                PortfolioId = request.PortfolioId,  
+                PropertyValue = propertyAccountValue
             };
         }
+        
     }
 }

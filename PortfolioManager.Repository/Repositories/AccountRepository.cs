@@ -79,6 +79,11 @@ namespace Portfolio.BackEnd.Repository.Repositories
             return _context.Accounts;
         }
 
+        public IEnumerable<Account> GetAccountsForPortfolio(int portfolioId)
+        {
+            return _context.Accounts.Where(p => p.PortfolioId == portfolioId).ToList();
+        }
+
         public void SetValuation(int accountId, decimal valuation)
         {
             var account = GetAccountByAccountId(accountId);

@@ -23,12 +23,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 
         protected override void ProcessToRun()
         {
-            var x = _portfolioRepository.GetPortfolioWithAccounts(_request.PortfolioId);
-            var propertyAccountValue =  x.Accounts.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
-
-            propertyAccountValue
-
-            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request);
+            var x = _accountRepository.GetAccountsForPortfolio(_request.PortfolioId);
+            var propertyAccountValue =  x.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
+            
+            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue);
 
             _portfolioRepository.UpdatePortfolioValuation(entityPortfolioValuation);
         }

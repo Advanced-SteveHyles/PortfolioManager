@@ -12,9 +12,6 @@ namespace Portfolio.API.Virtual
 
         public const string VirtualApiPortfoliomanagercontext =
          @"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=c:\temp\PortfolioManagerDummy.mdf;Initial Catalog=aspnet-Portfolio_API-20160118080906;Integrated Security=True";
-
-         // public const string RawConnection =
-         //   @"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=C:\LEARNINGANDRAND\PortfolioManager\DatabaseTests\Database\PortfolioManagerDummy.mdf;Initial Catalog=TestConnection;Integrated Security=True";
-
+         
     }
 }

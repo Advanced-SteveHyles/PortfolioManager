@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.Constants.TransactionTypes;
 
 namespace BusinessLogicTests.FakeRepositories
 {
@@ -17,7 +18,7 @@ namespace BusinessLogicTests.FakeRepositories
                 new Account(){AccountId = 4, Name = "Acc4"},
                 new Account(){AccountId = 5, Name = "Acc5"},
                 new Account(){AccountId = 6, Name = "Acc6"},
-                new Account(){AccountId = 7, Name = "Acc6", Type = "Property", PortfolioId = 1}
+                new Account(){AccountId = 7, Name = "Acc7", Type = PortfolioAccountTypes.Property, PortfolioId = 1}
             };
         }
 

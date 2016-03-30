@@ -81,6 +81,11 @@ namespace BusinessLogicTests.FakeRepositories
             return _accounts;
         }
 
+        public IEnumerable<Account> GetAccountsForPortfolio(int portfolioId)
+        {
+            return _accounts.Where(acc => acc.PortfolioId == portfolioId).ToList();
+        }
+
         public void SetValuation(int accountId, decimal valuation)
         {
             var account = GetAccountByAccountId(accountId);

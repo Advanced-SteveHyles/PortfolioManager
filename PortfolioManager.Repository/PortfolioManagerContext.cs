@@ -11,9 +11,16 @@ namespace Portfolio.BackEnd.Repository
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
-            //Database.SetInitializer<PortfolioManagerContext>(new NullDatabaseInitializer<PortfolioManagerContext>());
+            Database.SetInitializer<PortfolioManagerContext>(new NullDatabaseInitializer<PortfolioManagerContext>());
+        }
+
+        public PortfolioManagerContext(string connection, bool destroyDatabase) : base(connection)
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<PortfolioManagerContext>(new DropCreateDatabaseAlways<PortfolioManagerContext>());
         }
+
 
         public DbSet<DBGenerator> DBGenerator { get; set; }
 
@@ -26,7 +33,6 @@ namespace Portfolio.BackEnd.Repository
         public virtual DbSet<FundTransaction> FundTransactions { get; set; }
         public virtual DbSet<AccountInvestmentMap> AccountInvestmentMaps { get; set; }
         public virtual DbSet<PriceHistory> PriceHistories { get; set; }
-
         public virtual DbSet<PortfolioValuation> PortfolioValuations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

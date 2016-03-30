@@ -24,22 +24,27 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
             _fakeRepository = new FakeRepository();
+            
+        }
 
+        private void RevaluePortfolio()
+        {
             PortfolioRevaluationRequest portfolioRevaluationRequest = new PortfolioRevaluationRequest()
             {
                 PortfolioId = PortfolioId
             };
 
-            var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest, _fakePortfolioRepository);
+            var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest,
+                _fakePortfolioRepository, _fakeRepository);
 
             portfolioValuationProcessor.Execute();
-
         }
 
         [Fact]
         public void WhenAPortfolioHasNoAccountsTheValulationIsZero()
         {
-          var  portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
+            RevaluePortfolio();
+            var  portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
             
             Assert.Equal(0, portfolioValuation.PropertyValue);
         }
@@ -47,8 +52,18 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioHasNoAPropertyAccountsTheValulationIsTheBalanceOfThePropertyAccount()
         {
-            var accountId = FakeData.PropertyAccountId;
-            var transactionValue = 50;
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue);
+
+            RevaluePortfolio();
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
+
+            Assert.Equal(transactionValue , portfolioValuation.PropertyValue);
+        }
+
+        private void ApplyCashDeposit(decimal transactionValue)
+        {
+            var accountId = FakeData.PropertyAccountId;            
             var depositTransactionRequest = new DepositTransactionRequest
             {
                 AccountId = accountId,
@@ -58,16 +73,10 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
                 TransactionType = CashDepositTransactionTypes.Deposit
             };
 
+            var cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
 
-            var _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
-
-            var depositTransaction = new RecordDepositProcess(depositTransactionRequest, _cashTransactionHandler, null);
+            var depositTransaction = new RecordDepositProcess(depositTransactionRequest, cashTransactionHandler, null);
             depositTransaction.Execute();
-
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
-
-            Assert.Equal(transactionValue , portfolioValuation.PropertyValue);
         }
-
     }
 }
