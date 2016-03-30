@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Linking\TransactionLink.cs" />
+    <Compile Include="Processors\Processes\PortfolioValuationProcessor.cs" />
     <Compile Include="Processors\Processes\RecordCashTransferProcess.cs" />
     <Compile Include="Processors\Processes\RecordDividendProcess.cs" />
     <Compile Include="Processors\Processes\RecordFundBuyProcess.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Validators\FundRequestValidators.cs" />
     <Compile Include="Validators\CashRequestValidators.cs" />
     <Compile Include="Validators\GlobalValidators.cs" />
+    <Compile Include="Validators\PortfolioValidators.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">

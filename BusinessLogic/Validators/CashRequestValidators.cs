@@ -17,22 +17,16 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
         }
 
 
-        public static bool Validate(this WithdrawalTransactionRequest request)
-        {
-            return request.AccountId > 0
-                                    && request.Value > 0
-                                    && IsValidDate(request.TransactionDate)
-                                    && !string.IsNullOrWhiteSpace(request.Source)
-                                    && CashWithdrawalTransactionTypes.WithdrawalTypes.Contains(request.TransactionType); ;
-        }
+        public static bool Validate(this WithdrawalTransactionRequest request) => request.AccountId > 0
+                                                                                  && request.Value > 0
+                                                                                  && IsValidDate(request.TransactionDate)
+                                                                                  && !string.IsNullOrWhiteSpace(request.Source)
+                                                                                  && CashWithdrawalTransactionTypes.WithdrawalTypes.Contains(request.TransactionType);
 
-        public static bool Validate(this DepositTransactionRequest request)
-        {
-            return request.AccountId > 0
-                   && request.Value > 0
-                   && IsValidDate(request.TransactionDate)
-                   && !string.IsNullOrWhiteSpace(request.Source)
-                   && CashDepositTransactionTypes.DepositTypes.Contains(request.TransactionType);
-        }
+        public static bool Validate(this DepositTransactionRequest request) => request.AccountId > 0
+                                                                               && request.Value > 0
+                                                                               && IsValidDate(request.TransactionDate)
+                                                                               && !string.IsNullOrWhiteSpace(request.Source)
+                                                                               && CashDepositTransactionTypes.DepositTypes.Contains(request.TransactionType);
     }
 }

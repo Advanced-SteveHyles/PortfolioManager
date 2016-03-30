@@ -49,6 +49,7 @@
     <Compile Include="Requests\CreateFundTransactionRequest.cs" />
     <Compile Include="Requests\InvestmentRequest.cs" />
     <Compile Include="Requests\PortfolioRequest.cs" />
+    <Compile Include="Requests\PortfolioRevaluationRequest.cs" />
     <Compile Include="Requests\Transactions\CashTransferRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentBuyRequest.cs" />
     <Compile Include="Requests\Transactions\InvestmentCorporateActionRequest.cs" />

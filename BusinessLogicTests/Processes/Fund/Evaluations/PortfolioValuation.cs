@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogicTests.FakeRepositories;
+using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.Common.DTO.Requests;
 using Xunit;
 
 namespace BusinessLogicTests.Processes.Fund.Evaluations
@@ -16,6 +18,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         {
             _fakeRepository = new FakeRepository();
 
+            var portfolioId = 1;
             PortfolioRevaluationRequest portfolioRevaluationRequest = new PortfolioRevaluationRequest()
             {
                 PortfolioId = portfolioId
@@ -23,7 +26,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
 
             var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest);
 
-            portfolioValuationProcessor.execute();
+            portfolioValuationProcessor.Execute();
 
         }
 

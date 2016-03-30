@@ -19,6 +19,65 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             _priceHandler = new PriceHistoryHandler(_fakeRepository);
         }
 
+        [Fact]
+        public void WhenIPerformAMassValuationAllMapsAreCorrect()
+        {
+            RunForYesterdaysPrice();
+            foreach (var map in _fakeRepository.GetAllAccountInvestmentMaps().ToList())
+            {
+                var price = _fakeRepository.GetInvestmentSellPrices(map.InvestmentId).FirstOrDefault();
+                var valuation = (price?.SellPrice) * map.Quantity;
+
+                Assert.Equal(valuation, map.Valuation);
+            }
+        }
+
+        [Fact]
+        public void WhenTheAccountHasNoMapsAccountsIsCorrect()
+        {
+            RunForYesterdaysPrice();
+            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(5).Valuation);
+        }
+
+        [Fact]
+        public void WhenIPerformAMassValuationWithOneHistoryAllAccountsAreCorrect()
+        {
+            //new AccountInvestmentMapDto()
+            //{
+            //    InvestmentId = 1, AccountId = 1, Quantity = 10,           //10
+            //    InvestmentId = 2, AccountId = 1, Quantity = 10,           //7
+            //    InvestmentId = 1, AccountId = 2, Quantity = 5,            //10
+            //    InvestmentId = 1, AccountId = 3, Quantity = 25.4          //10
+            //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10
+            //    InvestmentId = 3, AccountId = 6, Quantity = 21            //12.5
+            RunForYesterdaysPrice();
+            Assert.Equal(170, _fakeRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(50, _fakeRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal(254, _fakeRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)17.89230, _fakeRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal((decimal)262.5, _fakeRepository.GetAccountByAccountId(6).Valuation);
+        }
+
+        [Fact]
+        public void WhenIPerformAMassValuationWithTwoHistoriesAllAccountsAreCorrect()
+        {
+            //new AccountInvestmentMapDto()
+            //{
+            //    InvestmentId = 1, AccountId = 1, Quantity = 10,           //10.6
+            //    InvestmentId = 2, AccountId = 1, Quantity = 10,           //7.1
+            //    InvestmentId = 1, AccountId = 2, Quantity = 5,            //10.6
+            //    InvestmentId = 1, AccountId = 3, Quantity = 25.4          //10.6
+            //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10.6
+            //    InvestmentId = 3, AccountId = 6, Quantity = 21            //0
+            RunForYesterdaysPrice();
+            RunForTodaysPrice();
+            Assert.Equal(177, _fakeRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(53, _fakeRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal((decimal)269.24, _fakeRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)18.965838, _fakeRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(6).Valuation);
+        }
+
         private void RunForYesterdaysPrice()
         {
             var valuationDate = DateTime.Today.AddDays(-1);
@@ -62,65 +121,6 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
                 );
 
             revalueAllPricesCommand.Execute();
-        }
-
-        [Fact]
-        public void WhenIPerformAMassValuationAllMapsAreCorrect()
-        {
-            RunForYesterdaysPrice();
-            foreach (var map in _fakeRepository.GetAllAccountInvestmentMaps().ToList())
-            {
-                var price = _fakeRepository.GetInvestmentSellPrices(map.InvestmentId).FirstOrDefault();
-                var valuation = (price?.SellPrice) * map.Quantity;
-
-                Assert.Equal(valuation, map.Valuation);
-            }
-        }
-
-        [Fact]
-        public void WhenTheAccountHasNoMapsAccountsIsCorrect()
-        {
-            RunForYesterdaysPrice();
-            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(5).Valuation);
-        }
-
-        [Fact]
-        public void WhenIPerformAMassValuationWithOneHistoryAllAccountsAreCorrect()
-        {
-            //new AccountInvestmentMapDto()
-            //{
-            //    InvestmentId = 1, AccountId = 1, Quantity = 10,           //10
-            //    InvestmentId = 2, AccountId = 1, Quantity = 10,           //7
-            //    InvestmentId = 1, AccountId = 2, Quantity = 5,            //10
-            //    InvestmentId = 1, AccountId = 3, Quantity = 25.4          //10
-            //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10
-            //    InvestmentId = 3, AccountId = 6, Quantity = 21            //12.5
-            RunForYesterdaysPrice();
-            Assert.Equal(170, _fakeRepository.GetAccountByAccountId(1).Valuation);
-            Assert.Equal(50, _fakeRepository.GetAccountByAccountId(2).Valuation);
-            Assert.Equal(254, _fakeRepository.GetAccountByAccountId(3).Valuation);
-            Assert.Equal((decimal)17.89230, _fakeRepository.GetAccountByAccountId(4).Valuation);
-            Assert.Equal((decimal)262.5, _fakeRepository.GetAccountByAccountId(6).Valuation);
-        }
-        
-        [Fact]
-        public void WhenIPerformAMassValuationWithTwoHistoriesAllAccountsAreCorrect()
-        {
-            //new AccountInvestmentMapDto()
-            //{
-            //    InvestmentId = 1, AccountId = 1, Quantity = 10,           //10.6
-            //    InvestmentId = 2, AccountId = 1, Quantity = 10,           //7.1
-            //    InvestmentId = 1, AccountId = 2, Quantity = 5,            //10.6
-            //    InvestmentId = 1, AccountId = 3, Quantity = 25.4          //10.6
-            //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10.6
-            //    InvestmentId = 3, AccountId = 6, Quantity = 21            //0
-            RunForYesterdaysPrice();
-            RunForTodaysPrice();
-            Assert.Equal(177, _fakeRepository.GetAccountByAccountId(1).Valuation);
-            Assert.Equal(53, _fakeRepository.GetAccountByAccountId(2).Valuation);
-            Assert.Equal((decimal)269.24, _fakeRepository.GetAccountByAccountId(3).Valuation);
-            Assert.Equal((decimal)18.965838, _fakeRepository.GetAccountByAccountId(4).Valuation);
-            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(6).Valuation);
         }
     }
 }
