@@ -84,6 +84,10 @@
       <Project>{d54f38e9-8fbb-473a-ae31-98c85a05e857}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{f6c6190c-54a0-4182-81f9-3db252861300}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
       <Project>{77B12DE0-53EA-43CD-8E33-06AF1DE7A8B6}</Project>
       <Name>PortfolioManager.Repository</Name>

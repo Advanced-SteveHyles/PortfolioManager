@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{B72F4619-509A-47FA-AE1F-20E0898C4794}"
 EndProject
@@ -49,6 +49,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd_WPF_Tests", "FrontEnd_WPF_Tests\FrontEnd_WPF_Tests.csproj", "{5E69A282-296F-4695-ADC7-D11FF43BC66D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTests", "DatabaseTests\DatabaseTests.csproj", "{113C6216-6EB3-42F9-BA33-FCAC718DDD03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{F6C6190C-54A0-4182-81F9-3DB252861300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,10 @@ Global
 		{113C6216-6EB3-42F9-BA33-FCAC718DDD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{113C6216-6EB3-42F9-BA33-FCAC718DDD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{113C6216-6EB3-42F9-BA33-FCAC718DDD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C6190C-54A0-4182-81F9-3DB252861300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C6190C-54A0-4182-81F9-3DB252861300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C6190C-54A0-4182-81F9-3DB252861300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C6190C-54A0-4182-81F9-3DB252861300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +143,6 @@ Global
 		{A147027C-BC88-490A-833D-0F5966D51959} = {24972C2C-FC61-4619-A3D4-6C3A03A838AA}
 		{5E69A282-296F-4695-ADC7-D11FF43BC66D} = {EB85BADD-69CE-44C8-AF25-A73E773A8D47}
 		{113C6216-6EB3-42F9-BA33-FCAC718DDD03} = {EB85BADD-69CE-44C8-AF25-A73E773A8D47}
+		{F6C6190C-54A0-4182-81F9-3DB252861300} = {0F2AF043-381C-4C2B-BF72-8C01A06CCC5A}
 	EndGlobalSection
 EndGlobal

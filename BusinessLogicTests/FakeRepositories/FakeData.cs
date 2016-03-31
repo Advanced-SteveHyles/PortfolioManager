@@ -6,7 +6,18 @@ namespace BusinessLogicTests.FakeRepositories
 {
     internal class FakeData
     {
-        public const int PropertyAccountId = 7;
+        public const int PortfolioWithPropertyAccount = 78;
+        public const int PortfolioWithoutPropertyAccount = 785;
+        public const int PortfolioWithNoAccounts = 999;
+        public const int PortfolioWithAllAccountTypes = 718;
+        public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
+        public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
+
+        public const int PropertyAccountForPortfolioWithAllAccountTypes = 1024;
+        public const int SavingsAccountForPortfolioWithAllAccountTypes = 1025;
+        public const int CashIsaAccountForPortfolioWithAllAccountTypes = 1026;
+        public const int PensionAccountForPortfolioWithAllAccountTypes = 1027;
+        public const int StockIsaAccountForPortfolioWithAllAccountTypes = 1028;
 
         internal static List<Account> FakeAccountData()
         {
@@ -18,7 +29,15 @@ namespace BusinessLogicTests.FakeRepositories
                 new Account(){AccountId = 4, Name = "Acc4"},
                 new Account(){AccountId = 5, Name = "Acc5"},
                 new Account(){AccountId = 6, Name = "Acc6"},
-                new Account(){AccountId = 7, Name = "Acc7", Type = PortfolioAccountTypes.Property, PortfolioId = 1}
+                new Account(){AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithPropertyAccount},
+                new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithoutPropertyAccount},
+
+                new Account(){AccountId = PropertyAccountForPortfolioWithAllAccountTypes, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = SavingsAccountForPortfolioWithAllAccountTypes, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = StockIsaAccountForPortfolioWithAllAccountTypes, Name = "Stock Isa", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = CashIsaAccountForPortfolioWithAllAccountTypes, Name = "Cash Isa", Type = PortfolioAccountTypes.Pension, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = PensionAccountForPortfolioWithAllAccountTypes, Name = "Pension", Type = PortfolioAccountTypes.CashIsa, PortfolioId = PortfolioWithAllAccountTypes},
+
             };
         }
 

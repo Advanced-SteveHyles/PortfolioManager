@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
+using ExtensionMethods;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic;
 using Portfolio.BackEnd.BusinessLogic.Linking;

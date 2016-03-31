@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions.cs" />
     <Compile Include="Interfaces\BaseProcess.cs" />
     <Compile Include="Interfaces\IAccountHandler.cs" />
     <Compile Include="Interfaces\IAccountInvestmentMapProcessor.cs" />
@@ -86,6 +85,10 @@
     <Compile Include="Validators\PortfolioValidators.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{f6c6190c-54a0-4182-81f9-3db252861300}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortfolioManager.Repository\PortfolioManager.Repository.csproj">
       <Project>{77b12de0-53ea-43cd-8e33-06af1de7a8b6}</Project>
       <Name>PortfolioManager.Repository</Name>

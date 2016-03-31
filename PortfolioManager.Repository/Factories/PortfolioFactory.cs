@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ExtensionMethods;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.DTO.Requests;
 
@@ -16,12 +17,15 @@ namespace Portfolio.BackEnd.Repository.Factories
             };
         }
 
-        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request, decimal propertyAccountValue)
+        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request, decimal propertyAccountValue, decimal cashAccountValue, decimal total)
         {
             return new PortfolioValuation()
             {
                 PortfolioId = request.PortfolioId,  
-                PropertyValue = propertyAccountValue
+                PropertyValue = propertyAccountValue,
+                PropertyRatio = propertyAccountValue.AsRatioOfTotal(total),
+                CashValue = cashAccountValue,
+                CashRatio = cashAccountValue.AsRatioOfTotal(total)
             };
         }
         

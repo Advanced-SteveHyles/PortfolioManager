@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLogicTests.FakeRepositories;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
@@ -10,6 +6,7 @@ using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests;
 using Portfolio.Common.DTO.Requests.Transactions;
 using Xunit;
+using static BusinessLogicTests.FakeRepositories.FakeData;
 
 namespace BusinessLogicTests.Processes.Fund.Evaluations
 {
@@ -18,20 +15,124 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         private readonly FakePortfolioRepository _fakePortfolioRepository;
         private readonly FakeRepository _fakeRepository;
 
-        private const int PortfolioId = 1;
+
 
         public PortfolioValuation()
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
-            _fakeRepository = new FakeRepository();
-            
+            _fakeRepository = new FakeRepository();            
         }
 
-        private void RevaluePortfolio()
+        [Fact]
+        public void WhenAPortfolioHasNoAccountsTheValulationIsZero()
+        {
+            RevaluePortfolio(PortfolioWithNoAccounts);
+            var  portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithNoAccounts);
+            
+            Assert.Equal(0, portfolioValuation.PropertyValue);
+        }
+
+        [Fact]
+        public void WhenAPortfolioHasAPropertyAccountTheValulationIsTheBalanceOfThePropertyAccount()
+        {
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            Assert.Equal(transactionValue , portfolioValuation.PropertyValue);
+        }
+
+        [Fact]
+        public void WhenAPortfolioOnlyHasAPropertyAccountTheRatioOfPropertyIsOneHundredPercent()
+        {
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            var expectedRatio = 1;
+            Assert.Equal(expectedRatio, portfolioValuation.PropertyRatio);
+        }
+
+        [Fact]
+        public void WhenAPortfolioHasANonPropertyAccountTheValulationIsTheBalanceOfTheCashOnAccounts()
+        {
+            var transactionValue = (decimal)22.50;
+            ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithOnlySavingsAccount);
+
+            RevaluePortfolio(PortfolioWithoutPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithoutPropertyAccount);
+
+            Assert.Equal(transactionValue, portfolioValuation.CashValue);
+        }
+
+
+        [Fact]
+        public void WhenAPortfolioANonPropertyAccountTheRatioOfCashIsOneHundredPercent()
+        {
+            var transactionValue = (decimal)25;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            var expectedRatio = 1;
+            Assert.Equal(expectedRatio, portfolioValuation.PropertyRatio);
+        }
+
+        [Fact]
+        public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheValulationIsTheBalanceOfBonds()
+        {
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            var expectedRatio = 1;
+            Assert.Equal(transactionValue, portfolioValuation.BondValue);
+        }
+
+        [Fact]
+        public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheRatioOfPropertyIsOneHundredPercent()
+        {
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            var expectedRatio = 1;
+            Assert.Equal(expectedRatio, portfolioValuation.BondRatio);
+        }
+
+        [Fact]
+        public void WhenAPortfolioContainsAllAccountTypesTheRatiosAreCorrect()
+        {
+            const decimal transactionValue = (decimal)25;
+            ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(50, CashIsaAccountForPortfolioWithAllAccountTypes);
+
+            RevaluePortfolio(PortfolioWithAllAccountTypes);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAllAccountTypes);
+
+            const decimal expectedPropertyRatio = (decimal) .25;
+            const decimal expectedCashRatio = (decimal).75;
+
+            Assert.Equal(expectedPropertyRatio, portfolioValuation.PropertyRatio);
+            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);            
+        }
+
+
+        private void RevaluePortfolio(int portfolioId)
         {
             PortfolioRevaluationRequest portfolioRevaluationRequest = new PortfolioRevaluationRequest()
             {
-                PortfolioId = PortfolioId
+                PortfolioId = portfolioId
             };
 
             var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest,
@@ -40,30 +141,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             portfolioValuationProcessor.Execute();
         }
 
-        [Fact]
-        public void WhenAPortfolioHasNoAccountsTheValulationIsZero()
-        {
-            RevaluePortfolio();
-            var  portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
-            
-            Assert.Equal(0, portfolioValuation.PropertyValue);
-        }
-
-        [Fact]
-        public void WhenAPortfolioHasNoAPropertyAccountsTheValulationIsTheBalanceOfThePropertyAccount()
-        {
-            var transactionValue = (decimal)50;
-            ApplyCashDeposit(transactionValue);
-
-            RevaluePortfolio();
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioId);
-
-            Assert.Equal(transactionValue , portfolioValuation.PropertyValue);
-        }
-
-        private void ApplyCashDeposit(decimal transactionValue)
-        {
-            var accountId = FakeData.PropertyAccountId;            
+        private void ApplyCashDeposit(decimal transactionValue, int accountId)
+        {            
             var depositTransactionRequest = new DepositTransactionRequest
             {
                 AccountId = accountId,

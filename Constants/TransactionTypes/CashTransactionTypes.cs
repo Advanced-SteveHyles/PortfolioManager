@@ -41,10 +41,19 @@ namespace Portfolio.Common.Constants.TransactionTypes
     public static class PortfolioAccountTypes
     {
         public const string Property = "Property";
+        public const string Savings = "Savings";
+        public const string StockIsa = "Stock ISA";
+        public const string Pension = "Pension";
+        public const string CashIsa = "Cash ISA";
 
         public static List<string> AccountTypes { get; } = new List<string>()
         {
-             Property
+             Property,
+            Savings,
+            StockIsa,
+            Pension,
+            CashIsa
         };
+        
     }
 }

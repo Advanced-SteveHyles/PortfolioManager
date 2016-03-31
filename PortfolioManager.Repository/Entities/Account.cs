@@ -28,6 +28,9 @@ namespace Portfolio.BackEnd.Repository.Entities
 
         public int PortfolioId { get; set; }
         public decimal PropertyValue { get; set; }
+        public decimal PropertyRatio { get; set; }
+        public decimal CashValue { get; set; }
+        public decimal CashRatio { get; set; }
     }
 
 

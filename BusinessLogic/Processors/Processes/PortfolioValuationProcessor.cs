@@ -25,8 +25,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         {
             var x = _accountRepository.GetAccountsForPortfolio(_request.PortfolioId);
             var propertyAccountValue =  x.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
-            
-            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue);
+            var cashAccountValue = x.Where(acc => acc.Type != PortfolioAccountTypes.Property).Sum(acc => acc.Cash);
+
+            var total = propertyAccountValue + cashAccountValue;
+
+            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue, cashAccountValue, total);
 
             _portfolioRepository.UpdatePortfolioValuation(entityPortfolioValuation);
         }
