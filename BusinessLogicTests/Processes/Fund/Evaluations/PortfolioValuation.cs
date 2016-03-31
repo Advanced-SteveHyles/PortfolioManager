@@ -14,9 +14,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
     {
         private readonly FakePortfolioRepository _fakePortfolioRepository;
         private readonly FakeRepository _fakeRepository;
-
-
-
+        
         public PortfolioValuation()
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
@@ -68,8 +66,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
 
             Assert.Equal(transactionValue, portfolioValuation.CashValue);
         }
-
-
+        
         [Fact]
         public void WhenAPortfolioANonPropertyAccountTheRatioOfCashIsOneHundredPercent()
         {
@@ -87,25 +84,22 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheValulationIsTheBalanceOfBonds()
         {
             var transactionValue = (decimal)50;
-            const int existingInvestmentForBond = 1;
-
-            ApplyFundPurchase(existingInvestmentForBond);
-
             
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            ApplyFundPurchase(BondAccountInvestmentMap, BondAccountForPortfolioWithOnlyBondsAccounts);
+            
+            RevaluePortfolio(PortfolioWithAccountLinkedToBond);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAccountLinkedToBond);
             
             Assert.Equal(transactionValue, portfolioValuation.BondValue);
         }
 
-
         [Fact]
         public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheRatioOfPropertyIsOneHundredPercent()
         {
-            var transactionValue = (decimal)50;
-            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+            var transactionValue = (decimal)50;           
+            ApplyFundPurchase(BondAccountInvestmentMap, BondAccountForPortfolioWithOnlyBondsAccounts);
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithAccountLinkedToBond);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
 
             var expectedRatio = 1;
@@ -118,7 +112,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)50;
             const int existingInvestmentForBond = 1;
 
-            ApplyFundPurchase(existingInvestmentForBond);
+            ApplyFundPurchase(existingInvestmentForBond, 1);
 
 
             RevaluePortfolio(PortfolioWithPropertyAccount);
@@ -161,7 +155,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
         }
 
-        private void ApplyFundPurchase(int _existingInvestmentMapId)
+        private void ApplyFundPurchase(int _existingInvestmentMapId, int accountId)
         {
             var  _numberOfShares = 10;
             var _priceOfOneShare = 1;
@@ -169,7 +163,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var _valueOfTransaction = (_numberOfShares * _priceOfOneShare) + _commission;
             var _transactionDate = DateTime.Now;
             var _settlementDate = DateTime.Today.AddDays(14);
-            var _accountId = 1;
+            var _accountId = accountId;
 
             var request = new InvestmentBuyRequest
             {
@@ -207,7 +201,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             };
 
             var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest,
-                _fakePortfolioRepository, _fakeRepository);
+                _fakePortfolioRepository, _fakeRepository, _fakeRepository, _fakeRepository);
 
             portfolioValuationProcessor.Execute();
         }

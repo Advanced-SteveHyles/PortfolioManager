@@ -3,6 +3,7 @@ using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.BackEnd.Repository.Factories;
 using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests;
 
@@ -12,24 +13,46 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     {
         private readonly PortfolioRevaluationRequest _request;
         private readonly IPortfolioRepository _portfolioRepository;
-        private IAccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountInvestmentMapRepository _accountInvestmentRepository;
+        private readonly IInvestmentRepository _investmentRepository;
 
-        public PortfolioValuationProcessor(PortfolioRevaluationRequest request, IPortfolioRepository portfolioRepository, IAccountRepository accountRepository) : base(request)
+        public PortfolioValuationProcessor(PortfolioRevaluationRequest request, IPortfolioRepository portfolioRepository, IAccountRepository accountRepository, IAccountInvestmentMapRepository accountInvestmentRepository,  IInvestmentRepository investmentRepository) : base(request)
         {
             _request = request;
             _portfolioRepository = portfolioRepository;
             _accountRepository = accountRepository;
+            _accountInvestmentRepository = accountInvestmentRepository;
+            _investmentRepository = investmentRepository;
         }
 
         protected override void ProcessToRun()
         {
-            var x = _accountRepository.GetAccountsForPortfolio(_request.PortfolioId);
-            var propertyAccountValue =  x.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
-            var cashAccountValue = x.Where(acc => acc.Type != PortfolioAccountTypes.Property).Sum(acc => acc.Cash);
+            var allAccountsForPortfolio = _accountRepository.GetAccountsForPortfolio(_request.PortfolioId);
+            var propertyAccountValue =  allAccountsForPortfolio.Where(acc => acc.Type == PortfolioAccountTypes.Property).Sum(acc=>acc.Cash);
+            var cashAccountValue = allAccountsForPortfolio.Where(acc => acc.Type != PortfolioAccountTypes.Property).Sum(acc => acc.Cash);
 
-            var total = propertyAccountValue + cashAccountValue;
+            var bondAccountValue = (decimal) 0;
 
-            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue, cashAccountValue, total);
+            foreach (var account in allAccountsForPortfolio)
+            {
+                var investments = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(account.AccountId);
+
+                foreach (var investment in investments)
+                {
+                    var type = _investmentRepository.GetInvestment(investment.InvestmentId).Type;
+
+                    if (type == FundInvestmentTypes.Bond)
+                    {
+                        bondAccountValue += investment.Valuation.Value;
+                    }
+                }
+            }
+            
+
+            var total = propertyAccountValue + cashAccountValue + bondAccountValue;
+
+            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue, cashAccountValue, bondAccountValue,  total);
 
             _portfolioRepository.UpdatePortfolioValuation(entityPortfolioValuation);
         }

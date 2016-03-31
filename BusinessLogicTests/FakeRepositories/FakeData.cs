@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.Constants.TransactionTypes;
 
 namespace BusinessLogicTests.FakeRepositories
@@ -10,8 +12,11 @@ namespace BusinessLogicTests.FakeRepositories
         public const int PortfolioWithOnlySavingsAccount = 785;
         public const int PortfolioWithNoAccounts = 999;
         public const int PortfolioWithAllAccountTypes = 718;
+        public const int PortfolioWithAccountLinkedToBond = 9;
+
         public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
         public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
+        public const int BondAccountForPortfolioWithOnlyBondsAccounts = 771;
 
         public const int PropertyAccountForPortfolioWithAllAccountTypes = 1024;
         public const int SavingsAccountForPortfolioWithAllAccountTypes = 1025;
@@ -31,6 +36,7 @@ namespace BusinessLogicTests.FakeRepositories
                 new Account(){AccountId = 6, Name = "Acc6"},
                 new Account(){AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithPropertyAccount},
                 new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithOnlySavingsAccount},
+                new Account(){AccountId = BondAccountForPortfolioWithOnlyBondsAccounts, Name = "Bond Only Account", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAccountLinkedToBond},
 
                 new Account(){AccountId = PropertyAccountForPortfolioWithAllAccountTypes, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithAllAccountTypes},
                 new Account(){AccountId = SavingsAccountForPortfolioWithAllAccountTypes, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithAllAccountTypes},
@@ -87,7 +93,33 @@ namespace BusinessLogicTests.FakeRepositories
                     AccountId = 6,
                     Quantity = 21,
                 },
+                new AccountInvestmentMap()
+                {
+                    AccountInvestmentMapId = BondAccountInvestmentMap,
+                    InvestmentId = BondInvestment,
+                    AccountId = BondAccountForPortfolioWithOnlyBondsAccounts,
+                    Quantity = 0,
+                    Valuation = 0
+                },
             };
+               
+            }
+
+        public const int BondAccountInvestmentMap = 90;
+
+        public const int BondInvestment = 89;
+        public const int FundEquityInvestment = 90;
+        public const int TrackerEquityInvestment = 91;
+
+        internal static List<Investment> FakePopulatedInvestments()
+        {        
+            return new List<Investment>()
+            {
+                new Investment() { InvestmentId = BondInvestment , Type = FundInvestmentTypes.Bond},
+                new Investment() { InvestmentId = FundEquityInvestment , Type = FundInvestmentTypes.Fund},
+                new Investment() { InvestmentId = TrackerEquityInvestment , Type = FundInvestmentTypes.Tracker},                  
+            };
+
         }
     }
 }
