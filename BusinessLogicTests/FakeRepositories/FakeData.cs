@@ -7,7 +7,7 @@ namespace BusinessLogicTests.FakeRepositories
     internal class FakeData
     {
         public const int PortfolioWithPropertyAccount = 78;
-        public const int PortfolioWithoutPropertyAccount = 785;
+        public const int PortfolioWithOnlySavingsAccount = 785;
         public const int PortfolioWithNoAccounts = 999;
         public const int PortfolioWithAllAccountTypes = 718;
         public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
@@ -30,7 +30,7 @@ namespace BusinessLogicTests.FakeRepositories
                 new Account(){AccountId = 5, Name = "Acc5"},
                 new Account(){AccountId = 6, Name = "Acc6"},
                 new Account(){AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithPropertyAccount},
-                new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithoutPropertyAccount},
+                new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithOnlySavingsAccount},
 
                 new Account(){AccountId = PropertyAccountForPortfolioWithAllAccountTypes, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithAllAccountTypes},
                 new Account(){AccountId = SavingsAccountForPortfolioWithAllAccountTypes, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithAllAccountTypes},

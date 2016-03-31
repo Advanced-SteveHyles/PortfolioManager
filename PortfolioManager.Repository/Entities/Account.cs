@@ -30,7 +30,14 @@ namespace Portfolio.BackEnd.Repository.Entities
         public decimal PropertyValue { get; set; }
         public decimal PropertyRatio { get; set; }
         public decimal CashValue { get; set; }
+
         public decimal CashRatio { get; set; }
+
+        public decimal BondValue { get; set; }
+        public decimal BondRatio { get; set; }
+        public decimal EquityValue { get; set; }
+        public int EquityRatio { get; set; }
+        
     }
 
 

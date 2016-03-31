@@ -63,8 +63,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)22.50;
             ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithOnlySavingsAccount);
 
-            RevaluePortfolio(PortfolioWithoutPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithoutPropertyAccount);
+            RevaluePortfolio(PortfolioWithOnlySavingsAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithOnlySavingsAccount);
 
             Assert.Equal(transactionValue, portfolioValuation.CashValue);
         }
@@ -87,14 +87,17 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheValulationIsTheBalanceOfBonds()
         {
             var transactionValue = (decimal)50;
-            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+            const int existingInvestmentForBond = 1;
 
+            ApplyFundPurchase(existingInvestmentForBond);
+
+            
             RevaluePortfolio(PortfolioWithPropertyAccount);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
-
-            var expectedRatio = 1;
+            
             Assert.Equal(transactionValue, portfolioValuation.BondValue);
         }
+
 
         [Fact]
         public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheRatioOfPropertyIsOneHundredPercent()
@@ -107,6 +110,35 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
 
             var expectedRatio = 1;
             Assert.Equal(expectedRatio, portfolioValuation.BondRatio);
+        }
+
+        [Fact]
+        public void WhenAPortfolioOnlyHasAnAccountLinkedToFundTheValulationIsTheBalanceOfFund()
+        {
+            var transactionValue = (decimal)50;
+            const int existingInvestmentForBond = 1;
+
+            ApplyFundPurchase(existingInvestmentForBond);
+
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            Assert.Equal(transactionValue, portfolioValuation.EquityValue);
+        }
+
+
+        [Fact]
+        public void WhenAPortfolioOnlyHasAnAccountLinkedToAFundTheRatioOfPropertyIsOneHundredPercent()
+        {
+            var transactionValue = (decimal)50;
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
+
+            RevaluePortfolio(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+
+            var expectedRatio = 1;
+            Assert.Equal(expectedRatio, portfolioValuation.EquityRatio);
         }
 
         [Fact]
@@ -124,7 +156,46 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             const decimal expectedCashRatio = (decimal).75;
 
             Assert.Equal(expectedPropertyRatio, portfolioValuation.PropertyRatio);
-            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);            
+            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
+            Assert.Equal(expectedPropertyRatio, portfolioValuation.BondRatio);
+            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
+        }
+
+        private void ApplyFundPurchase(int _existingInvestmentMapId)
+        {
+            var  _numberOfShares = 10;
+            var _priceOfOneShare = 1;
+            var _commission = 2;
+            var _valueOfTransaction = (_numberOfShares * _priceOfOneShare) + _commission;
+            var _transactionDate = DateTime.Now;
+            var _settlementDate = DateTime.Today.AddDays(14);
+            var _accountId = 1;
+
+            var request = new InvestmentBuyRequest
+            {
+                InvestmentMapId = _existingInvestmentMapId,
+                Quantity = _numberOfShares,
+                BuyPrice = _priceOfOneShare,
+                PurchaseDate = _transactionDate,
+                SettlementDate = _settlementDate,
+                UpdatePriceHistory = false,
+                Value = _valueOfTransaction,
+                Charges = _commission
+            };
+
+            var     _accountHandler = new AccountHandler(_fakeRepository);
+            var _cashCashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            var _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
+            var _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
+            var _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
+            var _investmentHandler = new InvestmentHandler(_fakeRepository);
+
+            var _buyProcess = new RecordFundBuyProcess(request, _accountHandler,
+                _cashCashTransactionHandler, _accountInvestmentMapProcessor,
+                _fundTransactionHandler, _priceHistoryHandler,
+                _investmentHandler);
+
+            _buyProcess.Execute();
         }
 
 
