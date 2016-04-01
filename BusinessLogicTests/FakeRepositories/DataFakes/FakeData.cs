@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using BusinessLogicTests.FakeRepositories.DataFakes;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.Constants.TransactionTypes;
 
 namespace BusinessLogicTests.FakeRepositories
 {
-    internal class FakeData
+    internal class FakeData : IFakeData
     {
         public const int PortfolioWithPropertyAccount = 78;
         public const int PortfolioWithOnlySavingsAccount = 785;
@@ -24,30 +25,7 @@ namespace BusinessLogicTests.FakeRepositories
         public const int PensionAccountForPortfolioWithAllAccountTypes = 1027;
         public const int StockIsaAccountForPortfolioWithAllAccountTypes = 1028;
 
-        internal static List<Account> FakeAccountData()
-        {
-            return new List<Account>()
-            {
-                new Account(){AccountId = 1, Name = "Acc1"},
-                new Account(){AccountId = 2, Name = "Acc2"},
-                new Account(){AccountId = 3, Name = "Acc3"},
-                new Account(){AccountId = 4, Name = "Acc4"},
-                new Account(){AccountId = 5, Name = "Acc5"},
-                new Account(){AccountId = 6, Name = "Acc6"},
-                new Account(){AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithPropertyAccount},
-                new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithOnlySavingsAccount},
-                new Account(){AccountId = BondAccountForPortfolioWithOnlyBondsAccounts, Name = "Bond Only Account", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAccountLinkedToBond},
-
-                new Account(){AccountId = PropertyAccountForPortfolioWithAllAccountTypes, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithAllAccountTypes},
-                new Account(){AccountId = SavingsAccountForPortfolioWithAllAccountTypes, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithAllAccountTypes},
-                new Account(){AccountId = StockIsaAccountForPortfolioWithAllAccountTypes, Name = "Stock Isa", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAllAccountTypes},
-                new Account(){AccountId = CashIsaAccountForPortfolioWithAllAccountTypes, Name = "Cash Isa", Type = PortfolioAccountTypes.Pension, PortfolioId = PortfolioWithAllAccountTypes},
-                new Account(){AccountId = PensionAccountForPortfolioWithAllAccountTypes, Name = "Pension", Type = PortfolioAccountTypes.CashIsa, PortfolioId = PortfolioWithAllAccountTypes},
-
-            };
-        }
-
-        internal static List<AccountInvestmentMap> FakePopulatedInvestmentMap()
+        List<AccountInvestmentMap> IFakeData.FakePopulatedInvestmentMap()
         {
             return new List<AccountInvestmentMap>
             {
@@ -102,24 +80,45 @@ namespace BusinessLogicTests.FakeRepositories
                     Valuation = 0
                 },
             };
-               
-            }
+        }
 
-        public const int BondAccountInvestmentMap = 90;
-
-        public const int BondInvestment = 89;
-        public const int FundEquityInvestment = 90;
-        public const int TrackerEquityInvestment = 91;
-
-        internal static List<Investment> FakePopulatedInvestments()
-        {        
+        List<Investment> IFakeData.FakePopulatedInvestments()
+        {
             return new List<Investment>()
             {
                 new Investment() { InvestmentId = BondInvestment , Type = FundInvestmentTypes.Bond},
                 new Investment() { InvestmentId = FundEquityInvestment , Type = FundInvestmentTypes.Fund},
                 new Investment() { InvestmentId = TrackerEquityInvestment , Type = FundInvestmentTypes.Tracker},                  
             };
-
         }
+
+        List<Account> IFakeData.FakeAccountData()
+        {
+            return new List<Account>()
+            {
+                new Account(){AccountId = 1, Name = "Acc1"},
+                new Account(){AccountId = 2, Name = "Acc2"},
+                new Account(){AccountId = 3, Name = "Acc3"},
+                new Account(){AccountId = 4, Name = "Acc4"},
+                new Account(){AccountId = 5, Name = "Acc5"},
+                new Account(){AccountId = 6, Name = "Acc6"},
+                new Account(){AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithPropertyAccount},
+                new Account(){AccountId = SavingsAccountForPortfolioWithOnlySavingsAccount, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithOnlySavingsAccount},
+                new Account(){AccountId = BondAccountForPortfolioWithOnlyBondsAccounts, Name = "Bond Only Account", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAccountLinkedToBond},
+
+                new Account(){AccountId = PropertyAccountForPortfolioWithAllAccountTypes, Name = "Property Account", Type = PortfolioAccountTypes.Property, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = SavingsAccountForPortfolioWithAllAccountTypes, Name = "Savings Account", Type = PortfolioAccountTypes.Savings, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = StockIsaAccountForPortfolioWithAllAccountTypes, Name = "Stock Isa", Type = PortfolioAccountTypes.StockIsa, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = CashIsaAccountForPortfolioWithAllAccountTypes, Name = "Cash Isa", Type = PortfolioAccountTypes.Pension, PortfolioId = PortfolioWithAllAccountTypes},
+                new Account(){AccountId = PensionAccountForPortfolioWithAllAccountTypes, Name = "Pension", Type = PortfolioAccountTypes.CashIsa, PortfolioId = PortfolioWithAllAccountTypes},
+
+            };
+        }
+
+        public const int BondAccountInvestmentMap = 90;
+
+        public const int BondInvestment = 89;
+        public const int FundEquityInvestment = 90;
+        public const int TrackerEquityInvestment = 91;
     }
 }

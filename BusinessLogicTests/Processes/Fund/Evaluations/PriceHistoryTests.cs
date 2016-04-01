@@ -25,7 +25,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
         public PriceHistoryTests()
         {
-            _repository = new FakeRepository();
+            _repository = new FakeRepository(new FakeData());
             _priceHistoryHandler = new PriceHistoryHandler(_repository);
 
             var accountMapHandler = new AccountHandler(_repository);

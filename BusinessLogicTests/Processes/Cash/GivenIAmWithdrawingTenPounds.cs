@@ -24,7 +24,7 @@ namespace BusinessLogicTests.Transactions.Cash
 
         public GivenIAmWithdrawingTenPounds()
         {
-            _fakeRepository = new FakeRepository();
+            _fakeRepository = new FakeRepository(new FakeData());
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);                                   
         }
 

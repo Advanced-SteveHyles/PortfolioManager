@@ -18,7 +18,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         public PortfolioValuation()
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
-            _fakeRepository = new FakeRepository();            
+            _fakeRepository = new FakeRepository(new FakeDataForPortfolioValuation());            
         }
 
         [Fact]

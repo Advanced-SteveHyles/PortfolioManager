@@ -21,7 +21,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private decimal _commission;
         private decimal _valueOfTransaction;
         private DateTime _transactionDate;
-        private readonly FakeRepository _fakeRepository = new FakeRepository();
+        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeData());
         private RecordFundBuyProcess _buyProcess;
         private int _accountId;
 

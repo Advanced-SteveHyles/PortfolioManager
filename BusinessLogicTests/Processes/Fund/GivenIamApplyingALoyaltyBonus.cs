@@ -30,7 +30,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
         public GivenIamApplyingALoyaltyBonus()
         {
-            _fakeRepository = new FakeRepository();
+            _fakeRepository = new FakeRepository(new FakeData());
         }
         private void SetupAndOrExecute(bool execute)
         {

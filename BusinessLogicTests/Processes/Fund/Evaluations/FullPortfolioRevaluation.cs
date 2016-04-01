@@ -11,7 +11,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 {
     public class FullPortfolioRevaluation
     {
-        private readonly FakeRepository _fakeRepository = new FakeRepository();
+        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeData());
         private readonly IPriceHistoryHandler _priceHandler;
 
         public FullPortfolioRevaluation()

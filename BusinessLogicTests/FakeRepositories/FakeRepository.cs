@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicTests.FakeRepositories.DataFakes;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
@@ -17,6 +18,7 @@ namespace BusinessLogicTests.FakeRepositories
         , IFundTransactionRepository
         , IPriceHistoryRepository        
     {
+        private readonly IFakeData _fakeData;
         private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation, Name = "Investment 1"};        
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
@@ -26,13 +28,14 @@ namespace BusinessLogicTests.FakeRepositories
 
         readonly List<Account> _accounts;
 
-        public FakeRepository()
+        public FakeRepository(IFakeData fakeData)
         {
+            _fakeData = fakeData;
             _dummyCashTransactions = new List<CashTransaction>();
             _dummyFundTransactions = new List<FundTransaction>();
             _dummyPriceHistoryList = new List<PriceHistory>();
-            _investmentMaps = FakeData.FakePopulatedInvestmentMap();            
-            _accounts = FakeData.FakeAccountData();
+            _investmentMaps = fakeData.FakePopulatedInvestmentMap();            
+            _accounts = fakeData.FakeAccountData();
         }
         
         public RepositoryActionResult<Account> InsertAccount(Account entityAccount)
