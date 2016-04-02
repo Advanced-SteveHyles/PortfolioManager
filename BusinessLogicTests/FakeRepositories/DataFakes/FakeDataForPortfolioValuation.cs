@@ -31,16 +31,10 @@ namespace BusinessLogicTests.FakeRepositories
         public const int PensionAccountForPortfolioWithAllAccountTypes = 1027;
         public const int StockIsaAccountForPortfolioWithAllAccountTypes = 1028;
 
-        public static List<Account> FakeAccountData()
+        List<Account> IFakeData.FakeAccountData()
         {
             return new List<Account>()
-            {
-                new Account() {AccountId = 1, Name = "Acc1"},
-                new Account() {AccountId = 2, Name = "Acc2"},
-                new Account() {AccountId = 3, Name = "Acc3"},
-                new Account() {AccountId = 4, Name = "Acc4"},
-                new Account() {AccountId = 5, Name = "Acc5"},
-                new Account() {AccountId = 6, Name = "Acc6"},
+            {                
                 new Account()
                 {
                     AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount,
@@ -102,57 +96,10 @@ namespace BusinessLogicTests.FakeRepositories
             };
         }
 
-        List<Account> IFakeData.FakeAccountData()
-        {
-            return FakeAccountData();
-        }
-
         List<AccountInvestmentMap> IFakeData.FakePopulatedInvestmentMap()
         {
             return new List<AccountInvestmentMap>
             {
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 1,
-                    InvestmentId = 1,
-                    AccountId = 1,
-                    Quantity = 10,
-                },
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 2,
-                    InvestmentId = 1,
-                    AccountId = 2,
-                    Quantity = 5,
-                },
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 3,
-                    InvestmentId = 2,
-                    AccountId = 1,
-                    Quantity = 10,
-                },
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 4,
-                    InvestmentId = 1,
-                    AccountId = 3,
-                    Quantity = (decimal) 25.4,
-                },
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 88,
-                    InvestmentId = 1,
-                    AccountId = 4,
-                    Quantity = (decimal) 1.78923,
-                },
-                new AccountInvestmentMap()
-                {
-                    AccountInvestmentMapId = 89,
-                    InvestmentId = 3,
-                    AccountId = 6,
-                    Quantity = 21,
-                },
                 new AccountInvestmentMap()
                 {
                     AccountInvestmentMapId = BondAccountInvestmentMap,

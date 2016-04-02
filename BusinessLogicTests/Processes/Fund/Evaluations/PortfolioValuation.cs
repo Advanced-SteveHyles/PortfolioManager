@@ -6,7 +6,7 @@ using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests;
 using Portfolio.Common.DTO.Requests.Transactions;
 using Xunit;
-using static BusinessLogicTests.FakeRepositories.FakeData;
+using static BusinessLogicTests.FakeRepositories.FakeDataForPortfolioValuation;
 
 namespace BusinessLogicTests.Processes.Fund.Evaluations
 {
@@ -100,7 +100,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             ApplyFundPurchase(BondAccountInvestmentMap, BondAccountForPortfolioWithOnlyBondsAccounts);
 
             RevaluePortfolio(PortfolioWithAccountLinkedToBond);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAccountLinkedToBond);
 
             var expectedRatio = 1;
             Assert.Equal(expectedRatio, portfolioValuation.BondRatio);
@@ -110,9 +110,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         public void WhenAPortfolioOnlyHasAnAccountLinkedToFundTheValulationIsTheBalanceOfFund()
         {
             var transactionValue = (decimal)50;
-            const int existingInvestmentForBond = 1;
-
-            ApplyFundPurchase(existingInvestmentForBond, 1);
+            
+            ApplyFundPurchase(BondAccountInvestmentMap, BondAccountForPortfolioWithOnlyBondsAccounts);
 
 
             RevaluePortfolio(PortfolioWithPropertyAccount);
@@ -155,7 +154,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
         }
 
-        private void ApplyFundPurchase(int _existingInvestmentMapId, int accountId)
+        private void ApplyFundPurchase(int existingInvestmentMapId, int accountId)
         {
             var  _numberOfShares = 10;
             var _priceOfOneShare = 1;
@@ -167,7 +166,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
 
             var request = new InvestmentBuyRequest
             {
-                InvestmentMapId = _existingInvestmentMapId,
+                InvestmentMapId = existingInvestmentMapId,
                 Quantity = _numberOfShares,
                 BuyPrice = _priceOfOneShare,
                 PurchaseDate = _transactionDate,
