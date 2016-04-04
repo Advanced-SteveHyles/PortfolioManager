@@ -11,6 +11,18 @@ namespace BusinessLogicTests.FakeRepositories
 {
     internal class FakeData : IFakeData
     {
+        public const int FakeInvestmentId = 1;
+
+        private readonly List<Investment> _investments = new List<Investment>()
+        {
+            new Investment
+            {
+                InvestmentId =  1,
+                Name = "Investment 1"
+            }
+        };
+         
+
         List<AccountInvestmentMap> IFakeData.FakePopulatedInvestmentMap()
         {
             return new List<AccountInvestmentMap>
@@ -62,7 +74,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         List<Investment> IFakeData.FakePopulatedInvestments()
         {
-            throw new NotImplementedException();
+            return _investments;
         }
 
         List<Account> IFakeData.FakeAccountData()

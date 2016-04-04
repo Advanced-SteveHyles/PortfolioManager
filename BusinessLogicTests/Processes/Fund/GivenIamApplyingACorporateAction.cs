@@ -24,8 +24,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private readonly int _accountId = 1;
         readonly decimal _corporateActionAmount = 50;
         readonly DateTime _transactionDate = DateTime.Now;
-        readonly int _existingInvestmentMapId = 1;
-
+        
         private const int FundTransactionId = 1;
         private const int CashTransactionId = 1;
 
@@ -37,7 +36,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             var request = new InvestmentCorporateActionRequest
             {
-                InvestmentMapId = _existingInvestmentMapId,
+                InvestmentMapId = FakeData.FakeInvestmentId,
                 Amount = _corporateActionAmount,
                 TransactionDate = _transactionDate
             };
@@ -67,7 +66,7 @@ namespace BusinessLogicTests.Transactions.Fund
             var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
 
-            Assert.Equal(_existingInvestmentMapId, fundTransaction.InvestmentMapId);
+            Assert.Equal(FakeData.FakeInvestmentId, fundTransaction.InvestmentMapId);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
             Assert.Equal(FundTransactionTypes.CorporateAction, fundTransaction.TransactionType);
             Assert.Equal(_corporateActionAmount, fundTransaction.TransactionValue);
@@ -77,7 +76,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnIncomeFundACashRefundIsCreated()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var transaction = _fakeRepository.GetCashTransaction(CashTransactionId);
@@ -95,7 +94,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIRecordACorporateActionForAnIncomeFundTheAccountBalanceIsIncreased()
         {
             var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
             var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance + _corporateActionAmount, accountBeforeAfter);
@@ -106,7 +105,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
 
-            _fakeRepository.SetInvestmentClass(_existingInvestmentMapId,
+            _fakeRepository.SetInvestmentClass(FakeData.FakeInvestmentId,
                 FundClasses.UnitTrust);
             SetupAndOrExecute(true);
 
@@ -117,7 +116,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnAccumulationFundCashTransactionIsNotCreated()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
             Assert.Equal(0, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
@@ -125,7 +124,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnIncomeFundTheFundTransactionIsCorrect()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var transaction = _fakeRepository.GetFundTransaction(FundTransactionId);
@@ -136,7 +135,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnAccumulationFundTheFundTransactionIsCorrect()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
 
             var transaction = _fakeRepository.GetFundTransaction(FundTransactionId);
@@ -146,7 +145,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnAccumulationThereIsNoLinkedTransaction()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Accumulation);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Accumulation);
 
             SetupAndOrExecute(true);
 
@@ -159,7 +158,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionForAnIncomeFundThenALinkedTransactionExists()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var fundTransaction = _fakeRepository.GetFundTransaction(FundTransactionId);

@@ -36,8 +36,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)50;
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithPropertyOnlyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyOnlyAccount);
 
             Assert.Equal(transactionValue , portfolioValuation.PropertyValue);
         }
@@ -48,8 +48,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)50;
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithPropertyOnlyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyOnlyAccount);
 
             var expectedRatio = 1;
             Assert.Equal(expectedRatio, portfolioValuation.PropertyRatio);
@@ -73,8 +73,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)25;
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithPropertyOnlyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyOnlyAccount);
 
             var expectedRatio = 1;
             Assert.Equal(expectedRatio, portfolioValuation.PropertyRatio);
@@ -114,8 +114,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             ApplyFundPurchase(BondAccountInvestmentMap, BondAccountForPortfolioWithOnlyBondsAccounts);
 
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithPropertyOnlyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyOnlyAccount);
 
             Assert.Equal(transactionValue, portfolioValuation.EquityValue);
         }
@@ -127,8 +127,8 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             var transactionValue = (decimal)50;
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithOnlyPropertyAccount);
 
-            RevaluePortfolio(PortfolioWithPropertyAccount);
-            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyAccount);
+            RevaluePortfolio(PortfolioWithPropertyOnlyAccount);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithPropertyOnlyAccount);
 
             var expectedRatio = 1;
             Assert.Equal(expectedRatio, portfolioValuation.EquityRatio);

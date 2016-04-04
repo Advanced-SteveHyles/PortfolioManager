@@ -9,17 +9,21 @@ namespace BusinessLogicTests.FakeRepositories
     internal class FakeDataForPortfolioValuation : IFakeData
     {
 
+        public const int PortfolioWithNoAccounts = 999;
+
         public const int BondAccountInvestmentMap = 90;
+
+
         public const int BondInvestment = 89;
         public const int FundEquityInvestment = 90;
         public const int TrackerEquityInvestment = 91;
 
 
-        public const int PortfolioWithPropertyAccount = 78;
+        public const int PortfolioWithPropertyOnlyAccount = 78;
         public const int PortfolioWithOnlySavingsAccount = 785;
-        public const int PortfolioWithNoAccounts = 999;
-        public const int PortfolioWithAllAccountTypes = 718;
         public const int PortfolioWithAccountLinkedToBond = 9;
+        public const int PortfolioWithAllAccountTypes = 718;
+        
 
         public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
         public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
@@ -40,7 +44,7 @@ namespace BusinessLogicTests.FakeRepositories
                     AccountId = PropertyAccountForPortfolioWithOnlyPropertyAccount,
                     Name = "Property Account",
                     Type = PortfolioAccountTypes.Property,
-                    PortfolioId = PortfolioWithPropertyAccount
+                    PortfolioId = PortfolioWithPropertyOnlyAccount
                 },
                 new Account()
                 {

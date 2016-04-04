@@ -118,7 +118,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         public Investment GetInvestment(int investmentId)
         {
-            return _investment;
+            return _fakeData.FakePopulatedInvestments().Single(inv => inv.InvestmentId == investmentId);
         }
 
 

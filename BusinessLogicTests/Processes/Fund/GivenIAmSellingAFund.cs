@@ -178,7 +178,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
-            var investmentId = 1;
+            var investmentId = FakeData.FakeInvestmentId;
             var prices = _fakeRepository.GetInvestmentBuyPrices(investmentId);
 
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);
