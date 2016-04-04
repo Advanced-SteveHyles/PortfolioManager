@@ -61,6 +61,7 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordACorporateActionThenAFundTransactionIsRecorded()
         {
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
 
             var arbitaryId = 1;
@@ -105,8 +106,8 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
 
-            _fakeRepository.SetInvestmentClass(FakeData.FakeInvestmentId,
-                FundClasses.UnitTrust);
+            _fakeRepository.SetInvestmentClass(FakeData.FakeInvestmentId, FundClasses.UnitTrust);
+            _fakeRepository.SetInvestmentIncome(FakeData.FakeInvestmentId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
 
             var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;

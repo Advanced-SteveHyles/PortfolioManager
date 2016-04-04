@@ -19,7 +19,6 @@ namespace BusinessLogicTests.FakeRepositories
         , IPriceHistoryRepository        
     {
         private readonly IFakeData _fakeData;
-        private readonly Investment _investment = new Investment() {IncomeType = FundIncomeTypes.Accumulation, Name = "Investment 1"};        
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
 
@@ -276,12 +275,24 @@ namespace BusinessLogicTests.FakeRepositories
 
         public void SetInvestmentClass(int fakeInvestmentId, string investmentClass)
         {
-            _investment.Class = investmentClass;
+            var investment = _fakeData
+                .FakePopulatedInvestments()
+                .First(i => i.InvestmentId == fakeInvestmentId);
+
+            _fakeData.FakePopulatedInvestments().Remove(investment);
+            investment.Class = investmentClass;
+            _fakeData.FakePopulatedInvestments().Add(investment);
         }
 
         public void SetInvestmentIncome(int fakeInvestmentId,  string investmentIncomeType)
         {
-            _investment.IncomeType = investmentIncomeType;
+            var investment = _fakeData
+                .FakePopulatedInvestments()
+                .First(i => i.InvestmentId == fakeInvestmentId);
+
+            _fakeData.FakePopulatedInvestments().Remove(investment);
+            investment.IncomeType = investmentIncomeType;
+            _fakeData.FakePopulatedInvestments().Add(investment);
         }
 
         public List<AccountInvestmentMap> GetAllAccountInvestmentMaps()
