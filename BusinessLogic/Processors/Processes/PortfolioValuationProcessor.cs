@@ -33,26 +33,31 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             var cashAccountValue = allAccountsForPortfolio.Where(acc => acc.Type != PortfolioAccountTypes.Property).Sum(acc => acc.Cash);
 
             var bondAccountValue = (decimal) 0;
+            var equityAccountValue = (decimal)0;
 
             foreach (var account in allAccountsForPortfolio)
             {
-                var investments = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(account.AccountId);
+                var accountInvestmentMaps = _accountInvestmentRepository.GetAccountInvestmentMapsByAccountId(account.AccountId);
 
-                foreach (var investment in investments)
+                foreach (var investmentMap in accountInvestmentMaps)
                 {
-                    var type = _investmentRepository.GetInvestment(investment.InvestmentId).Type;
+                    var type = _investmentRepository.GetInvestment(investmentMap.InvestmentId).Type;
 
                     if (type == FundInvestmentTypes.Bond)
                     {
-                        bondAccountValue += investment.Valuation.Value;
+                        bondAccountValue += investmentMap.Valuation.Value;
+                    }
+                    else if (type == FundInvestmentTypes.Fund || type == FundInvestmentTypes.Tracker)
+                    {
+                        equityAccountValue += investmentMap.Valuation.Value;
                     }
                 }
             }
             
 
-            var total = propertyAccountValue + cashAccountValue + bondAccountValue;
+            var total = propertyAccountValue + cashAccountValue + bondAccountValue + equityAccountValue;
 
-            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue, cashAccountValue, bondAccountValue,  total);
+            var entityPortfolioValuation = new PortfolioFactory().CreatePortfolioValuation(_request, propertyAccountValue, cashAccountValue, bondAccountValue, equityAccountValue, total);
 
             _portfolioRepository.UpdatePortfolioValuation(entityPortfolioValuation);
         }

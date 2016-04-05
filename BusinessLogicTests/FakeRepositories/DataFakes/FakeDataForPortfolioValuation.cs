@@ -12,6 +12,7 @@ namespace BusinessLogicTests.FakeRepositories
         public const int PortfolioWithNoAccounts = 999;
 
         public const int BondAccountInvestmentMap = 90;
+        public const int EquityAccountInvestmentMap = 900;
 
 
         public const int BondInvestment = 89;
@@ -22,12 +23,15 @@ namespace BusinessLogicTests.FakeRepositories
         public const int PortfolioWithPropertyOnlyAccount = 78;
         public const int PortfolioWithOnlySavingsAccount = 785;
         public const int PortfolioWithAccountLinkedToBond = 9;
+        public const int PortfolioWithAccountLinkedToEquity = 99;
+
         public const int PortfolioWithAllAccountTypes = 718;
         
 
         public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
         public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
         public const int BondAccountForPortfolioWithOnlyBondsAccounts = 771;
+        public const int EquityAccountForPortfolioWithOnlyEquityAccounts = 772;
 
         public const int PropertyAccountForPortfolioWithAllAccountTypes = 1024;
         public const int SavingsAccountForPortfolioWithAllAccountTypes = 1025;
@@ -63,6 +67,14 @@ namespace BusinessLogicTests.FakeRepositories
 
                 new Account()
                 {
+                    AccountId = EquityAccountForPortfolioWithOnlyEquityAccounts,
+                    Name = "Equity Only Account",
+                    Type = PortfolioAccountTypes.StockIsa,
+                    PortfolioId = PortfolioWithAccountLinkedToEquity
+                },
+
+                new Account()
+                {
                     AccountId = PropertyAccountForPortfolioWithAllAccountTypes,
                     Name = "Property Account",
                     Type = PortfolioAccountTypes.Property,
@@ -86,14 +98,14 @@ namespace BusinessLogicTests.FakeRepositories
                 {
                     AccountId = CashIsaAccountForPortfolioWithAllAccountTypes,
                     Name = "Cash Isa",
-                    Type = PortfolioAccountTypes.Pension,
+                    Type = PortfolioAccountTypes.CashIsa,
                     PortfolioId = PortfolioWithAllAccountTypes
                 },
                 new Account()
                 {
                     AccountId = PensionAccountForPortfolioWithAllAccountTypes,
                     Name = "Pension",
-                    Type = PortfolioAccountTypes.CashIsa,
+                    Type = PortfolioAccountTypes.Pension,
                     PortfolioId = PortfolioWithAllAccountTypes
                 },
 
@@ -112,6 +124,14 @@ namespace BusinessLogicTests.FakeRepositories
                     Quantity = 0,
                     Valuation = 0
                 },
+                new AccountInvestmentMap()
+                {
+                    AccountInvestmentMapId = EquityAccountInvestmentMap,
+                    InvestmentId = FundEquityInvestment,
+                    AccountId = EquityAccountForPortfolioWithOnlyEquityAccounts,
+                    Quantity = 0,
+                    Valuation = 0
+                },
             };
         }
 
@@ -120,8 +140,8 @@ namespace BusinessLogicTests.FakeRepositories
         {
             return new List<Investment>()
             {
-                new Investment() {InvestmentId = BondInvestment, Type = FundInvestmentTypes.Bond},
-                new Investment() {InvestmentId = FundEquityInvestment, Type = FundInvestmentTypes.Fund},
+                new Investment() {InvestmentId = BondInvestment, Type = FundInvestmentTypes.Bond, Class = FundClasses.Oeic},
+                new Investment() {InvestmentId = FundEquityInvestment, Type = FundInvestmentTypes.Fund, Class = FundClasses.Oeic},
                 new Investment() {InvestmentId = TrackerEquityInvestment, Type = FundInvestmentTypes.Tracker},
             };
 

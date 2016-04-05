@@ -17,7 +17,7 @@ namespace Portfolio.BackEnd.Repository.Factories
             };
         }
 
-        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request, decimal propertyAccountValue, decimal cashAccountValue, decimal bondAccountValue, decimal total)
+        public PortfolioValuation CreatePortfolioValuation(PortfolioRevaluationRequest request, decimal propertyAccountValue, decimal cashAccountValue, decimal bondAccountValue, decimal equityAccountValue, decimal total)
         {
             return new PortfolioValuation()
             {
@@ -27,7 +27,10 @@ namespace Portfolio.BackEnd.Repository.Factories
                 CashValue = cashAccountValue,
                 CashRatio = cashAccountValue.AsRatioOfTotal(total),
                 BondValue = bondAccountValue,
-                BondRatio = bondAccountValue.AsRatioOfTotal(total)
+                BondRatio = bondAccountValue.AsRatioOfTotal(total),
+                EquityValue = equityAccountValue,
+                EquityRatio = equityAccountValue.AsRatioOfTotal(total)
+
             };
         }
         

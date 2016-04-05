@@ -21,7 +21,6 @@ namespace BusinessLogicTests.FakeRepositories
         private readonly IFakeData _fakeData;
         private readonly List<CashTransaction> _dummyCashTransactions;
         private readonly List<FundTransaction> _dummyFundTransactions;
-
         private readonly List<PriceHistory> _dummyPriceHistoryList;
         private readonly List<AccountInvestmentMap> _investmentMaps;        
 
