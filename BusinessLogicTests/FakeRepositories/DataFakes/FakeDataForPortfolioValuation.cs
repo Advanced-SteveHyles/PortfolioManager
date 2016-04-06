@@ -13,7 +13,7 @@ namespace BusinessLogicTests.FakeRepositories
 
         public const int BondAccountInvestmentMap = 90;
         public const int EquityAccountInvestmentMap = 900;
-
+        public const int StockIsaAccountMap = 910;
 
         public const int BondInvestment = 89;
         public const int FundEquityInvestment = 90;
@@ -129,6 +129,14 @@ namespace BusinessLogicTests.FakeRepositories
                     AccountInvestmentMapId = EquityAccountInvestmentMap,
                     InvestmentId = FundEquityInvestment,
                     AccountId = EquityAccountForPortfolioWithOnlyEquityAccounts,
+                    Quantity = 0,
+                    Valuation = 0
+                },                
+                new AccountInvestmentMap()
+                {
+                    AccountInvestmentMapId = StockIsaAccountMap,
+                    InvestmentId = FundEquityInvestment,
+                    AccountId = StockIsaAccountForPortfolioWithAllAccountTypes,
                     Quantity = 0,
                     Valuation = 0
                 },

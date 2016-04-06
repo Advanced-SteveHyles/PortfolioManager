@@ -133,30 +133,30 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioContainsAllAccountTypesTheRatiosAreCorrect()
         {
-            const decimal transactionValue = (decimal)50;
+            const decimal transactionValue = (decimal)1;
+
             ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithAllAccountTypes);
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithAllAccountTypes);
-            ApplyCashDeposit(50, CashIsaAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, CashIsaAccountForPortfolioWithAllAccountTypes);
 
-            ApplyCashDeposit(50, StockIsaAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(12, StockIsaAccountForPortfolioWithAllAccountTypes);
+            ApplyFundPurchase(StockIsaAccountMap);
 
-            ApplyCashDeposit(50, StockIsaAccountForPortfolioWithAllAccountTypes);
-
-            ApplyCashDeposit(50, PensionAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, PensionAccountForPortfolioWithAllAccountTypes);
 
             RevaluePortfolio(PortfolioWithAllAccountTypes);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAllAccountTypes);
-
-            const decimal expectedPropertyRatio = (decimal) .20;
-            const decimal expectedCashRatio = (decimal).80;
+            
+            const decimal expectedPropertyRatio = (decimal)0.2294; // 0.2252
+            const decimal expectedCashRatio = (decimal) 0.7248; //0.7748;
 
             const decimal expectedBondRatio = (decimal)0;
-            const decimal expectedEquityRatio = (decimal)0;
+            const decimal expectedEquityRatio = (decimal)0.0459;
             
-            Assert.Equal(expectedPropertyRatio, portfolioValuation.PropertyRatio);
-            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
-            Assert.Equal(expectedBondRatio, portfolioValuation.BondRatio);
-            Assert.Equal(expectedEquityRatio, portfolioValuation.EquityRatio);
+            Assert.Equal(expectedPropertyRatio, Math.Round(portfolioValuation.PropertyRatio,4));
+            Assert.Equal(expectedCashRatio, Math.Round(portfolioValuation.CashRatio, 4));
+            Assert.Equal(expectedBondRatio, Math.Round(portfolioValuation.BondRatio, 4));
+            Assert.Equal(expectedEquityRatio, Math.Round(portfolioValuation.EquityRatio, 4));
         }
 
         private decimal ApplyFundPurchase(int existingInvestmentMapId)
