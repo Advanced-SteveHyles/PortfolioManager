@@ -85,7 +85,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioOnlyHasAnAccountLinkedToABondTheValulationIsTheBalanceOfBonds()
         {         
-            var transactionValue = ApplyFundPurchase(BondAccountInvestmentMap) - Commission;
+            var transactionValue = ApplyFundPurchase(BondAccountInvestmentMap);
             
             RevaluePortfolio(PortfolioWithAccountLinkedToBond);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAccountLinkedToBond);
@@ -108,7 +108,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioOnlyHasAnAccountLinkedToFundTheValulationIsTheBalanceOfFund()
         {
-            var transactionValue = ApplyFundPurchase(EquityAccountInvestmentMap) - Commission;
+            var transactionValue = ApplyFundPurchase(EquityAccountInvestmentMap);
             
             RevaluePortfolio(PortfolioWithAccountLinkedToEquity);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAccountLinkedToEquity);
@@ -133,7 +133,11 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         [Fact]
         public void WhenAPortfolioContainsAllAccountTypesTheRatiosAreCorrect()
         {
-            const decimal transactionValue = (decimal)1;
+            //Property 10
+            //Cash, 10, 10, 10
+            //Fund 0, 10
+
+            const decimal transactionValue = (decimal)10;
 
             ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithAllAccountTypes);
             ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithAllAccountTypes);
@@ -147,23 +151,51 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             RevaluePortfolio(PortfolioWithAllAccountTypes);
             var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAllAccountTypes);
             
-            const decimal expectedPropertyRatio = (decimal)0.2294; // 0.2252
-            const decimal expectedCashRatio = (decimal) 0.7248; //0.7748;
+            const decimal expectedPropertyRatio = (decimal).2;
+            const decimal expectedCashRatio = (decimal) .6; 
 
             const decimal expectedBondRatio = (decimal)0;
-            const decimal expectedEquityRatio = (decimal)0.0459;
+            const decimal expectedEquityRatio = (decimal).2;
             
-            Assert.Equal(expectedPropertyRatio, Math.Round(portfolioValuation.PropertyRatio,4));
+            Assert.Equal(expectedPropertyRatio, portfolioValuation.PropertyRatio);
+            Assert.Equal(expectedCashRatio, portfolioValuation.CashRatio);
+            Assert.Equal(expectedBondRatio, portfolioValuation.BondRatio);
+            Assert.Equal(expectedEquityRatio, portfolioValuation.EquityRatio);
+        }
+
+
+        [Fact]
+        public void WhenAPortfolioContainsAllAccountTypesAndNoSharesTheRatiosAreCorrect()
+        {
+            const decimal transactionValue = (decimal)50;
+
+            ApplyCashDeposit(transactionValue, SavingsAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, PropertyAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, CashIsaAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, StockIsaAccountForPortfolioWithAllAccountTypes);
+            ApplyCashDeposit(transactionValue, PensionAccountForPortfolioWithAllAccountTypes);
+
+            RevaluePortfolio(PortfolioWithAllAccountTypes);
+            var portfolioValuation = _fakePortfolioRepository.GetPortfolioValuation(PortfolioWithAllAccountTypes);
+
+            const decimal expectedPropertyRatio = (decimal).2; // 0.2252
+            const decimal expectedCashRatio = (decimal).8; //0.7748;
+
+            const decimal expectedBondRatio = (decimal)0;
+            const decimal expectedEquityRatio = (decimal)0;
+
+            Assert.Equal(expectedPropertyRatio, Math.Round(portfolioValuation.PropertyRatio, 4));
             Assert.Equal(expectedCashRatio, Math.Round(portfolioValuation.CashRatio, 4));
             Assert.Equal(expectedBondRatio, Math.Round(portfolioValuation.BondRatio, 4));
             Assert.Equal(expectedEquityRatio, Math.Round(portfolioValuation.EquityRatio, 4));
         }
 
+
         private decimal ApplyFundPurchase(int existingInvestmentMapId)
         {
             var  _numberOfShares = 10;
             var _priceOfOneShare = 1;            
-            var _valueOfTransaction = (_numberOfShares * _priceOfOneShare) + Commission;
+            var _valueOfTransaction = (_numberOfShares * _priceOfOneShare);
             var _transactionDate = DateTime.Now;
             var _settlementDate = DateTime.Today.AddDays(14);
 

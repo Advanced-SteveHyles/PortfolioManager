@@ -9,7 +9,7 @@ using Portfolio.Common.DTO.DTOs;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class AccountInvestmentMapProcessor : IAccountInvestmentMapProcessor
+    public class AccountInvestmentMapProcessor 
     {
         private readonly IAccountInvestmentMapRepository  _accountInvestmentMapRepository;
 

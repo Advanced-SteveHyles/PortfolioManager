@@ -15,8 +15,8 @@ namespace BusinessLogicTests.Transactions.Fund
     {
         private readonly FakeRepository _fakeRepository;
         private RecordCashTransferProcess _process;
-        private ICashTransactionHandler _cashTransactionHandler;
-        private IAccountHandler _accountHandler;
+        private CashTransactionHandler _cashTransactionHandler;
+        private AccountHandler _accountHandler;
 
         private readonly int _accountId1 = 1;
         private readonly int _accountId2 = 2;

@@ -16,9 +16,9 @@ namespace BusinessLogicTests.Transactions.Fund
     {
         private readonly FakeRepository _fakeRepository;
         private RecordDividendProcess _process;
-        private IFundTransactionHandler _fundTransactionHandler;
-        private ICashTransactionHandler _cashTransactionHandler;
-        private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private FundTransactionHandler _fundTransactionHandler;
+        private CashTransactionHandler _cashTransactionHandler;
+        private AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
 
         private readonly int _accountId = 1;
         readonly decimal _dividentAmount = 50;

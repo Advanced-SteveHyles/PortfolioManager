@@ -2,6 +2,7 @@ using System;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -11,21 +12,22 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordFundBuyProcess : BaseProcess<InvestmentBuyRequest>
     {
         private readonly InvestmentBuyRequest _fundBuyRequest;
-        private readonly IAccountHandler _accountHandler;
-        private readonly ICashTransactionHandler _cashTransactionHandler;
-        private readonly IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
-        private readonly IFundTransactionHandler _fundTransactionHandler;
-        private readonly IPriceHistoryHandler _priceHistoryHandler;
-        private readonly IInvestmentHandler _investmentHandler;
+        private readonly AccountHandler _accountHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
+        private readonly AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private readonly FundTransactionHandler _fundTransactionHandler;
+        private readonly PriceHistoryHandler _priceHistoryHandler;
+        private readonly InvestmentHandler _investmentHandler;
         
 
         public RecordFundBuyProcess(
             InvestmentBuyRequest request,
-            IAccountHandler accountHandler,
-            ICashTransactionHandler cashTransactionHandler,
-            IAccountInvestmentMapProcessor accountInvestmentMapProcessor,
-            IFundTransactionHandler fundTransactionHandler,
-            IPriceHistoryHandler priceHistoryHandler, IInvestmentHandler investmentHandler)
+            AccountHandler accountHandler,
+            CashTransactionHandler cashTransactionHandler,
+            AccountInvestmentMapProcessor accountInvestmentMapProcessor,
+            FundTransactionHandler fundTransactionHandler,
+            PriceHistoryHandler priceHistoryHandler, 
+            InvestmentHandler investmentHandler)
             :base(request)
         {
             _fundBuyRequest = request;

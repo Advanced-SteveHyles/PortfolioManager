@@ -3,6 +3,7 @@ using System.CodeDom;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -12,12 +13,12 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordCorporateActionProcess: BaseProcess<InvestmentCorporateActionRequest>
     {
         private readonly InvestmentCorporateActionRequest _request;
-        private readonly IFundTransactionHandler _fundTransactionHandler;
-        private readonly ICashTransactionHandler _cashTransactionHandler;
-        private readonly IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
-        private readonly IInvestmentHandler _investmentHandler;
+        private readonly FundTransactionHandler _fundTransactionHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
+        private readonly AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private readonly InvestmentHandler _investmentHandler;
 
-        public RecordCorporateActionProcess(InvestmentCorporateActionRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor, IInvestmentHandler investmentHandler)
+        public RecordCorporateActionProcess(InvestmentCorporateActionRequest request, FundTransactionHandler fundTransactionHandler, CashTransactionHandler cashTransactionHandler, AccountInvestmentMapProcessor accountInvestmentMapProcessor, InvestmentHandler investmentHandler)
             :base(request)
         {            
             _request = request;

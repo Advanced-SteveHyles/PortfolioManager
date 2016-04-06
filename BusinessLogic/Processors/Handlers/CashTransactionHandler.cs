@@ -9,7 +9,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class CashTransactionHandler : ICashTransactionHandler
+    public class CashTransactionHandler
     {
         private readonly ICashTransactionRepository _repository;
         private readonly IAccountRepository _accountRepository;

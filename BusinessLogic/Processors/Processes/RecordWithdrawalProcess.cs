@@ -1,6 +1,5 @@
-using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
-using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
@@ -9,9 +8,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordWithdrawalProcess : BaseProcess<WithdrawalTransactionRequest>
     {
         private readonly WithdrawalTransactionRequest _withdrawalTransactionRequest;
-        private readonly ICashTransactionHandler _transactionHandler;
+        private readonly CashTransactionHandler _transactionHandler;
 
-        public RecordWithdrawalProcess(WithdrawalTransactionRequest request, ICashTransactionHandler transactionHandler)
+        public RecordWithdrawalProcess(WithdrawalTransactionRequest request, CashTransactionHandler transactionHandler)
             :base(request)
         {
             this._withdrawalTransactionRequest = request;

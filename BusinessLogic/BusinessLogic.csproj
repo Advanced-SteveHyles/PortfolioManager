@@ -47,18 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\ProcessorFactory.cs" />
     <Compile Include="Interfaces\BaseProcess.cs" />
-    <Compile Include="Interfaces\IAccountHandler.cs" />
-    <Compile Include="Interfaces\IAccountInvestmentMapProcessor.cs" />
-    <Compile Include="Interfaces\ICashTransactionHandler.cs" />
-    <Compile Include="Interfaces\IFundTransactionHandler.cs" />
-    <Compile Include="Interfaces\IInvestmentHandler.cs" />
-    <Compile Include="Interfaces\IIOCContainer.cs" />
     <Compile Include="Interfaces\IMediator.cs" />
-    <Compile Include="Interfaces\Interface1.cs" />
-    <Compile Include="Interfaces\INullInterface.cs" />
-    <Compile Include="Interfaces\IPriceHistoryHandler.cs" />
-    <Compile Include="Interfaces\ITransaction.cs" />
     <Compile Include="Linking\TransactionLink.cs" />
     <Compile Include="Processors\Processes\PortfolioValuationProcessor.cs" />
     <Compile Include="Processors\Processes\RecordCashTransferProcess.cs" />

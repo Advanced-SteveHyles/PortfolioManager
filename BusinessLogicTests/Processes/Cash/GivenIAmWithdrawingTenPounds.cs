@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Transactions.Cash
     {
         private BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
         private readonly FakeRepository _fakeRepository;
-        private readonly ICashTransactionHandler _cashTransactionHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
         const int TransactionValue = 10;
         const int ArbitaryId = 1;

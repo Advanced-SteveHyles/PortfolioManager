@@ -2,19 +2,20 @@ using System;
 using System.Linq;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RevalueAllPricesProcess : BaseProcess<RevalueAllPricesRequest>
     {
-        private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
-        private readonly IInvestmentHandler _investmentHandler;
-        private readonly IPriceHistoryHandler _priceHistoryHandler;
-        private readonly IAccountHandler _accountHandler;
+        private readonly AccountInvestmentMapProcessor _investmentMapProcessor;
+        private readonly InvestmentHandler _investmentHandler;
+        private readonly PriceHistoryHandler _priceHistoryHandler;
+        private readonly AccountHandler _accountHandler;
         private readonly DateTime _evaluationDate;
         
-        public RevalueAllPricesProcess(RevalueAllPricesRequest request, IAccountInvestmentMapProcessor investmentMapProcessor, IInvestmentHandler investmentHandler, IPriceHistoryHandler priceHistoryHandler, IAccountHandler accountHandler)
+        public RevalueAllPricesProcess(RevalueAllPricesRequest request, AccountInvestmentMapProcessor investmentMapProcessor, InvestmentHandler investmentHandler, PriceHistoryHandler priceHistoryHandler, AccountHandler accountHandler)
             :base(request)
         {
             _investmentMapProcessor = investmentMapProcessor;

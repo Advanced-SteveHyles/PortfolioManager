@@ -8,7 +8,7 @@ using Portfolio.Common.DTO.DTOs;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class InvestmentHandler : IInvestmentHandler
+    public class InvestmentHandler 
     {
         private readonly IInvestmentRepository _repository;
 

@@ -2,6 +2,7 @@
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
@@ -10,10 +11,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordCashTransferProcess : BaseProcess<CashTransferRequest>
     {
         private readonly CashTransferRequest _request;
-        private readonly ICashTransactionHandler _cashTransactionHandler;
-        private readonly IAccountHandler _accountHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
+        private readonly AccountHandler _accountHandler;
         
-        public RecordCashTransferProcess(CashTransferRequest request, ICashTransactionHandler cashTransactionHandler, IAccountHandler accountHandler)
+        public RecordCashTransferProcess(CashTransferRequest request, CashTransactionHandler cashTransactionHandler, AccountHandler accountHandler)
             : base(request)
         {            
             _request = request;

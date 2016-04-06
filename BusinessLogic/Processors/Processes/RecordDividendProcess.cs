@@ -2,6 +2,7 @@
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -11,11 +12,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordDividendProcess : BaseProcess<InvestmentDividendRequest>
     {
         private readonly InvestmentDividendRequest _request;
-        private readonly IFundTransactionHandler _fundTransactionHandler;
-        private readonly ICashTransactionHandler _cashTransactionHandler;
-        private readonly IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private readonly FundTransactionHandler _fundTransactionHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
+        private readonly AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
         
-        public RecordDividendProcess(InvestmentDividendRequest request, IFundTransactionHandler fundTransactionHandler, ICashTransactionHandler cashTransactionHandler, IAccountInvestmentMapProcessor accountInvestmentMapProcessor)
+        public RecordDividendProcess(InvestmentDividendRequest request, FundTransactionHandler fundTransactionHandler, CashTransactionHandler cashTransactionHandler, AccountInvestmentMapProcessor accountInvestmentMapProcessor)
             :base(request)
         {            
             _request = request;

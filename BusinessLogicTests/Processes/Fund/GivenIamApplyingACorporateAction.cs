@@ -16,10 +16,10 @@ namespace BusinessLogicTests.Transactions.Fund
     {
         private readonly FakeRepository _fakeRepository;
         private RecordCorporateActionProcess _process;
-        private IFundTransactionHandler _fundTransactionHandler;
-        private ICashTransactionHandler _cashTransactionHandler;
-        private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
-        private IInvestmentHandler _investmentHandler;
+        private FundTransactionHandler _fundTransactionHandler;
+        private CashTransactionHandler _cashTransactionHandler;
+        private AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private InvestmentHandler _investmentHandler;
 
         private readonly int _accountId = 1;
         readonly decimal _corporateActionAmount = 50;

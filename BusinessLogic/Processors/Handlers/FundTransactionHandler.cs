@@ -8,7 +8,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class FundTransactionHandler : IFundTransactionHandler
+    public class FundTransactionHandler
     {
         private readonly IFundTransactionRepository _repository;
         

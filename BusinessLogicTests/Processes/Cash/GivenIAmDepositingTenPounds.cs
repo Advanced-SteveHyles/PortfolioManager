@@ -21,7 +21,7 @@ namespace BusinessLogicTests.Transactions.Cash
         const int TransactionValue = 10;
         const int ArbitaryId = 1;
         readonly DateTime transactionDate = DateTime.Now;
-        private ICashTransactionHandler _cashTransactionHandler;
+        private CashTransactionHandler _cashTransactionHandler;
         const string Source = "Test";
 
         public GivenIAmDepositingTenPounds()

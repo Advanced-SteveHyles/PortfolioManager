@@ -1,6 +1,7 @@
 ﻿using System;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.Common.DTO.Requests.Transactions;
 
@@ -8,12 +9,12 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
     public class RevalueSinglePriceProcess: BaseProcess<RevalueSinglePriceRequest>
     {
-        private readonly IAccountInvestmentMapProcessor _investmentMapProcessor;
-        private readonly IPriceHistoryHandler _priceHistoryHandler;
-        private readonly IAccountHandler _accountHandler;
+        private readonly AccountInvestmentMapProcessor _investmentMapProcessor;
+        private readonly PriceHistoryHandler _priceHistoryHandler;
+        private readonly AccountHandler _accountHandler;
         private readonly RevalueSinglePriceRequest _request;
         
-        public RevalueSinglePriceProcess(RevalueSinglePriceRequest request,IPriceHistoryHandler priceHistoryHandler, IAccountInvestmentMapProcessor investmentMapProcessor, IAccountHandler accountHandler) 
+        public RevalueSinglePriceProcess(RevalueSinglePriceRequest request,PriceHistoryHandler priceHistoryHandler, AccountInvestmentMapProcessor investmentMapProcessor, AccountHandler accountHandler) 
             : base(request)
         {
             _request = request;            

@@ -1,6 +1,7 @@
 ﻿using System;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
@@ -8,9 +9,9 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
     public class RecordPriceHistoryProcess : BaseProcess<PriceHistoryRequest>
     {
         private readonly PriceHistoryRequest _priceHistoryRequest;
-        private readonly IPriceHistoryHandler _priceHistoryHandler;
+        private readonly PriceHistoryHandler _priceHistoryHandler;
 
-        public RecordPriceHistoryProcess(PriceHistoryRequest priceHistoryRequest, IPriceHistoryHandler priceHistoryHandler)
+        public RecordPriceHistoryProcess(PriceHistoryRequest priceHistoryRequest, PriceHistoryHandler priceHistoryHandler)
             :base(priceHistoryRequest)
         {
             _priceHistoryRequest = priceHistoryRequest;

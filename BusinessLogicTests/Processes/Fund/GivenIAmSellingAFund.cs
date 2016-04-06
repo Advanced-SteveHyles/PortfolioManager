@@ -24,14 +24,14 @@ namespace BusinessLogicTests.Transactions.Fund
         private RecordFundSellProcess _sellProcess;
         private int _accountId;
 
-        private IAccountHandler _accountHandler;
-        private ICashTransactionHandler _cashCashTransactionHandler;
-        private IAccountInvestmentMapProcessor _accountInvestmentMapProcessor;
-        private IFundTransactionHandler _fundTransactionHandler;
-        private IInvestmentHandler _investmentHandler;
+        private AccountHandler _accountHandler;
+        private CashTransactionHandler _cashCashTransactionHandler;
+        private AccountInvestmentMapProcessor _accountInvestmentMapProcessor;
+        private FundTransactionHandler _fundTransactionHandler;
+        private InvestmentHandler _investmentHandler;
 
         private DateTime _settlementDate;
-        private IPriceHistoryHandler _priceHistoryHandler;
+        private PriceHistoryHandler _priceHistoryHandler;
         private int _existingInvestmentMapId = 1;
         private decimal _depositValueWithCommisionPaid;
 

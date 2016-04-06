@@ -6,7 +6,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
 {
-    public class PriceHistoryHandler : IPriceHistoryHandler
+    public class PriceHistoryHandler 
     {
         private readonly IPriceHistoryRepository _priceHistoryRepository;
 

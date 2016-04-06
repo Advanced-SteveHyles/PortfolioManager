@@ -63,12 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeRepositories\DataFakes\IFakeData.cs" />
-    <Compile Include="FakeRepositories\DataFakes\FakeData.cs" />
-    <Compile Include="FakeRepositories\DataFakes\FakeDataForPortfolioValuation.cs" />
-    <Compile Include="FakeRepositories\FakePortfolioRepository.cs" />
+    <Compile Include="Fakes\DataFakes\IFakeData.cs" />
+    <Compile Include="Fakes\DataFakes\FakeData.cs" />
+    <Compile Include="Fakes\DataFakes\FakeDataForPortfolioValuation.cs" />
+    <Compile Include="Fakes\FakeFactories\Class1.cs" />
+    <Compile Include="Fakes\FakePortfolioRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmWithdrawingTenPounds.cs" />
-    <Compile Include="FakeRepositories\FakeRepository.cs" />
+    <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmDepositingTenPounds.cs" />
     <Compile Include="Processes\Fund\Evaluations\PortfolioValuation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
