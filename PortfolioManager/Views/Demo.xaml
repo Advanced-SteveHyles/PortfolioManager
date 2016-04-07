@@ -6,11 +6,26 @@
              xmlns:local="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d">
     <Grid>
-        <TreeView>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TreeView Grid.Row="3">
             <TreeViewItem Header="Happy">
                 <TreeViewItem Header="Sausages"></TreeViewItem>
                 <TreeViewItem Header="Sausages"></TreeViewItem>
             </TreeViewItem>
         </TreeView>
+
+        <Menu Grid.Row="1" >
+            <MenuItem Header="Hello">
+                <MenuItem>X</MenuItem>
+                <MenuItem>X</MenuItem>
+            </MenuItem>
+            
+            <MenuItem>Hello</MenuItem>
+            <MenuItem>Hello</MenuItem>
+        </Menu>
+        
     </Grid>
 </UserControl>
