@@ -18,5 +18,16 @@ namespace PortfolioManager.ViewModels
                     .CreatePortfolioTabItem(portfolio)).ToList();
             }
         }
+
+        public List<TreeViewItem> PortfolioTree
+        {
+            get
+            {
+                return PortfolioModel.GetPortfolioList()
+                    .Select(portfolio => BuildPortfolioTabContent
+                    .CreatePortfolioTreeViewItem(portfolio)).ToList();
+            }
+        }
+
     }
 }

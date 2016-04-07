@@ -20,5 +20,10 @@
 
         <local:Tasks Grid.Row="1" Grid.Column="2"></local:Tasks>
         <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left" ItemsSource="{Binding PortfolioTabs}"></TabControl>
+
+        <TreeView ItemsSource="{Binding PortfolioTree}">
+        
+        </TreeView>
+        
     </Grid>
 </UserControl>
