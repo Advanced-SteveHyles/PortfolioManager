@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Portfolio.Common.DTO.DTOs;
@@ -48,9 +49,9 @@ namespace PortfolioManager.UIBuilders
         {
             var portfolioTabItem = new TreeViewItem()
             {
-                Header = $"{portfolioDto.Name}",                
-                //Content = new PortfolioTabPanel { DataContext = new PortfolioTabPanelViewModel(portfolioDto.PortfolioId) } //PopulateAccounts(s)                
-            };
+                Header = $"{portfolioDto.Name}",
+                //Content = new PortfolioTabPanel { DataContext = new PortfolioTabPanelViewModel(portfolioDto.PortfolioId) } //PopulateAccounts(s)                          
+        };
             
             portfolioTabItem.Items.Add(new TreeViewItem() {Header="Details"});
             var treeViewItem = new TreeViewItem() { Header = "Accounts" };
@@ -60,9 +61,15 @@ namespace PortfolioManager.UIBuilders
             
             portfolioTabItem.Items.Add(treeViewItem);
             
-
             return portfolioTabItem;
         }
+
+        private static RoutedEventHandler Bob()
+        {
+            var i = 1;
+            return Test();
+        }
+
 
         private static void AddAccountsTree(TreeViewItem treeViewItem)
         {
