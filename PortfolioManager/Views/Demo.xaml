@@ -17,15 +17,6 @@
             </TreeViewItem>
         </TreeView>
 
-        <Menu Grid.Row="1" >
-            <MenuItem Header="Hello">
-                <MenuItem>X</MenuItem>
-                <MenuItem>X</MenuItem>
-            </MenuItem>
-            
-            <MenuItem>Hello</MenuItem>
-            <MenuItem>Hello</MenuItem>
-        </Menu>
-        
+   
     </Grid>
 </UserControl>

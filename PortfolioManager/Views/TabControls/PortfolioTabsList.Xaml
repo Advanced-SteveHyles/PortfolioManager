@@ -22,7 +22,7 @@
         <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left" ItemsSource="{Binding PortfolioTabs}"></TabControl>
 
         <TreeView ItemsSource="{Binding PortfolioTree}">
-        
+            
         </TreeView>
         
     </Grid>

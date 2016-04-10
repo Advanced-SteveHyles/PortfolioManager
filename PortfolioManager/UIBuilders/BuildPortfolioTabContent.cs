@@ -64,12 +64,6 @@ namespace PortfolioManager.UIBuilders
             return portfolioTabItem;
         }
 
-        private static RoutedEventHandler Bob()
-        {
-            var i = 1;
-            return Test();
-        }
-
 
         private static void AddAccountsTree(TreeViewItem treeViewItem)
         {
