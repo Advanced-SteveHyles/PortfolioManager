@@ -2,13 +2,13 @@ using System.Collections.ObjectModel;
 
 namespace Scratch
 {
-    public class Topic
+    public class Topic: ITopic
     {
         public string Title { get; set; }
         public int Rating { get; set; }
-        private ObservableCollection<ChildTopic> childTopicsValue = new ObservableCollection<ChildTopic>();
+        private ObservableCollection<AccountTopic> childTopicsValue = new ObservableCollection<AccountTopic>();
                 
-        public ObservableCollection<ChildTopic> ChildTopics
+        public ObservableCollection<AccountTopic> ChildTopics
         {
             get
             {
@@ -28,7 +28,40 @@ namespace Scratch
     }
 
 
-    public class ChildTopic
+    public class AccountTopic
+    {
+        public string Title { get; set; }
+        public int Rating { get; set; }
+        private ObservableCollection<ITopic> grandchildTopicsValue = new ObservableCollection<ITopic>();
+
+
+        public ObservableCollection<ITopic> GrandChildTopics
+        {
+            get
+            {
+                return grandchildTopicsValue;
+            }
+            set
+            {
+                grandchildTopicsValue = value;
+            }
+        }
+       
+        public AccountTopic() { }
+        public AccountTopic(string title, int rating)
+        {
+            Title = title;
+            Rating = rating;
+        }
+    }
+
+    public interface ITopic
+    {
+        string Title { get; set; }
+        int Rating { get; set; }
+    }
+
+    public class InvestmentTopic: ITopic
     {
         public string Title { get; set; }
         public int Rating { get; set; }
@@ -46,9 +79,9 @@ namespace Scratch
                 grandchildTopicsValue = value;
             }
         }
-       
-        public ChildTopic() { }
-        public ChildTopic(string title, int rating)
+
+        public InvestmentTopic() { }
+        public InvestmentTopic(string title, int rating)
         {
             Title = title;
             Rating = rating;

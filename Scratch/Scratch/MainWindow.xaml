@@ -9,29 +9,21 @@
 
     <StackPanel x:Name="LayoutRoot" Background="White">
         <StackPanel.Resources>
-            <HierarchicalDataTemplate x:Key="ChildTemplate" >
+
+            <HierarchicalDataTemplate x:Key="GrandChildTemplate">
                 <TextBlock FontStyle="Italic" Text="{Binding Path=Title}" />
             </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate x:Key="NameTemplate" 
-            ItemsSource="{Binding Path=ChildTopics}" 
-            ItemTemplate="{StaticResource ChildTemplate}">
+
+            <HierarchicalDataTemplate x:Key="ChildTemplate" ItemsSource="{Binding Path=GrandChildTopics}" ItemTemplate="{StaticResource GrandChildTemplate}">
+                <TextBlock FontStyle="Italic" Text="{Binding Path=Title}" />
+            </HierarchicalDataTemplate>
+            
+            <HierarchicalDataTemplate x:Key="NameTemplate" ItemsSource="{Binding Path=ChildTopics}"  ItemTemplate="{StaticResource ChildTemplate}">
                 <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
             </HierarchicalDataTemplate>
-
-
-            <HierarchicalDataTemplate x:Key="GrandChildTemplate" 
-            ItemsSource="{Binding Path=GrandChildTopics}" 
-            ItemTemplate="{StaticResource GrandChildTemplate}">
-                <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
-            </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate x:Key="NameTemplate2" 
-            ItemsSource="{Binding Path=GrandChildTopics}" 
-            ItemTemplate="{StaticResource GrandChildTemplate}">
-                <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
-            </HierarchicalDataTemplate>
-
+            
         </StackPanel.Resources>
         <TreeView Width="400"  Height="300" ItemsSource="{Binding}" 
-        ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" />
+        ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" SelectedItemChanged="MyTreeView_OnSelectedItemChanged"/>
     </StackPanel>
 </Window>

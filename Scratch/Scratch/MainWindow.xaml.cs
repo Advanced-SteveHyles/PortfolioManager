@@ -31,22 +31,44 @@ namespace Scratch
             this.DataContext = new TextDataContext();
 
                 
-            Topic Level0 = new Topic("Level 0", 4);
-            Level0.ChildTopics.Add(new ChildTopic("Level 0:1", -1));
-            Level0.ChildTopics.Add(new ChildTopic("Level 0:2", -1));
-            var item = new ChildTopic("Level 0:3", -1);
-            Level0.ChildTopics.Add(item);
+            Topic Level0A = new Topic("S", 4);
+            Level0A.ChildTopics.Add(new AccountTopic("Summary", -1));
+            Level0A.ChildTopics.Add(new AccountTopic("Level 0:2", -1));
+            var item = new AccountTopic("Account 1", -1);
+            Level0A.ChildTopics.Add(item);
             item.GrandChildTopics.Add(new Topic("Level 0:3:1GC", -1));
 
-            var item4 = new ChildTopic("Level 0:4", -1);
-            Level0.ChildTopics.Add(item4);
-            item4.GrandChildTopics.Add(new Topic("Level 0:3:1GC", -1));
-            
-            Topics.Add(Level0);
+            var item4 = new AccountTopic("Account 2", -1);
+            Level0A.ChildTopics.Add(item4);
+            item4.GrandChildTopics.Add(new InvestmentTopic("Transactions", -1));
+            item4.GrandChildTopics.Add(new FundTopic("Funds", -1));
+
+            Topics.Add(Level0A);
+
+            Topic Level0B = new Topic("M", 4);
+            Topics.Add(Level0B);
+
 
             myTreeView.DataContext = Topics;
         }
 
+        private void MyTreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            int i = 1;
+        }
+    }
+
+    public class FundTopic : ITopic
+    {
+        
+        public FundTopic(string funds, int i)
+        {
+            Title = funds;
+            Rating = i;
+        }
+
+        public string Title { get; set; }
+        public int Rating { get; set; }
     }
 }
 
