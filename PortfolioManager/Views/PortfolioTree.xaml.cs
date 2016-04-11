@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace PortfolioManager.Views
 {
     /// <summary>
-    /// Interaction logic for Demo.xaml
+    /// Interaction logic for PortfolioTree.xaml
     /// </summary>
-    public partial class Demo : UserControl
+    public partial class PortfolioTree : UserControl
     {
-        public Demo()
+        public PortfolioTree()
         {
             InitializeComponent();
+        }
+
+        private void MyTreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
         }
     }
 }

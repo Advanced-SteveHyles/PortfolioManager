@@ -23,7 +23,6 @@
             </HierarchicalDataTemplate>
             
         </StackPanel.Resources>
-        <TreeView Width="400"  Height="300" ItemsSource="{Binding}" 
-        ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" SelectedItemChanged="MyTreeView_OnSelectedItemChanged"/>
+        <TreeView Width="400"  Height="300" ItemsSource="{Binding}" ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" SelectedItemChanged="MyTreeView_OnSelectedItemChanged"/>
     </StackPanel>
 </Window>

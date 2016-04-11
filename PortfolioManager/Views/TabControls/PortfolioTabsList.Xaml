@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -21,9 +22,9 @@
         <local:Tasks Grid.Row="1" Grid.Column="2"></local:Tasks>
         <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left" ItemsSource="{Binding PortfolioTabs}"></TabControl>
 
-        <TreeView ItemsSource="{Binding PortfolioTree}">
-            
-        </TreeView>
+        <TreeView Grid.Row="3" ItemsSource="{Binding PortfolioTree}"></TreeView>
+        
+        <local:PortfolioTree DataContext="{Binding PortfolioTreeDataContext}" Grid.Row="4"></local:PortfolioTree>
         
     </Grid>
 </UserControl>
