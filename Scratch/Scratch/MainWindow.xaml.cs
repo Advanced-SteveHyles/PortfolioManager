@@ -30,16 +30,20 @@ namespace Scratch
 
             this.DataContext = new TextDataContext();
 
-            Topics.Add(new Topic("Using Controls and Dialog Boxes", -1));
-            Topics.Add(new Topic("Getting Started with Controls", 1));
-            Topic DataGridTopic = new Topic("DataGrid", 4);
-            DataGridTopic.ChildTopics.Add(
-                new Topic("Default Keyboard and Mouse Behavior in the DataGrid Control", -1));
-            DataGridTopic.ChildTopics.Add(
-                new Topic("How to: Add a DataGrid Control to a Page", -1));
-            DataGridTopic.ChildTopics.Add(
-                new Topic("How to: Display and Configure Row Details in the DataGrid Control", 1));
-            Topics.Add(DataGridTopic);
+                
+            Topic Level0 = new Topic("Level 0", 4);
+            Level0.ChildTopics.Add(new ChildTopic("Level 0:1", -1));
+            Level0.ChildTopics.Add(new ChildTopic("Level 0:2", -1));
+            var item = new ChildTopic("Level 0:3", -1);
+            Level0.ChildTopics.Add(item);
+            item.GrandChildTopics.Add(new Topic("Level 0:3:1GC", -1));
+
+            var item4 = new ChildTopic("Level 0:4", -1);
+            Level0.ChildTopics.Add(item4);
+            item4.GrandChildTopics.Add(new Topic("Level 0:3:1GC", -1));
+            
+            Topics.Add(Level0);
+
             myTreeView.DataContext = Topics;
         }
 

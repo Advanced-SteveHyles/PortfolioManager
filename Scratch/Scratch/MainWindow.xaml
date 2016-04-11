@@ -19,7 +19,12 @@
             </HierarchicalDataTemplate>
 
 
-            <HierarchicalDataTemplate x:Key="Name2Template" 
+            <HierarchicalDataTemplate x:Key="GrandChildTemplate" 
+            ItemsSource="{Binding Path=GrandChildTopics}" 
+            ItemTemplate="{StaticResource GrandChildTemplate}">
+                <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate x:Key="NameTemplate2" 
             ItemsSource="{Binding Path=GrandChildTopics}" 
             ItemTemplate="{StaticResource GrandChildTemplate}">
                 <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />

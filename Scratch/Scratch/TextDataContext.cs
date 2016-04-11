@@ -37,46 +37,4 @@ namespace Scratch
         public interface ITreeViewThings
     {
     }
-
-
-
-    public class Topic
-    {
-        public string Title { get; set; }
-        public int Rating { get; set; }
-        private ObservableCollection<Topic> childTopicsValue = new ObservableCollection<Topic>();
-        private ObservableCollection<Topic> GrandchildTopicsValue = new ObservableCollection<Topic>();
-
-
-        public ObservableCollection<Topic> GrandChildTopics
-        {
-            get
-            {
-                return GrandchildTopicsValue;
-            }
-            set
-            {
-                GrandchildTopicsValue = value;
-            }
-        }
-
-        public ObservableCollection<Topic> ChildTopics
-        {
-            get
-            {
-                return childTopicsValue;
-            }
-            set
-            {
-                childTopicsValue = value;
-            }
-        }
-        public Topic() { }
-        public Topic(string title, int rating)
-        {
-            Title = title;
-            Rating = rating;
-        }
-    }
-
 }
