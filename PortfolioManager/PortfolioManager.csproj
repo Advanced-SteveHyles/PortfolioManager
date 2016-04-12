@@ -89,6 +89,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TreePages\AccountBlock.cs" />
+    <Compile Include="TreePages\AccountSubBlock.cs" />
+    <Compile Include="TreePages\ITreeBlock.cs" />
+    <Compile Include="TreePages\PortfolioBlock.cs" />
+    <Compile Include="TreePages\TreeviewNode.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Model\AccountInvestmentMapModel.cs" />
     <Compile Include="Model\AccountModel.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="ViewModels\MassPriceUpdateDataEntryViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
+    <Compile Include="TreePages\PortfolioDriver.cs" />
     <Compile Include="ViewModels\PortfolioTabPanelViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />

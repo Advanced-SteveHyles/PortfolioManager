@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PortfolioManager.TreePages;
+using PortfolioManager.ViewModels;
 
 namespace PortfolioManager.Views
 {
@@ -27,7 +29,11 @@ namespace PortfolioManager.Views
 
         private void MyTreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-
+            var y = e.NewValue as ITreeBlock;
+            if (y != null)
+            {
+                this.Placeholder.Content= y.View();
+            }            
         }
     }
 }

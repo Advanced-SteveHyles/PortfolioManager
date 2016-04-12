@@ -35,25 +35,4 @@ namespace PortfolioManager.ViewModels
             get { return new PortfolioDriver(); }
         }
     }
-
-    public class PortfolioDriver
-    {
-
-        public object PortfolioBlocks
-        { get {return new Top} } 
-    }
-
-    public class FundTopic //: ITopic
-    {
-
-        public FundTopic(string funds, int i)
-        {
-            Title = funds;
-            Rating = i;
-        }
-
-        public string Title { get; set; }
-        public int Rating { get; set; }
-    }
-
 }

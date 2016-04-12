@@ -6,20 +6,27 @@
              xmlns:local="clr-namespace:PortfolioManager.Views"
              mc:Ignorable="d">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.Resources>
             <HierarchicalDataTemplate x:Key="GrandChildTemplate">
                 <TextBlock FontStyle="Italic" Text="{Binding Path=Title}" />
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate x:Key="ChildTemplate" ItemsSource="{Binding Path=GrandChildTopics}" ItemTemplate="{StaticResource GrandChildTemplate}">
+            <HierarchicalDataTemplate x:Key="ChildTemplate" ItemsSource="{Binding Path=AccountSubBlocks}" ItemTemplate="{StaticResource GrandChildTemplate}">
                 <TextBlock FontStyle="Italic" Text="{Binding Path=Title}" />
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate x:Key="NameTemplate" ItemsSource="{Binding Path=ChildTopics}"  ItemTemplate="{StaticResource ChildTemplate}">
+            <HierarchicalDataTemplate x:Key="NameTemplate" ItemsSource="{Binding Path=AccountBlocks}"  ItemTemplate="{StaticResource ChildTemplate}">
                 <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
             </HierarchicalDataTemplate>
 
         </Grid.Resources>
-        <TreeView Width="400"  Height="300" ItemsSource="{Binding PortfolioBlocks}" ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" SelectedItemChanged="MyTreeView_OnSelectedItemChanged"/>
+        <TreeView Grid.Column="1" Width="400"  Height="300" ItemsSource="{Binding PortfolioBlocks}" ItemTemplate="{StaticResource NameTemplate}" x:Name="myTreeView" SelectedItemChanged="MyTreeView_OnSelectedItemChanged"/>
+        
+        <ContentControl Grid.Column="2" x:Name="Placeholder"></ContentControl>
     </Grid>
 </UserControl>
