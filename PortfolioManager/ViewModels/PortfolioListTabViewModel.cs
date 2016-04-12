@@ -10,26 +10,7 @@ namespace PortfolioManager.ViewModels
 {
     public class PortfolioListTabViewModel
     {                
-        public List<TabItem> PortfolioTabs
-        {
-            get
-            {
-                return PortfolioModel.GetPortfolioList()
-                    .Select(portfolio => BuildPortfolioTabContent
-                    .CreatePortfolioTabItem(portfolio)).ToList();
-            }
-        }
-
-        public List<TreeViewItem> PortfolioTree
-        {
-            get
-            {
-                return PortfolioModel.GetPortfolioList()
-                    .Select(portfolio => BuildPortfolioTabContent
-                    .CreatePortfolioTreeViewItem(portfolio)).ToList();
-            }
-        }
-
+       
         public PortfolioDriver PortfolioTreeDataContext
         {
             get { return new PortfolioDriver(); }

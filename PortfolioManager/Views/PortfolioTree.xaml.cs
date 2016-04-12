@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PortfolioManager.TreePages;
+using PortfolioManager.Interfaces;
 using PortfolioManager.ViewModels;
 
 namespace PortfolioManager.Views
@@ -32,7 +32,7 @@ namespace PortfolioManager.Views
             var y = e.NewValue as ITreeBlock;
             if (y != null)
             {
-                this.Placeholder.Content= y.View();
+                this.Placeholder.Content= y.GetView();
             }            
         }
     }

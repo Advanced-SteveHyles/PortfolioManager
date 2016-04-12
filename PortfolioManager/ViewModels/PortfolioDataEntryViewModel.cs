@@ -33,4 +33,4 @@ namespace PortfolioManager.ViewModels.Menus
             this.dialogClose.Invoke();
         }
     }
-    }
+}

@@ -23,16 +23,16 @@ namespace FrontEnd_WPF_Tests
             };
         }
 
-        [Fact]
-        public async void WhenICallTheBuilderForOnePortfolioIGetATabWithTheCorrectName()
-        {
-            await StartSTATask(() =>
-            {
-                var tabItem = BuildPortfolioTabContent.CreatePortfolioTabItem(_portfolioDtos[0]);
-                Assert.Equal(_portfolioDtos[0].Name, tabItem.Header);
-            }
-            );            
-        }
+        //[Fact]
+        //public async void WhenICallTheBuilderForOnePortfolioIGetATabWithTheCorrectName()
+        //{
+        //    await StartSTATask(() =>
+        //    {
+        //        var tabItem = BuildPortfolioTabContent.CreatePortfolioTabItem(_portfolioDtos[0]);
+        //        Assert.Equal(_portfolioDtos[0].Name, tabItem.Header);
+        //    }
+        //    );            
+        //}
 
         //[Fact]
         //public void WhenICallTheBuilderIGetATabForEachPortfolio()

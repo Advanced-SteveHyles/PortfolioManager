@@ -19,12 +19,9 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <local:Tasks Grid.Row="1" Grid.Column="2"></local:Tasks>
-        <TabControl Grid.Row="2" Grid.Column="1" TabStripPlacement="Left" ItemsSource="{Binding PortfolioTabs}"></TabControl>
-
-        <TreeView Grid.Row="3" ItemsSource="{Binding PortfolioTree}"></TreeView>
-        
-        <local:PortfolioTree DataContext="{Binding PortfolioTreeDataContext}" Grid.Row="4"></local:PortfolioTree>
+        <local:Tasks Grid.Row="2" Grid.Column="2"></local:Tasks>
+       
+        <local:PortfolioTree DataContext="{Binding PortfolioTreeDataContext}" Grid.Row="1" Grid.Column="1"></local:PortfolioTree>
         
     </Grid>
 </UserControl>

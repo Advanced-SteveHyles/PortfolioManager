@@ -8,14 +8,14 @@ namespace PortfolioManager.ViewModels
     public class PortfolioDriver
     {
 
-        public ObservableCollection<PortfolioBlock> PortfolioBlocks { get; set; } = new ObservableCollection<PortfolioBlock>();
+        public ObservableCollection<PortfolioTreeItem> PortfolioBlocks { get; set; } = new ObservableCollection<PortfolioTreeItem>();
         
 
         public PortfolioDriver()
         {
             foreach (var x in PortfolioModel.GetPortfolioList())
             {
-                PortfolioBlocks.Add(new PortfolioBlock(x));
+                PortfolioBlocks.Add(new PortfolioTreeItem(x));
             }
         }
     }
