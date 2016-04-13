@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows.Input;
-using Portfolio.API.Virtual.VirtualControllers;
 using Portfolio.Common.DTO.Requests;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.ViewModels
 {
     public class PortfolioDataEntryViewModel : AbstractSaveCancelCommands
     {

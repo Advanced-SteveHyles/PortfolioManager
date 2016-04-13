@@ -1,4 +1,4 @@
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.ViewModels
 {
     public class PortfolioDetailsViewModel
     {

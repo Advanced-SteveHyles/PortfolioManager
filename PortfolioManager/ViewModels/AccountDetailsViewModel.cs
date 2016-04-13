@@ -1,21 +1,17 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.DTO.DTOs;
+using PortfolioManager.Interfaces;
 using PortfolioManager.Other;
-using PortfolioManager.ViewModels;
-using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views.DataEntry;
 
-namespace PortfolioManager.UIBuilders
+namespace PortfolioManager.ViewModels
 {
     public class AccountDetailsViewModel : ViewModel
     {
         private readonly AccountDto _account;
         private const string CashTransactionName = "CashTransaction";
-
         private UserControl _cashTransaction;
-
         public UserControl CashTransaction => this._cashTransaction;
 
         public AccountDetailsViewModel(AccountDto account)

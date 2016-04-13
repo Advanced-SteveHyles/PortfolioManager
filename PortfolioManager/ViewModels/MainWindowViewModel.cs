@@ -1,13 +1,12 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using PortfolioManager.Interfaces;
 using PortfolioManager.Other;
 using PortfolioManager.TreePages;
-using PortfolioManager.ViewModels;
-using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views;
 using PortfolioManager.Views.TabControls;
 
-namespace PortfolioManager
+namespace PortfolioManager.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {

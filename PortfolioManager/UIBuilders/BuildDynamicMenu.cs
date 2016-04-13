@@ -1,7 +1,8 @@
 using System;
+using PortfolioManager.ViewModels;
 using PortfolioManager.Views.DataEntry;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.UIBuilders
 {
     public class BuildDynamicMenu
     {

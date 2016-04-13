@@ -3,7 +3,7 @@ using Portfolio.Common.DTO.Requests.Transactions;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
 
-namespace PortfolioManager.UIBuilders
+namespace PortfolioManager.ViewModels
 {
     internal class InvestmentDividendViewModel : AbstractSaveCancelCommands
     {

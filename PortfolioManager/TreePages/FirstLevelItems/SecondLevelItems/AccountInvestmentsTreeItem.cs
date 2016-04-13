@@ -1,9 +1,9 @@
 using System.Windows.Controls;
 using PortfolioManager.Interfaces;
-using PortfolioManager.UIBuilders;
+using PortfolioManager.ViewModels;
 using PortfolioManager.Views;
 
-namespace PortfolioManager.TreePages
+namespace PortfolioManager.TreePages.FirstLevelItems.SecondLevelItems
 {
     public class AccountInvestmentsTreeItem : ITreeBlock
     {

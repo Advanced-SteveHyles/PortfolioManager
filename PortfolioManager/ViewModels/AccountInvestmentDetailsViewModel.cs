@@ -1,10 +1,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.DTO.DTOs;
 using PortfolioManager.Model;
+using PortfolioManager.Model.Decorators;
 
-namespace PortfolioManager.UIBuilders
+namespace PortfolioManager.ViewModels
 {
     public class AccountInvestmentDetailsViewModel
     {

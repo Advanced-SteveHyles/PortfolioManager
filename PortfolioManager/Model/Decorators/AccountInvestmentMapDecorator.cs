@@ -1,13 +1,12 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Portfolio.Common.DTO.DTOs;
+using PortfolioManager.Interfaces;
 using PortfolioManager.Other;
 using PortfolioManager.ViewModels;
-using PortfolioManager.ViewModels.Menus;
-using PortfolioManager.Views;
 using PortfolioManager.Views.DataEntry;
 
-namespace PortfolioManager.UIBuilders
+namespace PortfolioManager.Model.Decorators
 {
     public class AccountInvestmentMapDecorator : ViewModel
     {

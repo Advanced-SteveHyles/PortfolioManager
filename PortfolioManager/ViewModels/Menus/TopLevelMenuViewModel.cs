@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
+using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
 using PortfolioManager.Other;
+using PortfolioManager.UIBuilders;
 
 namespace PortfolioManager.ViewModels.Menus
 { 

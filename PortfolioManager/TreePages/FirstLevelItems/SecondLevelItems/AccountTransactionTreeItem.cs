@@ -3,7 +3,7 @@ using PortfolioManager.Interfaces;
 using PortfolioManager.ViewModels;
 using PortfolioManager.Views;
 
-namespace PortfolioManager.TreePages
+namespace PortfolioManager.TreePages.FirstLevelItems.SecondLevelItems
 {
     public class AccountTransactionTreeItem : ITreeBlock
     {

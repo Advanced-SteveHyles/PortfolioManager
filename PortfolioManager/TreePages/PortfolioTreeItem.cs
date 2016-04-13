@@ -1,15 +1,13 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Media.Imaging;
 using Portfolio.Common.DTO.DTOs;
 using PortfolioManager.Interfaces;
 using PortfolioManager.Model;
-using PortfolioManager.UIBuilders;
-using PortfolioManager.ViewModels.Menus;
-using PortfolioManager.Views.TabPanels;
+using PortfolioManager.TreePages.FirstLevelItems;
+using PortfolioManager.ViewModels;
+using PortfolioManager.Views;
 
-namespace PortfolioManager.ViewModels
+namespace PortfolioManager.TreePages
 {    
     public class PortfolioTreeItem : ITreeBlock
     {
@@ -29,9 +27,7 @@ namespace PortfolioManager.ViewModels
         }
 
         public string Title => _portfolio.Name;
-        public int Rating { get; set; }
-
-
+        
         public UserControl GetView()
         {
             if (_portfolioDetailsViewModel == null)

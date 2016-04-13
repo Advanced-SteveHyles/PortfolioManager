@@ -1,13 +1,12 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using Portfolio.Common.DTO.DTOs;
 using PortfolioManager.Interfaces;
-using PortfolioManager.TreePages;
-using PortfolioManager.UIBuilders;
+using PortfolioManager.TreePages.FirstLevelItems.SecondLevelItems;
+using PortfolioManager.ViewModels;
 using PortfolioManager.Views;
 
-namespace PortfolioManager.ViewModels
+namespace PortfolioManager.TreePages.FirstLevelItems
 {
     public class AccountTreeItem: ITreeBlock
     {

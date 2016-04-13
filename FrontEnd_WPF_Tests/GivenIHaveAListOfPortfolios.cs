@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Portfolio.Common.DTO.DTOs;
-using PortfolioManager.UIBuilders;
 using Xunit;
 
 namespace FrontEnd_WPF_Tests

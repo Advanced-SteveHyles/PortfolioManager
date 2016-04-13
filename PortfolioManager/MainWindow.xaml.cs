@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PortfolioManager.ViewModels;
 using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views.DataEntry;
 

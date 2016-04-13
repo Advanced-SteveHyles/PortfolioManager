@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PortfolioManager.ViewModels.Menus
+namespace PortfolioManager.Interfaces
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {

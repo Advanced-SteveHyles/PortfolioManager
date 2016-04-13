@@ -1,11 +1,6 @@
-using System.Collections.Generic;
-using System.Windows.Forms.VisualStyles;
-using Portfolio.API.Virtual.VirtualControllers;
-using PortfolioManager.ViewModels;
-using PortfolioManager.Views.DataEntry;
 using PortfolioManager.Views.TabPanels;
 
-namespace PortfolioManager
+namespace PortfolioManager.ViewModels
 {
     public class InvestmentsTabsViewModel
     {

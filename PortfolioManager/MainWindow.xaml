@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PortfolioManager"
         xmlns:views="clr-namespace:PortfolioManager.Views"
         xmlns:tabControls="clr-namespace:PortfolioManager.Views.TabControls"
+        xmlns:menus="clr-namespace:PortfolioManager.Views.Menus"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -22,7 +23,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <views:TopLevelMenu x:Name="TopLevelMenu" Grid.Row="0" Grid.ColumnSpan="3"></views:TopLevelMenu>
+        <menus:TopLevelMenu x:Name="TopLevelMenu" Grid.Row="0" Grid.ColumnSpan="3"></menus:TopLevelMenu>
 
         <Button Grid.Column="0" Grid.Row="1" Command="{Binding RefreshCommand}">Refresh</Button>
         <Button Grid.Column="1" Grid.Row="1" Command="{Binding ShowPortfolioScreenCommand}">Portfolio</Button>
@@ -31,3 +32,4 @@
         <ContentControl Grid.Row="2" Grid.Column="1" Content="{Binding MainContentArea}"></ContentControl>
     </Grid>
 </Window>
+
