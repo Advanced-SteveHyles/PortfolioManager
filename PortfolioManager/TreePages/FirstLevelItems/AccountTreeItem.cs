@@ -11,6 +11,7 @@ namespace PortfolioManager.ViewModels
 {
     public class AccountTreeItem: ITreeBlock
     {
+        private AccountDetailsViewModel _accountDetailsViewModel;
         private AccountDto AccountDto { get; }
         
         public ObservableCollection<ITreeBlock> AccountSubBlocks { get; set; } = new ObservableCollection<ITreeBlock>();
@@ -28,7 +29,10 @@ namespace PortfolioManager.ViewModels
         public int Rating { get; set; }
         public UserControl GetView()
         {
-            return new AccountDetailsView() {DataContext = new AccountDetailsViewModel(AccountDto)};
+            if (_accountDetailsViewModel == null)
+                _accountDetailsViewModel = new AccountDetailsViewModel(AccountDto);
+
+            return new AccountDetailsView() {DataContext = _accountDetailsViewModel};
         }
     }
 }

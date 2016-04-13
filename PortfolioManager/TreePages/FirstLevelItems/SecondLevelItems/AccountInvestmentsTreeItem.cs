@@ -8,6 +8,7 @@ namespace PortfolioManager.TreePages
     public class AccountInvestmentsTreeItem : ITreeBlock
     {
         private int _accountId;
+        private AccountInvestmentDetailsViewModel _accountInvestmentDetailsViewModel;
 
         public AccountInvestmentsTreeItem(string title, int accountId)
         {
@@ -19,7 +20,10 @@ namespace PortfolioManager.TreePages
         public int Rating { get; set; }
         public UserControl GetView()
         {
-            return new AccountInvestmentDetails() {DataContext = new AccountInvestmentDetailsViewModel(_accountId)};
+            if (_accountInvestmentDetailsViewModel ==null)
+                _accountInvestmentDetailsViewModel = new AccountInvestmentDetailsViewModel(_accountId);
+
+            return new AccountInvestmentDetails() {DataContext = _accountInvestmentDetailsViewModel};
         }
     }
 }

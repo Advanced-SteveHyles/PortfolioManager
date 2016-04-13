@@ -8,6 +8,7 @@ namespace PortfolioManager.TreePages
     public class AccountTransactionTreeItem : ITreeBlock
     {
         private readonly int _accountId;
+        private AccountTransactionSummaryViewModel _accountTransactionSummaryViewModel;
 
         public AccountTransactionTreeItem(string title, int accountId)
         {
@@ -18,8 +19,11 @@ namespace PortfolioManager.TreePages
         public string Title { get; set; }
         public int Rating { get; set; }
         public UserControl GetView()
-        { 
-            return new AccountTransactionSummary() {DataContext = new AccountTransactionSummaryViewModel(_accountId) };        
-        }        
+        {
+            if (_accountTransactionSummaryViewModel ==null)
+                _accountTransactionSummaryViewModel = new AccountTransactionSummaryViewModel(_accountId);
+
+            return new AccountTransactionSummary() {DataContext = _accountTransactionSummaryViewModel };
+        }
     }
 }

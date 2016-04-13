@@ -124,10 +124,9 @@
     <Compile Include="ViewModels\MassPriceUpdateDataEntryViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
-    <Compile Include="TreePages\PortfolioDriver.cs" />
+    <Compile Include="TreePages\PortfolioTreeViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
-    <Compile Include="ViewModels\PortfolioListTabViewModel.cs" />
     <Compile Include="Views\AccountDetailsView.xaml.cs">
       <DependentUpon>AccountDetailsView.xaml</DependentUpon>
     </Compile>
@@ -175,9 +174,6 @@
     </Compile>
     <Compile Include="Views\TabControls\InvestmentsTabsList.xaml.cs">
       <DependentUpon>InvestmentsTabsList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TabControls\PortfolioTabs.xaml.cs">
-      <DependentUpon>PortfolioTabsList.Xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabPanels\InvestmentTabPanel.xaml.cs">
       <DependentUpon>InvestmentTabPanel.xaml</DependentUpon>
@@ -264,10 +260,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TabControls\InvestmentsTabsList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TabControls\PortfolioTabsList.Xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

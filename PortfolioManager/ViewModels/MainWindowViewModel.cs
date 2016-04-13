@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using PortfolioManager.Other;
+using PortfolioManager.TreePages;
 using PortfolioManager.ViewModels;
 using PortfolioManager.ViewModels.Menus;
 using PortfolioManager.Views;
@@ -11,7 +12,7 @@ namespace PortfolioManager
     public class MainWindowViewModel : ViewModel
     {
         private UserControl _mainContentArea;
-        private PortfolioTabsList _portfolioTabsList;
+        private PortfolioTree _portfolioTabsList;
         private InvestmentsTabsList _investmentTabsList;
 
         public UserControl MainContentArea
@@ -39,7 +40,7 @@ namespace PortfolioManager
         {
             if (_portfolioTabsList == null)
             { 
-                _portfolioTabsList = new PortfolioTabsList() {DataContext = new PortfolioListTabViewModel()};
+                _portfolioTabsList = new PortfolioTree() {DataContext = new PortfolioTreeViewModel()};
             }
             MainContentArea = _portfolioTabsList;
         }

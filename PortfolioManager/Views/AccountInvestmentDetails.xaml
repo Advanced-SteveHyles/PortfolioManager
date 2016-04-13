@@ -8,12 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>            
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <GroupBox Grid.Row ="1"  Header="Investment Details">
+        <GroupBox Header="Investment Details">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
                 <ItemsControl ItemsSource="{Binding InvestmentMapWrappers}">
                     <ItemsControl.ItemTemplate>

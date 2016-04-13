@@ -1,17 +1,16 @@
 using System.Collections.ObjectModel;
-using System.Linq;
 using PortfolioManager.Model;
-using PortfolioManager.UIBuilders;
+using PortfolioManager.ViewModels;
 
-namespace PortfolioManager.ViewModels
+namespace PortfolioManager.TreePages
 {
-    public class PortfolioDriver
+    public class PortfolioTreeViewModel
     {
 
         public ObservableCollection<PortfolioTreeItem> PortfolioBlocks { get; set; } = new ObservableCollection<PortfolioTreeItem>();
         
 
-        public PortfolioDriver()
+        public PortfolioTreeViewModel()
         {
             foreach (var x in PortfolioModel.GetPortfolioList())
             {
