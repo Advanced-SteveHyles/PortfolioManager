@@ -7,12 +7,13 @@
              mc:Ignorable="d">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -42,16 +43,14 @@
 
         <TextBlock Grid.Row="3" Grid.Column="4">AccountBalance</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding AccountBalance, Mode=OneWay}"></TextBox>
-                    
-        <Expander Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Header="Actions" ExpandDirection="Right">
-            <StackPanel Orientation="Vertical">
-                <Button Command="{Binding DepositCommand}">Deposit</Button>
-                        <Button Command="{Binding WithdrawalCommand}">Withdraw</Button>
-                        <Button Command="{Binding TransferCommandOut}">Transfer Out</Button>
-                        <Button Command="{Binding TransferCommandIn}">Transfer In</Button>
-                        <ContentControl Content="{Binding CashTransaction}"></ContentControl>
-            </StackPanel>
-        </Expander>
-            </Grid>
+
+        <StackPanel  Grid.Column="6" Grid.RowSpan="10"  Orientation="Vertical">
+            <Button Command="{Binding DepositCommand}">Deposit</Button>
+            <Button Command="{Binding WithdrawalCommand}">Withdraw</Button>
+            <Button Command="{Binding TransferCommandOut}">Transfer Out</Button>
+            <Button Command="{Binding TransferCommandIn}">Transfer In</Button>
+            <ContentControl Content="{Binding CashTransaction}"></ContentControl>
+        </StackPanel>
+    </Grid>
         
 </UserControl>
