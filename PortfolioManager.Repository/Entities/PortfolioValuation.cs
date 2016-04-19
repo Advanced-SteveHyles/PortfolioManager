@@ -1,16 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Portfolio.Common.DTO.DTOs
+namespace Portfolio.BackEnd.Repository.Entities
 {
-    public class PortfolioDto
+    [Table("PortfolioValuation")]
+    public class PortfolioValuation
     {
-        public int PortfolioId { get; set; }
-        public string Name { get; set; }
-        public ICollection<AccountDto> Accounts { get; set; } = new List<AccountDto>();
-    }
-
-    public class PortfolioValuationDto
-    {
+        [Key]
         public int PortfolioValuationId { get; set; }
 
         public int PortfolioId { get; set; }
@@ -23,6 +19,6 @@ namespace Portfolio.Common.DTO.DTOs
         public decimal BondValue { get; set; }
         public decimal BondRatio { get; set; }
         public decimal EquityValue { get; set; }
-        public decimal EquityRatio { get; set; }
+        public decimal EquityRatio { get; set; }        
     }
 }

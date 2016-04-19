@@ -24,6 +24,11 @@ namespace PortfolioManager.Model
 
             return portfolio;
         }
-    }
 
+        public static PortfolioValuationDto GetPortfolioValuation(int portfolioId)
+        {
+            var service = new VirtualPortfoliosController();
+            return service.GetPortfolioValuation(portfolioId);
+        }
+    }
 }

@@ -125,7 +125,7 @@
     <Compile Include="ViewModels\PortfolioDataEntryViewModel.cs" />
     <Compile Include="ViewModels\Menus\TopLevelMenuViewModel.cs" />
     <Compile Include="TreePages\PortfolioTreeViewModel.cs" />
-    <Compile Include="ViewModels\PortfolioDetailsViewModel.cs" />
+    <Compile Include="Views\PortfolioLevel\PortfolioDetailsViewModel.cs" />
     <Compile Include="ViewModels\AccountTabViewModel.cs" />
     <Compile Include="Views\AccountDetailsView.xaml.cs">
       <DependentUpon>AccountDetailsView.xaml</DependentUpon>
@@ -178,7 +178,7 @@
     <Compile Include="Views\TabPanels\InvestmentTabPanel.xaml.cs">
       <DependentUpon>InvestmentTabPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PortfolioDetailsView.xaml.cs">
+    <Compile Include="Views\PortfolioLevel\PortfolioDetailsView.xaml.cs">
       <DependentUpon>PortfolioDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tasks.xaml.cs">
@@ -267,7 +267,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PortfolioDetailsView.xaml">
+    <Page Include="Views\PortfolioLevel\PortfolioDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -337,6 +337,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\PortfolioLevel\AccountLevel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

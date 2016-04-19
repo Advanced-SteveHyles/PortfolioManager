@@ -53,6 +53,7 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Entities\CashTransaction.cs" />
     <Compile Include="Entities\FundTransaction.cs" />
+    <Compile Include="Entities\PortfolioValuation.cs" />
     <Compile Include="Entities\PriceHistory.cs" />
     <Compile Include="EntityToDtoMap.cs" />
     <Compile Include="Factories\InvestmentFactory.cs" />

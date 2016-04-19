@@ -1,3 +1,4 @@
+using System;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.Common.DTO.DTOs;
 using Portfolio.Common.DTO.DTOs.Transactions;
@@ -11,15 +12,33 @@ namespace Portfolio.BackEnd.Repository
             return new PortfolioDto
             {
                 PortfolioId = entity.PortfolioId,
-                Name = entity.Name,
+                Name = entity.Name
 
                 //        Accounts = portfolioEnt.Accounts.Select(e => CreateAccount(e, false)).ToList()
             };
         }
 
+        public static PortfolioValuationDto MapToDto(this PortfolioValuation entity)
+        {
+            return new PortfolioValuationDto
+            {
+                PortfolioValuationId = entity.PortfolioValuationId,
+                PortfolioId = entity.PortfolioId,
+                PropertyValue = entity.PropertyValue,
+                PropertyRatio = entity.PropertyRatio,
+                CashValue = entity.CashValue,
+                CashRatio = entity.CashRatio,
+                BondValue = entity.BondValue,
+                BondRatio = entity.BondRatio,
+                EquityValue = entity.EquityValue,
+                EquityRatio = entity.EquityValue
+            };
+        }
+
+
         public static AccountDto MapToDto(this Account entity)
         {
-            return new AccountDto()
+            return new AccountDto
             {
                 AccountId = entity.AccountId,
                 Name = entity.Name,
@@ -28,16 +47,8 @@ namespace Portfolio.BackEnd.Repository
                 Valuation = entity.Valuation,
                 AccountBalance = entity.Cash,
                 PortfolioId = entity.PortfolioId
-
                 //  Accounts = portfolioEnt.Accounts.Select(e => CreateAccount(e, false)).ToList()
             };
-        }
-
-
-
-        public static CashTransactionDto MapToDto(object entity)
-        {
-            throw new System.NotImplementedException();
         }
 
         public static InvestmentDto MapToDto(this Investment entity)
@@ -54,7 +65,9 @@ namespace Portfolio.BackEnd.Repository
             };
         }
 
-        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap, string investmentName)
+        public static AccountInvestmentMapDto MapToDto(this AccountInvestmentMap accountInvestmentMap,
+            string investmentName
+            )
         {
             return new AccountInvestmentMapDto
             {
@@ -62,7 +75,7 @@ namespace Portfolio.BackEnd.Repository
                 AccountId = accountInvestmentMap.AccountId,
                 InvestmentId = accountInvestmentMap.InvestmentId,
                 Quantity = accountInvestmentMap.Quantity,
-                Valuation = accountInvestmentMap.Valuation ?? 0,                
+                Valuation = accountInvestmentMap.Valuation ?? 0,
                 InvestmentName = investmentName
             };
         }
@@ -77,7 +90,7 @@ namespace Portfolio.BackEnd.Repository
                 TransactionDate = cashTransaction.TransactionDate,
                 Source = cashTransaction.Source,
                 TransactionValue = cashTransaction.TransactionValue,
-                IsTaxRefund = cashTransaction.IsTaxRefund,
+                IsTaxRefund = cashTransaction.IsTaxRefund
             };
         }
     }
