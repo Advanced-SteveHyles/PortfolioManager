@@ -5,10 +5,9 @@ using BusinessLogicTests.FakeRepositories.DataFakes;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
-using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests;
 
-namespace BusinessLogicTests.FakeRepositories
+namespace BusinessLogicTests.Fakes
 {
     public class FakeRepository        :
         IInvestmentRepository
@@ -16,7 +15,8 @@ namespace BusinessLogicTests.FakeRepositories
         , ICashTransactionRepository
         , IAccountInvestmentMapRepository
         , IFundTransactionRepository
-        , IPriceHistoryRepository        
+        , IPriceHistoryRepository
+        , ICheckpointRepository
     {
         private readonly IFakeData _fakeData;
         private readonly List<CashTransaction> _dummyCashTransactions;
@@ -315,5 +315,9 @@ namespace BusinessLogicTests.FakeRepositories
         }
 
 
+        public CashCheckpoint GetCheckpointByCheckpointId(int checkpointId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

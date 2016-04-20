@@ -10,6 +10,7 @@ namespace Portfolio.BackEnd.Repository.Interfaces
         IQueryable<CashTransaction> GetCashTransactionsForAccount(int accountId);
 
         RepositoryActionResult<CashTransaction> InsertCashTransaction(CreateCashTransactionRequest request);
-
+        
+        void ApplyCheckpoint(CashCheckpoint cashCheckpoint);
     }
 }

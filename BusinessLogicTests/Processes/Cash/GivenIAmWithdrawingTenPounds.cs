@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using BusinessLogicTests.FakeRepositories;
-using Interfaces;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
@@ -9,7 +10,7 @@ using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
 using Xunit;
 
-namespace BusinessLogicTests.Transactions.Cash
+namespace BusinessLogicTests.Processes.Cash
 {
     public class GivenIAmWithdrawingTenPounds
     {
@@ -24,7 +25,7 @@ namespace BusinessLogicTests.Transactions.Cash
 
         public GivenIAmWithdrawingTenPounds()
         {
-            _fakeRepository = new FakeRepository(new FakeData());
+            _fakeRepository = new FakeRepository(new FakeDataGeneric());
             _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);                                   
         }
 

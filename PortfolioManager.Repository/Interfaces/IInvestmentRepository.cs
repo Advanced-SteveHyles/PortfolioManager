@@ -8,5 +8,6 @@ namespace Portfolio.BackEnd.Repository.Interfaces
 
         System.Linq.IQueryable<Entities.Investment> GetInvestments();
         Investment GetInvestment(int investmentId);
+        
     }
 }

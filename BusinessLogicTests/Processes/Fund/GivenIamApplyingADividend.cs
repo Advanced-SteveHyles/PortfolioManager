@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
@@ -30,7 +32,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
         public GivenIamApplyingADividend()
         {
-            _fakeRepository = new FakeRepository(new FakeData());
+            _fakeRepository = new FakeRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
         {

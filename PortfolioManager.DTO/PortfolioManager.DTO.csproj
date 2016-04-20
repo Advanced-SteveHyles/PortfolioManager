@@ -45,9 +45,11 @@
     <Compile Include="DTOs\Transactions\AccountTransactionSummaryDto.cs" />
     <Compile Include="DTOs\Transactions\CashTransactionDto.cs" />
     <Compile Include="Requests\AccountRequest.cs" />
+    <Compile Include="Requests\CheckpointRequest.cs" />
     <Compile Include="Requests\CreateCashTransactionRequest.cs" />
     <Compile Include="Requests\CreateFundTransactionRequest.cs" />
     <Compile Include="Requests\InvestmentRequest.cs" />
+    <Compile Include="Requests\ITransactionRequest.cs" />
     <Compile Include="Requests\PortfolioRequest.cs" />
     <Compile Include="Requests\PortfolioRevaluationRequest.cs" />
     <Compile Include="Requests\Transactions\CashTransferRequest.cs" />

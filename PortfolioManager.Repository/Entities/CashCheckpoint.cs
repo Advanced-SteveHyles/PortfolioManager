@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio.BackEnd.Repository.Entities
 {
-    [Table("Portfolio")]
-    public class Portfolio
+    [Table("CashCheckpoint")]
+    public class CashCheckpoint
     {
         [Key]
-        public int PortfolioId { get; set; }
-        public string Name { get; set; }
-        public virtual ICollection<Account> Accounts { get; set; }
+        public int CashCheckpointId { get; set; }
+        
     }
 }

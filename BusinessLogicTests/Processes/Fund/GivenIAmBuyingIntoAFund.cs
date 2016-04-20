@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using ExtensionMethods;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic;
@@ -21,7 +23,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private decimal _commission;
         private decimal _valueOfTransaction;
         private DateTime _transactionDate;
-        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeData());
+        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeDataGeneric());
         private RecordFundBuyProcess _buyProcess;
         private int _accountId;
 

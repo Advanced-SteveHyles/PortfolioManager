@@ -63,8 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\DataFakes\FakeDataForCheckpointing.cs" />
     <Compile Include="Fakes\DataFakes\IFakeData.cs" />
-    <Compile Include="Fakes\DataFakes\FakeData.cs" />
+    <Compile Include="Fakes\DataFakes\FakeDataGeneric.cs" />
     <Compile Include="Fakes\DataFakes\FakeDataForPortfolioValuation.cs" />
     <Compile Include="Fakes\FakeFactories\Class1.cs" />
     <Compile Include="Fakes\FakePortfolioRepository.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmDepositingTenPounds.cs" />
     <Compile Include="Processes\Fund\Evaluations\PortfolioValuation.cs" />
+    <Compile Include="Processes\GivenIWantToCreateACheckPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Processes\Fund\Evaluations\FullPortfolioRevaluation.cs" />
     <Compile Include="Processes\Fund\GivenIamApplyingACorporateAction.cs" />

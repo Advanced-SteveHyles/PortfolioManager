@@ -1,5 +1,6 @@
 ﻿using System;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.TransactionTypes;
