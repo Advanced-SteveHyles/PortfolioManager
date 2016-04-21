@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories.DataFakes;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
@@ -16,7 +17,7 @@ namespace BusinessLogicTests.Fakes
         , IAccountInvestmentMapRepository
         , IFundTransactionRepository
         , IPriceHistoryRepository
-        , ICheckpointRepository
+
     {
         private readonly IFakeData _fakeData;
         private readonly List<CashTransaction> _dummyCashTransactions;
@@ -33,7 +34,7 @@ namespace BusinessLogicTests.Fakes
             _dummyFundTransactions = new List<FundTransaction>();
             _dummyPriceHistoryList = new List<PriceHistory>();
             _investmentMaps = fakeData.FakePopulatedInvestmentMap();            
-            _accounts = fakeData.FakeAccountData();
+            _accounts = fakeData.FakeAccountData();            
         }
         
         public RepositoryActionResult<Account> InsertAccount(Account entityAccount)
@@ -141,6 +142,16 @@ namespace BusinessLogicTests.Fakes
                 );
             
             return null;
+        }
+
+        public RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId)
+        {
+            var transaction =GetCashTransaction(transactionId);
+            _dummyCashTransactions.Remove(transaction);
+            transaction.CheckpointId = cashCheckpoint.CashCheckpointId;
+            _dummyCashTransactions.Add(transaction);
+
+            return new RepositoryActionResult<CashTransaction>(transaction, RepositoryActionStatus.Updated);
         }
 
         public AccountInvestmentMap GetAccountInvestmentMap(int accountInvestmentMapId)
@@ -313,11 +324,6 @@ namespace BusinessLogicTests.Fakes
         {
             throw new NotImplementedException();
         }
-
-
-        public CashCheckpoint GetCheckpointByCheckpointId(int checkpointId)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

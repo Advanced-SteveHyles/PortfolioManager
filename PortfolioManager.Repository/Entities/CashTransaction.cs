@@ -20,5 +20,6 @@ namespace Portfolio.BackEnd.Repository.Entities
         public bool IsTaxRefund { get; set; }
         public Guid? LinkedTransaction { get; set; }
         public string LinkedTransactionType { get; set; }
+        public int? CheckpointId { get; set; }
     }
 }

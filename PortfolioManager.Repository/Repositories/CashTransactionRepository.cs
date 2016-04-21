@@ -48,5 +48,22 @@ namespace Portfolio.BackEnd.Repository.Repositories
             var tx = _context.CashTransactions.Where(t => t.AccountId == accountId);
             return tx;
         }
+
+        public RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId)
+        {
+            var transaction = GetCashTransaction(transactionId);
+            transaction.CheckpointId = cashCheckpoint.CashCheckpointId;
+        
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                return new RepositoryActionResult<CashTransaction>(transaction, RepositoryActionStatus.Updated);
+            }
+            else
+            {
+                return new RepositoryActionResult<CashTransaction>(transaction, RepositoryActionStatus.NothingModified, null);
+            }
+        }
     }
 }

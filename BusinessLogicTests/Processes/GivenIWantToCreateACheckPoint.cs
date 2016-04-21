@@ -12,6 +12,7 @@ namespace BusinessLogicTests.Processes
     public class GivenIWantToCreateACheckPointForCashTransactions
     {
         private FakeRepository _fakeRepository;
+        private FakeCheckpointRepository _fakeCheckpointRepository;
         private RecordCashCheckpointProcess _recordCashCheckpointProcess;
 
         public GivenIWantToCreateACheckPointForCashTransactions()
@@ -23,14 +24,14 @@ namespace BusinessLogicTests.Processes
 
             _fakeRepository = new FakeRepository(new FakeDataForCheckpointing());
 
-            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeRepository, request: request);
+            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _fakeRepository,  request);
             _recordCashCheckpointProcess.Execute();
         }
 
         [Fact]
         public void ThenICanCreateACheckpoint()
         {
-            var checkpoint = _fakeRepository.GetCheckpointByCheckpointId(1);
+            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(1);
 
             Assert.Equal(1, checkpoint.CashCheckpointId);
 

@@ -11,6 +11,6 @@ namespace Portfolio.BackEnd.Repository.Interfaces
 
         RepositoryActionResult<CashTransaction> InsertCashTransaction(CreateCashTransactionRequest request);
         
-        void ApplyCheckpoint(CashCheckpoint cashCheckpoint);
+        RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId);
     }
 }

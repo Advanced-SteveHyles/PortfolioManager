@@ -6,6 +6,6 @@ namespace Portfolio.BackEnd.Repository.Interfaces
     public interface ICheckpointRepository
     {
         CashCheckpoint GetCheckpointByCheckpointId(int checkpointId);
-        CashCheckpoint InsertCheckpoint(CheckpointRequest request);
+        RepositoryActionResult<CashCheckpoint> InsertCheckpoint(CheckpointRequest request);
     }
 }

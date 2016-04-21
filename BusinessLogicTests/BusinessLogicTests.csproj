@@ -67,6 +67,7 @@
     <Compile Include="Fakes\DataFakes\IFakeData.cs" />
     <Compile Include="Fakes\DataFakes\FakeDataGeneric.cs" />
     <Compile Include="Fakes\DataFakes\FakeDataForPortfolioValuation.cs" />
+    <Compile Include="Fakes\FakeCheckpointRepository.cs" />
     <Compile Include="Fakes\FakeFactories\Class1.cs" />
     <Compile Include="Fakes\FakePortfolioRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmWithdrawingTenPounds.cs" />
