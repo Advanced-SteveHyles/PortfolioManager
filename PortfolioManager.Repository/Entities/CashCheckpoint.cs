@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,9 @@ namespace Portfolio.BackEnd.Repository.Entities
     {
         [Key]
         public int CashCheckpointId { get; set; }
+
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
         
     }
 }

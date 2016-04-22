@@ -13,9 +13,15 @@ namespace BusinessLogicTests.Processes
     {
         private FakeRepository _fakeRepository;
         private FakeCheckpointRepository _fakeCheckpointRepository;
+        private CashTransactionRepository _fakeTransactionRepository;
         private RecordCashCheckpointProcess _recordCashCheckpointProcess;
+        
+        const int firstCheckpointId = 1;
 
-        public GivenIWantToCreateACheckPointForCashTransactions()
+        DateTime checkpointStartDate = DateTime.Today;
+        DateTime checkpointEndtDate = DateTime.Today;
+
+        public void Setup(List<int> linkedTransactions)
         {
             var accountId = 1;
             var fromDate = DateTime.Today;
@@ -23,24 +29,35 @@ namespace BusinessLogicTests.Processes
             var request = new CheckpointRequest(accountId, fromDate, toDate, new List<int>());
 
             _fakeRepository = new FakeRepository(new FakeDataForCheckpointing());
-
-            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _fakeRepository,  request);
+            _fakeCheckpointRepository = new FakeCheckpointRepository();
+            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _fakeRepository, request);
             _recordCashCheckpointProcess.Execute();
         }
 
         [Fact]
         public void ThenICanCreateACheckpoint()
         {
-            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(1);
+            Setup(new List<int>());
+            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(firstCheckpointId);
 
-            Assert.Equal(1, checkpoint.CashCheckpointId);
-
+            Assert.Equal(firstCheckpointId, checkpoint.CashCheckpointId);
+            Assert.Equal(checkpointStartDate, checkpoint.FromDate);
+            Assert.Equal(checkpointEndtDate, checkpoint.ToDate);
         }
 
-        //[Fact]
-        //public void ThenICanAddTransactionsToACheckpoint()
-        //{
-        //}
+        [Fact]
+        public void ThenICanAddTransactionsToACheckpoint()
+        {
+            Setup(new List<int>(){{ 1},{2},{ 3},{ 4}});
+
+            var transaction = _fakeTransactionRepository.getTransaction(1);
+            transaction = _fakeTransactionRepository.getTransaction(2);
+            transaction = _fakeTransactionRepository.getTransaction(3);
+            transaction = _fakeTransactionRepository.getTransaction(4);
+
+            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(firstCheckpointId);
+
+        }
 
         //[Fact]
         //public void ThenICanFindTransactionsBasedOnACheckpoint()
@@ -48,5 +65,7 @@ namespace BusinessLogicTests.Processes
         //}
 
         //Ensure checkpoint opening balance + closing balance = sum of transactions
+
+        //Ensure once checkpoint is present, new transaction date cannot be before checkpoint
     }
 }
