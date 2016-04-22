@@ -27,15 +27,19 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="1" Grid.Column="1">Property</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding PropertyActual}"></TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding PropertyTarget}"></TextBlock>
                 
                 <TextBlock Grid.Row="2" Grid.Column="1">Bonds</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding BondsActual}"></TextBlock>
                 <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding BondsTarget}"></TextBlock>
                 
                 <TextBlock Grid.Row="3" Grid.Column="1">Equity</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding EquityActual}"></TextBlock>
                 <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding EquityTarget}"></TextBlock>
                 
                 <TextBlock Grid.Row="4" Grid.Column="1">Cash</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CashActual}"></TextBlock>
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding CashTarget}"></TextBlock>
             </Grid>
         </GroupBox>

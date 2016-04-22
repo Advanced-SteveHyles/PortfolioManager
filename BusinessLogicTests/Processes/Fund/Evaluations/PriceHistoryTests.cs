@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.BackEnd.Repository.Entities;
@@ -25,7 +27,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 
         public PriceHistoryTests()
         {
-            _repository = new FakeRepository(new FakeData());
+            _repository = new FakeRepository(new FakeDataGeneric());
             _priceHistoryHandler = new PriceHistoryHandler(_repository);
 
             var accountMapHandler = new AccountHandler(_repository);

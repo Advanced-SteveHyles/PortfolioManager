@@ -5,8 +5,4 @@ namespace Portfolio.Common.DTO.Requests
         public int PortfolioId { get; set; }
         public string Name { get; set; }
     }
-
-    public interface ITransactionRequest
-    {
-    }
 }

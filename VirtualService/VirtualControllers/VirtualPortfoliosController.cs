@@ -31,7 +31,6 @@ namespace Portfolio.API.Virtual.VirtualControllers
 
         public PortfolioDto InsertPortfolio(PortfolioRequest portfolio)
         {
-
                 var entityPortfolio = new PortfolioFactory().CreatePortfolio(portfolio);                
                 var result = _repository.InsertPortfolio(entityPortfolio);
                 if (result.Status == RepositoryActionStatus.Created)
@@ -43,6 +42,11 @@ namespace Portfolio.API.Virtual.VirtualControllers
             throw new NotSupportedException();
         }
 
+        public PortfolioValuationDto GetPortfolioValuation(int portfolioId)
+        {
+            var result = _repository.GetPortfolioValuation(portfolioId);
+            return result.MapToDto();
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
@@ -11,7 +13,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 {
     public class FullPortfolioRevaluation
     {
-        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeData());
+        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeDataGeneric());
         private readonly PriceHistoryHandler _priceHandler;
 
         public FullPortfolioRevaluation()

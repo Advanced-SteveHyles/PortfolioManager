@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using BusinessLogicTests.FakeRepositories;
+using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
@@ -20,7 +22,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private decimal _commission;
         private decimal _valueOfTransaction;
         private DateTime _transactionDate;
-        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeData());
+        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeDataGeneric());
         private RecordFundSellProcess _sellProcess;
         private int _accountId;
 
@@ -178,7 +180,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
-            var investmentId = FakeData.FakeInvestmentId;
+            var investmentId = FakeDataGeneric.FakeInvestmentId;
             var prices = _fakeRepository.GetInvestmentBuyPrices(investmentId);
 
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);

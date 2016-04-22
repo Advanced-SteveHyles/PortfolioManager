@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
 using static Portfolio.BackEnd.BusinessLogic.Validators.GlobalValidators;
@@ -28,5 +29,10 @@ namespace Portfolio.BackEnd.BusinessLogic.Validators
                                                                                && IsValidDate(request.TransactionDate)
                                                                                && !string.IsNullOrWhiteSpace(request.Source)
                                                                                && CashDepositTransactionTypes.DepositTypes.Contains(request.TransactionType);
+
+        public static bool Validate(this CheckpointRequest request) => request.AccountId > 0 
+                                                                        && IsValidDate(request.FromDate) 
+                                                                        && IsValidDate(request.ToDate);
+
     }
 }

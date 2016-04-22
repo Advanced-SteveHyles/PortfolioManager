@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\BaseProcess.cs" />
     <Compile Include="Interfaces\IMediator.cs" />
     <Compile Include="Linking\TransactionLink.cs" />
+    <Compile Include="Processors\Processes\RecordCashCheckpointProcess.cs" />
     <Compile Include="Processors\Processes\PortfolioValuationProcessor.cs" />
     <Compile Include="Processors\Processes\RecordCashTransferProcess.cs" />
     <Compile Include="Processors\Processes\RecordDividendProcess.cs" />

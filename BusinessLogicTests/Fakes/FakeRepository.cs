@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories.DataFakes;
+using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
-using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.DTO.Requests;
 
-namespace BusinessLogicTests.FakeRepositories
+namespace BusinessLogicTests.Fakes
 {
     public class FakeRepository        :
         IInvestmentRepository
@@ -16,7 +16,8 @@ namespace BusinessLogicTests.FakeRepositories
         , ICashTransactionRepository
         , IAccountInvestmentMapRepository
         , IFundTransactionRepository
-        , IPriceHistoryRepository        
+        , IPriceHistoryRepository
+
     {
         private readonly IFakeData _fakeData;
         private readonly List<CashTransaction> _dummyCashTransactions;
@@ -33,7 +34,7 @@ namespace BusinessLogicTests.FakeRepositories
             _dummyFundTransactions = new List<FundTransaction>();
             _dummyPriceHistoryList = new List<PriceHistory>();
             _investmentMaps = fakeData.FakePopulatedInvestmentMap();            
-            _accounts = fakeData.FakeAccountData();
+            _accounts = fakeData.FakeAccountData();            
         }
         
         public RepositoryActionResult<Account> InsertAccount(Account entityAccount)
@@ -141,6 +142,16 @@ namespace BusinessLogicTests.FakeRepositories
                 );
             
             return null;
+        }
+
+        public RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId)
+        {
+            var transaction =GetCashTransaction(transactionId);
+            _dummyCashTransactions.Remove(transaction);
+            transaction.CheckpointId = cashCheckpoint.CashCheckpointId;
+            _dummyCashTransactions.Add(transaction);
+
+            return new RepositoryActionResult<CashTransaction>(transaction, RepositoryActionStatus.Updated);
         }
 
         public AccountInvestmentMap GetAccountInvestmentMap(int accountInvestmentMapId)
@@ -313,7 +324,6 @@ namespace BusinessLogicTests.FakeRepositories
         {
             throw new NotImplementedException();
         }
-
-
+       
     }
 }

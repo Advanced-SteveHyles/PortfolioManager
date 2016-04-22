@@ -31,7 +31,7 @@ namespace PortfolioManager.TreePages
         public UserControl GetView()
         {
             if (_portfolioDetailsViewModel == null)
-                _portfolioDetailsViewModel = new PortfolioDetailsViewModel();
+                _portfolioDetailsViewModel = new PortfolioDetailsViewModel(_portfolio.PortfolioId);
 
             return new PortfolioDetailsView() {DataContext = _portfolioDetailsViewModel};
         }

@@ -1,15 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using BusinessLogicTests.FakeRepositories.DataFakes;
 using Portfolio.BackEnd.Repository.Entities;
-using Portfolio.Common.Constants.Funds;
-using Portfolio.Common.Constants.TransactionTypes;
-using Xunit.Sdk;
 
-namespace BusinessLogicTests.FakeRepositories
+namespace BusinessLogicTests.Fakes.DataFakes
 {
-    internal class FakeData : IFakeData
+    internal class FakeDataGeneric : IFakeData
     {
         public const int FakeInvestmentId = 1;
 
@@ -21,9 +16,9 @@ namespace BusinessLogicTests.FakeRepositories
                 Name = "Investment 1"
             }
         };
-         
 
-        List<AccountInvestmentMap> IFakeData.FakePopulatedInvestmentMap()
+
+        public List<AccountInvestmentMap> FakePopulatedInvestmentMap()
         {
             return new List<AccountInvestmentMap>
             {
@@ -72,12 +67,12 @@ namespace BusinessLogicTests.FakeRepositories
             };
         }
 
-        List<Investment> IFakeData.FakePopulatedInvestments()
+        public List<Investment> FakePopulatedInvestments()
         {
             return _investments;
         }
 
-        List<Account> IFakeData.FakeAccountData()
+        public List<Account> FakeAccountData()
         {
             return new List<Account>()
             {

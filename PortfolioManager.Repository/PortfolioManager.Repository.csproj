@@ -51,13 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Entities\CashCheckpoint.cs" />
     <Compile Include="Entities\CashTransaction.cs" />
     <Compile Include="Entities\FundTransaction.cs" />
+    <Compile Include="Entities\PortfolioValuation.cs" />
     <Compile Include="Entities\PriceHistory.cs" />
     <Compile Include="EntityToDtoMap.cs" />
     <Compile Include="Factories\InvestmentFactory.cs" />
     <Compile Include="Factories\InvestmentMapFactory.cs" />
     <Compile Include="Factories\PriceHistoryFactory.cs" />
+    <Compile Include="Interfaces\ICheckpointRepository.cs" />
     <Compile Include="Interfaces\IFundTransactionRepository.cs" />
     <Compile Include="Interfaces\IPriceHistoryRepository.cs" />
     <Compile Include="Repositories\AccountInvestmentMapRepository.cs" />

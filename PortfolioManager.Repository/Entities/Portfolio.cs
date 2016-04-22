@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio.BackEnd.Repository.Entities
 {
-    [Table ("Portfolio")]
-    public partial class Portfolio
+    [Table("Portfolio")]
+    public class Portfolio
     {
         [Key]
         public int PortfolioId { get; set; }

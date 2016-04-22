@@ -171,6 +171,4 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Handlers
                 CashTransactionTypes.Commission, transactionLink);
         }
     }
-
-
 }
