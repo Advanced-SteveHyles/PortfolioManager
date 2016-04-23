@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BusinessLogicTests.FakeRepositories;
 using BusinessLogicTests.Fakes;
 using BusinessLogicTests.Fakes.DataFakes;
-using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.DTO.Requests.Transactions;

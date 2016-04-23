@@ -6,42 +6,15 @@ using Portfolio.Common.Constants.TransactionTypes;
 
 namespace BusinessLogicTests.FakeRepositories
 {
-    internal class FakeDataForPortfolioValuation : IFakeData
+    internal class FakeDataForPortfolioValuation : FakeData
     {
+        private List<Account> _accounts;
+        private List<Investment> _investments;
+        private List<AccountInvestmentMap> _accountInvestmentMaps;
 
-        public const int PortfolioWithNoAccounts = 999;
-
-        public const int BondAccountInvestmentMap = 90;
-        public const int EquityAccountInvestmentMap = 900;
-        public const int StockIsaAccountMap = 910;
-
-        public const int BondInvestment = 89;
-        public const int FundEquityInvestment = 90;
-        public const int TrackerEquityInvestment = 91;
-
-
-        public const int PortfolioWithPropertyOnlyAccount = 78;
-        public const int PortfolioWithOnlySavingsAccount = 785;
-        public const int PortfolioWithAccountLinkedToBond = 9;
-        public const int PortfolioWithAccountLinkedToEquity = 99;
-
-        public const int PortfolioWithAllAccountTypes = 718;
-        
-
-        public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
-        public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
-        public const int BondAccountForPortfolioWithOnlyBondsAccounts = 771;
-        public const int EquityAccountForPortfolioWithOnlyEquityAccounts = 772;
-
-        public const int PropertyAccountForPortfolioWithAllAccountTypes = 1024;
-        public const int SavingsAccountForPortfolioWithAllAccountTypes = 1025;
-        public const int CashIsaAccountForPortfolioWithAllAccountTypes = 1026;
-        public const int PensionAccountForPortfolioWithAllAccountTypes = 1027;
-        public const int StockIsaAccountForPortfolioWithAllAccountTypes = 1028;
-
-        List<Account> IFakeData.FakeAccountData()
+        public FakeDataForPortfolioValuation()
         {
-            return new List<Account>()
+            _accounts = new List<Account>()
             {                
                 new Account()
                 {
@@ -110,11 +83,14 @@ namespace BusinessLogicTests.FakeRepositories
                 },
 
             };
-        }
+            _investments = new List<Investment>()
+            {
+                new Investment() {InvestmentId = BondInvestment, Type = FundInvestmentTypes.Bond, Class = FundClasses.Oeic},
+                new Investment() {InvestmentId = FundEquityInvestment, Type = FundInvestmentTypes.Fund, Class = FundClasses.Oeic},
+                new Investment() {InvestmentId = TrackerEquityInvestment, Type = FundInvestmentTypes.Tracker},
+            };
 
-        List<AccountInvestmentMap> IFakeData.FakePopulatedInvestmentMap()
-        {
-            return new List<AccountInvestmentMap>
+            _accountInvestmentMaps = new List<AccountInvestmentMap>
             {
                 new AccountInvestmentMap()
                 {
@@ -131,7 +107,7 @@ namespace BusinessLogicTests.FakeRepositories
                     AccountId = EquityAccountForPortfolioWithOnlyEquityAccounts,
                     Quantity = 0,
                     Valuation = 0
-                },                
+                },
                 new AccountInvestmentMap()
                 {
                     AccountInvestmentMapId = StockIsaAccountMap,
@@ -143,15 +119,51 @@ namespace BusinessLogicTests.FakeRepositories
             };
         }
 
+        public const int PortfolioWithNoAccounts = 999;
 
-        public List<Investment> FakePopulatedInvestments()
+        public const int BondAccountInvestmentMap = 90;
+        public const int EquityAccountInvestmentMap = 900;
+        public const int StockIsaAccountMap = 910;
+
+        public const int BondInvestment = 89;
+        public const int FundEquityInvestment = 90;
+        public const int TrackerEquityInvestment = 91;
+
+
+        public const int PortfolioWithPropertyOnlyAccount = 78;
+        public const int PortfolioWithOnlySavingsAccount = 785;
+        public const int PortfolioWithAccountLinkedToBond = 9;
+        public const int PortfolioWithAccountLinkedToEquity = 99;
+
+        public const int PortfolioWithAllAccountTypes = 718;
+        
+
+        public const int PropertyAccountForPortfolioWithOnlyPropertyAccount = 7;
+        public const int SavingsAccountForPortfolioWithOnlySavingsAccount = 8;
+        public const int BondAccountForPortfolioWithOnlyBondsAccounts = 771;
+        public const int EquityAccountForPortfolioWithOnlyEquityAccounts = 772;
+
+        public const int PropertyAccountForPortfolioWithAllAccountTypes = 1024;
+        public const int SavingsAccountForPortfolioWithAllAccountTypes = 1025;
+        public const int CashIsaAccountForPortfolioWithAllAccountTypes = 1026;
+        public const int PensionAccountForPortfolioWithAllAccountTypes = 1027;
+        public const int StockIsaAccountForPortfolioWithAllAccountTypes = 1028;
+
+        public override List<Account> Accounts()
         {
-            return new List<Investment>()
-            {
-                new Investment() {InvestmentId = BondInvestment, Type = FundInvestmentTypes.Bond, Class = FundClasses.Oeic},
-                new Investment() {InvestmentId = FundEquityInvestment, Type = FundInvestmentTypes.Fund, Class = FundClasses.Oeic},
-                new Investment() {InvestmentId = TrackerEquityInvestment, Type = FundInvestmentTypes.Tracker},
-            };
+            return _accounts;
+        }
+
+        public override List<AccountInvestmentMap> InvestmentMaps()
+        {
+           
+            return _accountInvestmentMaps;
+        }
+
+
+        public override List<Investment> Investments()
+        {
+            return _investments;
 
         }
     }

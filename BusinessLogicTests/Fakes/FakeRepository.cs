@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogicTests.FakeRepositories.DataFakes;
-using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Entities;
 using Portfolio.BackEnd.Repository.Interfaces;
@@ -13,28 +12,16 @@ namespace BusinessLogicTests.Fakes
     public class FakeRepository        :
         IInvestmentRepository
         , IAccountRepository
-        , ICashTransactionRepository
         , IAccountInvestmentMapRepository
         , IFundTransactionRepository
         , IPriceHistoryRepository
 
     {
-        private readonly IFakeData _fakeData;
-        private readonly List<CashTransaction> _dummyCashTransactions;
-        private readonly List<FundTransaction> _dummyFundTransactions;
-        private readonly List<PriceHistory> _dummyPriceHistoryList;
-        private readonly List<AccountInvestmentMap> _investmentMaps;        
-
-        readonly List<Account> _accounts;
-
-        public FakeRepository(IFakeData fakeData)
+        private readonly FakeData _fakeData;
+                        
+        public FakeRepository(FakeData fakeData)
         {
-            _fakeData = fakeData;
-            _dummyCashTransactions = new List<CashTransaction>();
-            _dummyFundTransactions = new List<FundTransaction>();
-            _dummyPriceHistoryList = new List<PriceHistory>();
-            _investmentMaps = fakeData.FakePopulatedInvestmentMap();            
-            _accounts = fakeData.FakeAccountData();            
+            _fakeData = fakeData;                                   
         }
         
         public RepositoryActionResult<Account> InsertAccount(Account entityAccount)
@@ -49,7 +36,7 @@ namespace BusinessLogicTests.Fakes
 
         public Account GetAccountByAccountId(int id)
         {
-            return _accounts.Single(a => a.AccountId == id);
+            return _fakeData.Accounts().Single(a => a.AccountId == id);
         }
 
         public void AdjustAccountBalance(int accountId, decimal amount)
@@ -66,41 +53,38 @@ namespace BusinessLogicTests.Fakes
         {
             var account = GetAccountByAccountId(accountId);
             account.Valuation += valuation;
-            _accounts.RemoveAll(acc => acc.AccountId == accountId);
-            _accounts.Add(account);
+            _fakeData.Accounts().RemoveAll(acc => acc.AccountId == accountId);
+            _fakeData.Accounts().Add(account);
         }
 
         public void DecreaseValuation(int accountId, decimal valuation)
         {
             var account = GetAccountByAccountId(accountId);
             account.Valuation -= valuation;
-            _accounts.RemoveAll(acc => acc.AccountId == accountId);
-            _accounts.Add(account);
+            _fakeData.Accounts().RemoveAll(acc => acc.AccountId == accountId);
+            _fakeData.Accounts().Add(account);
         }
 
         public IEnumerable<Account> GetAccounts()
         {
-            return _accounts;
+            return _fakeData.Accounts();
         }
 
         public IEnumerable<Account> GetAccountsForPortfolio(int portfolioId)
         {
-            return _accounts.Where(acc => acc.PortfolioId == portfolioId).ToList();
+            return _fakeData.Accounts().Where(acc => acc.PortfolioId == portfolioId).ToList();
         }
 
         public void SetValuation(int accountId, decimal valuation)
         {
             var account = GetAccountByAccountId(accountId);
             account.Valuation = valuation;
-            _accounts.RemoveAll(acc => acc.AccountId == accountId);
-            _accounts.Add(account);
+            _fakeData.Accounts().RemoveAll(acc => acc.AccountId == accountId);
+            _fakeData.Accounts().Add(account);
         }
 
 
-        public IQueryable<CashTransaction> GetCashTransactionsForAccount(int accountId)
-        {
-            return _dummyCashTransactions.Where(ct => ct.AccountId == accountId).AsQueryable();
-        }
+        
 
         public RepositoryActionResult<Investment> InsertInvestment(Investment entityInvestment)
         {
@@ -109,7 +93,7 @@ namespace BusinessLogicTests.Fakes
 
         public IQueryable<Investment> GetInvestments()
         {
-            return _investmentMaps.Select(inv => new Investment()
+            return _fakeData.InvestmentMaps().Select(inv => new Investment()
             {
                 InvestmentId = inv.InvestmentId,
             }).AsQueryable();
@@ -117,47 +101,13 @@ namespace BusinessLogicTests.Fakes
 
         public Investment GetInvestment(int investmentId)
         {
-            return _fakeData.FakePopulatedInvestments().Single(inv => inv.InvestmentId == investmentId);
+            return _fakeData.Investments().Single(inv => inv.InvestmentId == investmentId);
         }
-
-
-        private int _nextCashTransactionId;
-        public RepositoryActionResult<CashTransaction> InsertCashTransaction(CreateCashTransactionRequest request)
-        {
-            _nextCashTransactionId++;
-            var cashTransaction = new CashTransaction()
-            {
-                CashTransactionId = _nextCashTransactionId,
-                AccountId = request.AccountId,
-                TransactionDate = request.TransactionDate,
-                TransactionValue = request.TransactionValue,
-                Source = request.Source,
-                IsTaxRefund = request.IsTaxRefund,
-                TransactionType = request.TransactionType,
-                LinkedTransactionType = request.LinkedTransactionType,
-                LinkedTransaction = request.LinkedTransaction
-            };
-            _dummyCashTransactions.Add(
-                cashTransaction
-                );
-            
-            return null;
-        }
-
-        public RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId)
-        {
-            var transaction =GetCashTransaction(transactionId);
-            _dummyCashTransactions.Remove(transaction);
-            transaction.CheckpointId = cashCheckpoint.CashCheckpointId;
-            _dummyCashTransactions.Add(transaction);
-
-            return new RepositoryActionResult<CashTransaction>(transaction, RepositoryActionStatus.Updated);
-        }
-
+        
         public AccountInvestmentMap GetAccountInvestmentMap(int accountInvestmentMapId)
         {
             var accountInvestmentMapDto =
-                _investmentMaps.SingleOrDefault(i => i.AccountInvestmentMapId == accountInvestmentMapId);
+           _fakeData.InvestmentMaps().SingleOrDefault(i => i.AccountInvestmentMapId == accountInvestmentMapId);
 
             if (accountInvestmentMapDto != null)
                 return new AccountInvestmentMap()
@@ -178,8 +128,8 @@ namespace BusinessLogicTests.Fakes
             map.Valuation = investmentMap.Valuation;
             map.Quantity = investmentMap.Quantity;
 
-            _investmentMaps.RemoveAll(f => f.AccountInvestmentMapId == map.AccountInvestmentMapId);
-            _investmentMaps.Add(map);
+            _fakeData.InvestmentMaps().RemoveAll(f => f.AccountInvestmentMapId == map.AccountInvestmentMapId);
+            _fakeData.InvestmentMaps().Add(map);
         }
 
         public RepositoryActionResult<AccountInvestmentMap> InsertAccountInvestmentMap(AccountInvestmentMap entityAccountInvestmentMap)
@@ -193,24 +143,24 @@ namespace BusinessLogicTests.Fakes
                 Valuation = entityAccountInvestmentMap.Valuation
             };
 
-            _investmentMaps.Add(map);
+            _fakeData.InvestmentMaps().Add(map);
 
             return new RepositoryActionResult<AccountInvestmentMap>(map, RepositoryActionStatus.Created);
         }
 
         public IQueryable<AccountInvestmentMap> GetAccountInvestmentMapsByInvestmentId(int investmentId)
         {
-            return _investmentMaps.Where(inv => inv.InvestmentId == investmentId).AsQueryable();
+            return _fakeData.InvestmentMaps().Where(inv => inv.InvestmentId == investmentId).AsQueryable();
         }
 
         public IQueryable<AccountInvestmentMap> GetAccountInvestmentMapsByAccountId(int accountId)
         {
-            return _investmentMaps.Where(inv => inv.AccountId == accountId).AsQueryable();
+            return _fakeData.InvestmentMaps().Where(inv => inv.AccountId == accountId).AsQueryable();
         }
 
         public IQueryable<AccountInvestmentMap> GetAccountInvestmentMaps()
         {
-            return _investmentMaps.Select(map => new AccountInvestmentMap()
+            return _fakeData.InvestmentMaps().Select(map => new AccountInvestmentMap()
             {
                 AccountId = map.AccountId,
                 Valuation = map.Valuation
@@ -219,7 +169,7 @@ namespace BusinessLogicTests.Fakes
 
         public FundTransaction GetFundTransaction(int fundTransactionId)
         {            
-            return _dummyFundTransactions.Single(t => t.FundTransactionId == fundTransactionId);
+            return _fakeData.FundTransactions().Single(t => t.FundTransactionId == fundTransactionId);
         }
 
         private int _nextFundTransactionId;
@@ -243,25 +193,21 @@ namespace BusinessLogicTests.Fakes
                 LinkedTransactionType = request.LinkedTransactionType,
                 LinkedTransaction = request.LinkedTransaction
             };
-            
-            _dummyFundTransactions.Add(dummyFundTransaction);
+
+            _fakeData.FundTransactions().Add(dummyFundTransaction);
 
             return new RepositoryActionResult<FundTransaction>(dummyFundTransaction, RepositoryActionStatus.Ok);
         }
 
-        public CashTransaction GetCashTransaction(int cashTransactionId)
-        {
-            return _dummyCashTransactions.Single(t => t.CashTransactionId == cashTransactionId);
-        }
 
         public IQueryable<PriceHistory> GetInvestmentSellPrices(int investmentId)
         {
-            return _dummyPriceHistoryList.Where(ph => ph.InvestmentId == investmentId).AsQueryable();
+            return _fakeData.PriceHistories().Where(ph => ph.InvestmentId == investmentId).AsQueryable();
         }
 
         public IQueryable<PriceHistory> GetInvestmentBuyPrices(int investmentId)
         {
-            return _dummyPriceHistoryList.Where(ph => ph.InvestmentId == investmentId).AsQueryable();
+            return _fakeData.PriceHistories().Where(ph => ph.InvestmentId == investmentId).AsQueryable();
         }
 
         private int _priceHistoryId;
@@ -278,7 +224,7 @@ namespace BusinessLogicTests.Fakes
                 RecordedDate = recordedDate
             };
 
-            _dummyPriceHistoryList.Add(priceHistory);
+            _fakeData.PriceHistories().Add(priceHistory);
 
             return null;
         }
@@ -286,44 +232,30 @@ namespace BusinessLogicTests.Fakes
         public void SetInvestmentClass(int fakeInvestmentId, string investmentClass)
         {
             var investment = _fakeData
-                .FakePopulatedInvestments()
+                .Investments()
                 .First(i => i.InvestmentId == fakeInvestmentId);
 
-            _fakeData.FakePopulatedInvestments().Remove(investment);
+            _fakeData.Investments().Remove(investment);
             investment.Class = investmentClass;
-            _fakeData.FakePopulatedInvestments().Add(investment);
+            _fakeData.Investments().Add(investment);
         }
 
         public void SetInvestmentIncome(int fakeInvestmentId,  string investmentIncomeType)
         {
             var investment = _fakeData
-                .FakePopulatedInvestments()
+                .Investments()
                 .First(i => i.InvestmentId == fakeInvestmentId);
 
-            _fakeData.FakePopulatedInvestments().Remove(investment);
+            _fakeData.Investments().Remove(investment);
             investment.IncomeType = investmentIncomeType;
-            _fakeData.FakePopulatedInvestments().Add(investment);
+            _fakeData.Investments().Add(investment);
         }
 
         public List<AccountInvestmentMap> GetAllAccountInvestmentMaps()
         {
-            return _investmentMaps;
+            return _fakeData.InvestmentMaps();
         }
-
-        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolio(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Portfolio.BackEnd.Repository.Entities.Portfolio GetPortfolioWithAccounts(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Portfolio.BackEnd.Repository.Entities.Portfolio> GetPortfolios()
-        {
-            throw new NotImplementedException();
-        }
+        
        
     }
 }

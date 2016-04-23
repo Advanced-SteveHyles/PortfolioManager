@@ -26,13 +26,15 @@ namespace BusinessLogicTests.Transactions.Fund
         private readonly int _accountId = 1;
         readonly decimal _corporateActionAmount = 50;
         readonly DateTime _transactionDate = DateTime.Now;
-        
+        private readonly FakeCashTransactionRepository _cashTransactionRepository;
+
         private const int FundTransactionId = 1;
         private const int CashTransactionId = 1;
 
         public GivenIamApplyingACorporateAction()
         {
             _fakeRepository = new FakeRepository(new FakeDataGeneric());
+            _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
         {
@@ -44,7 +46,7 @@ namespace BusinessLogicTests.Transactions.Fund
             };
 
             _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
-            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             _investmentHandler = new InvestmentHandler(_fakeRepository);
 
@@ -82,7 +84,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _fakeRepository.SetInvestmentIncome(FakeDataGeneric.FakeInvestmentId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
-            var transaction = _fakeRepository.GetCashTransaction(CashTransactionId);
+            var transaction = _cashTransactionRepository.GetCashTransactionById(CashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
             Assert.Equal(_corporateActionAmount, transaction.TransactionValue);
@@ -90,7 +92,7 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal(false, transaction.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.CorporateAction, transaction.TransactionType);
 
-            Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
+            Assert.Equal(1, _cashTransactionRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
 
         [Fact]
@@ -121,7 +123,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             _fakeRepository.SetInvestmentIncome(FakeDataGeneric.FakeInvestmentId, FundIncomeTypes.Accumulation);
             SetupAndOrExecute(true);
-            Assert.Equal(0, _fakeRepository.GetCashTransactionsForAccount(_accountId).Count());
+            Assert.Equal(0, _cashTransactionRepository.GetCashTransactionsForAccount(_accountId).Count());
         }
 
         [Fact]
@@ -165,7 +167,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var fundTransaction = _fakeRepository.GetFundTransaction(FundTransactionId);
-            var cashTransaction = _fakeRepository.GetCashTransaction(CashTransactionId);
+            var cashTransaction = _cashTransactionRepository.GetCashTransactionById(CashTransactionId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);

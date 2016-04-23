@@ -1,6 +1,7 @@
 ﻿using System;
 using BusinessLogicTests.FakeRepositories;
 using BusinessLogicTests.Fakes;
+using BusinessLogicTests.Fakes.DataFakes;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
 using Portfolio.Common.Constants.TransactionTypes;
@@ -15,13 +16,16 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
     {
         private readonly FakePortfolioRepository _fakePortfolioRepository;
         private readonly FakeRepository _fakeRepository;
+        private readonly FakeCashTransactionRepository _cashTransactionRepository;
 
         private const decimal Commission = 2;
 
         public PortfolioValuation()
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
-            _fakeRepository = new FakeRepository(new FakeDataForPortfolioValuation());            
+            _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
+            _fakeRepository = new FakeRepository(new FakeDataForPortfolioValuation());
+            
         }
 
         [Fact]
@@ -213,7 +217,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             };
 
             var     _accountHandler = new AccountHandler(_fakeRepository);
-            var _cashCashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            var _cashCashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
             var _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             var _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
             var _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
@@ -274,7 +278,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
                 TransactionType = CashDepositTransactionTypes.Deposit
             };
 
-            var cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            var cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
 
             var depositTransaction = new RecordDepositProcess(depositTransactionRequest, cashTransactionHandler, null);
             depositTransaction.Execute();

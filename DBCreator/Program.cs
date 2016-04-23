@@ -11,10 +11,9 @@ namespace DBCreator
     {                
         static void Main(string[] args)
         {
-            var databasePath = Environment.CurrentDirectory;
-            string RawConnection =
-                    $"Data Source=(LocalDb)\\MSSQLLocalDB;AttachDbFilename={databasePath}\\PortfolioManagerDummy.mdf;Initial Catalog=TestConnection;Integrated Security=True";
-            
+            // var databasePath = Environment.CurrentDirectory;
+            //string RawConnection = $"Data Source=(LocalDb)\\MSSQLLocalDB;AttachDbFilename={databasePath}\\PortfolioManagerDummy.mdf;Initial Catalog=TestConnection;Integrated Security=True";
+            string RawConnection =@"Data Source=.\PowerHouse;Initial Catalog=Template;Integrated Security=True";
 
             using (var ctx = new PortfolioManagerContext(RawConnection, true))
             {                

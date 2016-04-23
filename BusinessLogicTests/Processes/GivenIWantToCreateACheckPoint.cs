@@ -5,32 +5,33 @@ using BusinessLogicTests.Fakes;
 using BusinessLogicTests.Fakes.DataFakes;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.BackEnd.Repository.Repositories;
 using Xunit;
 
 namespace BusinessLogicTests.Processes
 {
     public class GivenIWantToCreateACheckPointForCashTransactions
     {
-        private FakeRepository _fakeRepository;
         private FakeCheckpointRepository _fakeCheckpointRepository;
-        private CashTransactionRepository _fakeTransactionRepository;
+        private FakeCashTransactionRepository _cashTransactionRepository;
         private RecordCashCheckpointProcess _recordCashCheckpointProcess;
         
         const int firstCheckpointId = 1;
 
-        DateTime checkpointStartDate = DateTime.Today;
-        DateTime checkpointEndtDate = DateTime.Today;
+        readonly DateTime checkpointStartDate = DateTime.Today;
+        readonly DateTime checkpointEndtDate = DateTime.Today;
 
         public void Setup(List<int> linkedTransactions)
         {
             var accountId = 1;
             var fromDate = DateTime.Today;
             var toDate = DateTime.Today;
-            var request = new CheckpointRequest(accountId, fromDate, toDate, new List<int>());
-
-            _fakeRepository = new FakeRepository(new FakeDataForCheckpointing());
+            var request = new CheckpointRequest(accountId, fromDate, toDate, linkedTransactions);
+            
             _fakeCheckpointRepository = new FakeCheckpointRepository();
-            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _fakeRepository, request);
+            _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataForCheckpointing());
+
+            _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _cashTransactionRepository, request);
             _recordCashCheckpointProcess.Execute();
         }
 
@@ -50,13 +51,17 @@ namespace BusinessLogicTests.Processes
         {
             Setup(new List<int>(){{ 1},{2},{ 3},{ 4}});
 
-            var transaction = _fakeTransactionRepository.getTransaction(1);
-            transaction = _fakeTransactionRepository.getTransaction(2);
-            transaction = _fakeTransactionRepository.getTransaction(3);
-            transaction = _fakeTransactionRepository.getTransaction(4);
+            var transaction = _cashTransactionRepository.GetCashTransactionById(1);
+            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
 
-            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(firstCheckpointId);
+            transaction = _cashTransactionRepository.GetCashTransactionById(2);
+            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
 
+            transaction = _cashTransactionRepository.GetCashTransactionById(3);
+            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
+
+            transaction = _cashTransactionRepository.GetCashTransactionById(4);
+            Assert.Equal(firstCheckpointId, transaction.CheckpointId);            
         }
 
         //[Fact]

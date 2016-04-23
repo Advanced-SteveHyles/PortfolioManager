@@ -16,6 +16,7 @@ namespace BusinessLogicTests.Transactions.Fund
     public class GivenIAmTransferingCashFromOneAccountToAnother
     {
         private readonly FakeRepository _fakeRepository;
+        private readonly FakeCashTransactionRepository _fakeCashTransactionRepository;
         private RecordCashTransferProcess _process;
         private CashTransactionHandler _cashTransactionHandler;
         private AccountHandler _accountHandler;
@@ -28,6 +29,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public GivenIAmTransferingCashFromOneAccountToAnother()
         {
             _fakeRepository = new FakeRepository(new FakeDataGeneric());
+            _fakeCashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
         {
@@ -39,7 +41,7 @@ namespace BusinessLogicTests.Transactions.Fund
                 TransactionDate = _transactionDate
             };
 
-            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeRepository);
             _accountHandler = new AccountHandler(_fakeRepository);
 
             _process = new RecordCashTransferProcess(
@@ -57,7 +59,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             const int cashTransactionId = 1;
-            var transaction2 = _fakeRepository.GetCashTransaction(cashTransactionId);
+            var transaction2 = _fakeCashTransactionRepository.GetCashTransactionById(cashTransactionId);
             var withdrawalAmount = -_transferAmount;
             Assert.Equal(_accountId1, transaction2.AccountId);
             Assert.Equal(_transactionDate, transaction2.TransactionDate);
@@ -65,7 +67,7 @@ namespace BusinessLogicTests.Transactions.Fund
             Assert.Equal("TFR Acc1 => Acc2", transaction2.Source);
             Assert.Equal(false, transaction2.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.CashTransferOut, transaction2.TransactionType);
-            Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId1).Count());
+            Assert.Equal(1, _fakeCashTransactionRepository.GetCashTransactionsForAccount(_accountId1).Count());
         }
 
         [Fact]
@@ -74,22 +76,22 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             const int cashTransactionId = 2;
-            var transaction1 = _fakeRepository.GetCashTransaction(cashTransactionId);
+            var transaction1 = _fakeCashTransactionRepository.GetCashTransactionById(cashTransactionId);
             Assert.Equal(_accountId2, transaction1.AccountId);
             Assert.Equal(_transactionDate, transaction1.TransactionDate);
             Assert.Equal(_transferAmount, transaction1.TransactionValue);
             Assert.Equal("TFR Acc1 => Acc2", transaction1.Source);
             Assert.Equal(false, transaction1.IsTaxRefund);
             Assert.Equal(CashTransactionTypes.CashTransferIn, transaction1.TransactionType);
-            Assert.Equal(1, _fakeRepository.GetCashTransactionsForAccount(_accountId2).Count());
+            Assert.Equal(1, _fakeCashTransactionRepository.GetCashTransactionsForAccount(_accountId2).Count());
         }
 
         [Fact]
         public void WhenIRecordATransferTheTransactionsAreLinked()
         {
             SetupAndOrExecute(true);
-            var transaction1 = _fakeRepository.GetCashTransaction(1);
-            var transaction2 = _fakeRepository.GetCashTransaction(2);
+            var transaction1 = _fakeCashTransactionRepository.GetCashTransactionById(1);
+            var transaction2 = _fakeCashTransactionRepository.GetCashTransactionById(2);
             Assert.NotEqual(Guid.Empty, transaction1.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, transaction2.LinkedTransaction);
             Assert.Equal(transaction1.LinkedTransaction, transaction2.LinkedTransaction);

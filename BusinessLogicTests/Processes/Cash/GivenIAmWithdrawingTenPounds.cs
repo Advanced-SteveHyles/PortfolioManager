@@ -16,6 +16,7 @@ namespace BusinessLogicTests.Processes.Cash
     {
         private BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
         private readonly FakeRepository _fakeRepository;
+        private readonly FakeCashTransactionRepository _fakeCashTransactionRepository;
         private readonly CashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
         const int TransactionValue = 10;
@@ -26,7 +27,8 @@ namespace BusinessLogicTests.Processes.Cash
         public GivenIAmWithdrawingTenPounds()
         {
             _fakeRepository = new FakeRepository(new FakeDataGeneric());
-            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);                                   
+            _fakeCashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
+            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeRepository);                                   
         }
 
         private void MakeRequest(string transactionType)
@@ -59,7 +61,7 @@ namespace BusinessLogicTests.Processes.Cash
             MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
 
-            var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
+            var transaction = _fakeCashTransactionRepository.GetCashTransactionById(ArbitaryId);
             
             Assert.Equal(AccountId, transaction.AccountId);
             Assert.Equal(transactionDate, transaction.TransactionDate);
@@ -85,7 +87,7 @@ namespace BusinessLogicTests.Processes.Cash
         {
             MakeRequest(requestedType);
             _withdrawalTransaction.Execute();
-            var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
+            var transaction = _fakeCashTransactionRepository.GetCashTransactionById(ArbitaryId);
 
             Assert.Equal(requestedType, transaction.TransactionType);
         }

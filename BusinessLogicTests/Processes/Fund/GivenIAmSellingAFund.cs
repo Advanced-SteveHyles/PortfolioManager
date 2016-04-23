@@ -8,6 +8,7 @@ using Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Linking;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.Common.Constants.Funds;
 using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
@@ -36,9 +37,11 @@ namespace BusinessLogicTests.Transactions.Fund
         private PriceHistoryHandler _priceHistoryHandler;
         private int _existingInvestmentMapId = 1;
         private decimal _depositValueWithCommisionPaid;
+        private ICashTransactionRepository _CashTransactionRepository;
 
         public GivenIAmSellingAFund()
         {
+            _CashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
             _depositValueWithCommisionPaid = _valueOfTransaction - _commission;
         }
 
@@ -67,7 +70,7 @@ namespace BusinessLogicTests.Transactions.Fund
             };
 
             _accountHandler = new AccountHandler(_fakeRepository);
-            _cashCashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            _cashCashTransactionHandler = new CashTransactionHandler(_CashTransactionRepository, _fakeRepository);
             _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
             _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
             _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
@@ -96,7 +99,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var cashTransactionId = 1;
-            var transaction = _fakeRepository.GetCashTransaction(cashTransactionId);
+            var transaction = _CashTransactionRepository.GetCashTransactionById(cashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
             Assert.Equal(_depositValueWithCommisionPaid, transaction.TransactionValue -_commission);
@@ -110,7 +113,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var cashTransactionId = 2;
-            var transaction = _fakeRepository.GetCashTransaction(cashTransactionId);
+            var transaction = _CashTransactionRepository.GetCashTransactionById(cashTransactionId);
             Assert.Equal(_accountId, transaction.AccountId);
             Assert.Equal(_transactionDate, transaction.TransactionDate);
             Assert.Equal(_commission, transaction.TransactionValue);
@@ -158,7 +161,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
-            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
+            var cashTransaction = _CashTransactionRepository.GetCashTransactionById(arbitaryId);
 
             Assert.Equal(fundTransaction.TransactionValue, cashTransaction.TransactionValue);
         }
@@ -237,7 +240,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             var arbitaryId = 1;
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
-            var cashTransaction = _fakeRepository.GetCashTransaction(arbitaryId);
+            var cashTransaction = _CashTransactionRepository.GetCashTransactionById(arbitaryId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);
@@ -257,7 +260,7 @@ namespace BusinessLogicTests.Transactions.Fund
             
             var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
             
-            var cashTransaction = _fakeRepository.GetCashTransaction(commissionId);
+            var cashTransaction = _CashTransactionRepository.GetCashTransactionById(commissionId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
             Assert.NotEqual(Guid.Empty, cashTransaction.LinkedTransaction);

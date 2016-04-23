@@ -6,6 +6,7 @@ using BusinessLogicTests.Fakes.DataFakes;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
+using Portfolio.BackEnd.Repository.Interfaces;
 using Portfolio.Common.Constants.TransactionTypes;
 using Portfolio.Common.DTO.Requests.Transactions;
 using Xunit;
@@ -16,18 +17,20 @@ namespace BusinessLogicTests.Processes.Cash
     public class GivenIAmDepositingTenPounds
     {
         private BaseProcess<DepositTransactionRequest> _depositTransaction;
+        private readonly ICashTransactionRepository _cashTransactionRepository;
         private readonly FakeRepository _fakeRepository;
         const int AccountId = 1;
         const int TransactionValue = 10;
         const int ArbitaryId = 1;
         readonly DateTime transactionDate = DateTime.Now;
-        private CashTransactionHandler _cashTransactionHandler;
+        private readonly CashTransactionHandler _cashTransactionHandler;
         const string Source = "Test";
 
         public GivenIAmDepositingTenPounds()
         {
             _fakeRepository = new FakeRepository(new FakeDataGeneric());
-            _cashTransactionHandler = new CashTransactionHandler(_fakeRepository, _fakeRepository);
+            _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
+            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
         }
 
         private void MakeRequest(string transactionType)
@@ -62,7 +65,7 @@ namespace BusinessLogicTests.Processes.Cash
             MakeRequest(CashDepositTransactionTypes.Deposit);
             _depositTransaction.Execute();
 
-            var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
+            var transaction = _cashTransactionRepository.GetCashTransactionById(ArbitaryId);
 
             Assert.Equal(AccountId, transaction.AccountId);
             Assert.Equal(transactionDate, transaction.TransactionDate);
@@ -86,7 +89,7 @@ namespace BusinessLogicTests.Processes.Cash
         {
             MakeRequest(requestedType);
             _depositTransaction.Execute();
-            var transaction = _fakeRepository.GetCashTransaction(ArbitaryId);
+            var transaction = _cashTransactionRepository.GetCashTransactionById(ArbitaryId);
 
             Assert.Equal(requestedType, transaction.TransactionType);
         }

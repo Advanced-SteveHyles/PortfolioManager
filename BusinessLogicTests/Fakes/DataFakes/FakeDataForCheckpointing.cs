@@ -1,24 +1,18 @@
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using BusinessLogicTests.FakeRepositories.DataFakes;
 using Portfolio.BackEnd.Repository.Entities;
 
 namespace BusinessLogicTests.Fakes.DataFakes
 {
-    internal class FakeDataForCheckpointing:IFakeData
+    internal class FakeDataForCheckpointing: FakeData
     {
-        public List<Account> FakeAccountData()
+        public FakeDataForCheckpointing()
         {
-            return new List<Account>();
-        }
-
-        public List<AccountInvestmentMap> FakePopulatedInvestmentMap()
-        {
-return new List<AccountInvestmentMap>();
-        }
-
-        public List<Investment> FakePopulatedInvestments()
-        {
-            return new List<Investment>();
-        }
+            _cashTransactions.Add( new CashTransaction() {CashTransactionId = 1});
+            _cashTransactions.Add(new CashTransaction() { CashTransactionId = 2 });
+            _cashTransactions.Add(new CashTransaction() { CashTransactionId = 3 });
+            _cashTransactions.Add(new CashTransaction() { CashTransactionId = 4 });
+        }    
     }
 }

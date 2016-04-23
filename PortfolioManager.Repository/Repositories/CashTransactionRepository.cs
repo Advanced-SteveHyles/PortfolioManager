@@ -38,7 +38,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
             }
         }
 
-        public CashTransaction GetCashTransaction(int cashTransactionId)
+        public CashTransaction GetCashTransactionById(int cashTransactionId)
         {
             return _context.CashTransactions.SingleOrDefault(ct => ct.CashTransactionId == cashTransactionId);
         }
@@ -51,7 +51,7 @@ namespace Portfolio.BackEnd.Repository.Repositories
 
         public RepositoryActionResult<CashTransaction> ApplyCheckpoint(CashCheckpoint cashCheckpoint, int transactionId)
         {
-            var transaction = GetCashTransaction(transactionId);
+            var transaction = GetCashTransactionById(transactionId);
             transaction.CheckpointId = cashCheckpoint.CashCheckpointId;
         
             var result = _context.SaveChanges();

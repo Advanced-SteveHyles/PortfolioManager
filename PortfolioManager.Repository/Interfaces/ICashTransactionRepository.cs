@@ -6,7 +6,7 @@ namespace Portfolio.BackEnd.Repository.Interfaces
 {
     public interface ICashTransactionRepository
     {        
-        CashTransaction GetCashTransaction(int cashTransactionId);
+        CashTransaction GetCashTransactionById(int cashTransactionId);
         IQueryable<CashTransaction> GetCashTransactionsForAccount(int accountId);
 
         RepositoryActionResult<CashTransaction> InsertCashTransaction(CreateCashTransactionRequest request);

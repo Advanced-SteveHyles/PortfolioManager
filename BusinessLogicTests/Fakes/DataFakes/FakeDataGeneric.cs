@@ -4,7 +4,7 @@ using Portfolio.BackEnd.Repository.Entities;
 
 namespace BusinessLogicTests.Fakes.DataFakes
 {
-    internal class FakeDataGeneric : IFakeData
+    internal class FakeDataGeneric : FakeData
     {
         public const int FakeInvestmentId = 1;
 
@@ -17,10 +17,21 @@ namespace BusinessLogicTests.Fakes.DataFakes
             }
         };
 
+        private List<Account> _accounts;
+        private List<AccountInvestmentMap> _accountInvestmentMaps;
 
-        public List<AccountInvestmentMap> FakePopulatedInvestmentMap()
+        public FakeDataGeneric()
         {
-            return new List<AccountInvestmentMap>
+            _accounts = new List<Account>()
+            {
+                new Account(){AccountId = 1, Name = "Acc1"},
+                new Account(){AccountId = 2, Name = "Acc2"},
+                new Account(){AccountId = 3, Name = "Acc3"},
+                new Account(){AccountId = 4, Name = "Acc4"},
+                new Account(){AccountId = 5, Name = "Acc5"},
+                new Account(){AccountId = 6, Name = "Acc6"},                
+            };
+            _accountInvestmentMaps = new List<AccountInvestmentMap>
             {
                 new AccountInvestmentMap()
                 {
@@ -67,22 +78,20 @@ namespace BusinessLogicTests.Fakes.DataFakes
             };
         }
 
-        public List<Investment> FakePopulatedInvestments()
+
+        public override List<AccountInvestmentMap> InvestmentMaps()
+        {
+            return _accountInvestmentMaps;
+        }
+
+        public override List<Investment> Investments()
         {
             return _investments;
         }
 
-        public List<Account> FakeAccountData()
+        public override List<Account> Accounts()
         {
-            return new List<Account>()
-            {
-                new Account(){AccountId = 1, Name = "Acc1"},
-                new Account(){AccountId = 2, Name = "Acc2"},
-                new Account(){AccountId = 3, Name = "Acc3"},
-                new Account(){AccountId = 4, Name = "Acc4"},
-                new Account(){AccountId = 5, Name = "Acc5"},
-                new Account(){AccountId = 6, Name = "Acc6"},                
-            };
+            return _accounts;
         }        
-    }
+    }    
 }
