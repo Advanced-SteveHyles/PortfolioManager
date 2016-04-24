@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using Portfolio.BackEnd.BusinessLogic.Interfaces;
 using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Validators;
 using Portfolio.BackEnd.Repository;
 using Portfolio.BackEnd.Repository.Interfaces;
+using Portfolio.Common.DTO.Requests;
 
 namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
 {
@@ -22,7 +24,11 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
         
         protected override void ProcessToRun()
         {
-            var cashCheckpoint = _checkpointRepository.InsertCheckpoint(_checkpointRequest);
+            var previousCheckpoint = _checkpointRepository.GetLastestCheckpointForAccount(_checkpointRequest.AccountId);
+            var closingTotal = _checkpointRequest.ItemsToCheckpoint.Sum(tx => tx.TransactionValue);
+            var openingValue = previousCheckpoint?.ClosingValue ?? 0;
+
+            var cashCheckpoint = _checkpointRepository.InsertCheckpoint(_checkpointRequest, openingValue, closingTotal);
 
             if (cashCheckpoint.Status != RepositoryActionStatus.Ok)
             {
@@ -32,7 +38,7 @@ namespace Portfolio.BackEnd.BusinessLogic.Processors.Processes
             
             foreach (var cashTransaction in _checkpointRequest.ItemsToCheckpoint)
             {
-                _cashTransactionHandler.ApplyCheckpoint(cashCheckpoint.Entity, cashTransaction);
+                _cashTransactionHandler.ApplyCheckpoint(cashCheckpoint.Entity, cashTransaction.CashTransactionId);
             }
         }
 

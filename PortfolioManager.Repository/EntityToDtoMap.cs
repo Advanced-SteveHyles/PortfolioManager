@@ -90,7 +90,9 @@ namespace Portfolio.BackEnd.Repository
                 TransactionDate = cashTransaction.TransactionDate,
                 Source = cashTransaction.Source,
                 TransactionValue = cashTransaction.TransactionValue,
-                IsTaxRefund = cashTransaction.IsTaxRefund
+                IsTaxRefund = cashTransaction.IsTaxRefund,
+                CheckpointId = cashTransaction.CheckpointId
+
             };
         }
     }

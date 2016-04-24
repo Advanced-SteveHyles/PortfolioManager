@@ -35,6 +35,8 @@ namespace Portfolio.BackEnd.Repository
         public virtual DbSet<PriceHistory> PriceHistories { get; set; }
         public virtual DbSet<PortfolioValuation> PortfolioValuations { get; set; }
 
+        public virtual DbSet<CashCheckpoint> CashCheckpoints { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Entities.Portfolio>()

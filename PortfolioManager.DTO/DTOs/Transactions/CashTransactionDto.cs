@@ -14,5 +14,6 @@ namespace Portfolio.Common.DTO.DTOs.Transactions
         public string Source { get; set; }
         public decimal TransactionValue { get; set; }
         public bool IsTaxRefund { get; set; }
+        public int? CheckpointId { get; set; }
     }
 }

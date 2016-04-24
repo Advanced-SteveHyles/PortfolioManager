@@ -1,4 +1,5 @@
-
+Add Portfolio valuation button
+Add Checkpointing UI
 
 Consider
 ========

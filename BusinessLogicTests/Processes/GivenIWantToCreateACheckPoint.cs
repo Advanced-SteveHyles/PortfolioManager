@@ -1,36 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessLogicTests.FakeRepositories;
+using System.Linq;
 using BusinessLogicTests.Fakes;
 using BusinessLogicTests.Fakes.DataFakes;
-using Portfolio.BackEnd.BusinessLogic.Processors.Handlers;
 using Portfolio.BackEnd.BusinessLogic.Processors.Processes;
-using Portfolio.BackEnd.Repository.Repositories;
+using Portfolio.BackEnd.Repository;
+using Portfolio.BackEnd.Repository.Entities;
+using Portfolio.Common.DTO.Requests;
 using Xunit;
 
 namespace BusinessLogicTests.Processes
 {
     public class GivenIWantToCreateACheckPointForCashTransactions
     {
-        private FakeCheckpointRepository _fakeCheckpointRepository;
-        private FakeCashTransactionRepository _cashTransactionRepository;
+        private readonly FakeCheckpointRepository _fakeCheckpointRepository;
+        private readonly FakeCashTransactionRepository _cashTransactionRepository;
         private RecordCashCheckpointProcess _recordCashCheckpointProcess;
-        
-        const int firstCheckpointId = 1;
 
-        readonly DateTime checkpointStartDate = DateTime.Today;
-        readonly DateTime checkpointEndtDate = DateTime.Today;
+        private const int FirstCheckpointId = 1;
+        private const int SecondCheckpointId = 2;
+        private const int AccountId = 1;
+        private const string CheckpointReference = "Checkpoint Reference";
 
-        public void Setup(List<int> linkedTransactions)
+        private readonly DateTime _checkpointStartDate = DateTime.Today;
+        private readonly DateTime _checkpointEndtDate = DateTime.Today;
+
+        public GivenIWantToCreateACheckPointForCashTransactions()
         {
-            var accountId = 1;
-            var fromDate = DateTime.Today;
-            var toDate = DateTime.Today;
-            var request = new CheckpointRequest(accountId, fromDate, toDate, linkedTransactions);
-            
             _fakeCheckpointRepository = new FakeCheckpointRepository();
             _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataForCheckpointing());
+        }
 
+        public void CreateCheckpoint(List<CashTransaction> linkedTransactions)
+        {
+            const int accountId = 1;
+            var fromDate = DateTime.Today;
+            var toDate = DateTime.Today;
+            var itemsToCheckpoint = linkedTransactions.Select(item=>item.MapToDto()).ToList();
+            var request = new CheckpointRequest(accountId, fromDate, toDate, itemsToCheckpoint, CheckpointReference);
+                        
             _recordCashCheckpointProcess = new RecordCashCheckpointProcess(_fakeCheckpointRepository, _cashTransactionRepository, request);
             _recordCashCheckpointProcess.Execute();
         }
@@ -38,39 +46,64 @@ namespace BusinessLogicTests.Processes
         [Fact]
         public void ThenICanCreateACheckpoint()
         {
-            Setup(new List<int>());
-            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(firstCheckpointId);
+            var cashTransactionsForAccount = _cashTransactionRepository.GetCashTransactionsForAccount(1).ToList();
 
-            Assert.Equal(firstCheckpointId, checkpoint.CashCheckpointId);
-            Assert.Equal(checkpointStartDate, checkpoint.FromDate);
-            Assert.Equal(checkpointEndtDate, checkpoint.ToDate);
+            CreateCheckpoint(cashTransactionsForAccount);
+
+            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(FirstCheckpointId);
+
+            Assert.Equal(FirstCheckpointId, checkpoint.CashCheckpointId);
+            Assert.Equal(_checkpointStartDate, checkpoint.FromDate);
+            Assert.Equal(_checkpointEndtDate, checkpoint.ToDate);            
+            Assert.Equal(CheckpointReference, checkpoint.Reference);
         }
 
         [Fact]
         public void ThenICanAddTransactionsToACheckpoint()
         {
-            Setup(new List<int>(){{ 1},{2},{ 3},{ 4}});
+            CreateCheckpoint(_cashTransactionRepository.GetCashTransactionsForAccount(1).ToList());
 
             var transaction = _cashTransactionRepository.GetCashTransactionById(1);
-            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);
 
             transaction = _cashTransactionRepository.GetCashTransactionById(2);
-            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);
 
             transaction = _cashTransactionRepository.GetCashTransactionById(3);
-            Assert.Equal(firstCheckpointId, transaction.CheckpointId);
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);
 
             transaction = _cashTransactionRepository.GetCashTransactionById(4);
-            Assert.Equal(firstCheckpointId, transaction.CheckpointId);            
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);            
         }
 
-        //[Fact]
-        //public void ThenICanFindTransactionsBasedOnACheckpoint()
-        //{
-        //}
+        [Fact]
+        public void ThenCheckpointClosingMatchesStartingPlusActuals()
+        {
+            var accountId = 1;
+            CreateCheckpoint(_cashTransactionRepository.GetCashTransactionsForAccount(accountId).Where(tx=>tx.CashTransactionId<3).ToList());
 
-        //Ensure checkpoint opening balance + closing balance = sum of transactions
+            var transaction = _cashTransactionRepository.GetCashTransactionById(1);
+            var runningTotal = transaction.TransactionValue;
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);
 
-        //Ensure once checkpoint is present, new transaction date cannot be before checkpoint
+            transaction = _cashTransactionRepository.GetCashTransactionById(2);
+            runningTotal += transaction.TransactionValue;
+            Assert.Equal(FirstCheckpointId, transaction.CheckpointId);
+
+            var checkpoint = _fakeCheckpointRepository.GetCheckpointByCheckpointId(FirstCheckpointId);
+            Assert.Equal(runningTotal, checkpoint.ClosingValue);
+        }
+
+        [Fact]
+        public void WhenTwoCheckpointsAreCreatedThenFirstCheckpointClosingMatchesSecondCheckpointStarting()
+        {            
+            CreateCheckpoint(_cashTransactionRepository.GetCashTransactionsForAccount(AccountId).Where(tx => tx.CashTransactionId < 3).ToList());
+
+            CreateCheckpoint(_cashTransactionRepository.GetCashTransactionsForAccount(AccountId).Where(tx => tx.CashTransactionId > 2).ToList());
+            
+            var checkpoint1 = _fakeCheckpointRepository.GetCheckpointByCheckpointId(FirstCheckpointId);
+            var checkpoint2 = _fakeCheckpointRepository.GetCheckpointByCheckpointId(SecondCheckpointId);
+            Assert.Equal(checkpoint1.ClosingValue, checkpoint2.OpeningValue);
+        }        
     }
 }
