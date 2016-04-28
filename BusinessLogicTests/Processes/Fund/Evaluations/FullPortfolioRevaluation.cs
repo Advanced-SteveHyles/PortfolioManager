@@ -11,21 +11,21 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
 {
     public class FullPortfolioRevaluation
     {
-        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeDataGeneric());
+        private readonly FakeInvestmentRepository _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
         private readonly PriceHistoryHandler _priceHandler;
 
         public FullPortfolioRevaluation()
         {
-            _priceHandler = new PriceHistoryHandler(_fakeRepository);
+            _priceHandler = new PriceHistoryHandler(_fakeInvestmentRepository);
         }
 
         [Fact]
         public void WhenIPerformAMassValuationAllMapsAreCorrect()
         {
             RunForYesterdaysPrice();
-            foreach (var map in _fakeRepository.GetAllAccountInvestmentMaps().ToList())
+            foreach (var map in _fakeInvestmentRepository.GetAllAccountInvestmentMaps().ToList())
             {
-                var price = _fakeRepository.GetInvestmentSellPrices(map.InvestmentId).FirstOrDefault();
+                var price = _fakeInvestmentRepository.GetInvestmentSellPrices(map.InvestmentId).FirstOrDefault();
                 var valuation = (price?.SellPrice) * map.Quantity;
 
                 Assert.Equal(valuation, map.Valuation);
@@ -36,7 +36,7 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         public void WhenTheAccountHasNoMapsAccountsIsCorrect()
         {
             RunForYesterdaysPrice();
-            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(5).Valuation);
+            Assert.Equal(0, _fakeInvestmentRepository.GetAccountByAccountId(5).Valuation);
         }
 
         [Fact]
@@ -51,11 +51,11 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             //    InvestmentId = 1, AccountId = 4, Quantity = 1.78923       //10
             //    InvestmentId = 3, AccountId = 6, Quantity = 21            //12.5
             RunForYesterdaysPrice();
-            Assert.Equal(170, _fakeRepository.GetAccountByAccountId(1).Valuation);
-            Assert.Equal(50, _fakeRepository.GetAccountByAccountId(2).Valuation);
-            Assert.Equal(254, _fakeRepository.GetAccountByAccountId(3).Valuation);
-            Assert.Equal((decimal)17.89230, _fakeRepository.GetAccountByAccountId(4).Valuation);
-            Assert.Equal((decimal)262.5, _fakeRepository.GetAccountByAccountId(6).Valuation);
+            Assert.Equal(170, _fakeInvestmentRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(50, _fakeInvestmentRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal(254, _fakeInvestmentRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)17.89230, _fakeInvestmentRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal((decimal)262.5, _fakeInvestmentRepository.GetAccountByAccountId(6).Valuation);
         }
 
         [Fact]
@@ -71,11 +71,11 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
             //    InvestmentId = 3, AccountId = 6, Quantity = 21            //0
             RunForYesterdaysPrice();
             RunForTodaysPrice();
-            Assert.Equal(177, _fakeRepository.GetAccountByAccountId(1).Valuation);
-            Assert.Equal(53, _fakeRepository.GetAccountByAccountId(2).Valuation);
-            Assert.Equal((decimal)269.24, _fakeRepository.GetAccountByAccountId(3).Valuation);
-            Assert.Equal((decimal)18.965838, _fakeRepository.GetAccountByAccountId(4).Valuation);
-            Assert.Equal(0, _fakeRepository.GetAccountByAccountId(6).Valuation);
+            Assert.Equal(177, _fakeInvestmentRepository.GetAccountByAccountId(1).Valuation);
+            Assert.Equal(53, _fakeInvestmentRepository.GetAccountByAccountId(2).Valuation);
+            Assert.Equal((decimal)269.24, _fakeInvestmentRepository.GetAccountByAccountId(3).Valuation);
+            Assert.Equal((decimal)18.965838, _fakeInvestmentRepository.GetAccountByAccountId(4).Valuation);
+            Assert.Equal(0, _fakeInvestmentRepository.GetAccountByAccountId(6).Valuation);
         }
 
         private void RunForYesterdaysPrice()
@@ -114,10 +114,10 @@ namespace BusinessLogicTests.Transactions.Fund.Evaluations
         {
             var request = new RevalueAllPricesRequest() { EvaluationDate = DateTime.Now };
             var revalueAllPricesCommand = new RevalueAllPricesProcess(
-                request, new AccountInvestmentMapProcessor(_fakeRepository),
-                new InvestmentHandler(_fakeRepository),
-                new PriceHistoryHandler(_fakeRepository),
-                new AccountHandler(_fakeRepository)
+                request, new AccountInvestmentMapProcessor(_fakeInvestmentRepository),
+                new InvestmentHandler(_fakeInvestmentRepository),
+                new PriceHistoryHandler(_fakeInvestmentRepository),
+                new AccountHandler(_fakeInvestmentRepository)
                 );
 
             revalueAllPricesCommand.Execute();

@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Transactions.Fund
 {
     public class GivenIAmTransferingCashFromOneAccountToAnother
     {
-        private readonly FakeRepository _fakeRepository;
+        private readonly FakeInvestmentRepository _fakeInvestmentRepository;
         private readonly FakeCashTransactionRepository _fakeCashTransactionRepository;
         private RecordCashTransferProcess _process;
         private CashTransactionHandler _cashTransactionHandler;
@@ -28,7 +28,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
         public GivenIAmTransferingCashFromOneAccountToAnother()
         {
-            _fakeRepository = new FakeRepository(new FakeDataGeneric());
+            _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
             _fakeCashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
@@ -41,8 +41,8 @@ namespace BusinessLogicTests.Transactions.Fund
                 TransactionDate = _transactionDate
             };
 
-            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeRepository);
-            _accountHandler = new AccountHandler(_fakeRepository);
+            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeInvestmentRepository);
+            _accountHandler = new AccountHandler(_fakeInvestmentRepository);
 
             _process = new RecordCashTransferProcess(
                 request,
@@ -104,18 +104,18 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordATransferTheFromAccountBalanceIsDecreased()
         {
-            var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(_accountId1).Cash;
+            var accountBeforeBalance = _fakeInvestmentRepository.GetAccountByAccountId(_accountId1).Cash;
             SetupAndOrExecute(true);
-            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(_accountId1).Cash;
+            var accountBeforeAfter = _fakeInvestmentRepository.GetAccountByAccountId(_accountId1).Cash;
             Assert.Equal(accountBeforeBalance - _transferAmount, accountBeforeAfter);
         }
 
         [Fact]
         public void WhenIRecordATransferTheToAccountBalanceIsIncreased()
         {
-            var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(_accountId2).Cash;
+            var accountBeforeBalance = _fakeInvestmentRepository.GetAccountByAccountId(_accountId2).Cash;
             SetupAndOrExecute(true);
-            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(_accountId2).Cash;
+            var accountBeforeAfter = _fakeInvestmentRepository.GetAccountByAccountId(_accountId2).Cash;
             Assert.Equal(accountBeforeBalance + _transferAmount, accountBeforeAfter);
         }
     }

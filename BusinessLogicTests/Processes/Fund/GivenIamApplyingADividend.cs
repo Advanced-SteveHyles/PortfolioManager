@@ -14,7 +14,7 @@ namespace BusinessLogicTests.Processes.Fund
 {
     public class GivenIamApplyingADividend
     {
-        private readonly FakeRepository _fakeRepository;
+        private readonly FakeInvestmentRepository _fakeInvestmentRepository;
         private RecordDividendProcess _process;
         private FundTransactionHandler _fundTransactionHandler;
         private CashTransactionHandler _cashTransactionHandler;
@@ -31,7 +31,7 @@ namespace BusinessLogicTests.Processes.Fund
 
         public GivenIamApplyingADividend()
         {
-            _fakeRepository = new FakeRepository(new FakeDataGeneric());
+            _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
             _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
@@ -43,9 +43,9 @@ namespace BusinessLogicTests.Processes.Fund
                 TransactionDate = _transactionDate
             };
 
-            _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
-            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
-            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
+            _fundTransactionHandler = new FundTransactionHandler(_fakeInvestmentRepository);
+            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeInvestmentRepository);
+            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeInvestmentRepository);
             
             _process = new RecordDividendProcess(
                 request,
@@ -64,7 +64,7 @@ namespace BusinessLogicTests.Processes.Fund
             SetupAndOrExecute(true);
 
             var arbitaryId = 1;
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
 
             Assert.Equal(_existingInvestmentMapId, fundTransaction.InvestmentMapId);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
@@ -76,7 +76,7 @@ namespace BusinessLogicTests.Processes.Fund
         [Fact]
         public void WhenIRecordADividendACashRefundIsCreated()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeInvestmentRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var transaction = _cashTransactionRepository.GetCashTransactionById(CashTransactionId);
@@ -93,20 +93,20 @@ namespace BusinessLogicTests.Processes.Fund
         [Fact]
         public void WhenIRecordADividendTheAccountBalanceIsIncreased()
         {
-            var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            var accountBeforeBalance = _fakeInvestmentRepository.GetAccountByAccountId(1).Cash;
+            _fakeInvestmentRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
-            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
+            var accountBeforeAfter = _fakeInvestmentRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance + _dividentAmount, accountBeforeAfter);
         }
         
         [Fact]
         public void WhenIRecordADividendThenALinkedTransactionExists()
         {
-            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeInvestmentRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
-            var fundTransaction = _fakeRepository.GetFundTransaction(FundTransactionId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(FundTransactionId);
             var cashTransaction = _cashTransactionRepository.GetCashTransactionById(CashTransactionId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);

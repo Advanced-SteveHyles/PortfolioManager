@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
     public class PortfolioValuation
     {
         private readonly FakePortfolioRepository _fakePortfolioRepository;
-        private readonly FakeRepository _fakeRepository;
+        private readonly FakeInvestmentRepository _fakeInvestmentRepository;
         private readonly FakeCashTransactionRepository _cashTransactionRepository;
 
         private const decimal Commission = 2;
@@ -24,7 +24,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
         {
             _fakePortfolioRepository = new FakePortfolioRepository();
             _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
-            _fakeRepository = new FakeRepository(new FakeDataForPortfolioValuation());
+            _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataForPortfolioValuation());
             
         }
 
@@ -216,12 +216,12 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
                 Charges = Commission
             };
 
-            var     _accountHandler = new AccountHandler(_fakeRepository);
-            var _cashCashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
-            var _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
-            var _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
-            var _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
-            var _investmentHandler = new InvestmentHandler(_fakeRepository);
+            var     _accountHandler = new AccountHandler(_fakeInvestmentRepository);
+            var _cashCashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeInvestmentRepository);
+            var _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeInvestmentRepository);
+            var _fundTransactionHandler = new FundTransactionHandler(_fakeInvestmentRepository);
+            var _priceHistoryHandler = new PriceHistoryHandler(_fakeInvestmentRepository);
+            var _investmentHandler = new InvestmentHandler(_fakeInvestmentRepository);
 
             var _buyProcess = new RecordFundBuyProcess(request, _accountHandler,
                 _cashCashTransactionHandler, _accountInvestmentMapProcessor,
@@ -262,7 +262,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
             };
 
             var portfolioValuationProcessor = new PortfolioValuationProcessor(portfolioRevaluationRequest,
-                _fakePortfolioRepository, _fakeRepository, _fakeRepository, _fakeRepository);
+                _fakePortfolioRepository, _fakeInvestmentRepository, _fakeInvestmentRepository, _fakeInvestmentRepository);
 
             portfolioValuationProcessor.Execute();
         }
@@ -278,7 +278,7 @@ namespace BusinessLogicTests.Processes.Fund.Evaluations
                 TransactionType = CashDepositTransactionTypes.Deposit
             };
 
-            var cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
+            var cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeInvestmentRepository);
 
             var depositTransaction = new RecordDepositProcess(depositTransactionRequest, cashTransactionHandler, null);
             depositTransaction.Execute();

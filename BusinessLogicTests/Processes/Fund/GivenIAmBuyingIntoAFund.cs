@@ -24,7 +24,7 @@ namespace BusinessLogicTests.Transactions.Fund
         private decimal _commission;
         private decimal _valueOfTransaction;
         private DateTime _transactionDate;
-        private readonly FakeRepository _fakeRepository = new FakeRepository(new FakeDataGeneric());
+        private readonly FakeInvestmentRepository _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
         private RecordFundBuyProcess _buyProcess;
         private int _accountId;
 
@@ -67,12 +67,12 @@ namespace BusinessLogicTests.Transactions.Fund
                 Charges = _commission
             };
 
-            _accountHandler = new AccountHandler(_fakeRepository);
-            _cashCashTransactionHandler = new CashTransactionHandler(_CashTransactionRepository, _fakeRepository);
-            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
-            _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
-            _priceHistoryHandler = new PriceHistoryHandler(_fakeRepository);
-            _investmentHandler = new InvestmentHandler(_fakeRepository);
+            _accountHandler = new AccountHandler(_fakeInvestmentRepository);
+            _cashCashTransactionHandler = new CashTransactionHandler(_CashTransactionRepository, _fakeInvestmentRepository);
+            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeInvestmentRepository);
+            _fundTransactionHandler = new FundTransactionHandler(_fakeInvestmentRepository);
+            _priceHistoryHandler = new PriceHistoryHandler(_fakeInvestmentRepository);
+            _investmentHandler = new InvestmentHandler(_fakeInvestmentRepository);
 
             _buyProcess = new RecordFundBuyProcess(request, _accountHandler,
                         _cashCashTransactionHandler, _accountInvestmentMapProcessor,
@@ -87,7 +87,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             SetupAndOrExecute(true);
 
-            var account = _fakeRepository.GetAccountByAccountId(_accountId);
+            var account = _fakeInvestmentRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(-_valueOfTransaction - _commission, account.Cash);
         }
 
@@ -126,7 +126,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             SetupAndOrExecute(true);
 
-            var accountFundMap = _fakeRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
+            var accountFundMap = _fakeInvestmentRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
             var startingNumberOfShares = 10;
             Assert.Equal(_numberOfShares + startingNumberOfShares, accountFundMap.Quantity);
         }
@@ -137,7 +137,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var arbitaryId = 1;
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
             Assert.Equal(_priceOfOneShare, fundTransaction.BuyPrice);
             Assert.Equal(FundTransactionTypes.Buy, fundTransaction.TransactionType);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
@@ -159,7 +159,7 @@ namespace BusinessLogicTests.Transactions.Fund
             _buyProcess.Execute();
 
             var arbitaryId = 1;
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
             var cashTransaction = _CashTransactionRepository.GetCashTransactionById(arbitaryId);
 
             var cashValue = cashTransaction.TransactionValue;
@@ -171,7 +171,7 @@ namespace BusinessLogicTests.Transactions.Fund
         {
             SetupAndOrExecute(true);
             var startingNumberOfShares = 10;
-            var accountFundMap = _fakeRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
+            var accountFundMap = _fakeInvestmentRepository.GetAccountInvestmentMap(_existingInvestmentMapId);
             Assert.Equal(_numberOfShares + startingNumberOfShares, accountFundMap.Quantity);
             Assert.Equal(0, accountFundMap.Valuation);
         }
@@ -180,11 +180,11 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsAnOEICBothTheSellingAndBuyPriceAreRecorded()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
+            _fakeInvestmentRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
             var investmentId = 1;
-            var prices = _fakeRepository.GetInvestmentBuyPrices(investmentId);
+            var prices = _fakeInvestmentRepository.GetInvestmentBuyPrices(investmentId);
 
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);
             Assert.Equal(_priceOfOneShare, prices.First().SellPrice);
@@ -194,15 +194,15 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsAOEICThenTheAccountIsValuedCorrect()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
+            _fakeInvestmentRepository.SetInvestmentClass(fakeInvestmentId, FundClasses.Oeic);
             SetupAndOrExecute(true);
 
-            var maps = _fakeRepository.GetAccountInvestmentMapsByInvestmentId(fakeInvestmentId)
+            var maps = _fakeInvestmentRepository.GetAccountInvestmentMapsByInvestmentId(fakeInvestmentId)
                 .Where(map => map.AccountId == _accountId);
 
             var evaluation = (maps.Single().Quantity) * _priceOfOneShare;
 
-            var account = _fakeRepository.GetAccountByAccountId(_accountId);
+            var account = _fakeInvestmentRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(evaluation, account.Valuation);
         }
 
@@ -210,10 +210,10 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsUnitTrustThenTheAccountIsValuedCorrect()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, "UnitTrust");
+            _fakeInvestmentRepository.SetInvestmentClass(fakeInvestmentId, "UnitTrust");
             SetupAndOrExecute(true);
 
-            var account = _fakeRepository.GetAccountByAccountId(_accountId);
+            var account = _fakeInvestmentRepository.GetAccountByAccountId(_accountId);
             Assert.Equal(0, account.Valuation);
         }
 
@@ -221,11 +221,11 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIBuyAndTheAccountIsAUnitTrustFundOnlyTheBuyIsRecorded()
         {
             var fakeInvestmentId = 1;
-            _fakeRepository.SetInvestmentClass(fakeInvestmentId, "UnitTrust");
+            _fakeInvestmentRepository.SetInvestmentClass(fakeInvestmentId, "UnitTrust");
             SetupAndOrExecute(true);
 
             var investmentId = 1;
-            var prices = _fakeRepository.GetInvestmentBuyPrices(investmentId);
+            var prices = _fakeInvestmentRepository.GetInvestmentBuyPrices(investmentId);
 
             Assert.Equal(_priceOfOneShare, prices.First().BuyPrice);
             Assert.Equal(null, prices.First().SellPrice);
@@ -238,7 +238,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var arbitaryId = 1;
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
             var cashTransaction = _CashTransactionRepository.GetCashTransactionById(arbitaryId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
@@ -258,7 +258,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
             SetupAndOrExecute(true);
 
-            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
 
             var cashTransaction = _CashTransactionRepository.GetCashTransactionById(commissionId);
 
