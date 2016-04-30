@@ -15,7 +15,7 @@ namespace BusinessLogicTests.Processes.Cash
     public class GivenIAmWithdrawingTenPounds
     {
         private BaseProcess<WithdrawalTransactionRequest> _withdrawalTransaction;
-        private readonly FakeInvestmentRepository _fakeInvestmentRepository;
+        private readonly FakeRepository _fakeRepository;
         private readonly FakeCashTransactionRepository _fakeCashTransactionRepository;
         private readonly CashTransactionHandler _cashTransactionHandler;
         const int AccountId = 1;
@@ -26,9 +26,9 @@ namespace BusinessLogicTests.Processes.Cash
 
         public GivenIAmWithdrawingTenPounds()
         {
-            _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
+            _fakeRepository = new FakeRepository(new FakeDataGeneric());
             _fakeCashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
-            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeInvestmentRepository);                                   
+            _cashTransactionHandler = new CashTransactionHandler(_fakeCashTransactionRepository, _fakeRepository);                                   
         }
 
         private void MakeRequest(string transactionType)
@@ -49,7 +49,7 @@ namespace BusinessLogicTests.Processes.Cash
         {
             MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
-            var account = _fakeInvestmentRepository.GetAccountByAccountId(ArbitaryId);            
+            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);            
             Assert.Equal(-TransactionValue, account.Cash);
         }
         
@@ -76,7 +76,7 @@ namespace BusinessLogicTests.Processes.Cash
         {
             MakeRequest(CashWithdrawalTransactionTypes.Withdrawal);
             _withdrawalTransaction.Execute();
-            var account = _fakeInvestmentRepository.GetAccountByAccountId(ArbitaryId);
+            var account = _fakeRepository.GetAccountByAccountId(ArbitaryId);
             Assert.Equal(-TransactionValue, account.Cash);
         }
 

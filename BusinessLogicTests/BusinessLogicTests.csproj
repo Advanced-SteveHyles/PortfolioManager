@@ -67,16 +67,12 @@
     <Compile Include="Fakes\DataFakes\IFakeData.cs" />
     <Compile Include="Fakes\DataFakes\FakeDataGeneric.cs" />
     <Compile Include="Fakes\DataFakes\FakeDataForPortfolioValuation.cs" />
-    <Compile Include="Fakes\FakeAccountInvestmentMapRepository.cs" />
-    <Compile Include="Fakes\FakeAccountRepository.cs" />
     <Compile Include="Fakes\FakeCashTransactionRepository.cs" />
     <Compile Include="Fakes\FakeCheckpointRepository.cs" />
     <Compile Include="Fakes\FakeFactories\Class1.cs" />
-    <Compile Include="Fakes\FakeFundTransactionRepository.cs" />
     <Compile Include="Fakes\FakePortfolioRepository.cs" />
-    <Compile Include="Fakes\FakePriceHistoryRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmWithdrawingTenPounds.cs" />
-    <Compile Include="Fakes\FakeInvestmentRepository.cs" />
+    <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Processes\Cash\GivenIAmDepositingTenPounds.cs" />
     <Compile Include="Processes\Fund\Evaluations\PortfolioValuation.cs" />
     <Compile Include="Processes\GivenIWantToCreateACheckPoint.cs" />

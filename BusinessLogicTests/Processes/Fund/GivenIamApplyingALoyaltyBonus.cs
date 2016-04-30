@@ -17,7 +17,7 @@ namespace BusinessLogicTests.Transactions.Fund
 {
     public class GivenIamApplyingALoyaltyBonus
     {
-        private readonly FakeInvestmentRepository _fakeInvestmentRepository;
+        private readonly FakeRepository _fakeRepository;
         private RecordLoyaltyBonusProcess _process;
         private FundTransactionHandler _fundTransactionHandler;
         private CashTransactionHandler _cashTransactionHandler;
@@ -34,7 +34,7 @@ namespace BusinessLogicTests.Transactions.Fund
 
         public GivenIamApplyingALoyaltyBonus()
         {
-            _fakeInvestmentRepository = new FakeInvestmentRepository(new FakeDataGeneric());
+            _fakeRepository = new FakeRepository(new FakeDataGeneric());
             _cashTransactionRepository = new FakeCashTransactionRepository(new FakeDataGeneric());
         }
         private void SetupAndOrExecute(bool execute)
@@ -46,10 +46,10 @@ namespace BusinessLogicTests.Transactions.Fund
                 TransactionDate = _transactionDate
             };
 
-            _fundTransactionHandler = new FundTransactionHandler(_fakeInvestmentRepository);
-            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeInvestmentRepository);
-            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeInvestmentRepository);
-            _investmentHandler = new InvestmentHandler(_fakeInvestmentRepository);
+            _fundTransactionHandler = new FundTransactionHandler(_fakeRepository);
+            _cashTransactionHandler = new CashTransactionHandler(_cashTransactionRepository, _fakeRepository);
+            _accountInvestmentMapProcessor = new AccountInvestmentMapProcessor(_fakeRepository);
+            _investmentHandler = new InvestmentHandler(_fakeRepository);
             
             _process = new RecordLoyaltyBonusProcess(
                 request,
@@ -68,7 +68,7 @@ namespace BusinessLogicTests.Transactions.Fund
             SetupAndOrExecute(true);
 
             var arbitaryId = 1;
-            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
 
             Assert.Equal(_existingInvestmentMapId, fundTransaction.InvestmentMapId);
             Assert.Equal(_transactionDate, fundTransaction.TransactionDate);
@@ -81,7 +81,7 @@ namespace BusinessLogicTests.Transactions.Fund
         public void WhenIRecordALoyaltyTransactionThenACashDepositIsCreated()
         {
             var source = "Investment 1";
-            _fakeInvestmentRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
 
             var transaction = _cashTransactionRepository.GetCashTransactionById(CashTransactionId);
@@ -98,10 +98,10 @@ namespace BusinessLogicTests.Transactions.Fund
         [Fact]
         public void WhenIRecordALoyaltyTransactionTheAccountBalanceIsIncreased()
         {
-            var accountBeforeBalance = _fakeInvestmentRepository.GetAccountByAccountId(1).Cash;
-            _fakeInvestmentRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
+            var accountBeforeBalance = _fakeRepository.GetAccountByAccountId(1).Cash;
+            _fakeRepository.SetInvestmentIncome(_existingInvestmentMapId, FundIncomeTypes.Income);
             SetupAndOrExecute(true);
-            var accountBeforeAfter = _fakeInvestmentRepository.GetAccountByAccountId(1).Cash;
+            var accountBeforeAfter = _fakeRepository.GetAccountByAccountId(1).Cash;
             Assert.Equal(accountBeforeBalance + _loyaltyBonusAmount, accountBeforeAfter);
         }
 
@@ -114,7 +114,7 @@ namespace BusinessLogicTests.Transactions.Fund
             
             SetupAndOrExecute(true);
 
-            var fundTransaction = _fakeInvestmentRepository.GetFundTransaction(arbitaryId);
+            var fundTransaction = _fakeRepository.GetFundTransaction(arbitaryId);
             var cashTransaction = _cashTransactionRepository.GetCashTransactionById(arbitaryId);
 
             Assert.NotEqual(Guid.Empty, fundTransaction.LinkedTransaction);
